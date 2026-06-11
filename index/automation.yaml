@@ -1,0 +1,7 @@
+- id: auto_dcc_qualification_suite
+  name: "DCC via CKO 集成自动化套件"
+  aliases: ["DCC自动化", "DCC自动化套件", "DCC automation suite"]
+  domain: online-business
+  module: DCC
+  status: active
+  path: domains/online-business/acquire/automation_dcc_qualification_suite.md

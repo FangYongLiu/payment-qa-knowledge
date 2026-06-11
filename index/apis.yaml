@@ -1,0 +1,29 @@
+# 路由索引：API 对象。reindex 时由此快速定位 + 实体匹配（name/aliases）。
+- id: api_acquire2_place_order
+  name: "PayPage 下单接口"
+  aliases: ["placeOrder", "/sgs/api/acquire2/placeOrder", "PayPage 下单", "HPP 下单", "下单接口"]
+  domain: online-business
+  module: DCC
+  status: active
+  path: domains/online-business/acquire/api_acquire2_place_order.md
+- id: api_acquire2_dcc_quotation
+  name: "DCC 报价查询接口"
+  aliases: ["DCC", "DCC报价", "DCC资质", "Quotation", "dcc quotation", "报价查询", "dccQuoteId"]
+  domain: online-business
+  module: DCC
+  status: active
+  path: domains/online-business/acquire/api_acquire2_dcc_quotation.md
+- id: api_acquire2_create_order
+  name: "DirectPay 创建订单接口"
+  aliases: ["Create Order", "创建订单", "确认下单", "currencyConversion", "dccUptake"]
+  domain: online-business
+  module: DCC
+  status: active
+  path: domains/online-business/acquire/api_acquire2_create_order.md
+- id: api_acquire2_refund
+  name: "DCC 退款与取消接口"
+  aliases: ["退款", "refund", "部分退款", "末笔退款", "全额退款", "取消订单", "cancelOrder", "撤销"]
+  domain: online-business
+  module: DCC
+  status: active
+  path: domains/online-business/acquire/api_acquire2_refund.md

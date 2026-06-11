@@ -1,0 +1,7 @@
+- id: flow_dcc_checkout
+  name: "DCC 收银端到端流程"
+  aliases: ["DCC流程", "DCC收银", "DCC E2E", "dcc checkout flow", "DCC 端到端"]
+  domain: online-business
+  module: DCC
+  status: active
+  path: domains/online-business/acquire/flow_dcc_checkout.md
