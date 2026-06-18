@@ -1,5 +1,5 @@
 ---
-title: PayBy商户控台(Merchant Portal)概览
+title: PayBy Merchant Portal(商户控台)概览
 domain: payby-authorization-protocol
 kind: wiki_page
 slug: payby-merchant-portal-overview
@@ -7,63 +7,47 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:ea667653-6cbc-4ad0-9152-dbb1bbd83cdb
+source_ref: wiki_image:22afbc40-24fe-4c96-b4d7-d33acacdeb9c
 tags: []
 ---
 
-# PayBy商户控台(Merchant Portal)概览
+# PayBy Merchant Portal(商户控台)概览
 
-PayBy Merchant Portal 是 PayBy 商户/合作方使用的 Web 端控台，提供交易、账户、产品、门店、营销等核心运营功能的统一入口。
+本页介绍 PayBy Merchant Portal 商户入驻注册表单中的字段与上传项，覆盖文件上传规范、管理员信息、证件类型与编号等内容。
 
-## 顶部信息栏
+## 文件上传规范
 
-- 左侧：**PayBy MERCHANT** Logo
-- 右侧：当前登录主体信息，例如 `AgentInformation0813(Merchant / Partner ID:200000428564)`
-- 辅助图标：通知(铃铛)、帮助(?)、用户头像
+- 上传方式：拖拽文件或点击 `upload a file` 链接上传
+- 支持格式：JPG、PNG、PDF
+- 单文件大小上限：5mb
+- 已上传文件以文件名 chip 形式展示，可通过红色删除图标移除
 
-## 左侧导航菜单
+## 银行流水上传
 
-主导航(竖排)，默认选中 **Home**：
+- 字段：`Bank statement for the last 3 months`
+- 上传方式与限制同上(JPG/PNG/PDF，≤5mb)
 
-- **Home**
-- **Transactions** → Fiat
-- **Accounts** → Fiat
-- **Statements**
-- **Products** → Product List、Product Application、Paylink、Smart Code、Invoice、Transfer、Virtual Bank Account
-- **ISV**(可折叠)
-- **Offline Business** → Store、Device
-- **Marketing**(可折叠)
-- **Settings**
+## Administrator Information(管理员信息)
 
-## 首页主区域
+注册表单中的管理员信息分区，包含以下必填字段：
 
-### Transactions Today(今日交易)
+- `Type administrator name or choose a partner/signatory *`：管理员姓名，或选择合伙人/签署人
+- `Email address *`：邮箱地址
+- `Mobile number *`：手机号，含国家区号下拉(示例 `+971`) + 号码输入
+- `Designation *`：职位/职务
 
-带 **History** 入口，展示当日核心指标：
+## 证件类型与上传
 
-- Transaction Amount(交易金额)，例：`AED 0.00`
-- Transaction Count(交易笔数)
-- Refund Amount(退款金额)，例：`AED 0.00`
-- Refund Count(退款笔数)
+`Select the document type` 提供两种证件类型(单选)：
 
-### Current Balance(当前余额)
+- `Emirates ID`(默认选中)
+- `Passport`
 
-- 余额显示，例：`AED 99.63`
-- 操作按钮：**Transfer**(深色)、**Deposit**(绿色)、**Withdraw**(橙色)
-- 右上角 `...` 更多菜单
+### 选择 Emirates ID 时需提交的材料
 
-## Collect Money(收款方式)
+- `Emirates ID (Front) *`：身份证正面照片
+- `Emirates ID (Back) *`：身份证背面照片
+- `Letter of authorization *`：授权书
+- `Emirates ID Number *`：身份证号(示例格式 `784-9714-8794579-4`)
 
-四个卡片，前三个标注 **No code**(无需开发集成)：
-
-- **Invoice** — Create an invoice：创建发票
-- **Paylink** — Send a paylink：发送支付链接
-- **Smart Code** — Create a smart code：创建智能码(二维码)
-- **More ways to explore**：
-  - Intelligent hardware — Apply(智能硬件申请)
-  - API Management — Set(API 管理设置)
-  - **More** 按钮，展开更多方式
-
-## Other Accounts(其他账户)
-
-- 占位卡片 **More Services Coming Soon**，更多服务即将上线
+以上文件上传项均遵循统一的格式与大小限制(JPG/PNG/PDF，≤5mb)。
