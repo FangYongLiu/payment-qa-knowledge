@@ -1,5 +1,5 @@
 ---
-title: 设备激活（通用）操作指南
+title: 设备激活（通用）
 domain: payby-authorization-protocol
 kind: wiki_page
 slug: device-activation-general
@@ -7,37 +7,34 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:2fed67b3-59dd-49d1-864b-eb65ace6d0ea
+source_ref: wiki_image:b2ce2155-8c43-4495-ad55-c2d52e313af2
 tags: []
 ---
 
-# 设备激活（通用）操作指南
+# 设备激活（通用）
 
-本页说明商户后台进行设备激活申请的入口路径与操作步骤。
+本页说明设备激活流程中通用的页面操作，包括门店信息补充与设备类型选择（以 Smart POS 为例）。
 
-## 操作入口
+## 门店信息
 
-在商户后台左侧导航中按以下路径进入设备管理页面：
+在设备激活页面需补充以下门店信息：
 
-- **Offline Business** → **Device**
+- **Store Entrance**（必填）：上传门店入口照片。
+- **Cash Desk**（必填）：上传收银台照片，需展示实际进行支付的位置。
+- **Store Contact Phone Number**：门店联系电话，国家区号默认 `+971`，后跟电话号码输入框。
 
-## 页面结构
+## Device Information
 
-进入 **Device Management** 页面后，可见以下区域：
+在 "Device Information" 区域选择需要激活的设备类型，可选项包括：
 
-- 顶部 Tab：
-  - `My Device`（默认选中）
-  - `Waiting Activation`
-  - `Application Result`
-- 右上角操作按钮：
-  - `VIRTUAL POS`
-  - `APPLY DEVICE`
-- 筛选条件：`All Type`、`All Store`，以及 `SEARCH` 按钮
+- Smart box
+- **Smart POS**（本流程示例选项）
+- Virtual POS
+- Customized POS
+- Face Pay Terminal
 
-## 申请设备激活
+选择设备类型后，填写：
 
-在 **Device Management** 页面右上角点击 **`+ APPLY DEVICE`**，即可发起设备激活申请。
+- **Quantity**（必填）：设备数量，默认值为 `1`。
 
-## 完整路径
-
-> Offline Business → Device → APPLY DEVICE
+完成后点击 **SUBMIT** 提交。
