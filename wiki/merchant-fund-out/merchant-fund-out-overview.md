@@ -4,59 +4,84 @@ domain: merchant-fund-out
 kind: wiki_page
 slug: merchant-fund-out-overview
 status: active
-owner: upload-sync@platform
+owner: wiki-sync@acquire
 reviewer: UNREVIEWED
 source_type: wiki
-source_ref: wiki:d24969b4-625e-4ea0-b20d-669043b3a083
+source_ref: confluence:AQ/1012367385
 tags: []
 ---
 
 # 商户出款业务总览
 
-商户出款业务覆盖**商户提现**、**出款到卡**、**出款到账户**三种场景，分别对应不同的产品集、SGS 接口与底层数据表。详见 [[flow_merchant_fund_out]]。
+商户出款业务（domain: `merchant-fund-out`）覆盖商户将资金转出至外部银行卡或账户的场景，包含商户提现、出款到卡、出款到账户等产品形态。
+
+## 业务范围
+
+商户出款业务包含以下两大产品集方向：
+
+- **出款到卡**：将资金出款至指定银行卡（IBAN 等），详见 [[scn_fundout_to_bankcard]]
+- **出款到账户**：将资金出款至账户标识（手机号等），详见 [[scn_fundout_to_account]]
 
 ## 商户提现
 
-- **产品集**：默认开通（无需额外开通）
-- **关键能力**：绑卡、提现
-- **相关表**：
-  - 绑卡：`member.tr_beneficiary_info`
-  - 提现：`mhtfundout.t_withdraw_order`
+- 产品集：默认开通
+- 绑卡数据表：`member.tr_beneficiary_info`
+- 提现数据表：`mhtfundout.t_withdraw_order`
 
 ## 商户出款到卡
 
-- **产品集**：Transfer
-- **SGS 接口**：`transfer/placeTransferToBankOrder`（详见 [[api_transfer_place_transfer_to_bank_order]]）
-- **接口文档**：https://developers.payby.com/docs/Transfer%20to%20bank/transfer-to-bank
-- **重要参数**：
-  - `swiftCode`：如 `BBMEAEAD`
-  - `iban`：加密，如 `AE470200000012213138001`
-  - `holderName`：加密持卡人姓名
-  - `networkCode`：如 `LOCAL`
-  - `countryCode`：如 `UAE`
-  - `fundoutCurrencyCode`：如 `AED`
-  - `beneficiaryType`：如 `IBAN`
-  - `beneficiaryAddress`：加密收款人地址
-- **相关表**：
-  - `mhtfundout.t_fundout_bankcard_order`
-  - `mhtfundout.t_fundout_bankcard_beneficiary`
-  - `mhtfundout.t_account_beneficiary_history`
-- **商户控台**：商户控台提供出款到卡入口
+- 产品集：`Transfer`
+- SGS 接口：`transfer/placeTransferToBankOrder`
+- 接口文档：https://developers.payby.com/docs/Transfer%20to%20bank/transfer-to-bank
+
+重要参数示例：
+
+```json
+"swiftCode": "BBMEAEAD",
+"iban": "加密|AE470200000012213138001",
+"holderName": "加密|CAN WANG",
+"networkCode": "LOCAL",
+"countryCode": "UAE",
+"fundoutCurrencyCode": "AED",
+"beneficiaryType": "IBAN",
+"beneficiaryAddress": "加密|sigma 1 tower"
+```
+
+涉及数据表：
+
+- `mhtfundout.t_fundout_bankcard_order`
+- `mhtfundout.t_fundout_bankcard_beneficiary`
+- `mhtfundout.t_account_beneficiary_history`
+
+支持在商户控台进行操作。详见 [[scn_fundout_to_bankcard]]。
 
 ## 商户出款到账户
 
-- **产品集**：
-  - Transfer to bank
-  - Transfer To Bank Via SWIFT（通过 SWIFT 网络出款）
-  - Transfer To Bank Via FEDWIRE（通过 FEDWIRE 网络出款）
-- **SGS 接口**：`transfer/placeTransferOrder`（详见 [[api_transfer_place_transfer_order]]）
-- **接口文档**：https://developers.payby.com/docs/Transfer/
-- **重要参数**：
-  - `amount`：含 `currency`（如 `AED`）与 `amount`（如 `500`）
-  - `beneficiaryIdentity`：加密，如 `+971-585920614`
-  - `beneficiaryIdentityType`：如 `PHONE_NO`
-- **相关表**：`mhtfundout.t_fundout_account_order`
-- **商户控台**：商户控台提供出款到账户入口
+- 产品集：
+  - `Transfer to bank`
+  - `Transfer To Bank Via SWIFT`（通过 SWIFT 网络出款）
+  - `Transfer To Bank Via FEDWIRE`（通过 FEDWIRE 网络出款）
+- SGS 接口：`transfer/placeTransferOrder`
+- 接口文档：https://developers.payby.com/docs/Transfer/
+
+重要参数示例：
+
+```json
+{
+  "amount": {
+    "currency": "AED",
+    "amount": 500
+  },
+  "beneficiaryIdentity": "加密|+971-585920614",
+  "beneficiaryIdentityType": "PHONE_NO"
+}
+```
+
+涉及数据表：
+
+- `mhtfundout.t_fundout_account_order`
+
+支持在商户控台进行操作。详见 [[scn_fundout_to_account]]。
 
 ## 涉及的应用
 
