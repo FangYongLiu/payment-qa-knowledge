@@ -1,5 +1,5 @@
 ---
-title: PayBy Merchant Portal(商户控台)概览
+title: PayBy商户控台(Merchant Portal)概览
 domain: payby-authorization-protocol
 kind: wiki_page
 slug: payby-merchant-portal-overview
@@ -7,53 +7,52 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:803dfa07-8424-4b13-8da1-2740e7945bbd
+source_ref: wiki_image:839d04fa-65dc-4d8b-81ce-a40b71781159
 tags: []
 ---
 
-# PayBy Merchant Portal(商户控台)概览
+# PayBy商户控台(Merchant Portal)概览
 
-PayBy Merchant Portal 是 PayBy 提供给商户的 Web 端管理控台，支持交易查询、账户管理、对账单下载、产品配置、线下业务与营销等运营操作。
+PayBy Merchant Portal 是商户侧的 Web 管理控台，提供交易、账户、对账单、商品、线下业务、营销与设置等模块入口。
 
-## 导航结构
+## 左侧导航结构
 
-左侧主导航包含以下菜单项：
+控台左侧主导航（自上而下）：
 
-- **Home**
-- **Transactions**（可展开） → Fiat
-- **Accounts**（可展开） → Fiat
-- **Statements**（对账单）
-- **Products**（可展开） → Product List、Product Application、Paylink、Smart Code、Invoice、Transfer、Virtual Bank Account、Digital Receipt
-- **Offline Business**（可展开）
-- **Marketing**（可展开）
-- **Settings**
+- Home
+- Transactions
+  - Fiat
+- Accounts
+  - Fiat
+- Statements
+- Products
+- Offline Business
+  - Store
+  - Device
+- Marketing
+- Settings
 
-## Statements 对账单页面
+## Offline Business / Store 页面
 
-Statements 页面用于按周期查看与下载商户的对账数据。
+`Offline Business → Store` 进入 **Store Management**（门店管理）页面，用于查看商户已注册的线下门店列表。
 
-### 顶部操作
+列表字段：
 
-- 页面标题：**Statements**
-- **Subscribe**（订阅）按钮：以铃铛图标形式置于标题旁，用于订阅对账单。
+| 列 | 含义 |
+| --- | --- |
+| Store ID | 门店唯一编号 |
+| Store Name | 门店名称 |
+| Address Line1 | 地址第一行 |
 
-### Tab 分类
+示例数据：
 
-- 一级 Tab：**Transaction**（交易）/ **Settlement**（结算）
-- 二级 Tab：**Daily**（按日）/ **Monthly**（按月）
+- 28661 / Sim Store Register02 / Sky Tower
+- 28660 / Sim Store Register01 / Sky Tower
+- 28611 / phoneNumberTest / Sky Tower
+- 28603 / BASIS_Store / Sky Tower
+- 28602 / EDISON LED LIGHTING / EDISON LED LIGHTING
+- 28601 / SIM Edison01 / Sky Tower
 
-### 过滤条件
+## 同级子菜单
 
-- 日期范围筛选（Date Range），例如 `22-01-2025 ~ 22-02-2025`。
-
-### 数据表格字段
-
-| 列名 | 说明 |
-|---|---|
-| Date | 对账单所属日期 |
-| Start Time | 统计起始时间 |
-| End Time | 统计结束时间 |
-| Records Count | 记录条数 |
-| Download | 下载入口（图标） |
-
-示例：`21-02-2025` 这一行的 Start Time 为 `21-02-2025 00:00:00`，End Time 为 `22-02-2025 00:00:00`，Records Count 为 `11`，即按自然日（00:00:00 ~ 次日 00:00:00）切片汇总当日交易记录数，并提供单日下载入口。
+`Offline Business` 下除 Store 外还包含 **Device**（设备管理），用于线下设备相关配置。
