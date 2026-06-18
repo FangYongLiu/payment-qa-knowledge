@@ -6,8 +6,8 @@ slug: payby-auth-protocol-overview
 status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
-source_type: upload
-source_ref: upload:c28e6aeb-4485-4713-83f7-c926b25d5235
+source_type: wiki_image
+source_ref: wiki_image:21faec0e-f55f-4035-a6ea-c17499da3582
 tags: []
 ---
 
@@ -26,6 +26,44 @@ tags: []
 - [[api_payby_protocol_notify]]：协议状态变更后台异步通知
 
 返回码统一汇总见 [[payby-auth-protocol-return-codes]]。
+
+## 接入前置：商户入驻
+
+接入授权协议签约前，商户需先在 **PayBy Merchant Portal（商户控台）** 完成入驻。入驻为多步骤表单流程，主要包含以下步骤：
+
+1. **Company Profile**（公司资料）
+2. **Company Credentials**（公司资质）
+3. **Management**（管理人员）
+
+### Company Profile 关键字段
+
+公司资料部分包含以下信息（标 * 为必填）：
+
+- **Company name\***：公司名称，需与营业执照（trade license）一致
+- **Company website**：公司官网
+- **Industry\***：所属行业（下拉选择）
+- **High-Risk Jurisdiction Involvement\***：是否涉及高风险司法辖区
+- **Monthly Turnover\***：月营业额
+- **Payment Method Accepted\***：受理支付方式
+
+### Registered Address（注册地址）
+
+地址需与营业执照登记一致：
+
+- **Company number\***：联系电话（含国家区号，如 `+971`）
+- **Email address\***：邮箱
+- **Country\***：国家（默认 United Arab Emirates）
+- **Emirates\***：所在酋长国/城市
+- **Area\***：区域
+- **Building Name\***：楼宇名称
+- **Office No.\***：办公室号
+- **Are registered address and company address the same?\***：注册地址与办公地址是否一致（yes/no）
+
+### Tax Certificate（税务）
+
+- **Is the company VAT-registered?\***：是否已注册 VAT（yes/no）
+
+操作上提供 **Save Draft**（保存草稿）与 **Continue**（继续下一步）两个按钮。
 
 ## 接口规则
 
@@ -127,37 +165,4 @@ openssl pkcs8 -in PayBy_key.pem -topk8 -nocrypt -out PayBy_key_private.pem
 | 签约时间 | signTime | Optional | Timestamp(3) | — |
 | 生效时间 | effectTime | Optional | Timestamp(3) | — |
 | 失效时间 | invalidTime | Optional | Timestamp(3) | — |
-| 协议状态 | protocolStatus | Optional | String(32) | EXPIRED-已过期；TERMINATED-已解约；EFFECTIVE-有效；INEFFECTIVE-无效 |
-| 签约人ID | signerId | Optional | String(32) | 签约人在 PayBy 的会员 ID |
-| 扣除类型 | deductType | Optional | String(32) | SP = Single Pay Method |
-| 扩展信息 | extension | Optional | Map<String,String> | 详见下文 |
-
-#### extension 扩展信息
-
-- `payMethodType`：用户选择的支付方式，取值 `BALANCE`、`CARD_PAY`
-- `lastFour`：银行卡后 4 位
-- `cardBrand`：卡组织
-
-| code | description |
-| --- | --- |
-| VISA | VISA |
-| MASTERCARD | MASTERCARD |
-| CUP | CHINA UNION PAY |
-| JCB | JCB |
-| DINERS | DINERS CLUB INTERNATIONAL |
-| MAESTRO | MAESTRO |
-| AE | AMERICAN EXPRESS |
-| EBT | EBT |
-| DISCOVER | DISCOVER |
-| CIRRUS | CIRRUS |
-| RUPAY | RUPAY |
-| UATP | UATP |
-| ELO | ELO |
-
-## 版本说明
-
-| 版本 | 时间 | 修改点 |
-| --- | --- | --- |
-| v1.0.0 | 2020-08-14 | 初稿 |
-| v1.0.1 | 2021-10-08 | 申请签约协议新增请求参数 `accessType`；调整协议场景参数关系；申请签约协议新增返回码 90009 |
-| v1.0
+| 协议状态 | protocolStatus | Optional | String(32) | EXPIRED-已过期
