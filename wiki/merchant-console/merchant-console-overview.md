@@ -4,22 +4,35 @@ domain: merchant-console
 kind: wiki_page
 slug: merchant-console-overview
 status: active
-owner: upload-sync@platform
+owner: wiki-sync@acquire
 reviewer: UNREVIEWED
 source_type: wiki
-source_ref: wiki:caa096ee-4fc6-46ff-a5ed-a3e01d756172
+source_ref: confluence:tester/124289202
 tags: []
 ---
 
 # 商户控台业务总览
 
-本页用于汇总商户控台（Merchant Console）业务的整体功能与原型说明。
+本页作为商户控台业务（domain=merchant-console）的原型设计入口，汇总该业务域的总体说明与访问方式。
 
 ## 原型来源
 
-- 原型文件：`商户端业务.rp`
-- 在线预览地址：https://k2rhso.axshare.com
+- 文档名称：商户端业务.rp
+- 在线原型地址：https://k2rhso.axshare.com
 
-## 说明
+## 业务范围
 
-原文仅提供原型入口链接，未在文本中列出具体的功能模块、页面结构与字段定义。详细的业务功能、交互流程及字段规则请以上述 Axure 原型为准。
+- 业务域：merchant-console（商户控台）
+- 内容形式：Axure 原型（.rp）及其在线发布版本
+- 用途：作为商户控台业务的功能概览入口，承载该业务域下各模块的原型设计
+
+## 使用说明
+
+- 通过上述 Axure 在线链接查看完整的商户控台原型交互。
+- 本页仅作为业务总览索引，具体模块与功能细节请参见对应子页面。
+
+## 相关链接
+
+- [[merchant-console-overview]]
+
+</files>
