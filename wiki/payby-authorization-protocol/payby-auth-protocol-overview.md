@@ -7,13 +7,15 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:4095a93e-6cc4-443f-a3e9-cb425017691d
+source_ref: wiki_image:1308a838-1350-4b7e-b9c5-014585f06830
 tags: []
 ---
 
 # PayBy授权协议签约总览
 
 本页介绍 PayBy 授权协议签约的接入规则、协议场景配置以及通用字段类型定义，作为对接 PayBy 三方签约（商户会员 & 商户 & PayBy）业务的入口说明。
+
+> 注：新文档为「提现」相关 History 列表的 UI 截图（展示同一张 FAB 卡 `************1010` 的多笔扣款记录，按年月分组），与本页授权协议签约主题无直接字段/接口层面的交集，故本页内容保持不变。
 
 ## 业务场景
 
@@ -157,7 +159,4 @@ openssl pkcs8 -in PayBy_key.pem -topk8 -nocrypt -out PayBy_key_private.pem
 ## 版本说明
 
 | 版本 | 时间 | 修改点 |
-| --- | --- | --- |
-| v1.0.0 | 2020-08-14 | 初稿 |
-| v1.0.1 | 2021-10-08 | 申请签约协议新增请求参数 `accessType`；调整协议场景参数关系；申请签约协议新增返回码 90009 |
-| v1.0
+| --- | --- | ---
