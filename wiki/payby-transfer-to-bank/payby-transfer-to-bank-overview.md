@@ -1,5 +1,5 @@
 ---
-title: PayBy转账到银行账户总览
+title: PayBy转账到银行账户接口总览
 domain: payby-transfer-to-bank
 kind: wiki_page
 slug: payby-transfer-to-bank-overview
@@ -7,63 +7,78 @@ status: active
 owner: fangyong.liu@astratech.ae
 reviewer: UNREVIEWED
 source_type: upload
-source_ref: api-docs/payby-transfer-bankcard-v0.2-p2
+source_ref: api-docs/payby-transfer-bankcard-v0.2-p3
 tags: []
 ---
 
-# PayBy转账到银行账户总览
+# PayBy转账到银行账户接口总览
 
-PayBy转账到银行账户接口用于商户将自有账户资金付款到指定收款银行卡，当前业务域包含单笔转账银行卡能力。
+本页汇总 PayBy 转账到银行账户业务域下的接口集合、调用流程与通用约定，便于快速定位查询、通知与错误处理相关能力。
 
-## 应用场景
+## 业务范围
 
-- 商户将账户中的资金付款到指定的收款银行账户。
-- 支持账户持有人类型：`INDIVIDUAL`、`CORPORATE`。
-- 支持发送方类型（senderType）：`INDIVIDUAL`、`CORPORATE`；当为 `INDIVIDUAL` 时，必须提供 `senderInfoRequest`。
+- 用于商户向银行卡发起转账后的结果查询与异步通知处理。
+- 实际到账时间因各银行结算时间而异，以最终到账时间为准。
 
-## 订单状态机
+## 接口集合
 
-| Status    | 说明     |
-| --------- | -------- |
-| CREATED   | 已创建   |
-| SUCCESS   | 已成功   |
-| FAILURE   | 已失败   |
-| BANK_FAIL | 银行退票 |
+| 接口 | 用途 |
+| ---- | ---- |
+| [[api_payby_get_transfer_to_bank_card]] | 查询转账到银行卡订单的详细结果 |
+| [[api_payby_transfer_bank_card_notify]] | 接收 PayBy 推送的转账银行卡成功通知 |
 
-## 接口清单
+## 调用流程
 
-| 接口 | 说明 |
-| --- | --- |
-| [[api_payby_place_transfer_to_bank_card]] | 单笔转账到银行卡（placeTransferToBankCard） |
-
-## 环境地址
-
-- 联调（UAT）：`https://uat.test2pay.com/sgs/api/transfer/placeTransferToBankCard`
-- 生产：`https://api.payby.com/sgs/api/transfer/placeTransferToBankCard`
+1. 商户发起转账到银行卡（创建订单，由独立接口完成）。
+2. PayBy 处理转账结果后，向商户 `notifyUrl` 推送 [[api_payby_transfer_bank_card_notify]]。
+3. 商户接收通知并返回 `SUCCESS` 应答；若结果不明或未收到通知，主动调用 [[api_payby_get_transfer_to_bank_card]] 查询订单状态。
 
 ## 通用约定
 
-- 请求/响应 Http Header 必带：`sign`、`Partner-Id`；可选 `Content-Language`（如 `en`）。
-- 敏感字段（如 `firstName`、`lastName`、`middleName`、`companyName`、`cardNumber`、`expiryYear`、`expiryMonth` 等）需加密传输。
-- 当传入 `cardToken` 时，卡相关字段（卡号、有效期）以 `cardToken` 查询结果为准；此时 `last4` 必输。
-- 跨境转账场景下，发送方 `dateOfBirth` 必填。
+### 协议与报文
 
-## 通用返回码
+- HTTP 协议，请求与通知均由 Http Header + Http Body（JSON）组成。
+- Body 通用结构：`requestTime`（Timestamp(3)）+ `bizContent`（业务内容）。
+- 响应 Body 通用结构：`head`（ResponseHeader）+ `body`（业务响应）。
 
-| code  | msg                     | 原因                                  | 解决方案           |
-| ----- | ----------------------- | ------------------------------------- | ------------------ |
-| 0     | SUCCESS                 | 成功                                  |                    |
-| 400   | INVALID_PARAMETER       | 参数错误                              | 调整请求参数       |
-| 400   | REQUESTTIME_TOO_EARLY   | 请求时间比当前时间早太多              | 调整请求时间       |
-| 400   | REQUESTTIME_TOO_LATER   | 请求时间比当前时间晚太多              | 调整请求时间       |
-| 402   | RATE_LIMIT_REJECT       | 请求过于频繁                          | 降低请求频率       |
-| 403   | UNAUTHORIZED            | API未授权                             | 联系PayBy          |
-| 404   | SERVICE_NOT_AVAILABLE   | API服务不可用                         | 联系PayBy          |
-| 500   | SYSTEM_ERROR            | 系统错误                              | 联系PayBy,稍后重试 |
-| 504   | SERVICE_TIMEOUT         | 服务超时                              | 稍后重试           |
-| 601   | RISK_FAIL               | 风控校验失败                          | 请调整业务         |
-| 62002 | ORDER_FAILURE           | 订单已失败                            | 调整商户订单号     |
-| 62016 | MERCHANT_ORDER_NO_EXIST | 订单号相同,不同业务参数的创建订单请求 | 调整订单号         |
-| 62026 | PRODUCT_IS_NOT_APPLIED  | 产品未申请                            | 请申请产品         |
-| 62028 | ORDER_SUCCESS           | 订单已成功                            | 调整商户订单号     |
-| 62029 | ORDER_CREATED           | 订单已创建                            | 调整商户订单号     |
+### Header 字段
+
+| 字段 | 必填 | 说明 |
+| ---- | ---- | ---- |
+| `Content-Language` | Optional | 文案语言，如 `en` |
+| `Sign` | Required | 签名 |
+| `Partner-Id` | Required | 商户号，String(12) |
+
+### 环境地址
+
+- 联调（UAT）：`https://uat.test2pay.com`
+- 生产：`https://api.payby.com`
+- 路径前缀：`/sgs/api/transfer/`
+
+### 签名与验签
+
+- 请求与通知均需签名，算法一致。
+- 通知由 PayBy RSA 私钥签署，商户使用 Portal 下载的 PayBy 公钥进行验签。
+
+## 异步通知规则
+
+- 同一通知可能重复推送，商户系统必须做幂等处理。
+- 商户响应不符合规范或超时视为失败，PayBy 将重试。
+- 默认重试 7 次，间隔（单位：分钟）：`2, 10, 10, 60, 120, 360, 900`；不保证最终送达。
+- 商户收到通知后必须返回字符串 `SUCCESS`，否则视为异常。
+
+## 关键数据对象
+
+- `TransferBankCardOrder`：转账银行卡订单信息，贯穿查询响应与异步通知。
+- 订单状态字段：`status`（如 `CREATED`）。
+- 持卡人类型：`accountHolderType`（如 `INDIVIDUAL`）。
+- 卡号、姓名等敏感字段在响应中以加密形式返回。
+
+## 错误处理
+
+- 各接口返回码语义统一，详见 [[payby-transfer-to-bank-return-codes]]。
+- 高频场景：
+  - `62004 MERCHANT_ORDER_NO_NOT_EXIST`：商户订单号不存在。
+  - `62016 MERCHANT_ORDER_NO_EXIST`：订单号重复但业务参数不同。
+  - `62028 ORDER_SUCCESS` / `62029 ORDER_CREATED`：订单已处于对应状态。
+  - `601 RISK_FAIL`：风控校验失败。
