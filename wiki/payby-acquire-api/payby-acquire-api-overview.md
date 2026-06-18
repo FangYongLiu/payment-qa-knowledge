@@ -7,72 +7,71 @@ status: active
 owner: fangyong.liu@astratech.ae
 reviewer: UNREVIEWED
 source_type: upload
-source_ref: api-docs/payby-api-v2.25-p13
+source_ref: api-docs/payby-api-v2.25-p15
 tags: []
 ---
 
 # PayBy收单API总览
 
-本页汇总 PayBy 收单/退款/单笔付款到账户相关 HTTP API 的目录、公共请求/响应约定与通用返回码，便于在各接口详情页之间导航。
+本页汇总 PayBy 收单 API 的接口索引及通用约定，便于按场景快速跳转到对应接口详情。
 
-## 接口目录
+## 接口清单
 
-- [[api_payby_refund_get_order]]：查询退款订单，依据 refundMerchantOrderNo 或 PayBy orderNo 二选一查询退款状态。
-- [[api_payby_transfer_place_order]]：单笔付款到账户下单，向用户账户付款（个人手机号/企业 MEMBER_ID）。
-- [[api_payby_transfer_get_order]]：查询单笔付款到账户订单，按 merchantOrderNo 返回付款详细结果。
-- 业务说明参见 [[payby-transfer-to-account]]。
+| 接口 | 路径（path） | 用途 |
+| --- | --- | --- |
+| [[api_payby_revoke_order]] 订单冲正 | `/sgs/api/acquire2/revokeOrder` | 商户认为可能交易失败时的补救手段，请求取消该笔交易 |
+| [[api_payby_get_save_card]] 查询卡信息 | `/sgs/api/acquire2/getSaveCard` | 通过 saved card token 查询卡信息用于展示 |
+| [[api_payby_remove_save_card]] 解绑卡 | `/sgs/api/acquire2/removeSaveCard` | 将 saved card token 置为失效，使该 token 无法再被查询和使用 |
+| [[api_payby_get_cashier_url_info]] 查询收银台URL信息 | `/sgs/api/acquire2/getCashierUrlInfo` | 返回二维码是否被用户扫描，以及扫码人信息（mask） |
 
-## 接口域名约定
+## 环境地址
 
-| 环境 | Base URL |
-| --- | --- |
-| 联调（UAT） | https://uat.test2pay.com |
-| 生产 | https://api.payby.com |
+- 联调（UAT）域名：`https://uat.test2pay.com`
+- 生产域名：`https://api.payby.com`
+- 完整 URL = 域名 + 上表中对应接口路径。
 
-各接口路径：
+## 公共请求规范
 
-- 查询退款订单：`/sgs/api/acquire2/refund/getOrder`
-- 单笔付款到账户下单：`/sgs/api/transfer/placeTransferOrder`
-- 查询单笔付款到账户订单：`/sgs/api/transfer/getTransferOrder`
+### Http Header（所有接口一致）
 
-## 公共 HTTP Header
-
-请求 Header：
-
-| 字段 | 变量名 | 必填 | 类型 | 说明 |
+| 字段名 | 变量名 | 必填 | 类型 | 描述 |
 | --- | --- | --- | --- | --- |
-| 文案语言 | Content-Language | Optional | String(10) | 例 `en` |
-| 签名 | Sign | Required | String | |
-| 商户号 | Partner-Id | Required | String(12) | |
+| 文案语言 | `Content-Language` | Optional | String(10) | en-英文 |
+| 签名 | `Sign` | Required | String | |
+| 商户号 | `Partner-Id` | Required | String(12) | |
 
-响应 Header：
+- `Content-Type`: `application/json`
 
-| 字段 | 变量名 | 必填 | 类型 |
-| --- | --- | --- | --- |
-| 签名 | sign | Required | String |
+### Http Body 通用结构
 
-## 公共 HTTP Body 结构
+- `requestTime`：Timestamp(3)，必填，请求时间（毫秒）。
+- `bizContent`：必填，各接口对应的业务内容对象。
+  - 冲正：`OrderIndexRequest`
+  - 查询卡信息 / 解绑卡：`CardIndexRequest`
+  - 查询收银台URL信息：`GetCashierUrlInfoRequest`
 
-请求 Body：
+## 公共响应规范
 
-- `requestTime`：Timestamp(3)，必填，毫秒时间戳。
-- `bizContent`：各接口对应的业务请求对象（如 `GetRefundOrderRequest` / `PlaceTransferOrderRequest` / `GetTransferOrderRequest`）。
-
-响应 Body：
-
-- `head`：`ResponseHeader`，必填，包含 `applyStatus`、`code`、`msg`，部分场景含 `traceCode`。
-- `body`：可选，仅在 `applyStatus=SUCCESS` 且 `code=0` 时返回，结构按接口区分。
+- 响应 Header 包含 `Sign`（冲正接口同时回带 `Content-Language`、`Partner-Id`）。
+- 响应 Body 由 `head` + `body` 组成：
+  - `head`：`ResponseHeader`，必填，包含 `applyStatus`、`code`、`msg`，部分场景还有 `success`、`traceCode`。
+  - `body`：可选，仅当 `applyStatus = SUCCESS` 且 `code = 0` 时返回。
+- 各接口对应的 body 类型：
+  - 冲正 → `RevokeOrderResponse`（含 `acquireOrder`，新增字段 `revoked`）
+  - 查询卡信息 → `GetSaveCardResponse`（含 `cardInfo`）
+  - 解绑卡 → `Void`
+  - 查询收银台URL信息 → `GetCashierUrlInfoResponse`（含 `payer`）
 
 ## 通用返回码
 
-下列返回码在收单/退款/转账类接口中通用：
+以下返回码在 4 个接口中共用：
 
 | code | msg | 含义 |
 | --- | --- | --- |
 | 0 | SUCCESS | 成功 |
 | 400 | INVALID_PARAMETER | 参数错误 |
-| 400 | REQUESTTIME_TOO_EARLY | 请求时间过早 |
-| 400 | REQUESTTIME_TOO_LATER | 请求时间过晚 |
+| 400 | REQUESTTIME_TOO_EARLY | 请求时间比当前时间早太多 |
+| 400 | REQUESTTIME_TOO_LATER | 请求时间比当前时间晚太多 |
 | 402 | RATE_LIMIT_REJECT | 请求过于频繁 |
 | 403 | UNAUTHORIZED | API 未授权 |
 | 404 | SERVICE_NOT_AVAILABLE | API 服务不可用 |
@@ -80,11 +79,20 @@ tags: []
 | 504 | SERVICE_TIMEOUT | 服务超时 |
 | 601 | RISK_FAIL | 风控校验失败 |
 
-各接口业务返回码（如 `MERCHANT_ORDER_NO_EXIST`、`ORDER_SUCCESS`、`BENEFICIARY_NOT_EXIST`、`REFUND_MERCHANT_ORDER_NO_NOT_EXIST` 等）见对应接口详情页。
+接口专属返回码：
 
-## 通用业务约定
+- 冲正：`62004 MERCHANT_ORDER_NO_NOT_EXIST`、`62035 ORDER_NO_NOT_EXIST`、`62039 REVOKE_FAILURE`、`62041 ACQUIRE_ORDER_REFUNDED`、`62046 REVOKE_REJECTED`
+- 查询卡信息 / 解绑卡：`62078 CARD_NOT_EXIST`
+- 查询收银台URL信息：`62082 TOKEN_URL_NOT_EXIST`
 
-- 订单查询类接口的请求体通常以 `merchantOrderNo` 或 `orderNo`/`refundMerchantOrderNo` 作为唯一定位键。
-- 涉及收款人姓名、收款人标识等敏感字段需加密传输（如 `beneficiaryFullName`、`beneficiaryIdentity`）。
-- 金额字段统一使用 `Money`（含 `amount`、`currency`，示例币种 `AED`）。
-- 订单状态机以业务侧定义为准，单笔付款到账户使用 `CREATED` / `SUCCESS` / `FAILURE`。
+## 冲正业务说明（关键约定）
+
+冲正能力是收单 API 的特殊补救机制，使用前需注意：
+
+- **不提供冲正查询接口**：冲正结果通过查询订单获取，订单上新增冲正标志 `revoked`（`true` 已冲正 / `false` 未冲正）。
+- **冲正进度不可见**：商户只能看到 `revoked` 标志，无法查询具体进度（如退款进度）。
+- **已结算订单状态不再变更**：即使被冲正，结果通过退款订单反映。
+- **未支付订单**：冲正后订单会被置为失败。
+- **典型触发场景**：商户发送收单交易后未得到响应，不确定 PayBy 端是否成功；为保护用户利益重新发起冲正——若已成功则发起退款，否则关闭订单。
+
+详见 [[api_payby_revoke_order]]。
