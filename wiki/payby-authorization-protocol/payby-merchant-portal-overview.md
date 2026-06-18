@@ -1,5 +1,5 @@
 ---
-title: PayBy商户控台(Merchant Portal)总览
+title: PayBy商户控台(Merchant Portal)概览
 domain: payby-authorization-protocol
 kind: wiki_page
 slug: payby-merchant-portal-overview
@@ -7,67 +7,62 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:d0fc9a05-973a-470e-8b1c-3f41e297dd33
+source_ref: wiki_image:03b7b97e-86e1-49fc-87a9-c419aead6742
 tags: []
 ---
 
-# PayBy商户控台(Merchant Portal)总览
+# PayBy商户控台(Merchant Portal)概览
 
-PayBy Merchant Portal（商户控台，标题区显示为 "PAYBY BASIS"）是一个面向商户/运营的后台管理 Web UI，用于商户、设备、系统等多模块的管理操作。登录后顶部显示 "WELCOME TO PAYBY"，并提供折叠与刷新按钮。
+PayBy Merchant Portal 是商户进行交易管理、账户配置与开发集成的统一控台，本页介绍其左侧导航结构及 Settings 页的配置分组入口。
 
-## 导航结构
+## 左侧导航结构
 
-左侧侧边栏按功能域分组，主要包含：
+商户控台顶部展示 "PayBy MERCHANT" 标识，左侧主导航自上而下包含：
 
-- **GENERAL**
-- **BUSINESS**
-- **TMS**（终端管理系统，可展开）
-- **SYSTEM**
+- Home
+- Transactions（展开项：Fiat）
+- Accounts（展开项：Fiat）
+- Statements
+- Products（可折叠）
+- Offline Business（展开项：Store、Device）
+- Marketing（可折叠）
+- Settings
 
-### TMS 模块子项
+## Settings 页结构
 
-- Device Approval（设备审批）
-- Device ActiveCode（设备激活码）
-- Activated Devices（已激活设备，可展开）
-- Device Channel Management（设备渠道管理）
-- Returned Devices（退回设备）
-- POS Settings（POS 设置）
-- Data Tracking（数据追踪）
-- Amex Mapping（Amex 映射）
-- Operation Logs（操作日志）
+Settings 页作为商户配置中枢，按业务域分组链接到各配置子页，主区域以 2 行 × 3 列卡片网格排布。
 
-## Device Approval 页面
+### Merchant Information（商户信息）
 
-进入 TMS → Device Approval，主面板标题为 "Device Approval"，用于对商户提交的设备申请进行审批查看。
+- Basic Information
+- Tax invoices
+- Bank Accounts
+- Settlement
+- Agreements
 
-### 筛选条件
+### Teams（团队与权限）
 
-页面顶部提供以下筛选输入与一个 Search 按钮：
+- Staff Management
+- Authorizations（带数量徽标，例如 54，表示待处理/生效中的授权数）
+- Operation History
 
-- Merchant ID（文本输入）
-- Merchant Name（文本输入）
-- Store Name（文本输入）
-- 状态下拉框（默认 `ALL`）
-- Search 按钮（带放大镜图标）
+### Developers（开发者工具）
 
-### 申请列表字段
+- Payment Methods
+- Customize Checkout
+- My APPs
+- API Management
+- Non-AED Top Up Order Notify URL
 
-数据表支持按列排序，列包括：
+### Seller Resources（卖家资源）
 
-| 字段 | 说明 |
-|---|---|
-| Apply ID | 申请单号 |
-| Merchant ID | 商户号 |
-| Merchant Name | 商户名称 |
-| Contact Mobile | 联系电话 |
-| Store Name | 门店名称 |
-| Device Type | 设备类型（如 `SMART_POS`、`BOX`） |
-| Device Number | 设备数量 |
+- Items
+- Customers
 
-示例数据（节选）：
+### My Account（账户安全）
 
-- `100785` / `200000430854` / 北京青子未来网络科技有限… / `+86-19545952191` / 青子分店1 / `SMART_POS` / 5
-- `100784` / `200000030906` / regress6666 / `+971-585920614` / Asdaa Street / `BOX` / 3
-- `100783` / `200000430854` / 北京青子未来网络科技有限… / `+86-19545952191` / 青子分店1 / `SMART_POS` / 5
+- Two-Factor Authentication (2FA)
 
-> Device Type 已观察到的枚举值：`SMART_POS`、`BOX`。
+## 分组定位
+
+Settings 页将商户配置按以下域聚合：商户信息（Merchant Information）、团队与权限（Teams）、开发者与 API 工具（Developers）、卖家目录（Seller Resources）、账户安全（My Account）。
