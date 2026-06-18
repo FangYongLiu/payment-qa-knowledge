@@ -1,28 +1,48 @@
-# 知识贡献与评审指南
+# Knowledge Contribution & Review Guide
 
-面向全体 QA 成员。目标：让知识可信、可溯源、可治理。
+For all QA members. Goal: knowledge that is trustworthy, traceable, and governable.
 
-## 1. 新建知识对象
-1. 从 `templates/` 复制对应类型模板到 `domains/<domain>/<object_type>/`。
-2. 命名遵循 id 约定：`api_<service>_<name>` / `svc_<name>` / `tbl_<schema>_<table>` / `scn_<name>` / `ts_<symptom>` / `auto_<name>` / `flow_<name>` / `domain_<slug>`。
-3. 填写 frontmatter（必填字段不可缺），并在 `related_*` 写明关联对象的 id。
-4. 在对应 `index/<type>.yaml` 增加路由项（id/name/aliases/domain/status/path）。
+## 1. Two-layer model — where content goes
+- **Business overviews / mixed documents** → an LLM-Wiki page under `wiki/<domain>/`
+  (the engine usually authors these from ingested sources).
+- **Technical content** (APIs, tables, scenarios, troubleshooting, automation) → typed
+  objects under `domains/<domain>/<subdomain?>/`, plus a routing entry in `index/`.
 
-## 2. 元数据规范
-- 必填：id, object_type, domain, subdomain, module, status, owner, reviewer, last_reviewed_at, source_type, source_ref, tags。
-- 选填：name, aliases, related_services, related_tables, related_scenarios, related_logs, related_requirements, related_failures。
-- status：draft（新建）→ active（评审通过）→ deprecated/archived。
-- `name` + `aliases` 决定中英文问法能否命中，务必写全（如 "DCC"/"DCC资质"/"dcc qualification"）。
+## 2. Authoring a typed object
+1. Copy the matching template from `templates/` to `domains/<domain>/<subdomain?>/`
+   (omit the subdomain dir when there is no subdomain).
+2. Follow the id convention: `api_<service>_<name>` / `svc_<name>` /
+   `tbl_<schema>_<table>` / `scn_<name>` / `ts_<symptom>` / `auto_<name>` /
+   `flow_<name>` / `domain_<slug>`.
+3. Fill the frontmatter (required fields must be present); list related object ids in
+   `related_*`.
+4. Add a routing entry in `index/<type>.yaml` (id / name / aliases / domain / status / path).
 
-## 3. related_* 写法
-- 只写**真实存在**的对象 id；不能悬空。
-- 写"已知关系"（API→Service/Table/Scenario/Log）；推断型关系（failure→root_cause 等）由引擎在整理阶段产出、人审入库。
+## 3. Metadata spec
+- **Required**: id, object_type, domain, status, owner, reviewer, last_reviewed_at,
+  source_type, source_ref, tags.
+- **Optional**: subdomain, module, name, aliases, related_services, related_tables,
+  related_scenarios, related_logs, related_requirements, related_failures.
+  Leave subdomain/module `null` when there is no good value.
+- `status`: draft (new) → active (review passed) → deprecated / archived.
+- `name` must be human-readable; put code-like names in `aliases`. `name` + `aliases`
+  decide whether Chinese/English phrasings hit in retrieval — fill them generously
+  (e.g. "DCC" / "DCC qualification" / "dcc 资质").
 
-## 4. 评审要求
-- 实名提交；由该域 Domain Owner / Reviewer 评审。
-- 评审看：事实正确性、元数据完整、related_* 正确、status 合理。
-- 通过后才置 active；只有 active 进生产回答。
+## 4. related_* rules
+- Only reference object ids that **actually exist** — no dangling refs.
+- State **known** relations (API→Service/Table/Scenario/Log). Inferred relations
+  (failure→root_cause, etc.) are produced by the engine during curation and enter the
+  graph after human review.
 
-## 5. 提交前检查
-- 跑引擎仓库的 `scripts/check_knowledge.py`：related_* 与 eval 的 expected_object_ids 无悬空。
-- 一个对象一个文件；改动走 PR。
+## 5. Review
+- Named submission; reviewed by the domain's Owner / Reviewer.
+- Reviewers check: factual correctness, metadata completeness, correct `related_*`,
+  sensible status.
+- Approval is the **human gate** (Plan B): the engine then auto-opens + auto-merges its
+  PR and reindexes. Only `active` knowledge serves production answers.
+
+## 6. Pre-submit check
+- Run `scripts/check_knowledge.py` (in the engine repo): no dangling ids in `related_*`
+  or in the eval's `expected_object_ids`.
+- One object per file; all changes via PR.

@@ -1,25 +1,46 @@
 # payment-qa-knowledge
 
-Payment QA 团队的**正式知识仓库**——唯一可信源（single source of truth）。
-只存**已评审**的 markdown/yaml 知识内容；**不存代码**（代码在 payment-qa-knowledge-brain）。
+The Payment QA team's **canonical knowledge repository** — the single source of truth.
+It stores **reviewed** markdown/yaml knowledge only; **no code** (code lives in the
+engine repo `payment-qa-brain`).
 
-知识引擎从本仓库派生运行时索引（PostgreSQL+pgvector），合并 PR 后触发 reindex。
+The knowledge engine (`payment-qa-brain`) derives its runtime index
+(PostgreSQL + pgvector) from this repo; merging a PR triggers a reindex.
 
-## 目录
-- `domains/<domain>/<object_type>/` — 按业务域组织的知识对象（主组织方式）
-- `templates/` — 8 类对象模板（新建对象从这里复制）
-- `index/` — 各对象类型的路由索引（id/name/aliases/domain/status/path）
-- 跨域共用对象才放顶层 `services/ apis/ database/`
+## Two-layer knowledge model
+- **Base · LLM-Wiki pages (`wiki/`)** — every source document becomes one linked
+  markdown page with light frontmatter (`domain` + `tags` + `[[links]]`). Flexible and
+  readable; holds any kind of document (business overviews, specs, notes).
+- **Upper · Typed objects (`domains/`)** — for **technical content only**, the engine
+  additionally extracts the 8 typed objects + relations into the graph (powering
+  requirement-impact analysis and test-case generation). Business overviews stay as
+  wiki pages.
 
-> 物理目录主要给人看；检索靠 index/ + 元数据 + 向量，不依赖目录布局。
+> Do **not** force every document into the 8 types — that was the v1 mistake. Let
+> business-level content live as wiki pages; reserve typed objects for technical content.
 
-## 知识对象（8 类）
-Domain / Service / API / Table / Flow / Scenario / Troubleshooting / AutomationAsset。
-每个对象 = 一个 markdown 文件 + frontmatter 元数据。元数据规范见 CONTRIBUTING.md。
+## Layout
+- `wiki/<domain>/<slug>.md` — LLM-Wiki base pages (one per source document)
+- `domains/<domain>/<subdomain?>/<file>.md` — typed knowledge objects (subdomain is
+  optional; when absent the file sits directly under the domain — no placeholder dir)
+- `templates/` — templates for the 8 object types (copy one to author a new object)
+- `index/` — per-type routing index (id / name / aliases / domain / status / path)
 
-## 贡献方式
-**优先**通过工作台/知识引擎的更新请求工作流（实名 → 评审 → 自动开 PR）。
-直接改本仓库也需走 PR + 评审。详见 CONTRIBUTING.md。
+> Physical layout is for humans; retrieval relies on `index/` + metadata + vectors,
+> not on the directory structure.
 
-## 校验
-提交前/CI 跑 `python scripts/check_knowledge.py`（在引擎仓库），确保 related_* 与 eval 引用无悬空。
+## Knowledge objects (8 types)
+Domain / Service / API / Table / Flow / Scenario / Troubleshooting / AutomationAsset.
+Each typed object = one markdown file + frontmatter metadata. Metadata spec: see
+CONTRIBUTING.md.
+
+## How to contribute
+**Preferred:** the workbench / knowledge-engine update-request workflow
+(named submission → review → the engine opens the PR). Approval in the review UI is the
+**human gate**; the engine then auto-opens and auto-merges its own PR (Plan B), and the
+merge triggers a reindex. Direct edits to this repo also go through a PR + review.
+See CONTRIBUTING.md.
+
+## Validation
+Before committing / in CI, run `python scripts/check_knowledge.py` (in the engine repo)
+to ensure `related_*` and eval references contain no dangling ids.
