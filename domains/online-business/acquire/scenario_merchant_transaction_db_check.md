@@ -6,6 +6,7 @@ domain: online-business
 status: active
 owner: fangyong.liu@astratech.ae
 reviewer: UNREVIEWED
+last_reviewed_at: '2026-06-18'
 source_type: manual
 source_ref: hub/merchant-transaction-db-check
 tags:
