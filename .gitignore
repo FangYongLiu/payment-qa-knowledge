@@ -1,2 +1,6 @@
 .DS_Store
 .idea/
+
+# 本地演示 materialize 的 wiki 页(curation v2 reindex 验证用,非正式发布)。
+# 正式 wiki 知识应经 brain 上传→curation→人审→publish PR→合并 入库;届时移除此忽略。
+wiki/
