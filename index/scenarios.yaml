@@ -1,21 +1,2 @@
-- id: scn_dcc_accepted
-  name: "DCC 接受主路径"
-  aliases: ["DCC Accepted", "DCC接受", "选择外币", "ACCEPTED"]
-  domain: online-business
-  module: DCC
-  status: active
-  path: domains/online-business/acquire/scenario_dcc_accepted.md
-- id: scn_dcc_declined
-  name: "DCC 拒绝走商户币种"
-  aliases: ["DCC Declined", "DCC拒绝", "选择商户币种", "DECLINED"]
-  domain: online-business
-  module: DCC
-  status: active
-  path: domains/online-business/acquire/scenario_dcc_declined.md
-- id: scn_dcc_not_eligible
-  name: "DCC 不可用走正常流程"
-  aliases: ["DCC Not Eligible", "DCC不可用", "不展示DCC", "AED卡", "黑名单"]
-  domain: online-business
-  module: DCC
-  status: active
-  path: domains/online-business/acquire/scenario_dcc_not_eligible.md
+# 路由索引：scenarios 对象。reindex 据此快速定位 + 实体匹配(name/aliases)。
+# 白板起步：随真实知识入库逐步补充。

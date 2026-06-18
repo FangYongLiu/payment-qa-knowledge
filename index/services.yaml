@@ -1,21 +1,2 @@
-- id: svc_acquireii
-  name: "acquireii"
-  aliases: ["acquireii", "收单服务", "AcquireII"]
-  domain: online-business
-  module: DCC
-  status: active
-  path: domains/online-business/acquire/service_acquireii.md
-- id: svc_tradeii
-  name: "tradeii"
-  aliases: ["tradeii", "交易服务", "TradeII"]
-  domain: online-business
-  module: DCC
-  status: active
-  path: domains/online-business/acquire/service_tradeii.md
-- id: svc_router
-  name: "router"
-  aliases: ["router", "渠道路由", "Router", "qpay-cko", "CKO 路由"]
-  domain: online-business
-  module: DCC
-  status: active
-  path: domains/online-business/acquire/service_router.md
+# 路由索引：services 对象。reindex 据此快速定位 + 实体匹配(name/aliases)。
+# 白板起步：随真实知识入库逐步补充。

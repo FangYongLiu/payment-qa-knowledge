@@ -1,7 +1,2 @@
-- id: ts_dcc_create_order_rejected
-  name: "DCC 创建订单被拒排查"
-  aliases: ["创建订单被拒", "quote过期", "quoteId不匹配", "报价篡改", "UNAUTHORIZED", "DCC下单失败"]
-  domain: online-business
-  module: DCC
-  status: active
-  path: domains/online-business/acquire/troubleshooting_dcc_create_order_rejected.md
+# 路由索引：troubleshooting 对象。reindex 据此快速定位 + 实体匹配(name/aliases)。
+# 白板起步：随真实知识入库逐步补充。
