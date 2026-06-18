@@ -4,10 +4,10 @@ domain: payby-authorization-protocol
 kind: wiki_page
 slug: payby-auth-protocol-overview
 status: active
-owner: upload-sync@platform
+owner: fangyong.liu@astratech.ae
 reviewer: UNREVIEWED
-source_type: wiki_image
-source_ref: wiki_image:2f335216-8a3a-4590-bfc9-bf900a24cf63
+source_type: upload
+source_ref: api-docs/payby-auth-agreement-v1.0.2-p1
 tags: []
 ---
 
@@ -26,20 +26,6 @@ tags: []
 - [[api_payby_protocol_notify]]：协议状态变更后台异步通知
 
 返回码统一汇总见 [[payby-auth-protocol-return-codes]]。
-
-## 商户产品开通（Merchant Portal）
-
-商户接入授权协议签约前，需在 PayBy Merchant Portal（BMOC，控台地址形如 `uat-admin.corp.test2pay.com/bmoc/`）完成产品开通。相关入口位于左侧导航：
-
-- `GENERAL` → `Product Mgt` → `ProductOpenMgt`
-  - `Mercht Open Product`：单商户产品开通
-  - `Batch Open Product`：批量开通
-- `Product Mgt` → `ProdRate & Settle...`：产品费率与结算配置
-- `Product Mgt` → `Product Audit` → `Apply Audit` / `Config Audit`：申请与配置审核
-
-在 `Mercht Open Product` 页面通过 `MerchantId` 查询商户，结果包含字段：`MerchantName`、`MerchantId`、`MerchantStatus`（如 `ENABLED`）、`Cooperation Start Date`。
-
-下方 `Product List` → `Opened Platform Product` 列出已开通产品，字段：`Package Name`、`Product Validity`、`Status`、`Action`。授权协议签约相关的产品包示例为 `Auth Caputure Ecom DomesticCard`，需确保其在有效期内（如 `2025-11-18 20:00:32 - 2035-11-17 23:59:59`）且状态正常。
 
 ## 接口规则
 
@@ -143,4 +129,35 @@ openssl pkcs8 -in PayBy_key.pem -topk8 -nocrypt -out PayBy_key_private.pem
 | 失效时间 | invalidTime | Optional | Timestamp(3) | — |
 | 协议状态 | protocolStatus | Optional | String(32) | EXPIRED-已过期；TERMINATED-已解约；EFFECTIVE-有效；INEFFECTIVE-无效 |
 | 签约人ID | signerId | Optional | String(32) | 签约人在 PayBy 的会员 ID |
-| 扣除类型 | deduct
+| 扣除类型 | deductType | Optional | String(32) | SP = Single Pay Method |
+| 扩展信息 | extension | Optional | Map<String,String> | 详见下文 |
+
+#### extension 扩展信息
+
+- `payMethodType`：用户选择的支付方式，取值 `BALANCE`、`CARD_PAY`
+- `lastFour`：银行卡后 4 位
+- `cardBrand`：卡组织
+
+| code | description |
+| --- | --- |
+| VISA | VISA |
+| MASTERCARD | MASTERCARD |
+| CUP | CHINA UNION PAY |
+| JCB | JCB |
+| DINERS | DINERS CLUB INTERNATIONAL |
+| MAESTRO | MAESTRO |
+| AE | AMERICAN EXPRESS |
+| EBT | EBT |
+| DISCOVER | DISCOVER |
+| CIRRUS | CIRRUS |
+| RUPAY | RUPAY |
+| UATP | UATP |
+| ELO | ELO |
+
+## 版本说明
+
+| 版本 | 时间 | 修改点 |
+| --- | --- | --- |
+| v1.0.0 | 2020-08-14 | 初稿 |
+| v1.0.1 | 2021-10-08 | 申请签约协议新增请求参数 `accessType`；调整协议场景参数关系；申请签约协议新增返回码 90009 |
+| v1.0
