@@ -1,100 +1,107 @@
 ---
-title: 商户Onboarding数据库影响范围
+title: 商户入驻数据库影响范围
 domain: merchant-portal
 kind: wiki_page
 slug: merchant-onboarding-database-scope
 status: active
-owner: upload-sync@platform
+owner: wiki-sync@acquire
 reviewer: UNREVIEWED
 source_type: wiki
-source_ref: wiki:fa5361b9-9768-4302-b8dc-f2dd9cc50451
+source_ref: confluence:AQ/997785804
 tags: []
 ---
 
-# 商户Onboarding数据库影响范围
+# 商户入驻数据库影响范围
 
-本页梳理商户 Onboarding 流程在各业务库中所触达的库与表清单，便于在 [[flow_merchant_onboarding]] 与 [[scn_acquire_product_apply]] 等场景下做数据校验。数据库连接方式与权限参考 [[qa-infra-access-guide]]。
+本页汇总商户入驻流程在各业务库中涉及的表清单及用途，便于 QA 在数据校验时定位关键落库点。完整入驻流程见 [[flow_merchant_onboarding]]，相关服务/组件见 [[merchant-onboarding-service-map]]，数据库连接方式见 [[merchant-portal-env-access-guide]]。
 
-## 概览
+## 数据库账号权限
 
-- Onboarding 是跨系统流程，落库分布在 7 个库：`Merchant` / `Member` / `Ppcenter` / `Dpm` / `Statementii` / `Contract` / `Vis`。
-- QA 账号默认权限：`SELECT` / `INSERT` / `UPDATE` / `DELETE`。
-- 连接库时需指定具体库名（例如 `merchantuser`）。
-- 业务流程与服务职责见 [[merchant-onboarding-flow]]，对应服务清单见 [[merchant-portal-service-components]]。
+QA 库账号默认开通以下权限：
+
+- `SELECT` – 查询数据
+- `INSERT` – 插入数据
+- `UPDATE` – 修改数据
+- `DELETE` – 删除数据
+
+连接时需选择具体的数据库名（例如 `merchantuser`）。
 
 ## Merchant 库
 
-商户主域，记录注册单、商户主体、地址、绑卡、业务开通与员工信息。
+商户主域，存储商户主体、地址、合作方、业务开通、管理员、收单信息及员工等。
 
 | Table | Purpose |
 |---|---|
-| t_merchant_creation_order | Merchant creation order（商户创建单） |
-| t_merchant | Merchant basic info |
-| t_merchant_address | Merchant addresses |
-| t_partner | Partner relationship |
-| t_binding_card_apply_info | Binding card info |
-| t_merchant_biz_open | Enabled business types |
-| t_biz_admin_info | Business administrators |
-| t_merchant_acquire_info | Acquire service info |
-| t_staff | Merchant staff |
-| t_staff_role | Staff role mapping |
+| `t_merchant_creation_order` | Merchant creation order（入驻申请单） |
+| `t_merchant` | Merchant basic info |
+| `t_merchant_address` | Merchant addresses |
+| `t_partner` | Partner relationship |
+| `t_binding_card_apply_info` | Binding card info |
+| `t_merchant_biz_open` | Enabled business types |
+| `t_biz_admin_info` | Business administrators |
+| `t_merchant_acquire_info` | Acquire service info |
+| `t_staff` | Merchant staff |
+| `t_staff_role` | Staff role mapping |
 
 ## Member 库
 
-中心化用户身份域，提供下游使用的 `Member ID`。
+承载会员身份、账户与受益人卡信息，提供下游使用的 Member ID。
 
 | Table | Purpose |
 |---|---|
-| tm_member | Member info |
-| tm_member_identity | Member identity |
-| tr_member_account | Member account |
-| tr_beneficiary_info | Beneficiary card |
+| `tm_member` | Member info |
+| `tm_member_identity` | Member identity |
+| `tr_member_account` | Member account |
+| `tr_beneficiary_info` | Beneficiary card |
 
 ## Ppcenter 库
 
-支付产品中心，记录产品申请与已开通产品。在 [[acquire-merchant-console]] 申请产品后会落到该库。
+支付产品申请与已激活产品记录。详细申请流程见 [[flow_acquire_product_application]]。
 
 | Table | Purpose |
 |---|---|
-| t_product_apply_order | Payment product apply record（审核通过后 status = `S`） |
-| t_merchant_product_order | Merchant actived product |
+| `t_product_apply_order` | Payment product apply record |
+| `t_merchant_product_order` | Merchant actived product |
 
 ## Dpm 库
 
-账户域（Savings Account），承载所有账户实体与账户类型定义。
+商户账户体系相关。
 
 | Table | Purpose |
 |---|---|
-| t_dpm_outer_account_subset | All Account |
-| t_dpm_account_crl_def | Account Type |
+| `t_dpm_outer_account_subset` | All Account |
+| `t_dpm_account_crl_def` | Account Type |
 
 ## Statementii 库
 
-结算/对账配置域。
+结算配置。
 
 | Table | Purpose |
 |---|---|
-| t_settlement_config | settlement config（结算配置） |
+| `t_settlement_config` | settlement config |
 
 ## Contract 库
 
-商户合同域，Onboarding 成功后生成。
+入驻成功后生成的合同。
 
 | Table | Purpose |
 |---|---|
-| t_contract | contract |
+| `t_contract` | contract |
 
 ## Vis 库
 
-虚拟 IBAN 域，用于 IBAN Top up 场景。
+虚拟 IBAN 账户（用于 IBAN Top up）。
 
 | Table | Purpose |
 |---|---|
-| t_virtual_account | virtual account (Iban Top up) |
+| `t_virtual_account` | virtual account (Iban Top up) |
 
-## 校验建议
+## QA 校验提示
 
-- 注册提交后：先核对 `Merchant.t_merchant_creation_order` 与 `t_merchant`，再看 `Member.tm_member` / `tm_member_identity` 是否生成。
-- 业务类型（Payment）选择后：检查 `t_merchant_biz_open`、`t_merchant_acquire_info`、`t_biz_admin_info`。
-- BMOC 完成 AML + KYB 审核后：确认 `Contract.t_contract`、`Dpm.t_dpm_outer_account_subset`、`Vis.t_virtual_account`、`Statementii.t_settlement_config` 均落数据，方可视为 Onboarding 完整成功。
-- 整体回到 [[merchant-portal-overview]] 查看控台总览。
+- 入驻为跨系统流程，需确认上述各库的关键表均有对应记录后，商户方可视为可用。
+- 校验顺序建议沿入驻链路：Merchant → Member → Ppcenter → Dpm → Statementii → Contract → Vis。
+- 商户入驻完成后的产品申请、交易、账户、对账单等控台功能涉及的库表，参见 [[acquire-merchant-console-guide]]。
+
+</br>
+
+> 相关页面：[[merchant-portal-overview]] · [[merchant-onboarding-flow]]
