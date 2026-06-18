@@ -1,5 +1,5 @@
 ---
-title: PayBy转账到银行账户接口总览
+title: PayBy 转账到银行账户接口总览
 domain: payby-transfer-to-bank
 kind: wiki_page
 slug: payby-transfer-to-bank-overview
@@ -7,57 +7,74 @@ status: active
 owner: fangyong.liu@astratech.ae
 reviewer: UNREVIEWED
 source_type: upload
-source_ref: api-docs/payby-transfer-tobank-v2.4-p2
+source_ref: api-docs/payby-transfer-tobank-v2.4-p3
 tags: []
 ---
 
-# PayBy转账到银行账户接口总览
+# PayBy 转账到银行账户接口总览
 
-PayBy 转账到银行账户能力允许商户将账户资金付款至指定收款银行账户，并提供出款前的汇率与手续费试算。本页汇总该业务域的整体说明、订单状态机及受益人字段关联规则。
+本页汇总 PayBy「转账到银行账户」业务域的接口清单、核心流程与异步通知机制，便于快速定位相关能力。
 
-## 业务能力与应用场景
+## 业务范围
 
-- **出款试算（since v2.1）**：试算汇率并返回出款手续费，便于商户在下单前预估到账金额。详见 [[api_transfer_calculate_fundout]]。
-- **单笔付款到银行卡**：将账户中的资金付款到指定的收款银行账户。详见 [[api_transfer_place_to_bank_order]]。
+- 业务域：`payby-transfer-to-bank`
+- 产品标识：`Transfer To Bank`
+- 覆盖能力：商户付款到银行卡的结果查询，以及付款结果的异步通知接收。
+- 具体到账时间因各银行结算时间不同，以实际到账时间为准。
 
-## 订单状态机
+## 接口清单
 
-单笔付款到银行卡订单的状态流转：
+| 类型 | 名称 | 说明 |
+| --- | --- | --- |
+| 主动查询 | [[api_payby_get_transfer_to_bank_order]] | 通过 `merchantOrderNo` 查询单笔付款到银行卡的最终结果 |
+| 异步通知 | [[api_payby_transfer_to_bank_notify]] | PayBy 在付款有结果后向商户 `notifyUrl` 推送 `transferToBankOrder` 数据 |
 
-| Status | 说明 |
-| --- | --- |
-| CREATED | 已创建 |
-| SUCCESS | 已成功 |
-| FAILURE | 已失败 |
-| BANK_FAIL | 银行退票 |
+## 环境地址
 
-## 受益人类型与字段关联规则
+- 联调：`https://uat.test2pay.com`
+- 生产：`https://api.payby.com`
+- 查询接口路径：`/sgs/api/transfer/getTransferToBankOrder`
 
-下单时通过 `beneficiaryType` 决定受益人字段的填写要求，支持三种类型：`IBAN`（默认）、`BBAN`、`FED_WIRE`。
+## 通用约定
 
-不同受益人类型下各字段的必填/可选/禁止规则：
+- 请求/响应均由 Http Header + Http Body(JSON) 组成。
+- Header 必填：`Sign`、`Partner-Id`；可选：`Content-Language`(如 `en`)。
+- Body 公共字段：`requestTime`(Timestamp(3))、`bizContent`(业务内容)。
+- 签名算法：通用请求与异步通知一致，通知由 PayBy RSA 私钥签名，商户使用从商户 portal 下载的 PayBy 公钥验签。
 
-| 字段 \ 类型 | IBAN | BBAN | FED_WIRE |
-| --- | :---: | :---: | :---: |
-| holderName | Required | Required | Required |
-| iban | Required | Forbidden | Forbidden |
-| swiftCode | Optional | Required | Forbidden |
-| beneficiaryAddress | Required | Required | Required |
-| accountNo | Forbidden | Required | Required |
-| bankName | Optional | Optional | Optional |
-| fedwireCode | Forbidden | Forbidden | Required |
-| branchName | Optional | Optional | Optional |
-| intermediaryBank | Optional | Optional | Optional |
+## 处理流程建议
 
-### 受益人地址字段的特别说明
+1. 商户发起付款到银行卡（创建订单，本页不展开）。
+2. PayBy 处理后，通过异步通知推送结果到商户 `notifyUrl`。
+3. 商户对通知做幂等处理并返回 `SUCCESS`。
+4. 若订单状态不明或未收到通知，商户应主动调用查询接口确认结果。
 
-- `beneficiaryAddress` 加密传输。
-- 当收款银行账户为个人账户时，`beneficiaryAddress` 必传；且 `holderName` 与 `beneficiaryAddress` 两个值的字符总和不能超过 140，否则可能导致转账失败。
+## 异步通知机制
 
-## 加密字段
+- 通知格式与普通请求相同（HTTP + JSON Body）。
+- 同一通知可能被重复发送，商户系统必须支持幂等处理。
+- 商户响应不符合规范或超时视为失败，PayBy 会重试。
+- 默认重试 7 次，间隔（分钟）：`2, 10, 10, 60, 120, 360, 900`；不保证最终一定送达。
+- 商户接收成功须返回字符串 `SUCCESS`，其他视为异常。
+- 通知 Body 主体字段：`transferToBankOrder`(类型 `TransferToBankOrder`)。
 
-下单接口中以下字段需加密传输：`holderName`、`iban`、`beneficiaryAddress`、`accountNo`。
+## 核心数据对象
+
+`TransferToBankOrder` 主要字段（在查询响应与异步通知中复用）：
+
+- `merchantOrderNo`：商户订单号
+- `orderNo`：PayBy 订单号
+- `amount`：金额（含 `amount`/`currency`）
+- `holderName`、`iban`、`swiftCode`、`beneficiaryAddress`：收款方信息
+- `memo`：备注
+- `product`：产品名，固定为 `Transfer To Bank`
+- `notifyUrl`：通知地址
+- `requestTime`：请求时间
+- `status`：订单状态（如 `SUCCESS`）
+- `paymentInfo.arrivalTime`：到账时间
+- `paymentInfo.payerFeeAmount`：付款方手续费
+- `bankReference`：银行参考号（查询响应中返回）
 
 ## 返回码
 
-各接口的成功码、参数错误、风控、订单状态冲突等返回码统一参见 [[payby-transfer-to-bank-return-codes]]。
+完整返回码（含查询接口与转账业务通用错误码）请参见 [[payby-transfer-to-bank-return-codes]]。
