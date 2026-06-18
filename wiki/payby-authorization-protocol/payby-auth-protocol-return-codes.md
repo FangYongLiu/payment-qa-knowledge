@@ -7,7 +7,7 @@ status: active
 owner: fangyong.liu@astratech.ae
 reviewer: UNREVIEWED
 source_type: upload
-source_ref: api-docs/payby-auth-agreement-v1.0.2-p1
+source_ref: api-docs/payby-auth-agreement-v1.0.2-p2
 tags: []
 ---
 
@@ -16,12 +16,6 @@ tags: []
 本页汇总 PayBy 授权协议签约相关接口（[[api_payby_apply_protocol]]、[[api_payby_get_protocol]]）的全部返回码、含义、原因及推荐解决方案，便于排错和对接联调时统一查阅。返回码通过响应体 `head.code` 与 `head.msg` 字段返回，业务是否成功还需结合 `head.applyStatus`（`SUCCESS`/`FAIL`/`ERROR`）综合判断。
 
 相关页面：[[payby-auth-protocol-overview]]、[[api_payby_protocol_notify]]。
-
-## 版本变更要点
-
-- v1.0.0（2020-08-14）：初稿。
-- v1.0.1（2021-10-08）：申请签约协议新增请求参数 `accessType`；调整协议场景参数关系；新增返回码 `90009`。
-- v1.0.2（2022-12-30）：查询协议响应新增返回字段 `deductType`、`extension`（不影响返回码集合）。
 
 ## 通用返回码（公共错误）
 
@@ -56,9 +50,8 @@ tags: []
 | 90009 | INVALID_ACCESS_TYPE               | 无效的 accessType        | 调整请求参数 |
 
 提示：
-- `90001`、`90002` 通常出现在 `accessType=SDK` 场景下未填写 `protocolSceneParams.iapDeviceId` 或 `appId`。在 `accessType=H5` 场景下，`protocolSceneParams` 仅含可空的 `redirectUrl`。
-- `90009` 为 v1.0.1 新增，校验 `accessType` 必须为 `SDK` 或 `H5`；当请求未传 `accessType` 时默认为 `SDK`。
-- `90007` / `90008` 与 `expiredTime` 有关，`expiredTime` 默认 15 分钟，不能早于 `requestTime`。
+- `90001`、`90002` 通常出现在 `accessType=SDK` 场景下未填写 `protocolSceneParams.iapDeviceId` 或 `appId`。
+- `90009` 为 v1.0.1 新增，校验 `accessType` 必须为 `SDK` 或 `H5`。
 
 ## 查询协议专属返回码
 
@@ -94,6 +87,11 @@ tags: []
 | 90008 | EXPIREDTIME_LESS_THAN_REQUESTTIME | 过期时间小于请求时间     | 调整过期时间        |
 | 90009 | INVALID_ACCESS_TYPE               | 无效的 accessType        | 调整请求参数        |
 
-## 业务状态字段速查
+## 排查建议
 
-返回码为 `0`
+- `400` 系列：优先核对请求体字段、字段类型与 `requestTime`（毫秒级时间戳，与服务器时间不能偏差过大）。
+- `402` / `504`：客户端可加退避重试；`500` 建议保留 `traceCode` 后联系 PayBy 排查。
+- `403` / `404`：通常与商户号未授权或环境（联调/生产）URL 错误有关，确认 `Partner-Id` 与签名 `Sign` 是否匹配该环境的密钥对。
+- `601`：触发风控，需结合具体业务调整后重试。
+- `90000` 段：均为签约业务参数校验类错误，按 `msg` 提示修正对应字段即可。
+- 签约结果通知场景下接收方应答规则参见 [[api_payby_prot
