@@ -7,43 +7,43 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:950c3db0-ce61-45cb-8e0b-43eafc0af3e7
+source_ref: wiki_image:11dc7a69-8bfe-4b75-ad06-28c0d98e8fd3
 tags: []
 ---
 
 # PayBy提现结果页UI说明
 
-提现结果页通过三阶段时间线（Stepper）展示用户从余额提现到银行账户的状态流转，帮助用户了解当前进度及预期到账时间。
+提现结果页（Result）以三步状态时间线展示提现进度，包含成功节点与失败节点的提示文案，并在底部提供操作按钮。
 
-## 页面结构
+## 页面基础结构
 
-- **页面标题**：Result
-- **导航**：左上角返回箭头
-- **主体**：垂直时间线，三步骤之间以绿色竖线连接
-- **底部 CTA**：整宽绿色按钮 "DONE"（白色大写文字）
+- 页面标题：**Result**
+- 左上角返回按钮：`<`
+- 主体：垂直 3 步状态时间线，节点之间用绿色竖线连接
+- 底部：全宽绿色按钮 **DONE**（白色大写文字）
 
-## 三阶段状态流
+## 三步状态时间线
 
-### Step 1 — Transfer request submitted（已完成）
+### Step 1 — Transfer request approved
+- 图标：绿色对勾（成功）
+- 标题：Transfer request approved
+- 副标题：Transfer from your balance to your bank account.
 
-- 状态图标：绿色实心圆 + 白色对勾
-- 副文案：Transfer from your balance to your bank account.
-- 含义：提现请求已提交，资金从余额转向银行账户
+### Step 2 — Your money on its way
+- 图标：绿色对勾（成功）
+- 标题：Your money on its way
+- 副标题：Your bank might take up to 2 working days to complete the transaction.
 
-### Step 2 — Your money on its way（已完成）
+### Step 3 — Transfer failed
+- 图标：红色圆底白色 X（失败）
+- 标题：Transfer failed
+- 副标题：You will receive a refund. Please contact help@payby.com for more details.
 
-- 状态图标：绿色实心圆 + 白色对勾
-- 副文案：Your bank might take up to 2 working days to complete the transaction.
-- 含义：转账在途，银行处理最多需 2 个工作日
+## 失败场景说明
 
-### Step 3 — Transfer succeeded（待完成）
+当提现流程在最终转账环节失败时：
 
-- 状态图标：灰色描边圆 + 时钟图标，下方无连接线
-- 副文案：If you have any queries, please contact the bank.
-- 含义：最终到账成功状态，提交后展示该页时仍处于 pending，等待银行确认
-
-## 状态流转逻辑
-
-请求提交 → 资金在途（≤2 个工作日）→ 转账成功
-
-用户在提交提现后即看到此页面，前两步默认标记为已完成，第三步保持 pending，直到银行确认到账。
+- 前两步（请求已批准、资金在途）展示为成功状态
+- 第三步展示为失败状态
+- 用户将收到退款（refund）
+- 提示用户联系 **help@payby.com** 获取更多详情
