@@ -7,78 +7,156 @@ status: active
 owner: fangyong.liu@astratech.ae
 reviewer: UNREVIEWED
 source_type: upload
-source_ref: api-docs/payby-transfer-bankcard-v0.2-p3
+source_ref: api-docs/payby-transfer-tobank-v2.4-p1
 tags: []
 ---
 
 # PayBy转账到银行账户接口总览
 
-本页汇总 PayBy 转账到银行账户业务域下的接口集合、调用流程与通用约定，便于快速定位查询、通知与错误处理相关能力。
+本页汇总 PayBy 转账到银行账户接口的版本变更、术语、协议规则、参数规范及通用数据结构定义，作为接入文档的总览索引。
 
-## 业务范围
+## 阅读对象
 
-- 用于商户向银行卡发起转账后的结果查询与异步通知处理。
-- 实际到账时间因各银行结算时间而异，以最终到账时间为准。
+面向接入 PayBy 的商户系统（在线购物平台、人工/自动化收银系统等）的：
+- 技术架构师
+- 研发工程师
+- 测试工程师
+- 系统运维工程师
 
-## 接口集合
+## 版本说明
 
-| 接口 | 用途 |
-| ---- | ---- |
-| [[api_payby_get_transfer_to_bank_card]] | 查询转账到银行卡订单的详细结果 |
-| [[api_payby_transfer_bank_card_notify]] | 接收 PayBy 推送的转账银行卡成功通知 |
+| 版本 | 时间 | 修改点 |
+| --- | --- | --- |
+| v2.0.0 | 2021-10-12 | 初稿 |
+| v2.0.1 | 2021-12-02 | 新增 `bankReference` |
+| v2.1   | 2022-03-01 | 增加国际汇款通道；增加出款能力查询接口；增加试算接口 |
+| v2.2   | 2024-08-20 | 增加 IBAN 查询姓名接口 |
+| v2.3   | 2024-12-11 | 单笔付款到银行卡接口增加 `cityCode` |
+| v2.4   | 2025-02-19 | 单笔付款到银行卡接口增加 `purposeCode` |
 
-## 调用流程
+## 术语
 
-1. 商户发起转账到银行卡（创建订单，由独立接口完成）。
-2. PayBy 处理转账结果后，向商户 `notifyUrl` 推送 [[api_payby_transfer_bank_card_notify]]。
-3. 商户接收通知并返回 `SUCCESS` 应答；若结果不明或未收到通知，主动调用 [[api_payby_get_transfer_to_bank_card]] 查询订单状态。
+- **PayBy支付系统**：PayBy 支付流程涉及的 API 接口、后台业务处理系统、回调通知等系统的总称。
 
-## 通用约定
+## 协议规则
 
-### 协议与报文
+商户接入 PayBy 调用 API 必须遵守：
 
-- HTTP 协议，请求与通知均由 Http Header + Http Body（JSON）组成。
-- Body 通用结构：`requestTime`（Timestamp(3)）+ `bizContent`（业务内容）。
-- 响应 Body 通用结构：`head`（ResponseHeader）+ `body`（业务响应）。
+| 方式 | 说明 |
+| --- | --- |
+| 传输方式 | HTTPS |
+| 提交方式 | POST |
+| 数据格式 | JSON |
+| 字符编码 | UTF-8 |
+| 签名算法 | SHA256WithRSA |
+| 签名要求 | 请求和响应数据都需要签名 |
 
-### Header 字段
+> 签名/加密的具体规则与密钥生成方式详见 [[payby-transfer-to-bank-security]]。
 
-| 字段 | 必填 | 说明 |
-| ---- | ---- | ---- |
-| `Content-Language` | Optional | 文案语言，如 `en` |
-| `Sign` | Required | 签名 |
-| `Partner-Id` | Required | 商户号，String(12) |
+## 参数规定
 
-### 环境地址
+### 请求参数
 
-- 联调（UAT）：`https://uat.test2pay.com`
-- 生产：`https://api.payby.com`
-- 路径前缀：`/sgs/api/transfer/`
+- 请求参数的值为空时不予处理。
 
-### 签名与验签
+### 货币类型 currency
 
-- 请求与通知均需签名，算法一致。
-- 通知由 PayBy RSA 私钥签署，商户使用 Portal 下载的 PayBy 公钥进行验签。
+| Currency | 说明 |
+| --- | --- |
+| AED | 阿联酋货币单位 |
 
-## 异步通知规则
+### 商户订单号 merchantOrderNo
 
-- 同一通知可能重复推送，商户系统必须做幂等处理。
-- 商户响应不符合规范或超时视为失败，PayBy 将重试。
-- 默认重试 7 次，间隔（单位：分钟）：`2, 10, 10, 60, 120, 360, 900`；不保证最终送达。
-- 商户收到通知后必须返回字符串 `SUCCESS`，否则视为异常。
+- 由商户自定义生成，仅支持字母、数字、`-`、`_` 的组合。
+- 必须保持唯一性（建议根据系统时间 + 随机序列生成）。
+- 重新发起一笔支付应使用原订单号，避免重复支付。
+- 已支付或已调用取消交易的订单号不能重新发起支付。
 
-## 关键数据对象
+## 通用数据结构
 
-- `TransferBankCardOrder`：转账银行卡订单信息，贯穿查询响应与异步通知。
-- 订单状态字段：`status`（如 `CREATED`）。
-- 持卡人类型：`accountHolderType`（如 `INDIVIDUAL`）。
-- 卡号、姓名等敏感字段在响应中以加密形式返回。
+### TransferToBankOrder
 
-## 错误处理
+| 字段名 | 变量名 | 必填 | 类型 | 描述 |
+| --- | --- | --- | --- | --- |
+| 请求时间 | requestTime | Required | Timestamp(3) | |
+| 商户订单号 | merchantOrderNo | Required | String(64) | |
+| PayBy订单号 | orderNo | Required | String(32) | |
+| 产品名称 | product | Required | String(200) | 例：Transfer To Bank |
+| 订单状态 | status | Required | | |
+| 支付信息 | paymentInfo | Optional | TransferToBankPaymentInfo | |
+| 金额 | amount | Required | Money | |
+| 受益人名称 | holderName | Required | String(64) | 原文的 sha256 值 |
+| IBAN | Iban | Required | String(64) | 原文的 sha256 值 |
+| SWIFT Code | swiftCode | Optional | String(11) | |
+| 付款备注 | memo | Optional | String(128) | |
+| 后台通知地址 | notifyUrl | Optional | String(200) | |
+| 错误描述 | failDes | Optional | String(200) | 订单失败原因 |
+| 受益人地址 | beneficiaryAddress | Optional | String(200) | 原文的 sha256 值 |
+| 银行关联号 | bankReference | Optional | String(128) | v2.0.1 新增 |
+| 到账金额 | fundoutAmount | Optional | Money | |
+| 汇率 | rate | Optional | BigDecimal | |
+| 金融网络 | networkCode | Required | String(16) | 例：LOCAL |
+| 国家代码 | countryCode | Optional | String(16) | |
+| 银行名称 | bankName | Optional | String(50) | |
+| Fed wire账号 | fedwireCode | Optional | String(9) | |
+| 中间行 | intermediaryBank | Optional | String(11) | |
+| 分支行名称 | branchName | Optional | String(35) | |
+| 受益人类型 | beneficiaryType | Required | String(16) | 例：IBAN |
+| purposeCode | purposeCode | Optional | String(16) | 例：COM |
 
-- 各接口返回码语义统一，详见 [[payby-transfer-to-bank-return-codes]]。
-- 高频场景：
-  - `62004 MERCHANT_ORDER_NO_NOT_EXIST`：商户订单号不存在。
-  - `62016 MERCHANT_ORDER_NO_EXIST`：订单号重复但业务参数不同。
-  - `62028 ORDER_SUCCESS` / `62029 ORDER_CREATED`：订单已处于对应状态。
-  - `601 RISK_FAIL`：风控校验失败。
+### purposeCode 枚举
+
+| name | description |
+| --- | --- |
+| COM | Commission |
+| FIS | Financial services |
+| GDS | Goods Bought or Sold |
+| GMS | Processing repair and maintenance services on goods |
+| GOS | Government goods and services embassies etc. |
+| GRI | Government related income taxes, tariffs, capital transfers, etc. |
+| IFS | Information services |
+| IGT | Inter group transfer |
+| INS | Insurance services |
+| ITS | Computer services |
+| OAT | Own account transfer |
+
+### TransferToBankPaymentInfo
+
+| 字段名 | 变量名 | 必填 | 类型 | 描述 |
+| --- | --- | --- | --- | --- |
+| 付款人手续费 | payerFeeAmount | Optional | Money | |
+| 预计到账时间 | arrivalTime | Optional | Timestamp(3) | 预估资金到账时间 |
+
+### ResponseHeader
+
+| 字段名 | 变量名 | 必填 | 类型 | 描述 |
+| --- | --- | --- | --- | --- |
+| 请求状态 | applyStatus | Required | String(16) | SUCCESS-申请成功；FAIL-申请失败；ERROR-申请异常 |
+| 返回错误码 | code | Required | String(10) | |
+| 返回信息 | msg | Optional | String(200) | |
+
+### OrderIndexRequest
+
+| 字段名 | 变量名 | 必填 | 类型 | 描述 |
+| --- | --- | --- | --- | --- |
+| 商户订单号 | merchantOrderNo | Optional | String(64) | 与 orderNo 二选一，不能同时为空且不能同时有值 |
+| PayBy订单号 | orderNo | Optional | String(32) | |
+
+### product
+
+| 产品名称 | 产品说明 |
+| --- | --- |
+| Transfer to bank | 转账到银行卡的产品 |
+
+### IbanHolderName
+
+| 字段名 | 变量名 | 必填 | 类型 | 描述 |
+| --- | --- | --- | --- | --- |
+| 受益人掩码 | holderNameMask | Optional | String(64) | |
+| 名字比对等级 | nameMatchingLevel | Optional | String(32) | 1 - First name verification；2 - First name and last name verification；3 - Full name verification |
+| 名字比对结果 | nameMatchingResult | Required | String | TRUE/FALSE |
+
+## API 列表
+
+- [[api_transfer_get_iban_holder_name]]：校验用户名称与 IBAN 账号是否匹配（v2.2 起支持）。
+- [[api_transfer_get_fundout_ability_list]]：查询商户可出款
