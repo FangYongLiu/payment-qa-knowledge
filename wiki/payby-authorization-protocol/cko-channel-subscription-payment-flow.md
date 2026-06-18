@@ -7,65 +7,61 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:85ed1b71-c6cd-4173-8bad-a92dae660154
+source_ref: wiki_image:bea17c38-8186-48b8-af81-72e06ea7ec56
 tags: []
 ---
 
 # CKO渠道订阅支付流程
 
-本页描述 CKO 渠道下，用户发起绑卡到完成 3DS 验证并签约的端到端时序交互，涵盖前端、会员域、收银台、风控、CMF 与 checkout 之间的协作。
+本页描述 CKO 渠道下订阅支付的端到端时序，覆盖用户确认支付时的 preferSign 查询与协议匹配、frictionless 3DS 处理，以及验证支付时的卡信息保存与下单确认。
 
 ## 参与方
 
-- **User**：发起绑卡与签约的终端用户
-- **personal**：用户侧个人中心入口
-- **member-front**：会员前置服务
-- **member**：会员核心服务
-- **cashdesk**：收银台
-- **grc**：风控
-- **cmf**：支付中台/卡管理
-- **checkout**：CKO 渠道收单方
+- User：用户
+- cgs->cashierii：收银台服务
+- grc：协议/规则中心
+- member：会员
+- authpay：授权支付
+- trade：交易
+- cmf：卡信息管理
+- checkout：CKO 渠道侧
 
-## 流程概览
+## 阶段一：Confirm card payment（确认支付）
 
-整体分为两个顶层交互：
+用户在收银台发起 `Confirm card payment`，cashierii 先查询授权支付的 preferSign 标记，再依据结果决定是否走签约协议匹配与 frictionless 3DS。
 
-1. **保存卡 + 发起支付**：返回 3DS 表单给用户
-2. **用户验证签约**：由 checkout 触达后，回传结果并激活卡
+### preferSign 查询
 
-## 阶段一：Save card 与 3DS 表单下发
+- 1.1 `Query auth pay perferSign`：cashierii → authpay
+- 1.2 `Authorize result (perferSign)`：authpay 返回授权结果与 preferSign
 
-1. `Save card`：User → personal
-   - 1.1 `Process card`：personal → member-front
-     - 1.1.1 `Save member card`：member-front → member
-     - 1.1.2 member 返回
-     - 1.1.3 `Risk Non-Payment event`：member-front → grc（风控非支付事件）
-     - 1.1.4 grc 返回
-     - 1.1.5 `Save card token`：member-front → cmf
-     - 1.1.6 `Card token id`：cmf → member-front
-     - 1.1.7 `Pay`：member-front → cmf
-       - 1.1.7.1 `Pay and sign`：cmf → checkout
-       - 1.1.7.2 checkout 返回
-     - 1.1.8 `3ds form`：cmf → member-front
-   - 1.2 member-front 返回 personal
-   - 1.3 `3ds form`：personal → User
+### preferSign=Y 分支：协议匹配与 frictionless
 
-## 阶段二：Verify and sign 与签约结果回传
+当 `preferSign=Y` 时执行：
 
-2. `Verify and sign`：User → checkout
-   - 2.1 checkout 返回 User
-   - 2.2 `Sign protocol data`：checkout → cmf
-     - 2.2.1 `Save and relate data`：cmf 自调用，保存并关联签约数据
-     - 2.2.2 `Accept bind card result`：cmf → cashdesk
-       - 2.2.2.1 `Activate card with sign channel`：cashdesk → member（按签约渠道激活卡）
-       - 2.2.2.2 `Notify grc card success`：cashdesk → grc（通知风控绑卡成功）
+- 1.3 `Query sign protocol list`：cashierii → grc 查询已签约协议列表
+- 1.4 `Signed protocols`：grc 返回已签协议
+- 1.5 `Preroute for card payment channel with signed protocols`：cashierii → checkout，携带已签协议进行卡渠道预路由
+- 1.6 `Protocol whether available (frictionless)`：checkout 返回协议是否可用（frictionless 判定）
 
-## 关键说明
+### Frictionless 支付事件与 3DS
 
-- 卡 token 在 cmf 侧落库后再发起 `Pay and sign`，由 checkout 返回 3DS 表单
-- 用户在 checkout 上完成 3DS 验证后，由 checkout 主动回调 cmf 进行协议数据签约
-- 绑卡成功的最终态由 cashdesk 串联：先在 member 激活卡并标记签约渠道，再向 grc 通知成功
+- 1.7 `Payment event with frictionless`：cashierii → authpay
+  - 1.7.1 `Save env infor`：authpay 内部保存环境信息
+  - 1.7.2 `3ds`：authpay 回调 cashierii 执行 3DS（frictionless 模式）
+- 1.8 `Cache context`：cashierii 内部缓存上下文
+- 1.9 `Risk result`：cashierii 向 User 返回风控结果
+
+## 阶段二：Verify card payment（验证支付）
+
+用户发起 `Verify card payment`，cashierii 处理 preferSign / frictionless 参数，并保存卡信息后下单。
+
+- 2.1 `Process preferSign and frictionless args`：cashierii 内部处理参数
+- 2.2 `Save card information with preferSign or frictionless`：cashierii → cmf，按 preferSign 或 frictionless 保存卡信息
+- 2.3 `Card token id`：cmf 返回卡 token id
+- 2.4 `Confirm pay`：cashierii → trade 确认支付
+  - 2.4.1 trade → cmf
 
 ## 相关
 
-- 流程图详见 [[flow_cko_subscription_payment]]
+- 时序图详见 [[flow_cko_subscription_payment]]
