@@ -3,115 +3,98 @@ id: flow_merchant_onboarding
 object_type: Flow
 domain: merchant-portal
 status: active
-owner: upload-sync@platform
+owner: wiki-sync@acquire
 reviewer: UNREVIEWED
 last_reviewed_at: '2026-06-18'
 source_type: wiki
-source_ref: wiki:fa5361b9-9768-4302-b8dc-f2dd9cc50451
+source_ref: confluence:AQ/997785804
 tags:
 - onboarding
 - cross-system
-- kyb
-- aml
+- KYB
+- AML
 subdomain: onboarding
 module: null
 sensitivity: normal
-name: 商户Onboarding端到端流程
+name: 商户入驻端到端流程
 aliases: []
 related_services:
-- svc_member
-- svc_merchant
-- svc_basis_merchant
-- svc_aml
-- svc_vis
-- svc_billing
-- svc_contract
-- svc_unified_portal
+- gp251_unified-merchant-portal
+- gp044_merchant
+- gp161_basis-merchant
+- gp005_member
+- gp209_aml
+- gp149_vis
+- gp107_contract
 related_tables:
 - t_merchant_creation_order
 - t_merchant
-- t_merchant_address
-- t_partner
-- t_binding_card_apply_info
 - t_merchant_biz_open
 - t_biz_admin_info
 - t_merchant_acquire_info
-- t_staff
-- t_staff_role
 - tm_member
 - tm_member_identity
 - tr_member_account
-- tr_beneficiary_info
-- t_product_apply_order
-- t_merchant_product_order
-- t_dpm_outer_account_subset
-- t_dpm_account_crl_def
-- t_settlement_config
 - t_contract
 - t_virtual_account
-related_scenarios:
-- scn_acquire_product_apply
+related_scenarios: []
 related_logs: []
 related_requirements: []
 related_failures: []
 ---
 
 ## 概述
-商户Onboarding是一个跨系统流程，从用户在Unified Portal注册/登录开始，到BMOC后台完成KYB审核结束。商户只有在Member、Merchant、Basis、AML、VIS、Billing、Contract等所有服务全部成功处理后，才能成为可用状态(usable)。AML失败会阻断商户激活。
+商户入驻是一个跨系统流程：由 Unified Portal 作为前端入口提交注册与入驻表单，后续 Member、Merchant、Basis、AML、VIS、Billing、Contract 等服务协同处理；只有当所有服务全部成功后，商户才进入可用状态。BMOC 后台负责 AML Risk Calculate 与 KYB Approval 两步审核动作；AML 失败将阻断商户激活。
 
 ## 步骤(跨系统)
-
-### Step 1: Merchant Registration/Login (前端 Unified Portal)
-- 入口：`https://sim-web-unified.test2pay.com/verify/login` (sim) / `https://uat-web-unified.test2pay.com/verify/login` (uat)
-- 首次注册默认通过 OTP 登录，登录后必须设置密码
-- sim 环境默认 OTP=161616；uat 环境需要 real OTP
-- 测试账号：Mobile `+971-556579167`, Password `132580` 或 `Yong0324####`
-
-### Step 2: Merchant Onboarding 表单填写
-- 填写 Onboarding form 信息
-- Company Bank Account 字段 IBAN（如 `AE790030013112189920001`）由后端服务校验
-
-### Step 3: Merchant Business Type Choose
-- Company Business Type 选择 `Payment`(即 Merchant Acquire Service) 或 WPS
-- 填写 Administrator Information，Mobile number 即注册成功后用于登录控台的手机号，且具有 administrator role
-
-### Step 4: BMOC 后台审核 (Merchant Status Approval)
-- 登录 BMOC：`https://sim-admin.corp.test2pay.com/basis-cas/login?service=https://sim-admin.corp.test2pay.com/bmoc/cas`
-- 菜单路径：`Basis Merchant => Business => Merchant => Merchant Onboarding`
-- Step 1：complete AML Risk Calculate(AML 风险计算)
-- Step 2：complete KYB Approval(KYB 审批)
-
-### Step 5: 状态确认
-- 系统处理完成后，在 BMOC 中检查 merchant status 是否为可用状态
+1. **注册/登录(Unified Portal)**
+   - 入口：`https://sim-web-unified.test2pay.com/verify/login`(SIM) / `https://uat-web-unified.test2pay.com/verify/login`(UAT)
+   - 首次注册默认通过 OTP 登录，登录后必须设置密码；SIM 默认 OTP 为 `161616`，UAT 需真实 OTP。
+2. **填写 Onboarding 表单**
+   - 录入公司信息、Company Bank Account(如 IBAN：`AE790030013112189920001`)；该 IBAN 字段由后端服务校验。
+3. **选择商户业务类型**
+   - Company Business Type 选择 `Payment`(即 Merchant Acquire Service) 或 WPS。
+   - 录入 Administrator Information：管理员手机号将作为登录账号且持有 administrator 角色。
+4. **提交后跨服务处理**
+   - Member：建立/复用 Member ID 与身份、账户信息。
+   - Merchant：创建商户档案、入驻状态、商户–会员关系。
+   - Basis：账户启用、产品激活、运营审核决策与核心配置。
+   - AML：对商户与执照信息进行合规与风险筛查；失败则阻断激活。
+   - VIS：创建并管理 Virtual IBAN(用于 IBAN Top up)。
+   - Billing：账单账户创建、订单初始化、结算配置。
+   - Contract：商户成功入驻后生成并管理合同。
+5. **BMOC 审核(Merchant Status Approval)**
+   - 登录：`https://sim-admin.corp.test2pay.com/basis-cas/login?service=https://sim-admin.corp.test2pay.com/bmoc/cas`
+   - 菜单路径：`Basis Merchant => Business => Merchant => Merchant Onboarding`
+   - Step 1：complete AML Risk Calculate
+   - Step 2：complete KYB Approval
+6. **完成与状态确认**
+   - 系统处理完毕后在 BMOC 检查商户状态；全部服务成功后商户进入可用状态。
 
 ## 涉及服务/表
+**服务(及职责)**
+- Unified Portal(`gp251_unified-merchant-portal`)：注册与入驻提交前端入口。
+- Member(`gp005_member`)：跨系统统一身份，提供 Member ID。
+- Merchant(`gp044_merchant`)：商户档案、入驻状态、商户–会员关系、生命周期。
+- Basis(`gp161_basis-merchant`)：账户启用、产品激活、运营审核、核心配置。
+- AML(`gp209_aml`)：合规与风险筛查，失败阻断激活。
+- VIS(`gp149_vis`)：Virtual IBAN 创建与外部对接。
+- Billing：账单账户、订单初始化、结算配置。
+- Contract(`gp107_contract`)：合同生成与管理。
 
-### 服务(Service Definition & Responsibilities)
-| 服务 | 职责 |
-|---|---|
-| Member | 中央用户身份服务，管理 member 账户，提供下游使用的 Member ID |
-| Merchant | 商户域服务，管理 merchant profile、onboarding 状态、merchant–member 关系、生命周期 |
-| Basis | 核心基础服务，处理账户启用、产品激活、运营审核决策、内部核心配置 |
-| AML | 反洗钱服务，对商户和牌照信息进行合规与风险筛查；AML 失败将阻断商户激活 |
-| VIS | Virtual IBAN 服务，创建和管理虚拟 IBAN 账户及外部对接 |
-| Billing | 账单与会计服务，负责 billing account 创建、订单初始化、财务结算配置 |
-| Contract | 合同管理服务，onboarding 成功后生成和管理商户合同 |
-| Unified Portal | 商户注册和 onboarding 提交的前端入口 |
-
-### 数据表(Merchant Onboarding impact database scope)
-- **Merchant**：`t_merchant_creation_order`、`t_merchant`、`t_merchant_address`、`t_partner`、`t_binding_card_apply_info`、`t_merchant_biz_open`、`t_biz_admin_info`、`t_merchant_acquire_info`、`t_staff`、`t_staff_role`
-- **Member**：`tm_member`、`tm_member_identity`、`tr_member_account`、`tr_beneficiary_info`
-- **Ppcenter**：`t_product_apply_order`、`t_merchant_product_order`
-- **Dpm**：`t_dpm_outer_account_subset`、`t_dpm_account_crl_def`
-- **Statemenii**：`t_settlement_config`
-- **Contract**：`t_contract`
-- **Vis**：`t_virtual_account`(Iban Top up)
+**数据库与表**
+- Merchant：`t_merchant_creation_order`、`t_merchant`、`t_merchant_address`、`t_partner`、`t_binding_card_apply_info`、`t_merchant_biz_open`、`t_biz_admin_info`、`t_merchant_acquire_info`、`t_staff`、`t_staff_role`
+- Member：`tm_member`、`tm_member_identity`、`tr_member_account`、`tr_beneficiary_info`
+- Ppcenter：`t_product_apply_order`、`t_merchant_product_order`
+- Dpm：`t_dpm_outer_account_subset`、`t_dpm_account_crl_def`
+- Statemenii：`t_settlement_config`
+- Contract：`t_contract`
+- Vis：`t_virtual_account`(IBAN Top up)
 
 ## 校验点
-- 注册环节：sim 用默认 OTP `161616`；uat 必须使用 real OTP
-- IBAN 字段由后端校验，需使用合法值(示例 `AE790030013112189920001`)
-- BMOC 审核需依次完成 AML Risk Calculate 与 KYB Approval 两步
-- AML 校验失败将阻断后续商户激活
-- 商户必须在所有服务(Member/Merchant/Basis/AML/VIS/Billing/Contract)全部成功后才可用
-- 通过查询 `t_merchant_creation_order`、`t_merchant`、`tm_member` 等表确认 onboarding 数据落库情况
-- 选择 Business Type=Payment 后，进入收单商户控台流程(详见 [[scn_acquire_product_apply]])
+- 登录方式：首次注册默认 OTP，登录后需设置密码；SIM OTP=`161616`，UAT 必须真实 OTP。
+- IBAN 字段由后端校验(示例：`AE790030013112189920001`)。
+- Business Type 选 `Payment` 走 Merchant Acquire Service 路径；管理员手机号决定登录账号与 administrator 角色。
+- BMOC 审核必须依次完成 AML Risk Calculate 与 KYB Approval；AML 失败阻断商户激活。
+- 入驻完成需检查商户状态；只有当 Member/Merchant/Basis/AML/VIS/Billing/Contract 全部成功，商户才可用。
+- 数据库验证范围覆盖 Merchant / Member / Ppcenter / Dpm / Statemenii / Contract / Vis 上述表的写入与状态。
