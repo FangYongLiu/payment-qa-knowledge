@@ -1,41 +1,51 @@
 ---
-title: CKO渠道订阅支付方案
+title: CKO Channel订阅支付
 domain: payby-authorization-protocol
 kind: wiki_page
 slug: cko-channel-subscription-payment
 status: active
-owner: upload-sync@platform
+owner: wiki-sync@acquire
 reviewer: UNREVIEWED
 source_type: wiki
-source_ref: wiki:9770c9b6-cd5c-4f9d-ae94-6d4e4b107220
+source_ref: confluence:tester/1082523699
 tags: []
 ---
 
-# CKO渠道订阅支付方案
+# CKO Channel订阅支付
 
-本页说明 CKO 渠道下订阅支付的需求背景与改造点，包含独立绑卡（CKO121）与收银台卡支付两条主流程。
+本页梳理 CKO 渠道接入订阅支付（Subscription Payment）的需求背景、需求拆分以及测试卡信息。
 
 ## 需求背景
 
-- 适用范围：在支付鉴权配置中开启了订阅支付的业务。
-- 场景：用户使用已签约的银行卡走 moto 渠道支付时，可路由到 CKO 对应的签约渠道（例如 CKO111）。
-- 本质：在原有渠道基础上多出一个 moto 渠道选择。
+- 针对指定业务（支付鉴权配置支持订阅支付的业务），当用户使用 **已签约的银行卡** 走 moto 渠道场景时，可走 CKO 对应的签约渠道（如 CKO111）。
+- 可理解为：在原有渠道基础上多一个 moto 渠道。
 
 ## 需求拆分
 
-### 1. 独立绑卡（CKO121）
+### 1. 独立绑卡：CKO121
 
 - 绑卡走 CKO121 签约渠道。
-- 绑卡成功后，将 CKO 返回的 `signTransactionId` 加密后作为 token 落库到 [[tbl_member_tr_bank_card_token]]。
-- 该表中是否存在有效数据，将作为后续支付过程中判断"该卡是否已签约"的依据。
-- 详见 [[scn_cko_standalone_card_binding]]。
+- 成功后落库到 `member.tr_bank_card_token`：
+  - 落库内容：CKO 返回字段 `signTransactionId`，加密后作为 token 存储。
+- 后续支付时，通过该表是否存在有效数据，判断该卡是否已签约。
 
 ### 2. 收银台卡支付
 
-- 在收银台进行卡支付时，依据 [[tbl_member_tr_bank_card_token]] 中是否存在该卡的有效签约 token，决定是否走 CKO 签约渠道（如 CKO111）的 moto 流程。
+- 收银台场景下使用已签约卡完成支付，走 CKO 对应签约渠道。
 
-## 测试与参考
+## 测试卡信息
 
-- 测试卡号清单见 [[cko-test-cards]]。
-- Checkout 官方测试卡文档：https://www.checkout.com/docs/developer-resources/testing/test-cards
-- 开发设计：202306-订阅支付
+| Card No | Description |
+| --- | --- |
+| 4010 0617 0000 0021 | 本地卡 - Debit |
+| 5385 3083 6013 5181 | 本地卡 - Credit |
+| 4659 1055 6905 1157 | 外卡 - Debit |
+| 4242 4242 4242 4242 | 外卡 - Credit |
+| 4870 5270 1770 0692 | Authentication rejected |
+
+详细测试用例参考 [[scn_cko_subscription_test_cards]]。
+
+## 参考资料
+
+- Checkout 官网测试卡：https://www.checkout.com/docs/developer-resources/testing/test-cards
+- 开发设计文档：202306-订阅支付
