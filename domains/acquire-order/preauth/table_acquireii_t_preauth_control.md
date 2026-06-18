@@ -20,8 +20,15 @@ aliases:
 - t_preauth_control
 - acquireii.t_preauth_control
 related_services: []
-related_tables: []
-related_scenarios: []
+related_tables:
+- tbl_acquireii_t_acquire_order
+- tbl_acquireii_t_amount_detail
+- tbl_acquireii_t_payment_info
+- tbl_acquireii_t_preauth_relation
+- tbl_acquireii_t_void_order
+related_scenarios:
+- scn_acquire_product_apply
+- scn_merchant_transaction_db_check
 related_logs: []
 related_requirements: []
 related_failures: []
@@ -29,14 +36,27 @@ related_failures: []
 
 ## 用途
 
-记录**预授权订单**的资金占用和 Capture 进度，管理预授权金额、Capture 进展、过期与撤销状态。
+`acquireii.t_preauth_control` 记录**预授权订单**的资金占用与 Capture 进度，是预授权业务的核心控制表，管理授权金额、Capture 进展、过期与撤销状态。重要程度 ⭐⭐⭐⭐。
 
-预授权（Pre-Authorization）业务模式：
+**预授权（Pre-Authorization）业务模式**：
 - 商户先冻结一笔资金（authorize），实际消费确认后再扣款（capture）
 - 实际金额可能小于授权金额，需要部分释放
 - 典型场景：酒店入住冻结 1000、退房实扣 800；加油站先冻结 500、按实际加油量扣款
 
-表名 `acquireii.t_preauth_control`，重要程度 ⭐⭐⭐⭐。
+## 在交易链路中的位置
+
+```
+t_acquire_order (订单主表)
+    │ 1:1  global_id
+    ├─→ t_preauth_control (本表，预授权汇总/控制)
+    │       │ 1:N  global_id → preauth_order_id
+    │       └─→ t_preauth_relation (每次 capture 明细)
+    ├─→ t_payment_info (支付信息)
+    ├─→ t_amount_detail (金额明细)
+    └─→ t_void_order (撤销订单，对应 void_flag=Y)
+```
+
+本表为预授权的**汇总/控制视图**，`t_preauth_relation` 为每次 capture 的明细记录。
 
 ## 关键列
 
@@ -71,16 +91,31 @@ related_failures: []
 | `i_pc_ct` | created_time | 按时间查询 |
 | `i_pc_aid` | authorization_id | 按授权 ID 查询 |
 
-关联：
-- `t_acquire_order` 1:1（global_id）
-- `t_preauth_relation` 1:N（global_id → preauth_order_id），本表为汇总，relation 表为每次 capture 明细
+## 关联表
 
-## 校验点(QA 关注)
+| 关联表 | 关系 | 关联字段 | 说明 |
+|--------|------|----------|------|
+| `t_acquire_order` | 1:1 | global_id | 订单主表，预授权订单的基础信息 |
+| `t_preauth_relation` | 1:N | global_id → preauth_order_id | 每次 capture 的明细，本表为汇总 |
+| `t_payment_info` | 1:1 | global_id | 支付通道与卡信息 |
+| `t_amount_detail` | 1:N | global_id | 金额组成明细 |
+| `t_void_order` | 关联 | global_id | 当 `void_flag='Y'` 时对应撤销订单 |
 
-1. **Capture 不能超额**：业务约束 `captured_amount + capturing_amount ≤ amount`，超额属于异常数据
-2. **过期后不能 capture**：超过 `expire_date` 后授权失效，需校验过期前完成 capture
-3. **撤销后不能 capture**：`void_flag = 'Y'` 表示已撤销，撤销后不允许再 capture
-4. **金额三态一致性**：amount / captured_amount / capturing_amount 的币种字段（amount_currency / captured_amt_cur / capturing_amt_cur）应保持一致
-5. **多次 capture 场景**：一笔预授权可分多次扣款，需验证 captured_amount 累加正确，且与 t_preauth_relation 明细汇总一致
-6. **即将过期监控**：`expire_date` 在 24 小时内、`void_flag != 'Y'` 且 `captured_amount < amount` 的记录需关注是否会失效
-7. **可用余额计算**：available_amount = amount - captured_amount - capturing_amount，不应为负
+## 校验点（QA 关注）
+
+1. **Capture 不能超额**：业务约束 `captured_amount + capturing_amount ≤ amount`，超额属于异常数据。
+2. **过期后不能 capture**：超过 `expire_date` 后授权失效，需校验过期前完成 capture。
+3. **撤销后不能 capture**：`void_flag='Y'` 表示已撤销，撤销后不允许再 capture，应同步存在 `t_void_order` 记录。
+4. **金额三态币种一致性**：`amount_currency` / `captured_amt_cur` / `capturing_amt_cur` 应保持一致。
+5. **多次 capture 累加正确**：一笔预授权可分多次扣款，需验证 `captured_amount` 累加正确，且与 `t_preauth_relation` 全部明细汇总一致。
+6. **即将过期监控**：`expire_date` 在 24 小时内、`void_flag != 'Y'` 且 `captured_amount < amount` 的记录需关注是否会失效。
+7. **可用余额计算**：`available_amount = amount - captured_amount - capturing_amount`，不应为负。
+8. **主表一致性**：`global_id` 必须能在 `t_acquire_order` 中找到对应订单，且订单类型应为预授权。
+
+## QA 落库检查要点
+
+- 创建预授权订单后：本表应生成一条记录，`amount` = 授权金额，`captured_amount=0`，`capturing_amount=0`，`void_flag='N'`，`expire_date` 已设置。
+- 发起 capture 中：`capturing_amount` 增加；capture 成功后 `capturing_amount` 减少、`captured_amount` 增加，且 `t_preauth_relation` 新增明细。
+- 撤销预授权：`void_flag` 由 N → Y，且 `t_void_order` 存在对应记录。
+- 部分 capture 后剩余金额释放：剩余金额 = amount - captured_amount，需确认资金释放逻辑触发。
+- 跨表对账：本表 `captured_amount` = SUM(`t_preauth_relation` 中所有 capture 成功明细金额)。
