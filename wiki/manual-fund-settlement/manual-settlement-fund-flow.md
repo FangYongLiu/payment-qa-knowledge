@@ -4,16 +4,26 @@ domain: manual-fund-settlement
 kind: wiki_page
 slug: manual-settlement-fund-flow
 status: active
-owner: wiki-sync@acquire
+owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki
-source_ref: confluence:tester/1107722264
+source_ref: wiki:11dc5fef-89b3-45ad-81a8-95bfefa0519a
 tags: []
 ---
 
 # 人工资金调拨资金流
 
-本页汇总人工资金调拨在 0042、0062 出款，以及 ENBD CMA 账户互转（500110/500111/500113）等场景下的借贷记账资金流。相关业务上下文见 [[manual-fund-settlement-overview]]，结算类型与产品码对应见 [[settlement-type-product-code-mapping]]。
+本页汇总人工资金调拨在 0042、0062 出款，以及 ENBD CMA 账户互转（500110/500111/500113）等场景下的借贷记账资金流。相关业务上下文见 [[manual-fund-settlement-overview]]，结算类型与产品码对应见 [[settlement-type-product-code-mapping]]，模板配置详见 [[settlement-template-config]]。
+
+## 适用场景
+
+人工资金调拨资金流覆盖以下业务需求：
+
+- **FAB 0040 AED 账户出款**：Counter settlement function
+- **FAB 0062 USD 账户出款**：H2H 出款及账户登账
+- **ENBD CMA AED 账户出款**：ENBD Transfer and Reconciliation、ENBD 二期余额调节
+
+资金流由 settlement 模板驱动，模板与明细分别落库于 [[tbl_t_settlement_template]] 与 [[tbl_t_settlement_detail]]。CMA 账户之间互转需在模板中额外配置 `settlement_code`（如 `CMA3->CMA4`）。
 
 ## 0042 出款资金流
 
@@ -55,5 +65,7 @@ CMA 账户之间互转需在模板中额外配置 `settlement_code`（如 `CMA3-
 
 ## 相关链接
 
-- 端到端流程：[[flow_manual-fund-settlement]]
+- 端到端流程：[[flow_manual_fund_settlement]]
 - 模板与明细落库：[[tbl_t_settlement_template]]、[[tbl_t_settlement_detail]]
+- 结算类型与产品码映射：[[settlement-type-product-code-mapping]]
+- 模板配置说明：[[settlement-template-config]]
