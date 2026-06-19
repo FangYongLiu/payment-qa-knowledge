@@ -1,5 +1,5 @@
 ---
-title: PayBy系统组件架构总览
+title: PayBy系统组件架构图
 domain: payby-core-systems
 kind: wiki_page
 slug: payby-system-components-architecture
@@ -7,93 +7,84 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:9f7fc10d-b291-4cb3-8cb9-3f6f5a81cd40
+source_ref: wiki_image:28cb95dc-7145-4e87-98a4-e48812a0fc2b
 tags: []
 ---
 
-# PayBy系统组件架构总览
+# PayBy系统组件架构图
 
-本页基于 UML 组件图描述 PayBy 支付系统的整体模块划分与依赖关系，包含 **交易 / 支付 / 会员账户 / 资金渠道 / 银行** 5 大 package，以及各 package 内部的应用组件与跨包调用链路。
+PayBy 支付系统按业务职责划分为五个域：**交易**、**支付**、**会员账户**、**资金渠道**、**银行**，由内部应用、未改造应用与合作方应用三类组件协作完成支付链路。
 
-## 组件类型图例
+## 图例（组件类型）
 
-组件按颜色区分为三类：
+- **内部应用**：浅青色
+- **未改造**：红色（遗留系统，待重构）
+- **合作方应用**：白色
 
-- **内部应用** `<<component>>`（蓝色）：PayBy 自研、已完成改造的应用。
-- **未改造** `<<component>>`（红色）：尚未完成改造的内部组件。
-- **合作方应用** `<<component>>`（白色）：外部合作方系统。
+## 业务域与组件构成
 
-## 5 大 Package 与内部组件
+### 交易（Trade）
 
-### 交易 (Trade)
+均为内部应用：
 
-内部应用：
+- trade
+- deposit
+- fundout
+- cashesk
+- authpay
+- query
 
-- `trade`
-- `deposit`
-- `fundout`
-- `cashesk`
-- `authpay`
+### 支付（Payment）
 
-### 支付 (Payment)
+均为内部应用：
 
-内部应用：
+- pfs-payment
+- payment
 
-- `pfs-payment`
-- `payment`
+### 会员账户（Member Account）
 
-### 会员账户 (Member Account)
+均为内部应用：
 
-- 内部应用：`ma`、`dpm`
-- 未改造：`cdpm`
+- ma
+- dpm
 
-### 资金渠道 (Fund Channel)
+### 资金渠道（Fund Channel）
 
-内部应用：
+- cmf（内部应用）
+- fundchannel-mock（内部应用）
+- fundchannel-xxx（内部应用）
+- fcw（未改造）
 
-- `cmf`
-- `fundchannel-mock`
-- `fundchannel-xxx`
-- `fcw`
+### 银行（Bank）
 
-### 银行 (Bank)
+- bank（合作方应用）
 
-- 合作方应用：`bank`
+## 组件依赖关系
 
-## 主要依赖关系
+组件间以虚线依赖箭头连接，主要链路如下：
 
-### 交易包内部
+### 交易域内部及对支付的依赖
 
-- `cashesk` → `authpay`
-- `deposit`、`fundout` 与 `cashesk`、`trade` 相互关联
-- `authpay` 与 `cashesk` 关联
+- trade → pfs-payment
+- deposit → trade（trade 与 deposit/cashesk 之间存在反向虚线连接）
+- cashesk → authpay
+- cashesk → pfs-payment（反向链接）
 
-### 交易 → 支付
+### 支付域到下游
 
-- `trade` → `pfs-payment`
-- `deposit`、`fundout`、`cashesk` 反向引用至 `pfs-payment` / `trade`
+- pfs-payment → payment → cmf
+- pfs-payment → ma
+- payment → dpm
+- ma → dpm
 
-### 支付包内部及向会员账户
+### 资金渠道到银行
 
-- `pfs-payment` → `payment`
-- `pfs-payment` ↔ `ma`
-- `payment` → `dpm`
-- `dpm` → `cdpm`
-- `ma` → `dpm`
+- cmf → fundchannel-mock
+- cmf ↔ fundchannel-xxx
+- fundchannel-xxx → bank
+- cmf → fcw
+- fcw ↔ bank（bank 通过虚线反向连接 fcw）
 
-### 支付 → 资金渠道
+## 整体调用走向
 
-- `payment` → `cmf`
-- `cmf` → `fundchannel-mock`
-- `cmf` → `fcw`
-
-### 资金渠道 ↔ 银行
-
-- `fundchannel-xxx` → `bank`
-- `bank` → `fcw`（回调）
-
-## 整体调用链路
-
-主流程自上而下贯通：
-
-`trade` → `pfs-payment` → `payment` → 会员账户域（经 `ma` 进入 `dpm` / `cdpm`）+ 资金渠道域（`cmf` → `fundchannel-xxx` → `bank`，并由 `bank` 回调 `fcw`）。
+由交易域组件发起请求，经支付域（pfs-payment / payment）路由至会员账户（ma / dpm）记账与资金渠道（cmf）出款，再由 fundchannel-xxx 或遗留组件 fcw 对接合作方 bank 完成与银行的资金交互。
