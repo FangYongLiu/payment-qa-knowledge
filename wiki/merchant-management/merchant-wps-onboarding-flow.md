@@ -7,7 +7,7 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:e0a7a237-82a3-4940-8229-3f398d64e5b0
+source_ref: wiki_image:58f8b6a1-3e6b-4a0e-9682-484df95bc439
 tags: []
 ---
 
@@ -57,28 +57,23 @@ Basis 审核通过后，落库正式的 WPS 业务信息及相关账户。
 
 - `vis.t_virtual_account` 虚拟账户 —— `Status:Initial`
 
+## 开通后用户侧体验
+
+WPS 开通完成后，商户员工（持卡人）在 Botim Pay 客户端会收到 chat 形式的交易回执通知，示例：
+
+- 通知类型：`Statement Purchase`
+- 商户名称（Merchant Name）：`Payroll Card Fee Collection`（工资卡费用收取）
+- 状态（Status）：`Transaction Completed`
+- 订单号（Order No.）示例：`131724913110002800`
+- 金额示例：`AED 36.50`
+- 附件：PDF 形式的 E-Statement（如 `Botim-E-Statement_20…`），可在消息中直接下载查看
+- 入口：消息卡片底部 `View Details` 可跳转交易详情
+
+该通知用于确认 WPS 工资卡相关费用扣收已完成，并提供电子对账单。
+
 ## 环境注意事项
 
 - UAT 环境：Iban 需手动推进。
-
-## 员工侧 Salary Card 体验
-
-WPS 业务开通且账户落库后，员工可在 Botim Money / PayBy App 中访问 Salary Card 页面（标题 "Salary Card"），用于自助管理薪资卡。
-
-- 卡片形态：虚拟 Mastercard 借记卡，正面包含：
-  - 左上：`Botim Money` 标识
-  - 右上：`PayBy` 标识及 NFC 非接触支付标志
-  - 中部：嵌入 "b" Logo 的二维码
-  - 卡号显示为掩码（如 `•••• •••• •••• 7466`），可通过眼睛图标切换显示
-  - 右下：Mastercard 标识
-  - 提示：`Tap card to view details`
-- Card Management 自助功能列表：
-  1. Transactions —— 查看交易明细
-  2. Lock Card —— 锁卡
-  3. Reset ATM PIN —— 重置 ATM 密码
-  4. Replace Card —— 换卡
-  5. Fees & Charges —— 查看费用
-- 页脚：`Powered by PayBy`
 
 ## 相关链接
 
