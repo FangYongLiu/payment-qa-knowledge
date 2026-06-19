@@ -6,8 +6,8 @@ slug: merchant-portal-service-components
 status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
-source_type: wiki
-source_ref: wiki:fa5361b9-9768-4302-b8dc-f2dd9cc50451
+source_type: wiki_image
+source_ref: wiki_image:445c8bed-6158-4936-b89b-d020582fe690
 tags: []
 ---
 
@@ -60,6 +60,42 @@ tags: []
 - **风控与合规**：`gp209_aml`。
 - **虚拟账户**：`gp149_vis`（VAM/IBAN Top up）。
 - **合同与对账单**：`gp107_contract`、`gp134_statementii`。
+
+## 系统组件分类与基础设施依赖
+
+业务服务在运行时依赖一组通用 jar starter 组件以及第三方基础设施。组件按用途分为五类（来源：System Components 组件依赖图）：
+
+| 类别 | 说明 | 典型组件 |
+|---|---|---|
+| 内部应用 | Internal Application | 业务服务（见上文 Owner 清单） |
+| 内部管理 | Internal Management | `ues` |
+| 内部 jar 组件 | Internal jar Component | `beacon`、`basic-lang`、`basic-util`、`pmock`、`ues-client`、`monitor-starter`、`mq-stater`、`dubbo-starter`、`job-starter`、`redis-starter`、`mysql-starter`、`sequence-util`、`cobarclient` |
+| 第三方应用 | Third-party Application | `spring-cloud-config`、`nacos`、`rabbit-mq`、`zookeeper`、`redis`、`mysql`、`gitlab` |
+| 第三方管理 | Third-party Management | `spring-boot-admin`、`dubbo-admin`、`elasticjob-console` |
+
+### Starter / 基础组件依赖关系
+
+内部 jar starter 主要负责封装并连接对应的第三方基础设施：
+
+- `beacon` → `basic-lang`
+- `ues-client` → `ues`；`ues` → `redis`、`mysql`
+- `monitor-starter` → `spring-cloud-config`、`nacos`
+- `mq-stater` → `rabbit-mq`
+- `dubbo-starter` → `zookeeper`
+- `job-starter` → `zookeeper`
+- `redis-starter` → `redis`
+- `mysql-starter` → `mysql`
+- `sequence-util` → `mysql`
+- `cobarclient` → `mysql`
+- `spring-cloud-config` → `gitlab`
+
+### 第三方管理控制台
+
+- `spring-boot-admin` → `nacos`（应用监控）
+- `dubbo-admin` → `zookeeper`（Dubbo 服务治理）
+- `elasticjob-console` → `zookeeper`（定时任务管理）
+
+排查商户控台相关问题时，可结合上述依赖关系定位是业务服务自身、starter 组件，还是底层基础设施（MySQL / Redis / RabbitMQ / Zookeeper / Nacos）的问题。
 
 ## 相关链接
 
