@@ -7,13 +7,13 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:3784b678-6632-4b52-8299-f7111102d4fb
+source_ref: wiki_image:be47e704-2647-4e66-b727-b8ffd09c1e8a
 tags: []
 ---
 
 # Basis Merchant 菜单功能详解
 
-本页梳理 BMOC 控台中 Basis Merchant 模块下的菜单分类、典型路径与核心菜单(如商户入驻审核、设备审批)的用途与操作流程,并给出账号权限管理建议与常见问题速览,便于测试、产品、运营快速定位功能入口。模块整体定位与分类参见 [[bmoc-basis-merchant-overview]]。
+本页梳理 BMOC 控台中 Basis Merchant 模块下的菜单分类、典型路径与核心菜单(如商户入驻审核、设备激活码)的用途与操作流程,并给出账号权限管理建议与常见问题速览,便于测试、产品、运营快速定位功能入口。
 
 ## 适用范围
 
@@ -30,7 +30,7 @@ Basis Merchant 涉及商户信息配置、产品权限审批、员工/门店/结
 | 📌 商户管理 | Merchant Management | 查询/编辑商户资料、设置结算信息等 |
 | 📌 商户入驻与开通 | Onboarding Management、Open Product | 商户开户审核、产品申请流程 |
 | 📌 渠道配置 | Fund Provider Management、3rd Party MID | 管理商户绑定的收单通道、上送渠道信息 |
-| 📌 设备管理 | TMS > Device Approval / Activated Devices | 审批 POS、查看终端状态 |
+| 📌 设备管理 (TMS) | Device Approval、Device ActiveCode、Activated Devices、Devices Channel Mapping、POS Settings、Amex Mapping、Operation Logs | 审批 POS、生成激活码、查看终端状态、通道映射、POS 配置等 |
 | 📌 员工门店管理 | Member Config、Store、Staff 等 | 配置门店信息、员工权限等 |
 | 📌 报表与对账 | Statements、Reconciliation Summary / Clear Flow / Fund Flow | 结算账单查看、异常调账 |
 | 📌 权限与日志 | Permissions、Operate Log | 操作日志查看、系统角色配置 |
@@ -45,40 +45,34 @@ Basis Merchant 涉及商户信息配置、产品权限审批、员工/门店/结
   2. 查看详细资料页
   3. 执行审核通过 / 驳回 / 修改配置
 
-## 核心菜单:TMS 模块
+## 核心菜单:TMS 设备管理
 
-TMS 模块用于 POS 终端全生命周期管理,左侧导航下包含以下菜单项:
+TMS 模块用于管理 POS 终端的全生命周期,主要子菜单包括:
 
-- **Device Approval**:设备入网审批(详见下文)
-- **Device ActiveCode**:设备激活码管理
-- **Activated Devices**:已激活设备查询,内部子项包括:
-  - Fiserv Outbound(Fiserv 出账相关)
-  - Activated Devices
-  - Fiserv Exception(Fiserv 异常处理)
-- **Devices Channel Management**:设备与收单渠道映射管理
-- **POS Settings**:POS 参数与策略配置
-- **Amex Mapping**:Amex 渠道映射配置
-- **Operation Logs**:TMS 模块操作日志
+- **Device Approval**:审批新提交的设备申请。
+- **Device ActiveCode**:为商户/门店生成并查看设备激活二维码。
+- **Activated Devices**:已激活终端列表(含 Fiserv Outbound、Fiserv Exception 等子项)。
+- **Devices Channel Mapping**:设备与收单通道的映射关系。
+- **POS Settings**:POS 终端参数配置。
+- **Amex Mapping**:Amex 渠道映射配置。
+- **Operation Logs**:TMS 模块操作日志。
 
-### 设备审批(Device Approval)
+### Device ActiveCode
 
-- **路径**:`TMS / Device Approval`
-- **用途**:审批商户提交的 POS 设备入网申请,确认设备类型、数量与归属门店。
-- **筛选条件**:Merchant ID、Merchant Name、Store Name、状态下拉(默认 `ALL`),点击 `Search` 查询。
-- **列表字段**:Apply ID、Merchant ID、Merchant Name、Contact Mobile、Store Name、Device Type、Device Number、Application Time、Status、Action。
-- **设备类型示例**:`VIRTUAL_POS`、`CUSTOMIZED_VPOS` 等。
-- **状态示例**:`Awaiting Approval`(待审核)。
-- **操作项**:`View`(查看详情)、`Approval`(审批通过/驳回)。
+- **用途**:按商户维度查询并下发设备激活码(QR Code),供 POS 设备扫码激活。
+- **查询条件**:`Merchant ID`(顶部搜索框)。
+- **列表字段**:`No.`、`Merchant Mid`、`Device Type`、`Store Name`、`Store Location`、`QR Code`。
+- **操作要点**:
+  1. 输入 `Merchant ID` 点击 `Search` 过滤目标商户。
+  2. 在结果行中查看对应门店(如 `ADCB Store`、`Cars Taxi L.L.C Abu Dhabi office`)的二维码。
+  3. 将 QR Code 提供给现场人员供 POS 扫码激活。
 
 ## 权限说明与账号管理建议
 
 - 登录 BMOC 控台需使用员工域账号(如:`fangyong.liu`、`Can Wang`)。
-- 系统角色与操作权限的配置归属 `Permissions` 菜单,操作记录通过 `Operate Log` 留痕;TMS 模块自身的操作记录可通过 `TMS / Operation Logs` 查看。
+- 系统角色与操作权限的配置归属 `Permissions` 菜单,操作记录通过 `Operate Log` 留痕;TMS 内的具体设备操作另有 `Operation Logs` 子菜单留痕。
 
 ## 常见问题
 
-- 控台访问与角色分配相关问题,建议先确认域账号是否已开通,以及对应菜单是否已在 `Permissions` 中授权。
-
-## 相关阅读
-
-- 控台账号与登录方式、常见问题处理见 [[bmoc-access-and-faq]]。
+- 控台访问与角色分配相关问题,建议先确认域账号是否已开通,以及对应菜单(尤其是 TMS 子项)是否已在 `Permissions` 中授权。
+- 在 `Device ActiveCode` 列表中若 `Device Type` / `Store Location` 为空,通常是商户侧资料未补齐,需回到 Merchant Management 完善门店信息。
