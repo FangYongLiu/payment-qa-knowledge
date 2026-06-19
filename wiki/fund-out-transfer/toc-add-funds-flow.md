@@ -1,5 +1,5 @@
 ---
-title: ToC Add funds 端到端时序流程
+title: ToC Add Funds 加款流程时序
 domain: fund-out-transfer
 kind: wiki_page
 slug: toc-add-funds-flow
@@ -7,63 +7,65 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:0fd875ff-914e-4a35-aafe-65127c1c2bdd
+source_ref: wiki_image:b7eefcfc-2e29-4ab9-96ba-c05fac6b4bfe
 tags: []
 ---
 
-# ToC Add funds 端到端时序流程
+# ToC Add Funds 加款流程时序
 
-本页描述 ToC 场景下 Add funds（出款充值）从 Customer 发起到 BANK 落地的完整时序，涉及 app-sdk、cgs、cashdesk-api、fundout、pfs-payment、payment、cmf、cmf-task、h2h 等服务协作。
+本页描述个人用户（ToC）通过银行转账方式发起加款（Add funds）的端到端调用链与各服务间的交互时序，归属业务域 `fund-out-transfer`。相关流程参见 [[flow_toc_add_funds]]。
 
 ## 参与方
 
-- **Timer**：定时触发批处理任务
-- **Customer**：发起充值的客户
+时序图涉及以下角色与服务：
+
+- **Customer**：发起加款的个人用户
 - **app-sdk**：客户端 SDK
 - **cgs**：网关服务
-- **cashdesk-api**：收银台 API
+- **personal**：个人业务服务
 - **fundout**：出款服务
-- **pfs-payment**：支付服务
-- **payment**：核心支付
-- **grc-check-identity-provider**：身份校验
-- **cmf**：资金管理（Cash Management Facility）
-- **cmf-task**：cmf 批处理任务
-- **h2h**：Host-to-Host 银行通道
-- **BANK**：银行
+- **cashdesk-api**：收银台 API 服务
 
-## 阶段一：客户发起与支付申请（同步链路）
+## 调用时序
 
-### 1.1 鉴权 `/cashdesk/fundoutAuth`
+整体流程由 Customer 触发，经 app-sdk 提交至 cgs，再由 personal、fundout、cashdesk-api 协同完成，最终返回 `cashierUrl` 由客户端打开收银台页面。
 
-- Customer → app-sdk → cgs：调用 `/cashdesk/fundoutAuth`
-- cgs → cashdesk-api
-- cashdesk-api → grc-check-identity-provider：`PaymentSessionQueryStub#paymentSessionQuery`，进行支付会话身份校验
+### 1. 用户发起加款
+- **1**：Customer → app-sdk，发起加款流程
 
-### 1.2 支付校验与申请 `/cashdesk/verify`
+### 2. 提交银行转账请求
+- **1.1**：app-sdk → cgs，调用 `/personal/transfer/bank/submit`
+- **1.1.1**：cgs → personal（内部调用）
 
-- Customer → app-sdk → cgs：调用 `/cashdesk/verify`
-- cgs → cashdesk-api，cashdesk-api 内部依次发起：
-  1. cashdesk-api → cmf：`CardTokenFacade#create`，创建卡 token
-  2. cashdesk-api → fundout：`FundoutSimpleFacade#pay`
-     - fundout → pfs-payment：`FundOutPaymentFacade#pay`
-       - pfs-payment → payment：`PaymentFacade#pay`
-         - payment → cmf：`FundRequestFacade#apply`，提交资金请求
+### 3. 创建收银台出款单
+- **1.1.1.1**：personal → fundout，调用 `CashierFundoutFacade#createCashierFundout`
 
-### 1.3 同步返回
+### 4. 获取出款 Token
+- **1.1.1.1.1**：fundout → cashdesk-api，调用 `TokenServiceFacade#getFundoutToken`
+- **1.1.1.1.2**：cashdesk-api ⇠ fundout，返回 token
 
-- app-sdk ⇠ Customer：返回 `apply success`（仅表示申请已受理，非最终银行结果）
+### 5. 逐层回传 cashierUrl
+- **1.1.1.2**：fundout ⇠ personal，返回
+- **1.1.2**：personal ⇠ cgs，返回
+- **1.2**：cgs ⇠ app-sdk，返回 `cashierUrl`
 
-## 阶段二：批处理请款（异步出账）
+### 6. 初始化收银台页面
+- **1.3**：app-sdk → cashdesk-api，调用 `/cashdesk/unityInitPayPage`
+- **1.4**：cashdesk-api ⇠ app-sdk，返回页面初始化结果
+- **1.5**：app-sdk ⇠ Customer，向用户呈现收银台
 
-- Timer → cmf-task：触发 **batch request job**
-- cmf-task → h2h
-- h2h → BANK：将申请的资金请求批量送至银行
+## 关键接口与门面方法
 
-## 阶段三：批处理查询（异步对账）
+| 调用环节 | 接口 / 方法 |
+|---|---|
+| 提交银行转账 | `/personal/transfer/bank/submit` |
+| 创建收银台出款单 | `CashierFundoutFacade#createCashierFundout` |
+| 获取出款 Token | `TokenServiceFacade#getFundoutToken` |
+| 初始化收银台页面 | `/cashdesk/unityInitPayPage` |
 
-- Timer → cmf-task：触发 **batch query job**
-- cmf-task 后续向下游发起结果查询，回写银行处理状态
+## 流程要点
 
-## 关联
-
-- 流程定义见 [[flow_toc_add_funds]]
+- 加款入口为银行转账提交接口 `/personal/transfer/bank/submit`，由 cgs 路由至 personal。
+- personal 不直接对接收银台，而是通过 fundout 的 `CashierFundoutFacade` 创建收银台出款单。
+- fundout 在创建过程中向 cashdesk-api 申请出款 token（`getFundoutToken`），用于收银台会话。
+- 上游链路返回的 `cashierUrl` 由 app-sdk 用于后续 `unityInitPayPage` 初始化收银台页面，完成用户侧加款交互。
