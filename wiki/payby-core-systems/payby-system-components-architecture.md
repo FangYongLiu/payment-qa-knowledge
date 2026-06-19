@@ -1,5 +1,5 @@
 ---
-title: PayBy 系统组件架构图
+title: PayBy系统组件架构总览
 domain: payby-core-systems
 kind: wiki_page
 slug: payby-system-components-architecture
@@ -7,86 +7,93 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:7255e24a-242f-4cb5-a0aa-d405f511b682
+source_ref: wiki_image:9f7fc10d-b291-4cb3-8cb9-3f6f5a81cd40
 tags: []
 ---
 
-# PayBy 系统组件架构图
+# PayBy系统组件架构总览
 
-本页描述 PayBy 平台的整体组件架构,通过 UML 组件图按分包(Merchant、SDK、Static Resource、Gateway、Acquire、Personal、App Public)展示各服务的归属与依赖关系。
+本页基于 UML 组件图描述 PayBy 支付系统的整体模块划分与依赖关系，包含 **交易 / 支付 / 会员账户 / 资金渠道 / 银行** 5 大 package，以及各 package 内部的应用组件与跨包调用链路。
 
 ## 组件类型图例
 
-架构图中的组件按颜色区分为四类:
+组件按颜色区分为三类：
 
-- **Partner Service**(白色):合作伙伴/外部接入侧服务
-- **Jar Component**(橙色):以 Jar 包形式提供的组件
-- **Static Resource**(黄色):静态资源
-- **Inner Service**(青色):内部服务
+- **内部应用** `<<component>>`（蓝色）：PayBy 自研、已完成改造的应用。
+- **未改造** `<<component>>`（红色）：尚未完成改造的内部组件。
+- **合作方应用** `<<component>>`（白色）：外部合作方系统。
 
-均以 `<<component>>` 构造型标识。
+## 5 大 Package 与内部组件
 
-## 包与组件清单
+### 交易 (Trade)
 
-### Merchant(商户接入)
-Partner Service:
-- Administrator
-- Smart POS
-- Smart Box
+内部应用：
 
-### SDK Platform
-- app-sdk(Jar Component)
-- Platform Service(Partner Service)
+- `trade`
+- `deposit`
+- `fundout`
+- `cashesk`
+- `authpay`
 
-### Static Resource
-- hive-merchant
-- hive-m-topay
+### 支付 (Payment)
 
-### Gateway(网关,Inner Service)
-- pos-gateway
-- xbh-gateway
-- cgs
-- sgs
+内部应用：
 
-### Acquire(收单,Inner Service)
-- software-management
-- device
-- acquire-service
-- merchant-console-frontend
-- merchant
+- `pfs-payment`
+- `payment`
 
-### Personal(个人侧,Inner Service)
-- pcm
-- socialpay
-- personal
-- transfer
+### 会员账户 (Member Account)
 
-### App Public
-- pts
+- 内部应用：`ma`、`dpm`
+- 未改造：`cdpm`
 
-## 关键依赖关系
+### 资金渠道 (Fund Channel)
 
-组件之间通过虚线箭头表示依赖,主要链路如下:
+内部应用：
 
-### 接入层 → 网关/静态资源
-- Administrator → hive-merchant
-- Smart POS → pos-gateway
-- Smart Box → xbh-gateway
-- app-sdk → cgs
-- Platform Service → sgs
+- `cmf`
+- `fundchannel-mock`
+- `fundchannel-xxx`
+- `fcw`
 
-### 网关 → 后端服务
-- pos-gateway、xbh-gateway → acquire-service,并直达 Acquire 内部组件 device、software-management
-- cgs → personal、socialpay、pcm、pts
-- sgs → personal、transfer
+### 银行 (Bank)
 
-### Acquire 内部依赖
-- merchant-console-frontend → hive-m-topay(静态资源)、merchant、acquire-service、device
-- acquire-service → device、merchant、pcm
-- software-management → device
+- 合作方应用：`bank`
 
-### Personal 内部依赖
-- personal → transfer
-- socialpay(原文未完整列出后续依赖)
+## 主要依赖关系
 
-> 注:本图为整体组件视图,具体业务流程与接口细节请参见各服务的详细文档。
+### 交易包内部
+
+- `cashesk` → `authpay`
+- `deposit`、`fundout` 与 `cashesk`、`trade` 相互关联
+- `authpay` 与 `cashesk` 关联
+
+### 交易 → 支付
+
+- `trade` → `pfs-payment`
+- `deposit`、`fundout`、`cashesk` 反向引用至 `pfs-payment` / `trade`
+
+### 支付包内部及向会员账户
+
+- `pfs-payment` → `payment`
+- `pfs-payment` ↔ `ma`
+- `payment` → `dpm`
+- `dpm` → `cdpm`
+- `ma` → `dpm`
+
+### 支付 → 资金渠道
+
+- `payment` → `cmf`
+- `cmf` → `fundchannel-mock`
+- `cmf` → `fcw`
+
+### 资金渠道 ↔ 银行
+
+- `fundchannel-xxx` → `bank`
+- `bank` → `fcw`（回调）
+
+## 整体调用链路
+
+主流程自上而下贯通：
+
+`trade` → `pfs-payment` → `payment` → 会员账户域（经 `ma` 进入 `dpm` / `cdpm`）+ 资金渠道域（`cmf` → `fundchannel-xxx` → `bank`，并由 `bank` 回调 `fcw`）。
