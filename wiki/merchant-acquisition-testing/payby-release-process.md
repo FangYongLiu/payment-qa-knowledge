@@ -1,63 +1,88 @@
 ---
-title: PayBy 发布流程
+title: PayBy 发布流程与排期
 domain: merchant-acquisition-testing
 kind: wiki_page
 slug: payby-release-process
 status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
-source_type: wiki_image
-source_ref: wiki_image:7d0ce586-3ad3-48b8-a702-c1e6738e28a1
+source_type: wiki
+source_ref: wiki:bb5ed60f-912d-4c42-8d2f-7b09a4f9b607
 tags: []
 ---
 
-# PayBy 发布流程
+# PayBy 发布流程与排期
 
-PayBy 发布流程跨 DEV、SIM、UAT、PROD 四个环境，由 DEV、QA、Devops/DBA 三个角色协作完成，从开发自测一路推进到生产发布。
+PayBy 常规发布窗口为每周二、周四 UAE 时间 06:00。任何在常规发布窗口之外的 Hotfix 部署都必须经过管理团队的严格审批流程。
 
-## 角色与环境
+## 常规发布窗口
 
-- **角色（泳道）**：DEV、QA、Devops/DBA
-- **环境（阶段）**：DEV、SIM、UAT、PROD
+- 每周二 06:00 (UAE Time)
+- 每周四 06:00 (UAE Time)
+- 窗口外的 Hotfix 需走管理团队严格审批
 
-## DEV 阶段（开发自测）
+## 周排期
 
-由 DEV 负责：
+按一周排布两个发布序列（Release 1 与 Release 2），并保留上一周的 Release 0 收尾活动。
 
-1. **Development**：开发完成后判断 Done，未完成则回到 Development。
-2. **Self Test**（自测）：完成后判断 Done，未通过回到自测。
+**MONDAY**
+- Release 0 - UAT DEPLOYMENT
+- Release 0 - UAT TESTING
+- Release 2 - QA SIM TESTING
 
-## SIM 阶段（SIM 测试）
+**TUESDAY**
+- Release 0 - PROD DEPLOYMENT
+- Release 0 - PROD VALIDATION
+- Release 1 - SIM TESTING
+- Release 1 - QA SIM TESTING
+- Release 1 - Release scope and Config Review
+- Release 1 - DEV Merge to Master (Cutoff Time)
 
-由 DEV 提交、QA 验证：
+**WEDNESDAY**
+- Release 1 - UAT DEPLOYMENT
+- Release 1 - QA UAT TESTING
+- Release 2 - QA SIM TESTING
 
-1. 流转到 QA 的 **Wait Test** → **SIM Test**。
-2. 判断 **Passed**：
-   - 若被 **Reopened**（虚线回退），回到 DEV 的 Development。
-   - 若通过，DEV 执行 **Submit PR** → **Merge to Master** → 判断 Done。
+**THURSDAY**
+- Release 1 - PROD DEPLOYMENT
+- Release 1 - QA PROD VALIDATION
+- Release 2 - QA SIM TESTING
+- Release 2 - Release scope and Config Review
+- Release 2 - DEV Merge to Master (Cutoff Time)
 
-## UAT 阶段（UAT 部署与回归）
+**FRIDAY / SA / SU**
+- 无固定发布活动
 
-由 QA 决策、Devops/DBA 执行部署：
+## 角色与职责
 
-1. QA 判断 **All**：
-   - **CR** 分支：循环回退。
-   - **DB Change** 分支：先由 Devops/DBA 执行 **UAT DB CHANGE**（虚线），再进入 **UAT DEPLOY**。
-   - 其他情况：直接进入 **UAT DEPLOY**。
-2. **UAT DEPLOY** → 判断 DONE → QA 执行 **UAT Test** → 判断 **Passed**：
-   - 未通过：回到 **UAT DEPLOY**。
-   - 通过：判断 **All?** → **Regression Test** → 判断 **Passed**：
-     - 未通过：回到 **UAT DEPLOY**。
+**DEVOPS / DBA**
+- 负责 UAT 与 PROD 的部署
+- 依据 release scoped tickets 中的信息执行：Build Version、CRs、Configuration files 等
+- 所有 UAT 部署与配置变更仅限 DevOps 与 DBA 团队执行
 
-## PROD 阶段（生产发布）
+**QA**
+- 在 SIM、UAT、PROD 进行测试：Functional Testing、Regression、Smoke
+- 覆盖手工与自动化两种方式
 
-由 Devops/DBA 负责 PROD 部署（PROD D…）。
+**DEV**
+- 在 DEV 环境完成 Self Tests
+- 在 QA 完成 SIM 测试后，将代码合并到 master
 
-## 关键决策与回环
+## 工作流新增状态
 
-- **Done**（Development / Self Test / Merge to Master / UAT DEPLOY）：未完成均回到当前节点。
-- **Passed**（SIM Test / UAT Test / Regression Test）：未通过分别回到 Development 或 UAT DEPLOY。
-- **Reopened**：SIM 测试后将问题打回到 DEV 开发。
-- **All / All?**：用于判断是否覆盖全部范围（含 CR、DB Change 分支判定与回归触发）。
+整体流程中新增两个状态，配合"UAT 部署与配置变更仅由 DevOps/DBA 执行"的规范：
 
-相关：[[payby-release-process]]
+- `UAT DB CHANGE`
+- `UAT DEPLOY`
+
+## 安全确认流程
+
+针对涉及暴露到公网的核心服务变更的 ticket：
+
+- 在 UAT 完成 QA 验证后，需要将状态切换为 `SECURITY CONFIRM`
+- 最终结束状态为 `SECURITY COMPLETED`，而不是普通的 `COMPLETED`
+
+## Definition of Done
+
+- 所有 ticket 已上线 PROD，且状态为 `COMPLETED` 或 `SECURITY COMPLETED`
+- 部署过程中出现的任何问题都需复盘，分析 root cause，并制定 action items，避免后续重复发生
