@@ -7,7 +7,7 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:c3bc7bb1-1c0f-4535-ad44-416cc22621a1
+source_ref: wiki_image:e8a166c7-9687-411d-9304-7f6c244b4a9c
 tags: []
 ---
 
@@ -29,28 +29,28 @@ tags: []
 
 ## Add Template 表单字段
 
-模板创建弹窗（Add Template）包含以下字段，标 * 为必填：
+模板新建弹窗 "Add Template" 包含以下字段（`*` 为必填）：
 
 | 字段 | 必填 | 说明 |
 |---|---|---|
-| SettlementType | * | 结算类型枚举，如 `INNER_ACCOUNT` |
-| SettlementCode |  | CMA 账户间互转时使用，如 `CMA3->CMA4` |
+| SettlementType | * | 结算类型枚举，如 `INNER_ACCOUNT`、`MERCHANT_ACCOUNT` |
+| SettlementCode | | CMA 账户间互转等场景下用于区分具体账户对，例如 `CMA3->CMA4` |
 | Business Name | * | 结算业务名称 |
-| Bank Deposit Account | * | 下拉，选择出款银行账户 |
-| Settlement ProductCode | * | 下拉，选择结算产品码 |
-| Biz ProductCode | * | 业务产品码 |
+| Bank Deposit Account | * | 下拉选择，来源于 `SettlementInnerFundOutBankAccountList` |
+| Settlement ProductCode | * | 下拉选择 |
+| Biz ProductCode | * | 业务产品码，见下文枚举映射 |
 | Payer AccountNo | * | 付款方账号 |
-| Beneficiary List |  | 下拉，选择收款方列表 |
+| Beneficiary List | | 下拉选择，来源于对应的 beneficiary 配置列表 |
 | Beneficiary Iban/Account | * | 收款方 IBAN/账号 |
-| beneficiary SwiftCode |  | 收款方 SWIFT |
-| Beneficiary BankName |  | 收款方银行名称 |
-| Beneficiary AccountName | * | 收款方账户名 |
+| beneficiary SwiftCode | | 收款方 SwiftCode |
+| Beneficiary BankName | | 收款方银行名称 |
+| Beneficiary AccountName | * | 收款方户名 |
 | Beneficiary Address | * | 收款方地址 |
-| Beneficiary AccountCurrency |  | 收款方账户币种 |
-| Attachment |  | 附件上传 |
-| Memo |  | 备注 |
+| Beneficiary AccountCurrency | | 收款方账户币种 |
+| Attachment | | 附件上传 |
+| Memo | | 备注 |
 
-底部按钮：Submit / Cancel。
+提交后进入审核流程，审核通过后模板生效。
 
 ## settlementType 枚举与产品码映射
 
@@ -76,7 +76,7 @@ tags: []
 
 ### CMA 账户间互转
 
-需要额外配置 `SettlementCode`（表单字段），例如 `CMA3->CMA4`，用于区分具体的 CMA 账户对。
+需要额外配置 `SettlementCode`，例如 `CMA3->CMA4`，用于区分具体的 CMA 账户对。
 
 ## 模板中的账户配置项
 
