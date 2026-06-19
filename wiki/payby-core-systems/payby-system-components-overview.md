@@ -1,41 +1,27 @@
 ---
-title: PayBy系统组件架构总览
+title: PayBy系统组件总览
 domain: payby-core-systems
 kind: wiki_page
 slug: payby-system-components-overview
 status: active
-owner: wiki-sync@acquire
+owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki
-source_ref: confluence:PCW/124553302
+source_ref: wiki:d432fd8a-1a94-4bf1-bb33-16b7b248dd9f
 tags: []
 ---
 
-# PayBy系统组件架构总览
+# PayBy系统组件总览
 
-PayBy 系统组件按职责自上而下划分为 Payment Product、Payment Core、Payment Public、Infrastructure 四个层次，分别承载支付产品能力、支付核心引擎、对外公共服务以及底层基础设施。
+PayBy 系统在架构上划分为四大模块：Payment Product、Payment Core、Payment Public 和 Infrastructure，分别承担产品层、核心支付能力、公共服务与基础设施职责。
 
-## 分层结构
+## 模块划分
 
-- **Payment Product**：支付产品层，面向具体支付业务场景的产品组件。
-- **Payment Core**：支付核心层，承载核心交易与账务相关能力。
-- **Payment Public**：对外公共服务层，提供面向外部/通用的服务组件。
-- **Infrastructure**：基础设施层，支撑上层业务运行的底层平台组件。
+- **Payment Product**：支付产品层
+- **Payment Core**：支付核心层
+- **Payment Public**：支付公共服务层
+- **Infrastructure**：基础设施层
 
-## Payment Product
+## 备注
 
-支付产品层组件架构图（详见原文配图 `image2020-1-14_12-32-51.png`）。
-
-## Payment Core
-
-支付核心层组件架构图（详见原文配图 `image2021-6-21_11-18-53.png`）。
-
-## Payment Public
-
-支付公共层组件架构图（详见原文配图 `image2021-3-9_12-10-32.png`）。
-
-## Infrastructure
-
-基础设施层组件架构图（详见原文配图 `image2021-6-21_11-18-18.png`）。
-
-> 备注：原文四层组件的具体清单以架构图形式给出，本页未文字化展开，详细组件请参阅对应架构图。
+原文各模块的具体组件构成以架构图的形式给出（图片资源未能加载），本页仅保留四大模块的划分结构。
