@@ -4,10 +4,10 @@ domain: merchant-portal
 kind: wiki_page
 slug: merchant-portal-overview
 status: active
-owner: wiki-sync@acquire
+owner: upload-sync@platform
 reviewer: UNREVIEWED
-source_type: wiki
-source_ref: confluence:AQ/997785804
+source_type: wiki_image
+source_ref: wiki_image:a3eae712-a4c3-4da3-b42d-ad8965cf4837
 tags: []
 ---
 
@@ -59,6 +59,24 @@ Merchant Portal 是商户体系的统一入口，承载商户注册/登录、业
 - **Billing**：计费与账务（账单账户、订单初始化、结算配置）
 - **Contract**：商户合同生成与管理
 - **Unified Portal**：商户注册与入驻提交的前端入口
+
+## WPS 端 Transactions 与对账单下载
+
+WPS 业务侧在移动端 Transactions 页面提供交易查询与对账单（Statement）下载入口：
+
+- Transactions 页面：
+  - Tabs：`All` / `Incoming` / `Outgoing`
+  - 筛选：按月份下拉（如 `August - 2024`）
+  - 右上角 `Download` 按钮进入对账单下载流程
+- Download Statement 弹层字段：
+  - Info banner：`Download statement for AED 10.00`（电子版下载费用）
+  - `Statement Duration`：下拉选择，例如 `Last 6 Months`
+  - `Email`：默认带出当前账号邮箱
+  - `Request for a Hard Copy`：勾选后追加 `+ AED 26.50` 纸质对账单费用
+  - `Shipping Address`：勾选 Hard Copy 时必填
+  - `Confirm`：提交下载/邮寄请求
+
+注意：勾选 Hard Copy 时，必须有有效的 Shipping Address 才能 Confirm。
 
 ## BMOC 审核入口
 
