@@ -1,5 +1,5 @@
 ---
-title: VAM IBAN 虚拟账户总览
+title: VAM IBAN业务总览
 domain: vam-iban
 kind: wiki_page
 slug: vam-iban-overview
@@ -7,38 +7,21 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:3fca2a3f-f2de-4193-b613-7e002319a335
+source_ref: wiki_image:1f0c4dd5-fb28-4849-a781-bf1b964697d2
 tags: []
 ---
 
 # VAM IBAN 虚拟账户总览
 
-本页汇总 PayBy App 中 VAM IBAN 虚拟账户的申请激活入口、VIP 用户处理、批次 Job 重试机制、mock 配置以及交易通知测试方式。详细场景见 [[scn_vam_iban_apply_activate]]、[[scn_vam_iban_apply_and_transaction]] 与 [[scn_vam_iban_fitnesse_notify]]。
+本页汇总 PayBy App 中 VAM IBAN 虚拟账户的申请激活入口、VIP 用户处理、批次 Job 重试机制、mock 配置、文件处理记录以及交易通知测试方式。详细场景见 [[scn_vam_iban_apply_activate]]、[[scn_vam_iban_apply_and_transaction]] 与 [[scn_vam_iban_fitnesse_notify]]。
 
 ## 申请与激活入口
 
 - 入口：PayBy App → 充值 → **Bank Account Transfer** → 点击激活
 - 激活结果：
-  - 激活成功：页面展示 IBAN 信息（PayBy Virtual Bank Account 详情页）
+  - 激活成功：页面展示 IBAN 信息
   - 激活处理中：等待批次 Job 重试处理
 - 落库：写入 [[tbl_vis_t_virtual_account]]（通过 `mid` 关联），初始 `status=Initial`
-
-## 虚拟账户详情页
-
-激活成功后，App 进入 **PayBy Virtual Bank Account** 详情页：
-
-- 顶部导航：返回 / 标题 `PayBy Virtual Bank Account` / 右上角 `FAQ`
-- 卡片信息（PayBy × FAB 联合发行，FAB = First Abu Dhabi Bank / بنك أبوظبي الأول）：
-  - `Account Holder`：账户持有人姓名
-  - `VALID THRU`：有效期（示例 `05/23`）
-  - `Account Type`：示例 `OTHER`
-  - `Account No`：账户号（示例 `7415009140006171`），支持复制
-  - `IBAN`：示例 `AE130357415009140006171`，支持复制
-- 卡片下方：`Collection Record >` 入口
-- **Receive** 区块，三个入口：
-  1. `Salary`
-  2. `Transactions`
-  3. `International Transfer`
 
 ## VIP 用户处理
 
@@ -63,6 +46,18 @@ vis:
   notification:
     mock: Y
 ```
+
+## 文件处理记录
+
+运维/管理后台提供文件处理记录列表，用于查看 IBAN 相关批量文件的解析与处理结果。
+
+- 列表字段：File ID、File Type、File Date、Status、Oss Path、Message、carryOverOrder、carryOverStatus、carryOverAmount、Operator、confirmer、Memo、GMT Create、GMT Modified、gmtComplete
+- 关键文件类型：
+  - **RF-开户结果文件**：开户结果回盘文件，解析成功后 Message 显示 `解析成功`，Status 为 `Success`
+- Oss Path 示例：`202310/counter/1697781991411_openfile.xlsx`（以超链接形式提供文件下载/查看）
+- 示例记录：
+  - File ID `20231020000052502`，File Type `RF-开户结果文件`，File Date `2023-10-20`
+  - Status `Success`，Message `解析成功`，Operator `周晓妍`，Memo `ok`
 
 ## 交易通知测试
 
