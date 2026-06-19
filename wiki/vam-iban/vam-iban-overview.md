@@ -1,25 +1,27 @@
 ---
-title: VAM IBAN 虚拟账户总览
+title: VAM IBAN 业务总览
 domain: vam-iban
 kind: wiki_page
 slug: vam-iban-overview
 status: active
-owner: wiki-sync@acquire
+owner: upload-sync@platform
 reviewer: UNREVIEWED
-source_type: wiki
-source_ref: confluence:tester/219152444
+source_type: wiki_image
+source_ref: wiki_image:9a57adac-0804-4ee9-8713-f8f3b20aa8fd
 tags: []
 ---
 
-# VAM IBAN 虚拟账户总览
+# VAM IBAN 业务总览
 
 本页汇总 PayBy App 中 VAM IBAN 虚拟账户的申请激活入口、VIP 用户处理、批次 Job 重试机制、mock 配置以及交易通知测试方式。详细场景见 [[scn_vam_iban_apply_activate]]、[[scn_vam_iban_apply_and_transaction]] 与 [[scn_vam_iban_fitnesse_notify]]。
 
 ## 申请与激活入口
 
-- 入口：PayBy App → 充值 → **Bank Account Transfer** → 点击激活
+- 入口：PayBy App → **Recharge**（充值）→ **Recharge Via** 选择 **Bank Account Transfer** → 点击激活
+  - 同页其他充值方式：**Debit Card**（VISA/Mastercard 借记卡）、**uPay Kiosks**（UAE 850+ 自助终端）
+  - Bank Account Transfer 卡片说明："Use bank account to transfer to VAN account"
 - 激活结果：
-  - 激活成功：页面展示 IBAN 信息
+  - 激活成功：页面展示 IBAN 信息（示例形如 `1410 0444 2378 918`，配合 FAB Logo 与 PayBy Virtual Bank Account 视图，含 RECEIVE / Salary / Transactions / International Transfer / BENEFICIAL 等条目）
   - 激活处理中：等待批次 Job 重试处理
 - 落库：写入 [[tbl_vis_t_virtual_account]]（通过 `mid` 关联），初始 `status=Initial`
 
