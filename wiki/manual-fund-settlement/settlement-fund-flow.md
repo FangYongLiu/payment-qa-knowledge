@@ -4,16 +4,25 @@ domain: manual-fund-settlement
 kind: wiki_page
 slug: settlement-fund-flow
 status: active
-owner: upload-sync@platform
+owner: wiki-sync@acquire
 reviewer: UNREVIEWED
 source_type: wiki
-source_ref: wiki:55ce713d-d31a-4ab2-83c9-3361843358f6
+source_ref: confluence:AQ/1138425935
 tags: []
 ---
 
 # 资金调拨账务流水
 
-本页汇总人工资金调拨场景下，FAB 0042、FAB 0062 出款及 ENBD CMA 账户互转的借贷方科目与资金流明细，对应业务发起后的系统登账行为。完整链路与模板/产品码定义见 [[manual-fund-settlement-overview]]、[[settlement-template-config]]，端到端流程见 [[flow_manual_fund_settlement]]。
+本页汇总人工资金调拨场景下，FAB 0040/0042、FAB 0062 出款及 ENBD CMA 账户互转的借贷方科目与资金流明细，对应业务发起后的系统登账行为。完整链路见 [[manual-fund-settlement-overview]]，模板/产品码定义见 [[settlement-template-config]]、[[settlement-type-product-code-mapping]]。
+
+## 触发链路概览
+
+资金流登账由结算申请审核通过后触发，主要步骤：
+
+1. 创建结算模板（Counter → Settlement Management → Settlement Template）：选择 `settlementType`，填写出款账户信息，提交审核。
+2. 发起结算申请（Counter → Settlement Detail → Apply Settlement）：选择模板，输入金额，提交审核，审核通过后系统调拨登账。
+
+涉及表：`reconciliation.t_settlement_template`、`reconciliation.t_settlement_detail`。
 
 ## FAB 0042 出款资金流
 
@@ -60,4 +69,5 @@ CMA 账户之间互转，按 `settlementType` 区分方向，统一登记 FundIn
 ## 说明
 
 - CMA 账户互转的方向控制依赖模板上的 `settlement_code`（如 `CMA3->CMA4`）配置，详见 [[settlement-template-config]]。
-- 各 `settlementType` 与 `biz_product_code` 的对应关系见 [[manual-fund-settlement-overview]]。
+- `settlementType` 为代码写死枚举，非配置项；各 `settlementType` 与 `biz_product_code` 的对应关系见 [[settlement-type-product-code-mapping]]。
+- 模板账户配置入口：Reconciliation Manage → Recon Config，涉及 payer / beneficiary / Bank Deposit Account 多个列表（如 `SettlementMerchantPayerInfoList`、`SettlementCB103PayerInfoList`、`SettlementCB001PayerInfoList`、`SettlementCB103BeneficiaryInfoList`、`SettlementInnerBeneficiaryInfoList`、`SettlementInnerFundOutBankAccountList`）。
