@@ -4,67 +4,99 @@ domain: withdraw-cash
 kind: wiki_page
 slug: withdraw-to-iban-flow
 status: active
-owner: upload-sync@platform
+owner: wiki-sync@acquire
 reviewer: UNREVIEWED
 source_type: wiki
-source_ref: wiki:4efb14db-9f70-47c4-98d9-b2969c863ce6
+source_ref: confluence:PCW/1972174889
 tags: []
 ---
 
 # 提现到UAE银行(IBAN)流程
 
-通过 app-sdk 发起的 IBAN 提现，分为 Place Order 与 Pay 两个阶段；Pay 阶段又细分为 Auth、Verify 以及由定时任务驱动的批量请求/查询。该流程属于 `domain=withdraw-cash` 业务域。
+本页描述用户将钱包余额提现到 UAE 本地银行账户（IBAN）的端到端调用链，分为 Place Order（下单）与 Pay（支付）两个阶段。Aani 渠道见 [[withdraw-to-aani-flow]]，整体业务视角见 [[flow_payby_withdraw_to_bank]]。
 
-## 阶段总览
+## 参与角色与服务
 
-- **Step 1: Place Order**：用户在 app-sdk 下单，cgs 链路下发到 personal/fundout，最终由 cashdesk-api 返回 `cashierUrl` 并初始化收银台。
-- **Step 2: Pay**：分为 Auth、Verify 两个交互子阶段，以及 Batch Request Job、Batch Query Job 两个异步定时任务。
+- Customer：发起提现的终端用户
+- app-sdk：客户端 SDK
+- cgs：网关层
+- personal：个人账户域
+- fundout：出金域服务
+- cashdesk-api：收银台 API
+- pfs-payment：支付前置
+- payment：支付核心
+- cmf / cmf-task：资金移动框架及其任务调度
+- grc-check-identity-provider：身份校验
+- h2h：对接银行的通道
+- BANK：UAE 本地银行
+- Timer：定时任务触发器
 
-## Step 1: Place Order
+## Step 1: Place Order（下单阶段）
 
-下单链路（app-sdk → cgs → personal → fundout → cashdesk-api）：
+用于创建提现订单并初始化收银台页面。
 
-1. Customer → app-sdk 发起提现。
+调用链：
+
+1. Customer → app-sdk 发起提现
 2. app-sdk → cgs：`/personal/transfer/bank/submit`
-3. cgs → personal → fundout：调用 `CashierFundoutFacade#createCashierFundout`
-4. fundout → cashdesk-api：调用 `TokenServiceFacade#getFundoutToken`
-5. 链路逐层返回，cgs 向 sdk 返回 `cashierUrl`。
-6. app-sdk → cgs：`/cashdesk/unityInitPayPage`
-7. cgs → cashdesk-api 完成收银台初始化，最终返回给 Customer。
+3. cgs → personal
+4. personal → fundout：`CashierFundoutFacade#createCashierFundout`
+5. fundout → cashdesk-api：`TokenServiceFacade#getFundoutToken`
+6. cashdesk-api → fundout → personal → cgs，逐层返回
+7. cgs → app-sdk：返回 `cashierUrl`
+8. app-sdk → cgs：`/cashdesk/unityInitPayPage`
+9. cgs → cashdesk-api → cgs → app-sdk → Customer，渲染收银台
 
-## Step 2: Pay
+## Step 2: Pay（支付阶段）
 
-### Pay - Auth
+支付阶段细分为 Auth、Verify、Batch Request Job、Batch Query Job 四段。
 
-- Customer → app-sdk → cgs：`/cashdesk/fundoutAuth`
-- cgs → cashdesk-api → grc-check-identity-provider：`PaymentSessionQueryStub#paymentSessionQuery`
+### Pay - Auth（鉴权）
 
-### Pay - Verify
+1. Customer → app-sdk → cgs：`/cashdesk/fundoutAuth`
+2. cgs → cashdesk-api
+3. cashdesk-api → grc-check-identity-provider：`PaymentSessionQueryStub#paymentSessionQuery`
 
-- Customer 在 app-sdk 完成身份校验（Verify identity）。
-- app-sdk → cgs：`/cashdesk/verify`
-- cgs → cashdesk-api，随后 cashdesk-api 触发：
-  - cmf：`CardTokenFacade#create`
-  - fundout：`FundoutSimpleFacade#pay`
-- 支付链路下推：
-  - fundout → pfs-payment：`FundOutPaymentFacade#pay`
-  - pfs-payment → payment：`PaymentFacade#pay`
-  - payment → cmf：`FundRequestFacade#apply`
+### Pay - Verify（身份校验与发起支付）
 
-### Batch Request Job
+1. Customer → app-sdk
+2. app-sdk 本地执行 `Verify identity`
+3. app-sdk → cgs：`/cashdesk/verify`
+4. cgs → cashdesk-api
+5. cashdesk-api → cmf：`CardTokenFacade#create`
+6. cashdesk-api → fundout：`FundoutSimpleFacade#pay`
+7. fundout → pfs-payment：`FundOutPaymentFacade#pay`
+8. pfs-payment → payment：`PaymentFacade#pay`
+9. payment → cmf：`FundRequestFacade#apply`
 
-由 Timer 定时驱动：
+### Batch Request Job（批量请求）
 
-- Timer → cmf-task → h2h → BANK，将提现请求批量下发到银行。
+由 Timer 触发：
 
-### Batch Query Job
+- Timer → cmf-task → h2h → BANK
 
-由 Timer 定时驱动：
+向银行批量发起出金请求。
 
-- Timer → cmf-task → h2h → BANK 查询批量结果。
-- 结果异步回流：cmf-task ⇢ payment ⇢ pfs-payment ⇢ fundout。
+### Batch Query Job（批量查询）
 
-## 相关流程
+由 Timer 触发，并将结果异步回流：
 
-- 同业务域的另一种提现渠道：[[withdraw-to-aani-flow]]
-- 端到端业务流程视角：[[flow_payby_withdraw_to_bank]]
+- Timer → cmf-task → h2h → BANK
+- cmf-task ⇢ payment ⇢ pfs-payment ⇢ fundout（异步状态回传）
+
+## 关键接口一览
+
+| 阶段 | 接口 / 方法 |
+|---|---|
+| Place Order | `/personal/transfer/bank/submit` |
+| Place Order | `CashierFundoutFacade#createCashierFundout` |
+| Place Order | `TokenServiceFacade#getFundoutToken` |
+| Place Order | `/cashdesk/unityInitPayPage` |
+| Pay - Auth | `/cashdesk/fundoutAuth` |
+| Pay - Auth | `PaymentSessionQueryStub#paymentSessionQuery` |
+| Pay - Verify | `/cashdesk/verify` |
+| Pay - Verify | `CardTokenFacade#create` |
+| Pay - Verify | `FundoutSimpleFacade#pay` |
+| Pay - Verify | `FundOutPaymentFacade#pay` |
+| Pay - Verify | `PaymentFacade#pay` |
+| Pay - Verify | `FundRequestFacade#apply` |
