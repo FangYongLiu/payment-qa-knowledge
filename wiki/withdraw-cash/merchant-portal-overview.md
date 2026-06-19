@@ -7,7 +7,7 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:1430720f-1469-4a8c-aa7e-973e4496a76f
+source_ref: wiki_image:c87e055e-9bc2-4cdc-9e01-ef235b180f3b
 tags: []
 ---
 
@@ -26,7 +26,6 @@ Merchant Portal 是商户体系的统一入口，承载商户注册/登录、业
   - 支付产品（Payment Products）
   - 线下设备（Offline Device）
   - 设置（Setting）
-  - 提现（Withdraw funds）
 
 ## 环境地址与测试账号
 
@@ -60,18 +59,6 @@ Merchant Portal 是商户体系的统一入口，承载商户注册/登录、业
 - **Billing**：计费与账务（账单账户、订单初始化、结算配置）
 - **Contract**：商户合同生成与管理
 - **Unified Portal**：商户注册与入驻提交的前端入口
-
-## Withdraw funds 提现入口
-
-商户控台支持发起提现（Withdraw funds），主要要素：
-
-- **Balance**：当前可用余额展示，附带 info 图标查看说明
-- **Amount entry**：输入提现金额；提供 `50` / `100` / `Max` 三个快捷选择
-- **View limit**：查看提现限额
-- **Select withdrawal destination**：两个目的地二选一
-  - **Aani**（Recommended）：到账时效 `Instant`，手续费 `2.00`；到账至 primary account；含 Maximum amount 提示
-  - **UAE bank**：到账时效 `1-2 days`，手续费 `2.00`
-- **Proceed to withdraw**：提交按钮，进入后续流程
 
 ## BMOC 审核入口
 
