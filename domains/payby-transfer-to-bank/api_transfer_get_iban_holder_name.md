@@ -1,7 +1,7 @@
 ---
 id: api_transfer_get_iban_holder_name
 object_type: API
-domain: payby-transfer-to-bank
+domain: fund-out-transfer
 status: active
 owner: fangyong.liu@astratech.ae
 reviewer: UNREVIEWED

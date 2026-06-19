@@ -1,6 +1,6 @@
 ---
 title: Merchant Portal 商户入驻流程
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: payby-merchant-portal-onboarding-flow
 status: active

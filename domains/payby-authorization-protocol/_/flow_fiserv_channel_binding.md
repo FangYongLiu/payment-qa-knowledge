@@ -1,7 +1,7 @@
 ---
 id: flow_fiserv_channel_binding
 object_type: Flow
-domain: payby-authorization-protocol
+domain: authorization-protocol
 status: active
 owner: wiki-sync@acquire
 reviewer: UNREVIEWED

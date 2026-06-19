@@ -1,6 +1,6 @@
 ---
 title: PayBy Merchant Portal(商户控台)概览
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: payby-merchant-portal-overview
 status: active

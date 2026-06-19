@@ -1,6 +1,6 @@
 ---
 title: 提现限额、费率、风控与结算
-domain: payby-withdraw
+domain: withdraw-cash
 kind: wiki_page
 slug: payby-withdraw-limits-fees
 status: active

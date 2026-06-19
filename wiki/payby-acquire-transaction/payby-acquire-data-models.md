@@ -1,6 +1,6 @@
 ---
 title: PayBy收单交易数据模型
-domain: payby-acquire-transaction
+domain: acquire-transaction
 kind: wiki_page
 slug: payby-acquire-data-models
 status: active

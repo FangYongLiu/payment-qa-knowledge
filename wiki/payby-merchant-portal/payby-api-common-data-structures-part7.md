@@ -1,6 +1,6 @@
 ---
 title: PayBy接口通用数据结构(Part7)
-domain: payby-merchant-portal
+domain: merchant-portal
 kind: wiki_page
 slug: payby-api-common-data-structures-part7
 status: active

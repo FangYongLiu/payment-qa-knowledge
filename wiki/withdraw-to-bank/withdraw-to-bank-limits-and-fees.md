@@ -1,6 +1,6 @@
 ---
 title: 提现限额、费率与结算周期
-domain: withdraw-to-bank
+domain: withdraw-cash
 kind: wiki_page
 slug: withdraw-to-bank-limits-and-fees
 status: active

@@ -1,7 +1,7 @@
 ---
 id: flow_merchant_fund_out
 object_type: Flow
-domain: merchant-fund-out
+domain: fund-out-transfer
 status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED

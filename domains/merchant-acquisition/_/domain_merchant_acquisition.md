@@ -1,7 +1,7 @@
 ---
 id: domain_merchant_acquisition
 object_type: Domain
-domain: merchant-acquisition
+domain: merchant-acquisition-testing
 status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED

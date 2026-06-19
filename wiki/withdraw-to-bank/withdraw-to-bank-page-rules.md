@@ -1,6 +1,6 @@
 ---
 title: 提现页面与选卡页面交互规则
-domain: withdraw-to-bank
+domain: withdraw-cash
 kind: wiki_page
 slug: withdraw-to-bank-page-rules
 status: active

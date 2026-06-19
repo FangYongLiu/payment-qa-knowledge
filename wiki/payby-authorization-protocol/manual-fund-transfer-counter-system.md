@@ -1,6 +1,6 @@
 ---
 title: 人工资金调拨操作指南
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: manual-fund-transfer-counter-system
 status: active

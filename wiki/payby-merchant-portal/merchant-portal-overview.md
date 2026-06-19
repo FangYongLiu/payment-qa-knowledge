@@ -1,6 +1,6 @@
 ---
 title: PayBy商户控台总览
-domain: payby-merchant-portal
+domain: merchant-portal
 kind: wiki_page
 slug: merchant-portal-overview
 status: active

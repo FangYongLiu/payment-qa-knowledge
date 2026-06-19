@@ -1,6 +1,6 @@
 ---
 title: PayBy收单API总览
-domain: payby-acquiring-api
+domain: payby-open-api
 kind: wiki_page
 slug: payby-acquiring-api-overview
 status: active

@@ -1,6 +1,6 @@
 ---
 title: Smart Code收款
-domain: payby-merchant-portal
+domain: merchant-portal
 kind: wiki_page
 slug: merchant-portal-smart-code
 status: active

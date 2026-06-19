@@ -1,6 +1,6 @@
 ---
 title: PayBy提现流程总览
-domain: payby-withdrawal
+domain: withdraw-cash
 kind: wiki_page
 slug: payby-withdrawal-overview
 status: active

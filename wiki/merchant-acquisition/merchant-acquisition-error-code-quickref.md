@@ -1,6 +1,6 @@
 ---
 title: 商户收单高频错误码速查
-domain: merchant-acquisition
+domain: merchant-acquisition-testing
 kind: wiki_page
 slug: merchant-acquisition-error-code-quickref
 status: active

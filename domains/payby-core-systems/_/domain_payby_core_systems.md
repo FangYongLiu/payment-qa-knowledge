@@ -1,7 +1,7 @@
 ---
 id: domain_payby_core_systems
 object_type: Domain
-domain: payby-core-systems
+domain: acquire-transaction
 status: active
 owner: wiki-sync@acquire
 reviewer: UNREVIEWED

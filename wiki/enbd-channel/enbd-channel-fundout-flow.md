@@ -1,6 +1,6 @@
 ---
 title: ENBD渠道出款流程
-domain: enbd-channel
+domain: channel-integration
 kind: wiki_page
 slug: enbd-channel-fundout-flow
 status: active

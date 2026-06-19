@@ -1,6 +1,6 @@
 ---
 title: ENBD渠道配置说明
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: enbd-channel-configuration
 status: active

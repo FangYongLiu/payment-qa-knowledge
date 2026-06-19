@@ -1,7 +1,7 @@
 ---
 id: scn_mit_autodebit
 object_type: Scenario
-domain: payby-authorization-protocol
+domain: authorization-protocol
 status: active
 owner: wiki-sync@acquire
 reviewer: UNREVIEWED

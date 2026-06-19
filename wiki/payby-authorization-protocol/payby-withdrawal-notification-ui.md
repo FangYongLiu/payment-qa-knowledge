@@ -1,6 +1,6 @@
 ---
 title: PayBy提现通知界面说明
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: payby-withdrawal-notification-ui
 status: active

@@ -1,6 +1,6 @@
 ---
 title: PayBy收单交易业务总览
-domain: payby-acquire-transaction
+domain: acquire-transaction
 kind: wiki_page
 slug: payby-acquire-transaction-overview
 status: active

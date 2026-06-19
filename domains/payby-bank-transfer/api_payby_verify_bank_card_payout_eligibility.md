@@ -1,7 +1,7 @@
 ---
 id: api_payby_verify_bank_card_payout_eligibility
 object_type: API
-domain: payby-bank-transfer
+domain: fund-out-transfer
 status: active
 owner: fangyong.liu@astratech.ae
 reviewer: UNREVIEWED

@@ -1,6 +1,6 @@
 ---
 title: Counter System 余额监控界面
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: counter-system-balance-monitor-ui
 status: active

@@ -1,6 +1,6 @@
 ---
 title: 提现测试方法与版本迭代
-domain: payby-withdraw
+domain: withdraw-cash
 kind: wiki_page
 slug: payby-withdraw-test-and-versions
 status: active

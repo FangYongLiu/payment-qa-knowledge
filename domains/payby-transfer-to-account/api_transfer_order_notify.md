@@ -1,7 +1,7 @@
 ---
 id: api_transfer_order_notify
 object_type: API
-domain: payby-transfer-to-account
+domain: fund-out-transfer
 status: active
 owner: fangyong.liu@astratech.ae
 reviewer: UNREVIEWED

@@ -1,6 +1,6 @@
 ---
 title: PayBy单笔付款到银行卡接口总览
-domain: payby-openapi
+domain: fund-out-transfer
 kind: wiki_page
 slug: payby-openapi-transfer-to-bank
 status: active

@@ -1,6 +1,6 @@
 ---
 title: PayBy接口文档变更记录
-domain: payby-merchant-portal
+domain: merchant-portal
 kind: wiki_page
 slug: payby-api-changelog
 status: active

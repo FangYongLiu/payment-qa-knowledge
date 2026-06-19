@@ -1,6 +1,6 @@
 ---
 title: PayBy MySQL 数据库连接与账号清单
-domain: payby-database-infrastructure
+domain: payment-database-reference
 kind: wiki_page
 slug: payby-mysql-database-credentials
 status: active

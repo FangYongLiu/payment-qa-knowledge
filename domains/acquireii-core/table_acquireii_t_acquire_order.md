@@ -1,7 +1,7 @@
 ---
 id: tbl_acquireii_t_acquire_order
 object_type: Table
-domain: acquireii-core
+domain: acquire-transaction
 status: active
 owner: fangyong.liu@astratech.ae
 reviewer: UNREVIEWED

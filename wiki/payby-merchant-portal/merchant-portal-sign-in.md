@@ -1,6 +1,6 @@
 ---
 title: 商户控台登录
-domain: payby-merchant-portal
+domain: merchant-portal
 kind: wiki_page
 slug: merchant-portal-sign-in
 status: active

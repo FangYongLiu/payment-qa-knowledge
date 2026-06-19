@@ -1,6 +1,6 @@
 ---
 title: 商户收单测试数据准备规范
-domain: merchant-acquisition
+domain: merchant-acquisition-testing
 kind: wiki_page
 slug: merchant-acquisition-test-data-conventions
 status: active

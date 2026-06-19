@@ -1,6 +1,6 @@
 ---
 title: ENBD渠道 County/City Code 字段流转
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: enbd-channel-county-city-code-flow
 status: active

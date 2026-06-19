@@ -1,6 +1,6 @@
 ---
 title: 商户控台业务总览
-domain: merchant-console
+domain: merchant-portal
 kind: wiki_page
 slug: merchant-console-overview
 status: active

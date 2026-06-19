@@ -1,6 +1,6 @@
 ---
 title: PayBy支付接口 - 交易场景与参数规定
-domain: payby-merchant-portal
+domain: merchant-portal
 kind: wiki_page
 slug: payby-payment-api-pay-scene
 status: active

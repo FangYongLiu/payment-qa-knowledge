@@ -1,7 +1,7 @@
 ---
 id: scn_cko_subscription_test_cards
 object_type: Scenario
-domain: payby-authorization-protocol
+domain: authorization-protocol
 status: active
 owner: wiki-sync@acquire
 reviewer: UNREVIEWED

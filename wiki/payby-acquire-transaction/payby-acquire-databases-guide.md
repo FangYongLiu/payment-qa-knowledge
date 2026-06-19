@@ -1,6 +1,6 @@
 ---
 title: PayBy收单交易数据库速查指南
-domain: payby-acquire-transaction
+domain: acquire-transaction
 kind: wiki_page
 slug: payby-acquire-databases-guide
 status: active

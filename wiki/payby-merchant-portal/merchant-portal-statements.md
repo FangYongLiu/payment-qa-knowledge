@@ -1,6 +1,6 @@
 ---
 title: 对账单订阅与下载
-domain: payby-merchant-portal
+domain: merchant-portal
 kind: wiki_page
 slug: merchant-portal-statements
 status: active

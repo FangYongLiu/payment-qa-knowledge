@@ -1,6 +1,6 @@
 ---
 title: 提现到银行账户界面说明
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: payby-withdrawal-to-bank-account-ui
 status: active

@@ -1,6 +1,6 @@
 ---
 title: PayBy授权协议签约总览
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: payby-auth-protocol-overview
 status: active

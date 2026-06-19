@@ -1,6 +1,6 @@
 ---
 title: PayBy支付场景说明
-domain: payby-acquire-transaction
+domain: acquire-transaction
 kind: wiki_page
 slug: payby-acquire-payment-scenarios
 status: active

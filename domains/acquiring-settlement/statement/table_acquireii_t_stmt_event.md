@@ -1,7 +1,7 @@
 ---
 id: tbl_acquireii_t_stmt_event
 object_type: Table
-domain: acquiring-settlement
+domain: acquire-transaction
 status: active
 owner: fangyong.liu@astratech.ae
 reviewer: UNREVIEWED

@@ -1,7 +1,7 @@
 ---
 id: tbl_member_tr_bank_card_token
 object_type: Table
-domain: payby-authorization-protocol
+domain: authorization-protocol
 status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED

@@ -1,6 +1,6 @@
 ---
 title: 账户与员工管理
-domain: payby-merchant-portal
+domain: merchant-portal
 kind: wiki_page
 slug: merchant-portal-account-management
 status: active

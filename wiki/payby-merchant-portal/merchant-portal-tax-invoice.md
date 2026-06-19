@@ -1,6 +1,6 @@
 ---
 title: 税务发票(Tax Invoice)
-domain: payby-merchant-portal
+domain: merchant-portal
 kind: wiki_page
 slug: merchant-portal-tax-invoice
 status: active

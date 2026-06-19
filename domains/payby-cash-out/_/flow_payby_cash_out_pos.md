@@ -1,7 +1,7 @@
 ---
 id: flow_payby_cash_out_pos
 object_type: Flow
-domain: payby-cash-out
+domain: withdraw-cash
 status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED

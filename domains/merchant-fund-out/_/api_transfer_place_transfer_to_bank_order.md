@@ -1,7 +1,7 @@
 ---
 id: api_transfer_place_transfer_to_bank_order
 object_type: API
-domain: merchant-fund-out
+domain: fund-out-transfer
 status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED

@@ -1,7 +1,7 @@
 ---
 id: tbl_merchant_db
 object_type: Table
-domain: payment-databases
+domain: payment-database-reference
 status: active
 owner: wiki-sync@acquire
 reviewer: UNREVIEWED

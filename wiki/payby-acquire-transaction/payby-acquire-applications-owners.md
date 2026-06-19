@@ -1,6 +1,6 @@
 ---
 title: PayBy收单相关应用与负责人清单
-domain: payby-acquire-transaction
+domain: acquire-transaction
 kind: wiki_page
 slug: payby-acquire-applications-owners
 status: active

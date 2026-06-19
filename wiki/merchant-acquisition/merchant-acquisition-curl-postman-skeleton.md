@@ -1,6 +1,6 @@
 ---
 title: 商户收单通用curl/Postman骨架
-domain: merchant-acquisition
+domain: merchant-acquisition-testing
 kind: wiki_page
 slug: merchant-acquisition-curl-postman-skeleton
 status: active

@@ -1,7 +1,7 @@
 ---
 id: ts_enbd_channel_balance_not_enough
 object_type: Troubleshooting
-domain: enbd-channel
+domain: channel-integration
 status: active
 owner: wiki-sync@acquire
 reviewer: UNREVIEWED

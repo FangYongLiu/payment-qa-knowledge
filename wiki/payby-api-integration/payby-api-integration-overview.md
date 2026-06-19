@@ -1,6 +1,6 @@
 ---
 title: PayBy 接口文档总览
-domain: payby-api-integration
+domain: payby-open-api
 kind: wiki_page
 slug: payby-api-integration-overview
 status: active

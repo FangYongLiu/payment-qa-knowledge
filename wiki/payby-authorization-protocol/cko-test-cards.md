@@ -1,6 +1,6 @@
 ---
 title: CKO测试卡号清单
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: cko-test-cards
 status: active

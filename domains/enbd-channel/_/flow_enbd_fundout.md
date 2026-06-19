@@ -1,7 +1,7 @@
 ---
 id: flow_enbd_fundout
 object_type: Flow
-domain: enbd-channel
+domain: channel-integration
 status: active
 owner: wiki-sync@acquire
 reviewer: UNREVIEWED

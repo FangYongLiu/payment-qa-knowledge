@@ -1,6 +1,6 @@
 ---
 title: 提现结果页UI说明
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: withdrawal-result-screen-ui
 status: active

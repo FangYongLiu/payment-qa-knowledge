@@ -1,7 +1,7 @@
 ---
 id: tbl_acquireii_t_preauth_control
 object_type: Table
-domain: acquire-order
+domain: acquire-transaction
 status: active
 owner: fangyong.liu@astratech.ae
 reviewer: UNREVIEWED

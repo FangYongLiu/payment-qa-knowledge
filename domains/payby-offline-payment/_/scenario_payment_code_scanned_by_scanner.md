@@ -1,7 +1,7 @@
 ---
 id: scn_payment_code_scanned_by_scanner
 object_type: Scenario
-domain: payby-offline-payment
+domain: acquire-transaction
 status: active
 owner: wiki-sync@acquire
 reviewer: UNREVIEWED

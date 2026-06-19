@@ -1,7 +1,7 @@
 ---
 id: tbl_fiserv_refund_bucket
 object_type: Table
-domain: fiserv-acquiring
+domain: channel-integration
 status: active
 owner: fangyong.liu@astratech.ae
 reviewer: UNREVIEWED

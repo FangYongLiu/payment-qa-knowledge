@@ -1,6 +1,6 @@
 ---
 title: 提现到银行卡功能总览
-domain: withdraw-to-bank
+domain: withdraw-cash
 kind: wiki_page
 slug: withdraw-to-bank-overview
 status: active

@@ -1,6 +1,6 @@
 ---
 title: PayBy提现-银行转账支付确认页UI
-domain: payby-withdrawal
+domain: withdraw-cash
 kind: wiki_page
 slug: payby-withdrawal-confirm-ui
 status: active

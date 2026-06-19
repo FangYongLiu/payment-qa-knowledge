@@ -1,6 +1,6 @@
 ---
 title: 提现功能测试方法
-domain: withdraw-to-bank
+domain: withdraw-cash
 kind: wiki_page
 slug: withdraw-to-bank-test-guide
 status: active

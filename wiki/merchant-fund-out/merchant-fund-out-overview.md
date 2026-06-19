@@ -1,6 +1,6 @@
 ---
 title: 商户出款业务总览
-domain: merchant-fund-out
+domain: fund-out-transfer
 kind: wiki_page
 slug: merchant-fund-out-overview
 status: active

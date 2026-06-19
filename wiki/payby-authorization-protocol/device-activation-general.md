@@ -1,6 +1,6 @@
 ---
 title: 设备激活（通用）
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: device-activation-general
 status: active

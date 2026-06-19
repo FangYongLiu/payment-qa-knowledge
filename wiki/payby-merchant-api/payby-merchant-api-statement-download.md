@@ -1,6 +1,6 @@
 ---
 title: PayBy对账单下载接口
-domain: payby-merchant-api
+domain: payby-open-api
 kind: wiki_page
 slug: payby-merchant-api-statement-download
 status: active

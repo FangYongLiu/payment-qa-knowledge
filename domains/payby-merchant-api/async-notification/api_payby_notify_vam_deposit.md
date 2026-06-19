@@ -1,7 +1,7 @@
 ---
 id: api_payby_notify_vam_deposit
 object_type: API
-domain: payby-merchant-api
+domain: payby-open-api
 status: active
 owner: fangyong.liu@astratech.ae
 reviewer: UNREVIEWED

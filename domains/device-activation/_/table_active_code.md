@@ -1,7 +1,7 @@
 ---
 id: tbl_active_code
 object_type: Table
-domain: device-activation
+domain: device-pos
 status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED

@@ -1,7 +1,7 @@
 ---
 id: api_payby_update_expired_time
 object_type: API
-domain: payby-acquire-api
+domain: payby-open-api
 status: active
 owner: fangyong.liu@astratech.ae
 reviewer: UNREVIEWED

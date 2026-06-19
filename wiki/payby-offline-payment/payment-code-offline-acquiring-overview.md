@@ -1,6 +1,6 @@
 ---
 title: 付款码线下收单总览
-domain: payby-offline-payment
+domain: acquire-transaction
 kind: wiki_page
 slug: payment-code-offline-acquiring-overview
 status: active

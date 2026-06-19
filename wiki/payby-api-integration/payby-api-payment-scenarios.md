@@ -1,6 +1,6 @@
 ---
 title: PayBy支付场景术语
-domain: payby-api-integration
+domain: payby-open-api
 kind: wiki_page
 slug: payby-api-payment-scenarios
 status: active

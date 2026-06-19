@@ -1,6 +1,6 @@
 ---
 title: 提现-选择银行账户页面UI说明
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: payby-withdrawal-select-bank-account-ui
 status: active

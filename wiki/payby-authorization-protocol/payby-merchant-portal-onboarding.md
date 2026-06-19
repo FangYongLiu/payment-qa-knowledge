@@ -1,6 +1,6 @@
 ---
 title: PayBy商户控台入驻与信息填写
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: payby-merchant-portal-onboarding
 status: active

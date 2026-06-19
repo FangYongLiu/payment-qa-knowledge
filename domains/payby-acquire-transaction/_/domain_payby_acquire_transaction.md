@@ -1,7 +1,7 @@
 ---
 id: domain_payby_acquire_transaction
 object_type: Domain
-domain: payby-acquire-transaction
+domain: acquire-transaction
 status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED

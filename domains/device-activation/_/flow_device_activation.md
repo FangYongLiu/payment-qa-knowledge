@@ -1,7 +1,7 @@
 ---
 id: flow_device_activation
 object_type: Flow
-domain: device-activation
+domain: device-pos
 status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED

@@ -1,6 +1,6 @@
 ---
 title: MIT/CIT 循环支付（MPGS）功能概览
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: mit-cit-recurring-payment-overview
 status: active

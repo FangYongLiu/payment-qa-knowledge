@@ -1,7 +1,7 @@
 ---
 id: api_payby_get_protocol
 object_type: API
-domain: payby-authorization-protocol
+domain: authorization-protocol
 status: active
 owner: fangyong.liu@astratech.ae
 reviewer: UNREVIEWED

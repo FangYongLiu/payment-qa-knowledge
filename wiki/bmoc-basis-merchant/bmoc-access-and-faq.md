@@ -1,6 +1,6 @@
 ---
 title: BMOC 权限管理与常见问题
-domain: bmoc-basis-merchant
+domain: merchant-portal
 kind: wiki_page
 slug: bmoc-access-and-faq
 status: active
