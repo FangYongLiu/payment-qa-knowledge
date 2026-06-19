@@ -7,7 +7,7 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:2f5b0af4-3f99-432a-8c40-38eb898a0698
+source_ref: wiki_image:32b9eb62-7741-4b60-8019-b6bd4f3c2be6
 tags: []
 ---
 
@@ -15,19 +15,7 @@ tags: []
 
 ## 触发/入口
 - PayBy App → 充值 → 选择 Bank Account Transfer → 直接点击激活
-- 激活页面（"Activate Virtual Bank Account"）含两个入口：
-  - 顶部 banner 的 **Active Now** 按钮
-  - 底部全宽 CTA **Free Active** 按钮
 - VIP 用户：点击 Free Active 按钮（需补充姓名信息，无校验）
-- 合作方：PayBy 与 First Abu Dhabi Bank（FAB）合作提供 Virtual Bank Account
-
-## 激活页价值点（前端展示）
-- No minimum salary required
-- No account balance required
-- No monthly charges for holders
-- No complicated paper work
-- Support receive salary from WPS
-- Support receive funds from international transfer
 
 ## 前置条件
 - 用户登录 PayBy App，具备充值入口
@@ -42,14 +30,21 @@ tags: []
 
 ## 操作步骤
 1. 进入充值页，选择 Bank Account Transfer
-2. 点击激活按钮（Active Now 或 Free Active；VIP 用户为 Free Active，需补充姓名）
+2. 点击激活按钮（VIP 用户为 Free Active，需补充姓名）
 3. 前端展示三种状态之一：
    - 激活成功：展示 IBAN 信息
-   - 激活处理中
+   - 激活处理中：进入 "Activate Virtual Bank Account" 提交确认页，展示 "Application submitted"，文案 "Complete review within 2 working day"，提供 "Back to Homepage" 按钮返回首页
    - 无 IBAN 信息（库存不足时）
 4. 普通 fab 用户申请进入批次处理流程，由 job `vis_ibanAccountRetryJob` 处理
 5. lean 场景不走批次处理（直接处理）
 6. 无库存场景：可联系 wangqian 人工添加 IBAN 数据，等待 job 重试
+
+## 前端确认页（Application submitted）
+- 页面标题：Activate Virtual Bank Account
+- 主文案：Application submitted
+- 副文案：Complete review within 2 working day（提交后审核 SLA：2 个工作日）
+- 主按钮：Back to Homepage
+- 页面下方含 Refer Friends / Earn Rewards 推荐活动 banner（"CLICK HERE"，金币 10 / 5）
 
 ## DB 校验点
 - 表：`vis.t_virtual_account`（通过 mid 关联用户）
@@ -59,7 +54,7 @@ tags: []
 
 ## 预期结果
 - 激活成功 → 前端展示 IBAN 信息，DB 中 `status=Valid`
-- 激活处理中 → DB 中 `status=Initial`，等待 `vis_ibanAccountRetryJob` 重试
+- 激活处理中 → 前端展示 "Application submitted" 确认页（2 个工作日内完成审核），DB 中 `status=Initial`，等待 `vis_ibanAccountRetryJob` 重试
 - 无库存 → DB 落库无 IBAN，前端无 IBAN 展示，需人工补 IBAN 后由 job 重试转为 Valid
 - VIP 用户走 Free Active 流程，补充姓名后激活
 - lean 用户绕过批次处理直接完成
