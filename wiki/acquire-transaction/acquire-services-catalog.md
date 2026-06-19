@@ -4,10 +4,10 @@ domain: acquire-transaction
 kind: wiki_page
 slug: acquire-services-catalog
 status: active
-owner: wiki-sync@acquire
+owner: upload-sync@platform
 reviewer: UNREVIEWED
-source_type: wiki
-source_ref: confluence:AQ/997851554
+source_type: wiki_image
+source_ref: wiki_image:a8df82dd-8926-4122-b8c0-981d2facbbf8
 tags: []
 ---
 
@@ -52,6 +52,33 @@ tags: []
 - **计费与记账**：`gp003_pbs`、`gp004_dpm`
 - **支付引擎与渠道**：`gp014_pfs-payment`、`gp006_payment`、`gp002_cmf`、`gp124_router`、`gp267_qpay-mpgs`、`gp039_fcw`
 - **清算**：`gp043_reconciliation`、`gp031_counter`
+
+## 系统组件总览
+
+下表从更宏观的系统视角梳理收单及相关周边的组件分组，便于了解上下游接入关系。组件类型分为：合作方组件、jar 组件、静态资源、内部应用。
+
+### 组件分组
+
+- **商户 (Merchant)**：商户管理员、pos机、小白盒
+- **静态资源 (Static resources)**：hive-merchant、hive-m-topay
+- **网关 (Gateway)**：pos-gateway、xbh-gateway、cgs、sgs
+- **SDK 平台 (SDK platform)**：app-sdk（jar 组件）、平台服务端
+- **收单 (Acquiring)**：software-management、merchant-console-frontend、device、acquire-service、merchant
+- **个人 (Personal)**：pcm、socialpay、personal、transfer
+- **公共 (Public/Common)**：pts
+
+### 主要依赖关系
+
+- 商户管理员 → `hive-merchant`（静态资源）
+- 商户管理员 → `merchant-console-frontend`
+- pos机 → `pos-gateway`
+- 小白盒 → `xbh-gateway`
+- app-sdk → `cgs`；app-sdk → `hive-m-topay`
+- 平台服务端 → `sgs`
+- `pos-gateway` → `acquire-service`
+- `xbh-gateway` → `acquire-service`；`xbh-gateway` → `device`
+
+> 说明：上述系统组件视图与「应用清单」中的 gp 应用为不同维度的命名。其中网关侧的 `sgs` 对应 `gp028_sgs`，收单侧的 `acquire-service`、`merchant`、`merchant-console-frontend` 与 `gp069_acquireii`、`gp044_merchant`、`gp071_merchant-frontend` 在职责上对应。
 
 ## 相关参考
 
