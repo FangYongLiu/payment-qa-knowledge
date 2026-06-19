@@ -7,7 +7,7 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:725e7e15-a17e-474d-88b0-41b03052130e
+source_ref: wiki_image:dc3fae70-d705-4a94-aecf-3cb16c6b7c7a
 tags: []
 ---
 
@@ -28,28 +28,17 @@ tags: []
 - 绑卡数据表：`member.tr_beneficiary_info`
 - 提现数据表：`mhtfundout.t_withdraw_order`
 
-### 提现流程示例（Botim / Transfer to Bank Account）
+### 提现流程（移动端）
 
-以 Botim 钱包内 "Transfer to Bank Account" 为例，提现页关键元素：
+提现流程在移动端 App 的 "Withdraw funds" 页面完成，主要步骤：
 
-- 顶部展示可用余额，例如 `Balance: 865.62 AED`，带 info 图标
-- 金额输入框（币种 AED / د.إ），支持快捷金额按钮（如 `500`、`Max`）
-- `View limit` 链接，用于查看限额
-- "Choose your withdrawal method" 区块，列出可选出款方式
-
-提现方式示例：
-
-- **Aani**（标记 `Recommended`）
-  - 到账时效：`Instant`
-  - 手续费：`AED 0.50`
-
-提交成功后弹出确认弹窗：
-
-- 标题：`Withdrawal Successful`
-- 文案：`Your bank might need up to 5 working days to process the withdrawal.`
-- 主按钮：`Okay`
-
-即：用户侧虽提示瞬时（Instant）出款，但银行入账实际可能耗时最多 5 个工作日。
+1. **进入提现页**：展示当前可用余额（如 `Balance: ⩾104.68` AED）。
+2. **输入金额**：用户在金额输入框输入提现金额，支持快捷金额按钮（`50`、`100`、`Max`），并提供 `View limit` 查看额度链接。
+3. **选择提现目的地**（Select withdrawal destination）：列出可用的出款通道，例如：
+   - `Aani`：标记为 `Recommended`，到账时效 `Instant`，手续费 `D2.00`
+4. **提交提现**：完成后弹出 "Withdrawal Successful" 确认弹层，展示：
+   - `Transaction ID`（交易流水号，例如 `311774263675574883`）
+   - `Okay` 按钮关闭弹层
 
 ## 商户出款到卡
 
