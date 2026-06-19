@@ -6,42 +6,53 @@ slug: merchant-registration-sources
 status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
-source_type: wiki
-source_ref: wiki:34ef57ae-73fe-4cd4-a064-e8edfb238167
+source_type: wiki_image
+source_ref: wiki_image:3f924dac-6ff7-4ef2-8427-4cac5a6ac24d
 tags: []
 ---
 
 # 商户注册来源概览
 
-本页梳理商户管理业务域中商户注册的来源渠道，作为后续 Acquire / WPS 开通流程的入口说明。
+本页基于 Standard POS Guide 中的入驻 UI，整理商户注册（KYC）表单中需要填写与上传的字段，用于 UAE 地区 Standard POS 商户的合规登记。
 
-## 注册来源渠道
+## 表单标题
 
-商户注册来源共四个：
+- 页面提示语：**Please fill in the merchant information**
+- 用途：KYC / 商户注册，采集贸易执照、法律实体信息、营业地址以及身份/公司章程类文件。
 
-- **Unified Portal**（统一控台）
-- **Agent**
-- **Basis**
-- **Botim**
+## 必填字段（带 `*`）
 
-## Unified Portal（统一控台）
+### 商户基本信息
 
-统一控台是当前文档化最完整的注册入口，可作为商户进入系统的主要渠道，支持以下能力：
+- **Merchant Name (As per trade license)**：文本输入，须与贸易执照一致
+- **Category**：下拉选择（占位 `Choose Category`）
+- **Legal Status**：下拉选择（占位 `Choose Legal Status`）
 
-- 提交商户申请并开通 **Acquire** 或 **WPS** 业务
-  - 申请入口接口：`/api/acquiring/permitAll/merchant/apply/add`，详见 [[api_merchant_apply_add]]
-  - 开通 WPS 入口接口：`api/acquiring/secure/merchant2/bizOpen/wps`，详见 [[api_merchant_bizopen_wps]]
-- 申请提交后由 **Basis** 完成审核（Acquire / WPS 审核分别推进各自落库流程）
+### 贸易执照
 
-## Agent / Basis / Botim
+- **Trade License**：文件上传
+- **Trade License Expiry Date**：日期输入，格式 `DD/MM/YYYY`
+- **Trade License No**：文本输入
 
-原文仅列出渠道名称，未展开具体接入流程；本页保留来源枚举以保证完整性，具体落库与审核细节以各业务流程文档为准。
+### 营业地址
 
-## 后续开通流程
+- **Country/Region**：下拉，默认值 `United Arab Emirates`
+- **Emirates/City**：下拉选择（占位 `Choose Emirate`）
+- **Registered Business Address**：文本输入
 
-不同来源渠道在提交申请后，统一进入业务开通流程：
+### 身份证件上传
 
-- Acquire 业务开通详见 [[merchant-acquire-onboarding-flow]] 与端到端流程 [[flow_merchant_acquire_onboarding]]
-- WPS 业务开通详见 [[merchant-wps-onboarding-flow]] 与端到端流程 [[flow_merchant_wps_onboarding]]
+字段名：**Owner's VALID Emirates ID or Passport copy**，提供两个上传框：
 
-所属业务域参见 [[domain_merchant_management]]。
+- 第一框（必填）：`Front & Back copy for Owner/Partner/POA 1`
+- 第二框（可选）：`Front & Back copy for Owner/Partner/POA 2 (if any)`
+
+## 可选字段
+
+- **Articles/Memorandum Of Association**：公司章程/组织大纲文件上传（非必填）
+
+## 适用范围
+
+- 产品线：Standard POS
+- 地区：United Arab Emirates（默认国家已预填）
+- 场景：商户首次入驻时的 KYC 信息采集
