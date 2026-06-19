@@ -7,7 +7,7 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:b8209e2b-befd-4e6d-a82a-4e7759b5ef81
+source_ref: wiki_image:bd547fc3-fbc0-4472-b7b5-54175ab1e278
 tags: []
 ---
 
@@ -20,7 +20,7 @@ tags: []
 商户出款业务包含以下两大产品集方向：
 
 - **出款到卡**：将资金出款至指定银行卡（IBAN 等），详见 [[scn_fundout_to_bankcard]]
-- **出款到账户**：将资金出款至账户标识（手机号等），详见 [[scn_fundout_to_account]]
+- **出款到账户**：将资金出款至账户标识（手机号、Botim 联系人、Aani 等），详见 [[scn_fundout_to_account]]
 
 ## 商户提现
 
@@ -83,22 +83,17 @@ tags: []
 
 支持在商户控台进行操作。详见 [[scn_fundout_to_account]]。
 
-## C 端转账场景（Botim Transfer）
+### Botim 端 Send money 出款渠道
 
-C 端用户在 Botim 内发起转账时，会出现支付方式选择面板（payment method selection bottom sheet），用于选择资金来源（funding source）。
+在 Botim app 端 "Send money" 入口，用户可输入金额（支持快捷金额 `100` / `200` / `500` / `1000`，币种 AED）并选择以下三种出款渠道（rail）：
 
-典型 UI 元素：
+| 渠道 | 说明 | 费用 |
+| --- | --- | --- |
+| **Botim** | Instant to any botim contact（即时转账给任意 Botim 联系人） | Free |
+| **Aani** | Instant to any Aani phone number（即时转账至任意 Aani 手机号） | AED 0.5（当前免收，划线展示） |
+| **International transfer** | Fast at top rates to 150+ countries（国际汇款，覆盖 150+ 国家） | AED 0 |
 
-- 顶部展示金额与用途，例如 `AED 1.00` / `Transfer`
-- 支付方式列表（单选），每项包含图标、标签与右侧单选按钮：
-  - **botim pay**：站内钱包，展示余额（如 `AED 363.62`），通常默认选中
-  - **Apple Pay**
-  - **Debit Card**：展示卡号末四位（如 `3250`、`6789`），区分 VISA / Mastercard
-  - **Credit Card**：若该服务不支持，则展示 `Unavailable for this service` 并置灰禁用
-- `Add payment method`：新增支付方式入口
-- 主操作按钮：`Pay`
-
-转账成功后，会话流中显示转账卡片，包含金额（如 `AED 125.00`）、状态 `Transferred - Oct 12`、来源标记 `Botim transfer` 与时间。
+操作流程：输入金额 → 选择出款渠道（Botim 联系人 / Aani / International）→ 点击 `Send` 提交。
 
 ## 涉及的应用
 
