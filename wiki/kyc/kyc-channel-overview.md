@@ -4,37 +4,42 @@ domain: kyc
 kind: wiki_page
 slug: kyc-channel-overview
 status: active
-owner: wiki-sync@acquire
+owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki
-source_ref: confluence:AQ/2265251857
+source_ref: wiki:d0566748-c0ac-4c63-8c99-c948348f3481
 tags: []
 ---
 
 # KYC 渠道总览
 
-本页是 KYC 文档的入口：先了解 KYC 业务概念与三种验证渠道的适用场景，再跳转到对应渠道的子页。面向新加入团队的 QA 等读者。
+KYC（Know Your Customer）是用户在 Botim App 内进行任何资金类操作前必须完成的身份验证流程，目前支持 UAEKYC、UAE Pass、Passport 三个渠道，分别面向不同证件持有人群。相关业务域见 [[domain_kyc]]。
 
 ## 什么是 KYC
 
-用户进入 Botim App 后，必须先完成 **KYC（Know Your Customer）身份验证**，才能执行任何与资金相关的交易（top-up、transfer、remittance 等）。
+- 用户进入 Botim App 后，必须先完成 KYC 身份验证，才能执行任何与资金相关的交易（top-up、transfer、remittance 等）。
+- KYC 可通过多个**渠道（channel）**完成；用户走哪个渠道，取决于其持有的证件类型以及自身选择的验证方式。
 
-KYC 可通过多个**渠道（channel）**完成；具体走哪一条，取决于用户持有的证件以及其选择的验证方式。详见 [[domain_kyc]]。
-
-## 渠道一览
+## 三个验证渠道对比
 
 | Channel | Document | Underlying provider | Who uses it | Status |
 |---|---|---|---|---|
-| UAEKYC | Emirates ID (EID) | Official UAE API | 大部分用户（主渠道） | ACTIVE |
-| UAE Pass | EID via the UAE Pass app | UAE Pass（政府数字身份） | 倾向使用 UAE Pass 验证的用户 | ACTIVE |
+| UAEKYC | Emirates ID (EID) | Official UAE API | 大多数用户（primary channel，主渠道） | ACTIVE |
+| UAE Pass | EID via the UAE Pass app | UAE Pass（政府数字身份） | 偏好通过 UAE Pass 完成验证的用户 | ACTIVE |
 | Passport | Passport | Signzy | 没有 EID 的 WPS workers | ACTIVE |
 
-## 如何使用这些文档
+## 文档使用方式
 
-每个渠道都有独立的子页，覆盖端到端流程、各步骤的数据库变更、审核分支以及渠道特定规则。三个渠道子页挂在本总览下：
+本页是 KYC 文档的入口；新人（例如刚加入团队的 QA）应先阅读本页，再按自身用例打开对应渠道的子页面。
 
-- **UAEKYC — EID KYC Knowledge Base**（含 Renew 流程）
+每个渠道都有独立的自包含文档，描述：
+- 端到端（end-to-end）流程；
+- 各步骤对应的数据库变更；
+- 审计分支（audit branch）；
+- 该渠道特有的业务规则。
+
+三个子页面（作为本总览的 child pages）：
+
+- **UAEKYC — EID KYC Knowledge Base**（含 Renew 续期流程）
 - **UAE Pass — EID Verification via UAE Pass**
 - **Passport — Passport KYC via Signzy**
-
-建议从本页开始，再按用户场景打开对应的渠道页。
