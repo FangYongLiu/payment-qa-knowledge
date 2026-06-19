@@ -7,7 +7,7 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:23c98c4c-4437-474a-9c1b-42697ceba59d
+source_ref: wiki_image:1430720f-1469-4a8c-aa7e-973e4496a76f
 tags: []
 ---
 
@@ -26,6 +26,7 @@ Merchant Portal 是商户体系的统一入口，承载商户注册/登录、业
   - 支付产品（Payment Products）
   - 线下设备（Offline Device）
   - 设置（Setting）
+  - 提现（Withdraw funds）
 
 ## 环境地址与测试账号
 
@@ -60,21 +61,17 @@ Merchant Portal 是商户体系的统一入口，承载商户注册/登录、业
 - **Contract**：商户合同生成与管理
 - **Unified Portal**：商户注册与入驻提交的前端入口
 
-## Withdraw 提现流程（移动端）
+## Withdraw funds 提现入口
 
-Merchant Portal 移动端提供 Withdraw money 提现入口，主要要素：
+商户控台支持发起提现（Withdraw funds），主要要素：
 
-- **Withdraw money 页面**：
-  - 顶部展示可用余额，例如 `Balance: 865.62 AED`（带 info 图标）
-  - 金额输入框（dirham 前缀），支持快捷金额按钮（如 `500`）和 `Max`
-  - `View limit` 链接查看额度
-  - `Choose your withdrawal method`：方法卡片展示渠道、到账时效与手续费，例如：
-    - `Aani`（标记 `Recommended`），`Instant` 到账，手续费 `AED 0.50`
-- **Withdrawal 确认弹窗（bottom sheet）**：
-  - 顶部展示总扣款金额，例如 `AED 502.00`（含手续费）
-  - 副标题 `Withdraw money`
-  - 账户选择卡：银行名称（如 `WIO BANK P.J.S.C.`）、脱敏账号（如 `******************0327`）、右侧 `Change` 可切换
-  - 主 CTA：`Withdraw` 按钮提交提现
+- **Balance**：当前可用余额展示，附带 info 图标查看说明
+- **Amount entry**：输入提现金额；提供 `50` / `100` / `Max` 三个快捷选择
+- **View limit**：查看提现限额
+- **Select withdrawal destination**：两个目的地二选一
+  - **Aani**（Recommended）：到账时效 `Instant`，手续费 `2.00`；到账至 primary account；含 Maximum amount 提示
+  - **UAE bank**：到账时效 `1-2 days`，手续费 `2.00`
+- **Proceed to withdraw**：提交按钮，进入后续流程
 
 ## BMOC 审核入口
 
