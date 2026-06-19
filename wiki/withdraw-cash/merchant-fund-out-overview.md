@@ -7,7 +7,7 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:dc3fae70-d705-4a94-aecf-3cb16c6b7c7a
+source_ref: wiki_image:7ca13208-5aa8-42e8-8fce-75ef82f2063e
 tags: []
 ---
 
@@ -28,17 +28,18 @@ tags: []
 - 绑卡数据表：`member.tr_beneficiary_info`
 - 提现数据表：`mhtfundout.t_withdraw_order`
 
-### 提现流程（移动端）
+### 用户侧完成态消息（ToC - Withdraw）
 
-提现流程在移动端 App 的 "Withdraw funds" 页面完成，主要步骤：
+提现完成后，用户在 Botim money 会话中会收到一条官方消息卡片（`Transfer to Bank Account`），用于展示出款的终态结果。卡片包含以下要素：
 
-1. **进入提现页**：展示当前可用余额（如 `Balance: ⩾104.68` AED）。
-2. **输入金额**：用户在金额输入框输入提现金额，支持快捷金额按钮（`50`、`100`、`Max`），并提供 `View limit` 查看额度链接。
-3. **选择提现目的地**（Select withdrawal destination）：列出可用的出款通道，例如：
-   - `Aani`：标记为 `Recommended`，到账时效 `Instant`，手续费 `D2.00`
-4. **提交提现**：完成后弹出 "Withdrawal Successful" 确认弹层，展示：
-   - `Transaction ID`（交易流水号，例如 `311774263675574883`）
-   - `Okay` 按钮关闭弹层
+- 标题：`Transfer to Bank Account`
+- 金额：如 `AED 2.01`
+- 状态：`Transaction Completed`
+- 订单号（Order number）：例如 `131774263665176311`
+- 时间（Time）：如 `23/03/2026 15:01`
+- 操作入口：`View details`，可跳转查看完整交易详情
+
+该消息卡片代表 Withdraw 流程的成功终态。
 
 ## 商户出款到卡
 
