@@ -1,5 +1,5 @@
 ---
-title: PayBy系统组件架构图
+title: PayBy系统组件架构分层
 domain: payby-core-systems
 kind: wiki_page
 slug: payby-system-components-architecture
@@ -7,57 +7,69 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:a707e29e-e063-4661-98b3-218972a81847
+source_ref: wiki_image:d64ece4c-bc0a-4306-83d8-130d7ccc8318
 tags: []
 ---
 
-# PayBy系统组件架构图
+# PayBy系统组件架构分层
 
-本页给出 PayBy 支付平台的组件分层视图，展示各服务所属的层级分组、改造状态以及核心依赖关系。
+PayBy系统组件按职责划分为四个分层包：应用公共、中台公共、通用、运营管理，另有内部应用与内部管理两个顶层组件。各层之间通过依赖关系组织，上层消费下层服务。
 
-## 图例说明
+## 顶层组件
 
-- **内部应用**：标记为 `a`，浅青色
-- **内部管理**：标记为 `a`，浅青色
-- **未改造**：标记为 `M`，粉红色（表示尚未完成改造的服务）
+独立于分层包之外的两个组件：
 
-## 分层组件清单
+- 内部应用 (Internal Application)
+- 内部管理 (Internal Management)
 
-### 应用公共
-- `paycode`
-- `pns`
+## 应用公共 (Application Common)
 
-### 中台公共
-- `pbs`
-- `limit`
+面向应用层的公共组件：
 
-### 通用
-- `acs`
-- `csa`（未改造）
-- `voucher`
-- `mns`（未改造）
-- `nffs`
-- `ma`
-- `outman`
-- `dpm`
+- pcs
+- pns
 
-### 运营管理
-- `counter`
-- `basis`
+## 中台公共 (Middle Platform Common)
+
+中台层公共能力组件：
+
+- pbs
+- limit
+
+## 通用 (General)
+
+被上层依赖的通用基础组件：
+
+- acs
+- mns
+- voucher
+- nffs
+- ma
+- outman
+- dpm
+
+## 运营管理 (Operations Management)
+
+独立的运营管理类组件：
+
+- counter
+- basis
+- csc
+- sqlmonitor
 
 ## 组件依赖关系
 
-以虚线依赖箭头（`-->`）表示：
+可见的依赖（虚线箭头）反映了层间消费关系：
 
-- `pns` → `acs`
-- `paycode` → `ma`（指向 `nffs` 区域）
-- `limit` → `ma`
-- `pbs` / `limit` → `nffs`
-- `ma` → `outman`
-- `ma` → `dpm`
+- pns → acs（应用公共依赖通用）
+- pcs → ma（应用公共依赖通用）
+- limit → ma（中台公共依赖通用）
+- pbs → nffs（中台公共依赖通用，另含 nffs/ma 区域的额外虚线依赖）
+- ma → outman（通用层内部依赖）
+- ma → dpm（通用层内部依赖）
 
-## 架构概览
+## 分层语义
 
-- 依赖方向整体由 **应用公共 / 中台公共** 层流向 **通用** 层（如 `acs`、`ma`、`nffs` 等）
-- 通用层中的 `ma` 进一步依赖底层的 `outman` 与 `dpm`
-- 图中通过颜色区分已改造组件与 **未改造**（`csa`、`mns`）组件，便于识别平台改造进度
+- 应用公共 与 中台公共 层均消费 通用 层提供的服务
+- 运营管理 作为独立的运营层，与业务分层并列
+- 内部应用 / 内部管理 在架构顶部独立分组
