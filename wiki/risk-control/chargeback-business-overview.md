@@ -4,62 +4,63 @@ domain: risk-control
 kind: wiki_page
 slug: chargeback-business-overview
 status: active
-owner: wiki-sync@acquire
+owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki
-source_ref: confluence:AQ/1333395487
+source_ref: wiki:b45ef58e-e6ac-4d48-9837-7307c6d42c4e
 tags: []
 ---
 
 # ChargeBack业务总览
 
-ChargeBack页面是风控域内一个独立入口,用于上传并解析多家收单行的对账文件,自动完成 ChargeBack 记录入库、CasePool 同步、邮件通知与商户资金冻结等动作。
+ChargeBack页面是风控域下的独立入口，用于上传并解析来自不同收单行的对账文件，添加ChargeBack记录，并联动触发CasePool同步、邮件通知与商户资金冻结。
 
 ## 功能定位
 
-- 独立入口页面,直接上传收单行文件并解析。
-- 解析后系统自动执行四类核心动作:
-  - 添加 ChargeBack 记录
-  - 同步至 CasePool
-  - 发送邮件通知
-  - 对相关商户进行资金冻结
+- 独立页面入口，直接上传收单行文件
+- 解析文件后落库为ChargeBack记录
+- 联动后续的同步、通知、冻结等下游动作
+
+完整的端到端处理流程参见 [[flow_chargeback_processing]]。
 
 ## 支持的收单行
 
 - VISA
 - MASTERCARD
 - MAGNATI
-- ADCB(目前无记录)
+- ADCB（目前无记录）
 - CKO-HISTORY
 
-## 核心处理动作概览
+## 核心流程
 
-上传文件后,系统按业务规则触发以下动作,具体规则见对应子页:
+文件上传后系统主要执行以下动作：
 
-- **新增 ChargeBack 记录**:写入 `aml.t_chargeback_pool`。
-- **CasePool 同步**:所有记录均会同步,CaseType 为 `Chargeback`,Case Source 为对应 Acquirer。详见 [[chargeback-casepool-sync]]。
-- **资金冻结**:仅当记录为 `New case` 时触发,对收款方 merchantId 的 DPM 账户冻结交易金额,并写入 `aml.t_freeze_order`。详见 [[chargeback-freeze-logic]]。
-- **邮件通知**:按 PSP/非PSP、是否有 referredId、是否外部商户、是否配置 partner_name 等多条件路由收件人。详见 [[chargeback-mail-notification]] 与 [[chargeback-mail-config]]。
+1. **添加ChargeBack记录**：解析文件并写入 `aml.t_chargeback_pool`
+2. **同步CasePool**：将记录同步到 `aml.t_risk_case`，详见 [[chargeback-casepool-sync]]
+3. **发送邮件通知**：按多条件路由邮件接收人，详见 [[chargeback-mail-notification]]
+4. **资金冻结**：对相关商户的DPM账户进行交易金额冻结，详见 [[chargeback-freeze-logic]]
 
-## Case 状态对处理动作的影响
+## Case 状态对流程的影响
 
-Case 状态决定了哪些动作会被触发:
+ChargeBack记录的Case状态决定了下游动作是否触发：
 
-- **New case (NC)**:同步 CasePool + 发送邮件 + 触发冻结。
-- **非 New case(仅限历史记录,Excel 中 `history flag` 有值)**:仅同步 CasePool,**不发送邮件**,**不触发冻结**。
+- **New case (NC)**：同步CasePool + 发送邮件 + 触发冻结
+- **非 New case（仅限历史记录，依据Excel中的 `history flag` 字段判定）**：仅同步CasePool，**不发送邮件**、**不触发冻结**
 
 完整状态枚举与映射见 [[chargeback-case-status]]。
 
-## 端到端处理流程
+## 配置入口
 
-完整处理时序(含 `VALID=1` 在 `grc.t_payment_event` 是否存在有效记录的判断)见 [[chargeback-process-flow]] 与 [[flow_chargeback_processing]]。
+相关开关、白名单、默认收件地址等参数统一配置于：
 
-## 相关页面
+`Basis → RISK CONTROL → Data Analysis → Risk System Param`（更改后需刷缓存）
 
-- [[chargeback-freeze-logic]] — 冻结对象、Memo/Extension 规则与白名单配置
-- [[chargeback-casepool-sync]] — CasePool 同步字段细节
-- [[chargeback-mail-notification]] — 邮件路由判断顺序
-- [[chargeback-mail-config]] — 邮件相关 Risk System Param 配置项
-- [[chargeback-case-status]] — Case 状态枚举与 code 映射
-- [[chargeback-process-flow]] — 处理流程图与关键节点
-- [[scn_chargeback_mail_send_cases]] — 邮件发送 TS001~TS012 测试场景集
+具体参数清单参见 [[chargeback-config-params]]。
+
+## 关联校验
+
+- **VALID=1 判断**：在 `grc.t_payment_event` 中存在有效记录
+
+## 相关测试场景
+
+邮件发送相关的端到端测试用例集合参见 [[scn_chargeback_mail_send_cases]]。

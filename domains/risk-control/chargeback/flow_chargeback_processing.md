@@ -3,25 +3,27 @@ id: flow_chargeback_processing
 object_type: Flow
 domain: risk-control
 status: active
-owner: wiki-sync@acquire
+owner: upload-sync@platform
 reviewer: UNREVIEWED
 last_reviewed_at: '2026-06-19'
 source_type: wiki
-source_ref: confluence:AQ/1333395487
+source_ref: wiki:b45ef58e-e6ac-4d48-9837-7307c6d42c4e
 tags:
 - chargeback
-- flow
-- end-to-end
+- file-upload
+- casepool
+- freeze
+- mail
 subdomain: chargeback
 module: null
 sensitivity: normal
-name: ChargeBack处理端到端流程
+name: ChargeBack文件上传处理端到端流程
 aliases: []
 related_services: []
 related_tables:
+- aml.t_chargeback_pool
 - aml.t_risk_case
 - aml.t_freeze_order
-- aml.t_chargeback_pool
 - grc.t_payment_event
 related_scenarios:
 - scn_chargeback_mail_send_cases
@@ -31,41 +33,39 @@ related_failures: []
 ---
 
 ## 概述
-ChargeBack端到端流程从ChargeBack页面上传收单行（VISA/MASTERCARD/MAGNATI/ADCB/CKO-HISTORY）文件开始，系统解析后新增ChargeBack记录，并按记录类型（New case 或 历史记录）触发后续动作：同步CasePool、发送邮件通知、对相关商户进行资金冻结。
+ChargeBack页面是独立入口，用于上传并解析来自不同收单行（VISA, MASTERCARD, MAGNATI, ADCB, CKO-HISTORY）的文件，添加ChargeBack记录。文件解析后，系统执行：新增ChargeBack记录 → 同步到CasePool → 发送邮件通知 → 对相关商户进行资金冻结。其中只有 New case 记录会触发邮件发送和冻结，非 New case（历史记录）仅同步到CasePool。
 
 ## 步骤(跨系统)
-1. **上传文件**：在ChargeBack页面上传不同收单行（VISA/MASTERCARD/MAGNATI/ADCB/CKO-HISTORY）的文件。
-2. **解析并新增ChargeBack记录**：系统解析文件，写入 `aml.t_chargeback_pool`，根据Excel中的 `history flag` 字段判定是否为历史记录（有值则为历史记录）。
-3. **判断Case状态**：
-   - 若为 **New case (NC)**：执行后续 同步CasePool + 发邮件 + 冻结。
-   - 若为 **非New case（仅限历史记录）**：仅同步CasePool，**不发送邮件、不触发冻结**。
-4. **同步CasePool**（详见 [[chargeback-casepool-sync]]）：
+1. **文件上传与解析**：用户在ChargeBack页面上传指定收单行（VISA/MASTERCARD/MAGNATI/ADCB/CKO-HISTORY）的文件，系统解析文件内容。
+2. **新增ChargeBack记录**：解析后的记录写入 `aml.t_chargeback_pool`，根据Excel中的 `history flag` 字段判定是否为历史记录（有值则为历史记录）。
+3. **判断VALID**：校验 `grc.t_payment_event` 中是否存在有效记录（VALID=1）。
+4. **同步到CasePool**：所有记录（含New case和历史记录）同步到 `aml.t_risk_case`，详见 [[chargeback-casepool-sync]]：
    - CaseType = `Chargeback`
-   - Case Source = `Acquirer`（VISA/MASTERCARD/MAGNATI/ADCB/CKO-HISTORY）
-   - Memo：VISA/MASTERCARD = `Acquirer + aml.t_chargeback_pool.id + aml.t_chargeback_pool.caseNo`；MAGNATI/ADCB/CKO-HISTORY = `Acquirer + aml.t_chargeback_pool.id`
-5. **同步到 `aml.t_risk_case`** 后，触发冻结（仅New case，详见 [[chargeback-freeze-logic]]）：
-   - 冻结对象：merchantId（收款方）的DPM账户中的交易金额
-   - PSP商户：Memo = `CHB + ARN + auto freeze`，Extension = `caseId + ARN`
-   - 非PSP商户：Memo = `CHB + paymentOrderNo + auto freeze`，Extension = `caseId + paymentOrderNo`
-   - 写入 `aml.t_freeze_order`
-   - 白名单 `chargeback_ignore_frozen_merchant_list` 内的商户ID忽略冻结。
-6. **发送邮件通知**（仅New case，详见 [[chargeback-mail-notification]]）：按"邮件总开关 → 是否PSP商户 → ReferredId / 商户邮箱 / 外部商户 / partner_name"的顺序判断收件人组合。
+   - Case Source = `Acquirer`（具体收单行）
+   - Memo 根据收单行不同拼接（VISA/MASTERCARD 含 caseNo；MAGNATI/ADCB/CKO-HISTORY 仅含 id）
+5. **判断Case状态**：
+   - 若为 **New case (NC)**：继续执行邮件发送和冻结流程。
+   - 若为 **非 New case（历史记录）**：流程结束，不发邮件，不冻结。
+6. **发送邮件通知**：根据邮件总开关 `chargeback_mail_send_outer_switch`、商户类型（PSP/非PSP）、ReferredId、External、partner_name、商户邮箱等条件，按判断顺序决定收件人。详见 [[chargeback-mail-notification]] 与 [[scn_chargeback_mail_send_cases]]。
+7. **资金冻结**：对 New case 记录冻结收款方 merchantId 的 DPM 账户中的交易金额，写入 `aml.t_freeze_order`：
+   - PSP商户：Memo=`CHB + ARN + auto freeze`，Extension=`caseId + ARN`
+   - 非PSP商户：Memo=`CHB + paymentOrderNo + auto freeze`，Extension=`caseId + paymentOrderNo`
+   - 受冻结白名单 `chargeback_ignore_frozen_merchant_list` 控制，名单内商户跳过冻结。详见 [[chargeback-freeze-logic]]。
 
 ## 涉及服务/表
-- 表：
-  - `aml.t_chargeback_pool`：ChargeBack记录主表（id、caseNo 等）
-  - `aml.t_risk_case`：CasePool同步目标
-  - `aml.t_freeze_order`：冻结订单记录（Memo、Extension）
-  - `grc.t_payment_event`：用于 VALID=1 判断（有有效记录）
-- 配置路径：`Basis → RISK CONTROL → Data Analysis → Risk System Param`
-  - `chargeback_ignore_frozen_merchant_list`（冻结白名单）
-  - `chargeback_mail_send_outer_switch`、`chargeback_send_mail_product_config`、`chargeback_mail_send_to_default`、`chargeback_mail_send_external_default`、`chargeback_mail_send_psp_default`、`chargeback_mail_receiver_partner_XXXX`（详见 [[chargeback-mail-config]]）
+- `aml.t_chargeback_pool`：ChargeBack记录主表
+- `aml.t_risk_case`：CasePool同步目标表
+- `aml.t_freeze_order`：冻结订单表
+- `grc.t_payment_event`：用于VALID=1判断的有效支付事件表
+- 配置：`Basis → RISK CONTROL → Data Analysis → Risk System Param`（见 [[chargeback-config-params]]）
 
 ## 校验点
-- 记录是否为 **New case**：决定是否触发冻结与发邮件；非New case（历史记录）仅同步CasePool。
-- **VALID=1 判断**：在 `grc.t_payment_event` 中存在有效记录。
-- **history flag**：Excel中该字段有值则为历史记录。
-- **冻结白名单**：商户ID命中 `chargeback_ignore_frozen_merchant_list` 时跳过冻结。
-- CasePool 同步字段：CaseType=Chargeback、Case Source=Acquirer、Memo 按收单行规则拼接。
-- 冻结记录字段：按PSP/非PSP商户区分 Memo 与 Extension 内容。
-- 邮件发送：依据邮件总开关、商户类型（Label=Total Process 判定PSP）、ReferredId、商户邮箱、External、partner_name 综合决定收件人。
+- **文件来源校验**：仅支持 VISA/MASTERCARD/MAGNATI/ADCB/CKO-HISTORY 五类收单行。
+- **VALID=1 判断**：`grc.t_payment_event` 中需有有效记录。
+- **历史记录判定**：Excel `history flag` 字段有值即为历史记录，仅同步CasePool，不发邮件、不冻结。
+- **New case 触发**：仅 New case (NC) 状态触发冻结与邮件。
+- **冻结白名单生效**：`chargeback_ignore_frozen_merchant_list` 配置后需刷缓存才生效。
+- **CasePool Memo 拼接规则**：依据Acquirer差异拼接（VISA/MASTERCARD 包含 caseNo，其他不含）。
+- **邮件判断顺序**：邮件总开关 → PSP/非PSP → ReferredId/External/partner_name → 商户邮箱（详见 [[chargeback-mail-notification]]）。
+- **冻结对象**：始终为 merchantId（收款方）的 DPM 账户中的交易金额。
+- **状态枚举映射**：参考 [[chargeback-case-status]] 中 case status → code → desc 的映射表。
