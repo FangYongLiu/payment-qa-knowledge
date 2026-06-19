@@ -1,69 +1,60 @@
 ---
-title: Wallet 钱包业务总览
+title: Wallet钱包业务总览
 domain: payby-core-systems
 kind: wiki_page
 slug: wallet-overview
 status: active
-owner: upload-sync@platform
+owner: wiki-sync@acquire
 reviewer: UNREVIEWED
 source_type: wiki
-source_ref: wiki:f3384d06-077b-4640-b66a-88de7b095cee
+source_ref: confluence:AQ/2042822729
 tags: []
 ---
 
-# Wallet 钱包业务总览
+# Wallet钱包业务总览
 
-本页汇总钱包余额管理、充值与提现相关的业务流程、系统架构与测试方法。当前内容多为占位，待后续补充具体细节。
+Wallet 模块负责钱包余额管理、充值（top-up）与提现（withdrawal）等核心资金操作，本页为业务域 `payby-core-systems` 下 Wallet 的总览与占位文档。
 
 ## 业务流程 (Business Flow)
 
-### 概览
-- 覆盖范围：Wallet balance management、top-up、withdrawal 操作。
-
-### 流程图
-- To be added
-
-### 关键业务规则
-- To be added
+- **Overview**：Wallet balance management, top-up, and withdrawal operations.
+- **Flow Diagram**：待补充
+- **Key Business Rules**：待补充
 
 ## 系统流程 (System Flow)
 
-### 系统架构
-按以下维度梳理（待补充）：
-- Service/App
-- Role
-- Database
+### System Architecture
 
-### API 调用链
-- To be added
+| Service/App | Role | Database |
+|---|---|---|
+| 待补充 | | |
 
-### 关键数据库表
-按以下维度梳理（待补充）：
-- Table
-- Database
-- Purpose
+### API Call Chain
+
+待补充
+
+### Key Database Tables
+
+| Table | Database | Purpose |
+|---|---|---|
+| 待补充 | | |
 
 ## 测试方法 (How to Test)
 
-### 测试环境
-- To be added
-
-### 测试思路
-- To be added
-
-### 关键测试点
-- To be added
+- **Test Environment**：待补充
+- **Test Approach**：待补充
+- **Key Test Points**：待补充
 
 ## 测试用例 (Test Cases)
 
-### 用例汇总
-按以下字段记录（待补充）：
-- ID
-- Title
-- Priority
-- Type
-- Status
+### Test Case Summary
 
-## 维护信息
+| ID | Title | Priority | Type | Status |
+|---|---|---|---|---|
+| 待补充 | | | | |
+
+## 元信息
+
 - Last updated: 2026-04-13
 - Updated by: AI
+- Domain: payby-core-systems
