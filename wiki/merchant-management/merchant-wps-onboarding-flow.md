@@ -6,8 +6,8 @@ slug: merchant-wps-onboarding-flow
 status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
-source_type: wiki
-source_ref: wiki:34ef57ae-73fe-4cd4-a064-e8edfb238167
+source_type: wiki_image
+source_ref: wiki_image:e0a7a237-82a3-4940-8229-3f398d64e5b0
 tags: []
 ---
 
@@ -60,6 +60,25 @@ Basis 审核通过后，落库正式的 WPS 业务信息及相关账户。
 ## 环境注意事项
 
 - UAT 环境：Iban 需手动推进。
+
+## 员工侧 Salary Card 体验
+
+WPS 业务开通且账户落库后，员工可在 Botim Money / PayBy App 中访问 Salary Card 页面（标题 "Salary Card"），用于自助管理薪资卡。
+
+- 卡片形态：虚拟 Mastercard 借记卡，正面包含：
+  - 左上：`Botim Money` 标识
+  - 右上：`PayBy` 标识及 NFC 非接触支付标志
+  - 中部：嵌入 "b" Logo 的二维码
+  - 卡号显示为掩码（如 `•••• •••• •••• 7466`），可通过眼睛图标切换显示
+  - 右下：Mastercard 标识
+  - 提示：`Tap card to view details`
+- Card Management 自助功能列表：
+  1. Transactions —— 查看交易明细
+  2. Lock Card —— 锁卡
+  3. Reset ATM PIN —— 重置 ATM 密码
+  4. Replace Card —— 换卡
+  5. Fees & Charges —— 查看费用
+- 页脚：`Powered by PayBy`
 
 ## 相关链接
 
