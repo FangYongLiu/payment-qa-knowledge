@@ -1,5 +1,5 @@
 ---
-title: PayBy支付系统组件架构图
+title: PayBy系统组件架构图
 domain: payby-core-systems
 kind: wiki_page
 slug: payby-system-components-architecture
@@ -7,85 +7,57 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:05618283-25e8-4ee4-afc4-ccecd636f160
+source_ref: wiki_image:a707e29e-e063-4661-98b3-218972a81847
 tags: []
 ---
 
-# PayBy支付系统组件架构图
+# PayBy系统组件架构图
 
-本页描述 PayBy 支付系统的组件分层与依赖关系，整体由五个包组成：**交易、支付、会员账户、资金渠道、银行**。交易层应用通过 `pfs-payment` 进行编排，向下调用支付、会员账户与资金渠道，最终对接银行。
+本页给出 PayBy 支付平台的组件分层视图，展示各服务所属的层级分组、改造状态以及核心依赖关系。
 
-## 组件类型图例
+## 图例说明
 
-组件按颜色区分三类：
+- **内部应用**：标记为 `a`，浅青色
+- **内部管理**：标记为 `a`，浅青色
+- **未改造**：标记为 `M`，粉红色（表示尚未完成改造的服务）
 
-- `<<component>> 内部应用`（浅青色）
-- `<<component>> 未改造`（粉红色）
-- `<<component>> 合作方应用`（白色）
+## 分层组件清单
 
-## 分层包与组件清单
+### 应用公共
+- `paycode`
+- `pns`
 
-按从上到下（业务调用方向）划分为五个包：
+### 中台公共
+- `pbs`
+- `limit`
 
-### 交易（Trade）
-- `trade`
-- `deposit`
-- `fundout`
-- `cashesk`
-- `authpay`
-
-均为内部应用。
-
-### 支付（Payment）
-- `pfs-payment`
-- `payment`
-
-均为内部应用。
-
-### 会员账户（Member Account）
+### 通用
+- `acs`
+- `csa`（未改造）
+- `voucher`
+- `mns`（未改造）
+- `nffs`
 - `ma`
+- `outman`
 - `dpm`
 
-均为内部应用。
-
-### 资金渠道（Fund Channel）
-- `cmf`
-- `fundchannel-mock`
-- `fundchannel-xxx`
-- `fcw`
-
-均为内部应用。
-
-### 银行（Bank）
-- `bank`（合作方应用）
+### 运营管理
+- `counter`
+- `basis`
 
 ## 组件依赖关系
 
-### 交易层 → 支付层
-- `trade` → `pfs-payment`
-- `deposit` → `pfs-payment`
-- `cashesk` → `pfs-payment`
-- `cashesk` → `authpay`
-- `fundout` 连接回交易组 / `pfs-payment` 区域
+以虚线依赖箭头（`-->`）表示：
 
-### 支付层内部与向下调用
-- `pfs-payment` → `payment`
-- `pfs-payment` → `ma`（下沉到会员账户）
-- `payment` → `cmf`
-- `payment` → `dpm`
-
-### 会员账户层
+- `pns` → `acs`
+- `paycode` → `ma`（指向 `nffs` 区域）
+- `limit` → `ma`
+- `pbs` / `limit` → `nffs`
+- `ma` → `outman`
 - `ma` → `dpm`
 
-### 资金渠道层内部
-- `cmf` → `fundchannel-mock`
-- `cmf` ↔ `fcw`（双向）
-- `fundchannel-mock` → `fundchannel-xxx`
+## 架构概览
 
-### 资金渠道 → 银行
-- `fundchannel-xxx` → `bank`
-- `bank` → `fcw`（虚线下行）
-
-## 整体调用流向
-
-交易层应用（`trade` / `deposit` / `cashesk` / `fundout` 等）统一进入 `pfs-payment` 进行编排；`pfs-payment` 一方面驱动 `payment`，由 `payment` 调度 `cmf` 完成资金渠道路由，另一方面下沉到 `ma` 操作会员账户与 `dpm`；资金渠道侧通过 `fundchannel-mock` / `fundchannel-xxx` 最终对接合作方 `bank`，并由 `bank` 回流至 `fcw`。
+- 依赖方向整体由 **应用公共 / 中台公共** 层流向 **通用** 层（如 `acs`、`ma`、`nffs` 等）
+- 通用层中的 `ma` 进一步依赖底层的 `outman` 与 `dpm`
+- 图中通过颜色区分已改造组件与 **未改造**（`csa`、`mns`）组件，便于识别平台改造进度
