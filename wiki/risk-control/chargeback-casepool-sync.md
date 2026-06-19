@@ -1,47 +1,49 @@
 ---
-title: ChargeBack CasePool同步规则
+title: ChargeBack CasePool同步逻辑
 domain: risk-control
 kind: wiki_page
 slug: chargeback-casepool-sync
 status: active
-owner: wiki-sync@acquire
+owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki
-source_ref: confluence:AQ/1333395487
+source_ref: wiki:b45ef58e-e6ac-4d48-9837-7307c6d42c4e
 tags: []
 ---
 
-# ChargeBack CasePool同步规则
+# ChargeBack CasePool同步逻辑
 
-ChargeBack记录新增后会同步到CasePool，本页说明同步时CaseType、Case Source及Memo的字段拼接约定。
+ChargeBack 文件解析后新增的记录会同步到 CasePool，本页说明同步过程中 `CaseType`、`Case Source`、`Memo` 三个属性的取值规则。
 
-## 同步字段约定
+## 同步范围
 
-| 字段 | 取值 |
-|---|---|
-| CaseType | `Chargeback` |
-| Case Source | `Acquirer`（取值范围：VISA / MASTERCARD / MAGNATI / ADCB / CKO-HISTORY） |
-| Memo | 按 Acquirer 区分拼接规则（见下） |
+- New case 记录：同步到 CasePool，并触发邮件与冻结（见 [[chargeback-mail-notification]]、[[chargeback-freeze-logic]]）。
+- 非 New case 的历史记录（Excel 中 `history flag` 有值）：仅同步到 CasePool，不发邮件、不冻结。
+- Case 状态枚举与判定见 [[chargeback-case-status]]。
 
-## Memo 拼接规则
+## 属性映射规则
 
-按收单行（Acquirer）不同，Memo 的拼接方式不同：
+同步到 CasePool 的 ChargeBack 记录按以下规则填充属性：
 
-- **VISA / MASTERCARD**
-  - 格式：`Acquirer + aml.t_chargeback_pool.id + aml.t_chargeback_pool.caseNo`
-- **MAGNATI / ADCB / CKO-HISTORY**
-  - 格式：`Acquirer + aml.t_chargeback_pool.id`
+### CaseType
 
-## 同步范围说明
+- 固定值：`Chargeback`
 
-- 所有新增的 ChargeBack 记录均会同步到 CasePool。
-- **New case** 记录：同步到 CasePool，并触发邮件发送和冻结。
-- **非 New case 记录（仅限历史记录，按 Excel 中 `history flag` 字段判定）**：仅同步到 CasePool，不发送邮件、不触发冻结。
+### Case Source
+
+- 取值：`Acquirer`，对应当前上传文件的收单行
+- 可选值：`VISA` / `MASTERCARD` / `MAGNATI` / `ADCB` / `CKO-HISTORY`
+
+### Memo
+
+按 Acquirer 区分拼接规则：
+
+- Acquirer 为 **VISA / MASTERCARD**：
+  - `Acquirer + aml.t_chargeback_pool.id + aml.t_chargeback_pool.caseNo`
+- Acquirer 为 **MAGNATI / ADCB / CKO-HISTORY**：
+  - `Acquirer + aml.t_chargeback_pool.id`
 
 ## 相关链接
 
-- [[chargeback-case-status]]：Case状态枚举与映射，决定是否走完整同步流程
-- [[chargeback-freeze-logic]]：New case 同步后触发的资金冻结逻辑
-- [[chargeback-mail-notification]]：同步链路中的邮件发送判断
-- [[chargeback-process-flow]]：完整处理流程上下文
-- [[chargeback-business-overview]]：ChargeBack 业务总览
+- 业务总览与整体流程：[[chargeback-business-overview]]、[[flow_chargeback_processing]]
+- 同步后续动作：[[chargeback-freeze-logic]]、[[chargeback-mail-notification]]
