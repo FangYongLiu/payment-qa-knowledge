@@ -7,7 +7,7 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:c87e055e-9bc2-4cdc-9e01-ef235b180f3b
+source_ref: wiki_image:54f798f3-03f7-4605-a0d3-af90fc11815d
 tags: []
 ---
 
@@ -69,6 +69,24 @@ Merchant Portal 是商户体系的统一入口，承载商户注册/登录、业
 - 步骤：
   1. 完成 AML Risk Calculate
   2. 完成 KYB Approval
+
+## Withdraw 提现交易详情
+
+Withdraw 流程下的 Transaction Details 页面（移动端）展示一笔已完成的银行账户转账（Transfer to Bank Account），主要字段：
+
+| 字段 | 示例值 | 说明 |
+| --- | --- | --- |
+| 标题 | Transfer to Bank Account | 交易类型 |
+| Amount | AED -2.01 | 总扣款金额（负号表示出款） |
+| Status | Transaction Completed | 交易状态 |
+| Payment method | Aani | 提现使用的支付通道 |
+| Receive Amount | AED 0.01 | 收款方实际到账金额 |
+| Fees | AED 2.00 | 手续费 |
+| Transfer to | \*\*\* \*\*\* 0865 | 收款银行账号（脱敏） |
+| Creation Time | 23/03/2026 15:01 | 交易创建时间 |
+| Order number | 131774263665176311 | 订单号 |
+
+金额关系：`Amount = Receive Amount + Fees`（示例中 2.01 = 0.01 + 2.00）。
 
 ## 文档导航
 
