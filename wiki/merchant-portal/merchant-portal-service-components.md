@@ -7,7 +7,7 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:445c8bed-6158-4936-b89b-d020582fe690
+source_ref: wiki_image:2643daf0-0884-4213-87c1-688b78a45388
 tags: []
 ---
 
@@ -61,41 +61,59 @@ tags: []
 - **虚拟账户**：`gp149_vis`（VAM/IBAN Top up）。
 - **合同与对账单**：`gp107_contract`、`gp134_statementii`。
 
-## 系统组件分类与基础设施依赖
+## 系统组件分类与依赖
 
-业务服务在运行时依赖一组通用 jar starter 组件以及第三方基础设施。组件按用途分为五类（来源：System Components 组件依赖图）：
+业务服务（如本页 Owner 清单中的各 `gpXXX_*`）在底层依赖一组共享的基础组件。组件按归属分为五类：
 
-| 类别 | 说明 | 典型组件 |
+| 类别 | 颜色标识 | 说明 |
 |---|---|---|
-| 内部应用 | Internal Application | 业务服务（见上文 Owner 清单） |
-| 内部管理 | Internal Management | `ues` |
-| 内部 jar 组件 | Internal jar Component | `beacon`、`basic-lang`、`basic-util`、`pmock`、`ues-client`、`monitor-starter`、`mq-stater`、`dubbo-starter`、`job-starter`、`redis-starter`、`mysql-starter`、`sequence-util`、`cobarclient` |
-| 第三方应用 | Third-party Application | `spring-cloud-config`、`nacos`、`rabbit-mq`、`zookeeper`、`redis`、`mysql`、`gitlab` |
-| 第三方管理 | Third-party Management | `spring-boot-admin`、`dubbo-admin`、`elasticjob-console` |
+| 内部应用 (Internal Application) | 浅蓝 | 内部自研、独立部署运行的业务/平台应用 |
+| 内部管理 (Internal Management) | 浅蓝 | 内部自研的管理后台类组件 |
+| 内部 jar 组件 (Internal jar component) | 橙色 | 内部维护、以 jar 形式被业务应用依赖的库/Starter |
+| 第三方应用 (Third-party Application) | 浅绿 | 外部开源/商用的运行态中间件与存储 |
+| 第三方管理 (Third-party Management) | 浅绿（圆角） | 外部开源的管理控制台类组件 |
 
-### Starter / 基础组件依赖关系
+### 内部 jar 组件
 
-内部 jar starter 主要负责封装并连接对应的第三方基础设施：
+通用基础库与工具：
 
-- `beacon` → `basic-lang`
-- `ues-client` → `ues`；`ues` → `redis`、`mysql`
+- `beacon` → 依赖 `basic-lang`
+- `basic-lang`：基础语言/通用类型库
+- `basic-util(dep)`：基础工具库
+- `pmock`：打桩/Mock 工具
+- `ues-client` → 依赖内部应用 `ues`
+
+中间件接入 Starter（业务服务通过引入这些 Starter 接入对应中间件）：
+
 - `monitor-starter` → `spring-cloud-config`、`nacos`
-- `mq-stater` → `rabbit-mq`
+- `mq-stater` → `rabbit-mq`（并连接 `nacos`）
 - `dubbo-starter` → `zookeeper`
 - `job-starter` → `zookeeper`
 - `redis-starter` → `redis`
 - `mysql-starter` → `mysql`
-- `sequence-util` → `mysql`
-- `cobarclient` → `mysql`
-- `spring-cloud-config` → `gitlab`
+- `sequence-util` → `mysql`（分布式序列）
+- `cobarclient` → `mysql`（分库分表客户端）
+
+### 内部应用
+
+- `ues` → 依赖 `redis`、`mysql`
+
+### 第三方应用（运行时依赖）
+
+- `spring-cloud-config` → `gitlab`、`nacos`
+- `nacos`：配置与注册中心
+- `rabbit-mq`：消息队列
+- `zookeeper`：协调服务（Dubbo / ElasticJob 依赖）
+- `redis`：缓存
+- `mysql`：关系型数据库
 
 ### 第三方管理控制台
 
-- `spring-boot-admin` → `nacos`（应用监控）
-- `dubbo-admin` → `zookeeper`（Dubbo 服务治理）
-- `elasticjob-console` → `zookeeper`（定时任务管理）
+- `spring-boot-admin` → `nacos`、`rabbit-mq`
+- `dubbo-admin` → `zookeeper`
+- `elasticjob-console` → `zookeeper`
 
-排查商户控台相关问题时，可结合上述依赖关系定位是业务服务自身、starter 组件，还是底层基础设施（MySQL / Redis / RabbitMQ / Zookeeper / Nacos）的问题。
+> 排查思路：业务服务（Merchant、Basis、AML、VIS 等）出现中间件相关异常时，按"业务服务 → 对应 Starter（如 `redis-starter`/`mysql-starter`/`mq-stater`/`dubbo-starter`）→ 第三方组件（redis/mysql/rabbit-mq/zookeeper）"链路定位；配置类问题优先核对 `nacos` 与 `spring-cloud-config`。
 
 ## 相关链接
 
