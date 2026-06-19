@@ -1,5 +1,5 @@
 ---
-title: PayBy系统组件架构图
+title: PayBy系统组件分层架构
 domain: payby-core-systems
 kind: wiki_page
 slug: payby-system-components-architecture
@@ -7,91 +7,58 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:efd73f03-1b45-46b3-9dd6-029e331019e5
+source_ref: wiki_image:872324a2-2fb1-4453-b3ce-d0df32b0e25a
 tags: []
 ---
 
-# PayBy系统组件架构图
+# PayBy系统组件分层架构
 
-本页基于系统架构图，描述 PayBy 平台五大模块（Trade、Payment、Member & Account、Fund Channel、Bank）的组件构成与依赖关系。
+本页描述 PayBy 核心系统的组件分层划分及组件之间的依赖关系，分层包括顶层内部服务、App Public、Payment Public、Common 与 Operation Support 五个分组。
 
-## 图例说明
+## 分层与组件清单
 
-组件按服务类型分为三类：
+### 顶层（Inner）
+- `Inner Service`
+- `Inner Console`
 
-- **Inner Service**（内部服务）：青色/浅蓝填充
-- **Unready**（未就绪）：红色填充
-- **Partner Service**（合作方服务）：白色填充
+### App Public
+- `pcs`
+- `pns`
 
-## 模块与组件清单
+### Payment Public
+- `pbs`
+- `limit`
 
-五个模块自左向右依次为 Trade、Payment、Member & Account、Fund Channel、Bank。
-
-### Trade（交易层）
-
-均为 Inner Service：
-
-- `trade`
-- `deposit`
-- `fundout`
-- `cashesk`
-- `authpay`
-- `query`
-
-### Payment（支付层）
-
-均为 Inner Service：
-
-- `pfs-payment`
-- `payment`
-
-### Member & Account（会员与账户）
-
-均为 Inner Service：
-
+### Common
+- `acs`
+- `mns`
+- `voucher`
+- `nffs`
 - `ma`
+- `outman`
 - `dpm`
 
-### Fund Channel（资金通道）
-
-- `cmf`（Inner Service）
-- `fundchannel-mock`（Inner Service）
-- `fundchannel-xxx`（Inner Service）
-- `fcw`（Unready，未就绪）
-
-### Bank（银行）
-
-- `bank`（Partner Service，合作方服务）
+### Operation Support
+- `counter`
+- `basis`
+- `csc`
+- `sqlmonitor`
 
 ## 组件依赖关系
 
-各组件之间的调用与依赖（虚线依赖箭头）如下：
+App Public 与 Payment Public 层主要消费 Common 层提供的服务，其中 `ma` 进一步依赖 `outman` 与 `dpm`。
 
-### Trade → Payment
+跨层依赖：
+- `pns` → `acs` （App Public → Common）
+- `pcs` → `ma` （App Public → Common）
+- `limit` → `ma` （Payment Public → Common）
+- `pbs` → `nffs` （Payment Public → Common）
 
-- `trade` → `pfs-payment`
-- `deposit`、`fundout`、`cashesk` → `pfs-payment`（Trade 层服务汇入 `pfs-payment`）
-- `cashesk` → `authpay`
-
-### Payment 内部及向下游
-
-- `pfs-payment` → `payment`
-- `payment` → `cmf`
-
-### Payment → Member & Account
-
-- `pfs-payment` → `ma`
-- `payment` → `dpm`
+Common 内部依赖：
+- `ma` → `outman`
 - `ma` → `dpm`
 
-### Fund Channel 内部及向 Bank
+## 说明
 
-- `cmf` → `fundchannel-mock`
-- `cmf` ↔ `fcw`（双向）
-- `fundchannel-xxx` → `bank`
-- `bank` → `fcw`
-- `bank` → `fundchannel-xxx`（返回链路）
-
-## 整体调用流
-
-Trade 层服务调用 Payment 层（`pfs-payment`、`payment`），Payment 层进一步依赖 Member & Account 层（`ma`、`dpm`）以及 Fund Channel 层（`cmf` 等），最终通过 Fund Channel 对接 Bank（合作方）完成资金侧交互。
+- Common 中的 `mns`、`voucher` 以及 `acs` 在图中除上述指向外未画出其他出向依赖。
+- Operation Support 层（`counter`、`basis`、`csc`、`sqlmonitor`）作为独立支撑模块，图中未绘制依赖箭头。
