@@ -7,7 +7,7 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:5c621189-7c84-418e-ae94-d862f23a7480
+source_ref: wiki_image:7ed4e047-83e4-4a6b-8764-06a954da95c0
 tags: []
 ---
 
@@ -61,36 +61,43 @@ tags: []
 - **虚拟账户**：`gp149_vis`（VAM/IBAN Top up）。
 - **合同与对账单**：`gp107_contract`、`gp134_statementii`。
 
-## 系统组件分类与依赖
+## 系统底层组件依赖
 
-平台底层组件按归属与职责划分为以下几类（来源：System Components 架构图）：
+商户控台业务服务运行在统一的基础组件栈之上。组件按角色划分为五类：
 
-### 组件分类
+- **Inner Service**：内部基础服务（如 `ues`、`ufs`）。
+- **Inner Console**：内部控制台。
+- **Jar Component**：以 starter / util 形式被业务服务集成的 Jar 包。
+- **3rdParty Service**：外部中间件与基础设施。
+- **3rdParty Console**：外部管理控制台。
 
-- **内部应用（Internal Application）**：`ues`、`ufs`。
-- **内部管理（Internal Management）**：内部运维管理类组件。
-- **内部 jar 组件（Internal jar Component）**：业务应用统一引入的基础 starter 与工具包：
-  - `beacon`、`basic-lang`、`basic-util(dep)`、`pmock`、`ues-client`、`sequence-util`
-  - `monitor-starter`、`mq-stater`、`dubbo-starter`、`job-starter`、`redis-starter`、`mysql-starter`
-  - `cobarclient`
-- **第三方应用（Third-party Application）**：`spring-cloud-config`、`nacos`、`rabbit-mq`、`zookeeper`、`redis`、`mysql`、`gitlab`、`阿里云（Aliyun）`。
-- **第三方管理（Third-party Management）**：`gitlab`、`spring-boot-admin`、`dubbo-admin`、`elasticjob-console`。
+### Jar Component 与依赖关系
 
-### 关键依赖关系
+| Jar 组件 | 依赖的服务/组件 |
+|---|---|
+| beacon | basic-lang |
+| basic-util | — |
+| monitor-starter | spring-cloud-config、nacos |
+| mq-starter | nacos、rabbit-mq |
+| dubbo-starter | zookeeper |
+| job-starter | zookeeper |
+| redis-starter | redis |
+| mysql-starter | mysql |
+| sequence-util | mysql |
+| sharding-jdbc(3rd) | mysql |
+| ues-client | ues |
 
-- `beacon` → `basic-lang`
-- `monitor-starter` → `spring-cloud-config`、`nacos`
-- `spring-cloud-config` → `gitlab`
-- `spring-boot-admin` → `nacos`
-- `mq-stater` → `rabbit-mq`
-- `dubbo-starter` → `zookeeper`
-- `job-starter` → `zookeeper`
-- `dubbo-admin` → `zookeeper`
-- `elasticjob-console` → `zookeeper`
-- `redis-starter` → `redis`
-- `ues-client` → `ues`
+### 3rdParty Service / Console
 
-> 配置中心走 `spring-cloud-config` + `gitlab`；服务注册/调度走 `zookeeper`（Dubbo、ElasticJob）；监控与运维管理（spring-boot-admin、monitor-starter）依赖 `nacos`。
+- **3rdParty Service**：`spring-cloud-config`（依赖 `gitlab`）、`nacos`、`rabbit-mq`、`zookeeper`、`redis`、`mysql`、`Alibaba OSS`。
+- **3rdParty Console**：`gitlab`、`spring-boot-admin`（依赖 `nacos`）、`dubbo-admin`（依赖 `zookeeper`）、`elasticjob-console`（依赖 `zookeeper`）。
+
+### Inner Service / Console
+
+- `ues`：内部统一服务，依赖 `redis`、`mysql`，由业务服务通过 `ues-client` 接入。
+- `ufs`：内部文件服务，依赖 `Alibaba OSS`。
+
+> 商户控台相关的业务服务（如 `gp044_merchant`、`gp161_basis-merchant`、`gp107_contract` 等）通过上述 starter 接入对应中间件；日志、Redis、DB 等环境接入方式参见 [[qa-infra-access-guide]]。
 
 ## 相关链接
 
