@@ -2,7 +2,7 @@
 id: scn_merchant_transaction_db_check
 object_type: Scenario
 name: 商户交易落库检查
-domain: online-business
+domain: merchant-acquisition-testing
 status: active
 owner: fangyong.liu@astratech.ae
 reviewer: UNREVIEWED

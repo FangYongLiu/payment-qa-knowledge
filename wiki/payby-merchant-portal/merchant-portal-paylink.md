@@ -1,6 +1,6 @@
 ---
 title: Paylink支付链接
-domain: payby-merchant-portal
+domain: merchant-portal
 kind: wiki_page
 slug: merchant-portal-paylink
 status: active

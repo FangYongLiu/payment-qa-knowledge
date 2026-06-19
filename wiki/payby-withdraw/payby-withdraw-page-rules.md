@@ -1,6 +1,6 @@
 ---
 title: 提现页面与字段规则
-domain: payby-withdraw
+domain: withdraw-cash
 kind: wiki_page
 slug: payby-withdraw-page-rules
 status: active

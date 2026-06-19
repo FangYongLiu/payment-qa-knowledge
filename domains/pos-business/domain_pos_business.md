@@ -1,7 +1,7 @@
 ---
 id: domain_pos_business
 object_type: Domain
-domain: pos-business
+domain: device-pos
 status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED

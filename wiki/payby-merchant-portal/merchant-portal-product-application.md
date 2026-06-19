@@ -1,6 +1,6 @@
 ---
 title: 产品申请
-domain: payby-merchant-portal
+domain: merchant-portal
 kind: wiki_page
 slug: merchant-portal-product-application
 status: active

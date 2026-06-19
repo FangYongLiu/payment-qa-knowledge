@@ -1,7 +1,7 @@
 ---
 id: api_transfer_get_fundout_ability_list
 object_type: API
-domain: payby-transfer-to-bank
+domain: fund-out-transfer
 status: active
 owner: fangyong.liu@astratech.ae
 reviewer: UNREVIEWED

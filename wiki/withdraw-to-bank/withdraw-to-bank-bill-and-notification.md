@@ -1,6 +1,6 @@
 ---
 title: 提现账单与通知状态映射
-domain: withdraw-to-bank
+domain: withdraw-cash
 kind: wiki_page
 slug: withdraw-to-bank-bill-and-notification
 status: active

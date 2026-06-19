@@ -1,6 +1,6 @@
 ---
 title: 退款操作与授权
-domain: payby-merchant-portal
+domain: merchant-portal
 kind: wiki_page
 slug: merchant-portal-refund
 status: active

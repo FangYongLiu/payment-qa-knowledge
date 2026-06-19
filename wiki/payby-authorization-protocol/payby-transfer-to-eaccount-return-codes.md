@@ -1,6 +1,6 @@
 ---
 title: PayBy转账到电子账户接口返回码总览
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: payby-transfer-to-eaccount-return-codes
 status: active

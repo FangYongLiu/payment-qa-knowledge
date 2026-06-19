@@ -1,7 +1,7 @@
 ---
 id: api_payby_payment_create_order
 object_type: API
-domain: payby-merchant-portal
+domain: merchant-portal
 status: active
 owner: fangyong.liu@astratech.ae
 reviewer: UNREVIEWED

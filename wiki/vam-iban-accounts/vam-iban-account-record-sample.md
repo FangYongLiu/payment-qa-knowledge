@@ -1,6 +1,6 @@
 ---
 title: VAM IBAN 虚拟账户记录示例
-domain: vam-iban-accounts
+domain: vam-iban
 kind: wiki_page
 slug: vam-iban-account-record-sample
 status: active

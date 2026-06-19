@@ -1,7 +1,7 @@
 ---
 id: domain_payby_merchant_payment_api
 object_type: Domain
-domain: payby-merchant-payment-api
+domain: payby-open-api
 status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED

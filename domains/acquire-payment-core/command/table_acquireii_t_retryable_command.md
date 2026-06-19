@@ -1,7 +1,7 @@
 ---
 id: tbl_acquireii_t_retryable_command
 object_type: Table
-domain: acquire-payment-core
+domain: acquire-transaction
 status: active
 owner: fangyong.liu@astratech.ae
 reviewer: UNREVIEWED

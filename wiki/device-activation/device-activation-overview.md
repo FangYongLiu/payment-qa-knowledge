@@ -1,6 +1,6 @@
 ---
 title: 设备激活流程总览（Smart POS）
-domain: device-activation
+domain: device-pos
 kind: wiki_page
 slug: device-activation-overview
 status: active

@@ -1,7 +1,7 @@
 ---
 id: tbl_pcc_content_param
 object_type: Table
-domain: payby-authorization-protocol
+domain: authorization-protocol
 status: active
 owner: fangyong.liu@astratech.ae
 reviewer: UNREVIEWED

@@ -1,6 +1,6 @@
 ---
 title: BMOC Basis Merchant 模块总览
-domain: payby-bmoc-operations
+domain: merchant-portal
 kind: wiki_page
 slug: bmoc-basis-merchant-overview
 status: active

@@ -1,6 +1,6 @@
 ---
 title: 提现账单与通知状态
-domain: payby-withdraw
+domain: withdraw-cash
 kind: wiki_page
 slug: payby-withdraw-bill-notification
 status: active

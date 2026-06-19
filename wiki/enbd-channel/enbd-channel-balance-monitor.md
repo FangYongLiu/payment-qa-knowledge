@@ -1,6 +1,6 @@
 ---
 title: ENBD渠道余额查询机制
-domain: enbd-channel
+domain: channel-integration
 kind: wiki_page
 slug: enbd-channel-balance-monitor
 status: active

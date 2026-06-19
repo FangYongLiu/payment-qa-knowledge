@@ -1,7 +1,7 @@
 ---
 id: scn_payby_withdraw_core_cases
 object_type: Scenario
-domain: payby-withdraw
+domain: withdraw-cash
 status: active
 owner: wiki-sync@acquire
 reviewer: UNREVIEWED

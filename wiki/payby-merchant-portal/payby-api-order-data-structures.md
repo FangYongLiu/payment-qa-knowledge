@@ -1,6 +1,6 @@
 ---
 title: PayBy API 订单数据结构定义
-domain: payby-merchant-portal
+domain: merchant-portal
 kind: wiki_page
 slug: payby-api-order-data-structures
 status: active

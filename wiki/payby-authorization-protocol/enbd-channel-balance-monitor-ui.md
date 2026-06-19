@@ -1,6 +1,6 @@
 ---
 title: ENBD Channel - Balance Monitor界面说明
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: enbd-channel-balance-monitor-ui
 status: active

@@ -1,6 +1,6 @@
 ---
 title: PayBy转账到银行接口安全规则
-domain: payby-transfer-to-bank
+domain: fund-out-transfer
 kind: wiki_page
 slug: payby-transfer-to-bank-security
 status: active

@@ -1,7 +1,7 @@
 ---
 id: scn_fundout_to_account
 object_type: Scenario
-domain: merchant-fund-out
+domain: fund-out-transfer
 status: active
 owner: wiki-sync@acquire
 reviewer: UNREVIEWED

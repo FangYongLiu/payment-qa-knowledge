@@ -1,6 +1,6 @@
 ---
 title: Basis Merchant 菜单功能详解
-domain: bmoc-basis-merchant
+domain: merchant-portal
 kind: wiki_page
 slug: bmoc-basis-merchant-menu-guide
 status: active

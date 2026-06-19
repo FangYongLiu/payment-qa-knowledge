@@ -1,6 +1,6 @@
 ---
 title: PayBy 转账到银行 数据模型与字段定义
-domain: payby-transfer-to-bank
+domain: fund-out-transfer
 kind: wiki_page
 slug: payby-transfer-to-bank-data-models
 status: active

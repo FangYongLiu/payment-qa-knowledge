@@ -1,7 +1,7 @@
 ---
 id: tbl_acquireii_t_event_param
 object_type: Table
-domain: pos-business
+domain: device-pos
 status: active
 owner: fangyong.liu@astratech.ae
 reviewer: UNREVIEWED

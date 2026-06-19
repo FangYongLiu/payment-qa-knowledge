@@ -1,6 +1,6 @@
 ---
 title: Merchant Portal MySQL连接信息
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: merchant-portal-mysql-connection-info
 status: active

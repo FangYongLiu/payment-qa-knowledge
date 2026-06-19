@@ -1,7 +1,7 @@
 ---
 id: scn_mit_cit_test_guide
 object_type: Scenario
-domain: payby-authorization-protocol
+domain: authorization-protocol
 status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED

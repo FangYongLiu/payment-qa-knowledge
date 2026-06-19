@@ -1,6 +1,6 @@
 ---
 title: ENBD渠道总览
-domain: enbd-channel
+domain: channel-integration
 kind: wiki_page
 slug: enbd-channel-overview
 status: active

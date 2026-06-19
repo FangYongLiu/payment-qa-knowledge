@@ -1,6 +1,6 @@
 ---
 title: PayBy 转账到银行账户接口总览
-domain: payby-transfer-to-bank
+domain: fund-out-transfer
 kind: wiki_page
 slug: payby-transfer-to-bank-overview
 status: active

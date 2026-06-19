@@ -1,6 +1,6 @@
 ---
 title: 结算与提现
-domain: payby-merchant-portal
+domain: merchant-portal
 kind: wiki_page
 slug: merchant-portal-settlement-and-withdraw
 status: active

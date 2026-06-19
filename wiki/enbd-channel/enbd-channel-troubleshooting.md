@@ -1,6 +1,6 @@
 ---
 title: ENBD渠道常见问题排查
-domain: enbd-channel
+domain: channel-integration
 kind: wiki_page
 slug: enbd-channel-troubleshooting
 status: active

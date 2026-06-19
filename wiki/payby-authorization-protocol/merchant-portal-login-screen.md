@@ -1,6 +1,6 @@
 ---
 title: 商户控台登录页面说明
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: merchant-portal-login-screen
 status: active

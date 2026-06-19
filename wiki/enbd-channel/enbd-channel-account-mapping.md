@@ -1,6 +1,6 @@
 ---
 title: ENBD渠道账户映射表
-domain: enbd-channel
+domain: channel-integration
 kind: wiki_page
 slug: enbd-channel-account-mapping
 status: active

@@ -1,6 +1,6 @@
 ---
 title: 常用数据库指南
-domain: payment-databases
+domain: payment-database-reference
 kind: wiki_page
 slug: common-database-guide
 status: active

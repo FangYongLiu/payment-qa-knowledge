@@ -1,6 +1,6 @@
 ---
 title: MIT/CIT MPGS 测试指南
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: mit-cit-mpgs-test-guide
 status: active

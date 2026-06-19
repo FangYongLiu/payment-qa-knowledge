@@ -1,6 +1,6 @@
 ---
 title: CKO渠道订阅支付流程
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: cko-channel-subscription-payment-flow
 status: active

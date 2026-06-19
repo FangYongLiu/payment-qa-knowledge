@@ -1,6 +1,6 @@
 ---
 title: PayBy异步通知机制总览
-domain: payby-merchant-api
+domain: payby-open-api
 kind: wiki_page
 slug: payby-merchant-api-async-notifications
 status: active

@@ -1,6 +1,6 @@
 ---
 title: PayBy商户支付接口总览
-domain: payby-merchant-payment-api
+domain: payby-open-api
 kind: wiki_page
 slug: payby-merchant-api-overview
 status: active

@@ -1,6 +1,6 @@
 ---
 title: PayBy提现到银行卡功能总览
-domain: payby-withdraw
+domain: withdraw-cash
 kind: wiki_page
 slug: payby-withdraw-overview
 status: active

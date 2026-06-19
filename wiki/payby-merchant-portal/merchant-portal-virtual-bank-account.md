@@ -1,6 +1,6 @@
 ---
 title: 虚拟银行账户(VAM)
-domain: payby-merchant-portal
+domain: merchant-portal
 kind: wiki_page
 slug: merchant-portal-virtual-bank-account
 status: active

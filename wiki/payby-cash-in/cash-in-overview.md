@@ -1,6 +1,6 @@
 ---
 title: Cash In 现金充值业务总览
-domain: payby-cash-in
+domain: withdraw-cash
 kind: wiki_page
 slug: cash-in-overview
 status: active

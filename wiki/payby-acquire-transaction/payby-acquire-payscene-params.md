@@ -1,6 +1,6 @@
 ---
 title: PayBy交易场景参数关系(paySceneParams)
-domain: payby-acquire-transaction
+domain: acquire-transaction
 kind: wiki_page
 slug: payby-acquire-payscene-params
 status: active

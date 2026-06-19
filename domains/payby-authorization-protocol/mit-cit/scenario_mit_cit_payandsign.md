@@ -1,7 +1,7 @@
 ---
 id: scn_mit_cit_payandsign
 object_type: Scenario
-domain: payby-authorization-protocol
+domain: authorization-protocol
 status: active
 owner: wiki-sync@acquire
 reviewer: UNREVIEWED

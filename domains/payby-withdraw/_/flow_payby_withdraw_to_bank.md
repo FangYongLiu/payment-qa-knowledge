@@ -1,7 +1,7 @@
 ---
 id: flow_payby_withdraw_to_bank
 object_type: Flow
-domain: payby-withdraw
+domain: withdraw-cash
 status: active
 owner: wiki-sync@acquire
 reviewer: UNREVIEWED

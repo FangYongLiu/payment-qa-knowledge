@@ -1,6 +1,6 @@
 ---
 title: POS设备类型与机型清单
-domain: pos-business
+domain: device-pos
 kind: wiki_page
 slug: pos-device-types
 status: active

@@ -1,6 +1,6 @@
 ---
 title: PayBy提现-选择转账方式
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: payby-withdrawal-transfer-method
 status: active

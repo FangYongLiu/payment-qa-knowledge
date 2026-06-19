@@ -1,6 +1,6 @@
 ---
 title: POS业务总览
-domain: pos-business
+domain: device-pos
 kind: wiki_page
 slug: pos-business-overview
 status: active

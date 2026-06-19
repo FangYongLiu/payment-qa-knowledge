@@ -1,7 +1,7 @@
 ---
 id: tbl_merchant_device
 object_type: Table
-domain: device-activation
+domain: device-pos
 status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED

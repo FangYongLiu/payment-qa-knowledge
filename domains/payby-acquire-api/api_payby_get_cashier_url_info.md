@@ -1,7 +1,7 @@
 ---
 id: api_payby_get_cashier_url_info
 object_type: API
-domain: payby-acquire-api
+domain: payby-open-api
 status: active
 owner: fangyong.liu@astratech.ae
 reviewer: UNREVIEWED

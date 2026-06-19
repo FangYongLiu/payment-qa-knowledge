@@ -1,6 +1,6 @@
 ---
 title: Merchant Portal 管理员信息表单截图
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: merchant-portal-admin-info-screenshot
 status: active

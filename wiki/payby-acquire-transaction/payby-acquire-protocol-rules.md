@@ -1,6 +1,6 @@
 ---
 title: PayBy收单接口协议与参数规则
-domain: payby-acquire-transaction
+domain: acquire-transaction
 kind: wiki_page
 slug: payby-acquire-protocol-rules
 status: active

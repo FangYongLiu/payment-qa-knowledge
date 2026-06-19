@@ -1,6 +1,6 @@
 ---
 title: 商户控台-服务选择页
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: merchant-portal-service-selection
 status: active

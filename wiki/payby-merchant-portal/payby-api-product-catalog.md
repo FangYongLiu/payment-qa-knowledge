@@ -1,6 +1,6 @@
 ---
 title: PayBy产品类型清单
-domain: payby-merchant-portal
+domain: merchant-portal
 kind: wiki_page
 slug: payby-api-product-catalog
 status: active

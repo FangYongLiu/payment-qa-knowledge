@@ -1,6 +1,6 @@
 ---
 title: PayBy支付场景码与支付渠道号
-domain: payby-acquire-transaction
+domain: acquire-transaction
 kind: wiki_page
 slug: payby-acquire-pay-scene-codes
 status: active

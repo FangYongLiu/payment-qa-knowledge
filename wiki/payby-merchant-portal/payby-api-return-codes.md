@@ -1,6 +1,6 @@
 ---
 title: PayBy 接口返回码总览
-domain: payby-merchant-portal
+domain: merchant-portal
 kind: wiki_page
 slug: payby-api-return-codes
 status: active

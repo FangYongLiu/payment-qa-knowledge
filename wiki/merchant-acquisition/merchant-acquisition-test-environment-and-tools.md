@@ -1,6 +1,6 @@
 ---
 title: 商户收单测试环境与工具
-domain: merchant-acquisition
+domain: merchant-acquisition-testing
 kind: wiki_page
 slug: merchant-acquisition-test-environment-and-tools
 status: active

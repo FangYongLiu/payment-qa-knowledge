@@ -1,7 +1,7 @@
 ---
 id: scn_cko_standalone_card_binding
 object_type: Scenario
-domain: payby-authorization-protocol
+domain: authorization-protocol
 status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED

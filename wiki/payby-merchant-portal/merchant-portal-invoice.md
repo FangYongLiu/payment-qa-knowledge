@@ -1,6 +1,6 @@
 ---
 title: Invoice开票收款
-domain: payby-merchant-portal
+domain: merchant-portal
 kind: wiki_page
 slug: merchant-portal-invoice
 status: active

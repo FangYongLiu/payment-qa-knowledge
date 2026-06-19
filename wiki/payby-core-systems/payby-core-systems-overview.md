@@ -1,6 +1,6 @@
 ---
 title: PayBy核心系统简介
-domain: payby-core-systems
+domain: acquire-transaction
 kind: wiki_page
 slug: payby-core-systems-overview
 status: active

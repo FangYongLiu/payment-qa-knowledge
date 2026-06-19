@@ -1,6 +1,6 @@
 ---
 title: PayBy Cash Out 业务总览
-domain: payby-cash-out
+domain: withdraw-cash
 kind: wiki_page
 slug: payby-cash-out-overview
 status: active

@@ -1,6 +1,6 @@
 ---
 title: BMOC商户控台(Merchant Portal)概览
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: bmoc-merchant-portal-overview
 status: active

@@ -1,6 +1,6 @@
 ---
 title: PayBy开放接口安全规则(签名与加密)
-domain: payby-openapi
+domain: fund-out-transfer
 kind: wiki_page
 slug: payby-openapi-security-rules
 status: active

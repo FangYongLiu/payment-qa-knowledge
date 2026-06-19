@@ -1,7 +1,7 @@
 ---
 id: flow_cko_subscription_payment
 object_type: Flow
-domain: payby-authorization-protocol
+domain: authorization-protocol
 status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED

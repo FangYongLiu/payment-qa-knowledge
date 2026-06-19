@@ -1,7 +1,7 @@
 ---
 id: scn_withdraw_to_bank_main_flows
 object_type: Scenario
-domain: withdraw-to-bank
+domain: withdraw-cash
 status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED

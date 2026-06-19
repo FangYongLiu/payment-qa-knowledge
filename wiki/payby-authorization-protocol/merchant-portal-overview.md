@@ -1,6 +1,6 @@
 ---
 title: Merchant Portal 商户控台
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: merchant-portal-overview
 status: active

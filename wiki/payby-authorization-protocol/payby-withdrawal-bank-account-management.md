@@ -1,6 +1,6 @@
 ---
 title: PayBy提现-银行账户管理
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: payby-withdrawal-bank-account-management
 status: active

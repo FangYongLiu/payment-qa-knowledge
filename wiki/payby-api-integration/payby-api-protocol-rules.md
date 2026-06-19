@@ -1,6 +1,6 @@
 ---
 title: PayBy接口协议规则
-domain: payby-api-integration
+domain: payby-open-api
 kind: wiki_page
 slug: payby-api-protocol-rules
 status: active

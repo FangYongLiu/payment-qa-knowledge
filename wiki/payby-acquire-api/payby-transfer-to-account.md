@@ -1,6 +1,6 @@
 ---
 title: PayBy单笔付款到账户
-domain: payby-acquire-api
+domain: payby-open-api
 kind: wiki_page
 slug: payby-transfer-to-account
 status: active

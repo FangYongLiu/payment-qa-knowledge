@@ -1,6 +1,6 @@
 ---
 title: Fiserv渠道绑定与支付流程
-domain: payby-authorization-protocol
+domain: authorization-protocol
 kind: wiki_page
 slug: fiserv-channel-binding-and-payment
 status: active

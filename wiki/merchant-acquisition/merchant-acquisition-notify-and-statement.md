@@ -1,6 +1,6 @@
 ---
 title: 异步通知与对账文件结构
-domain: merchant-acquisition
+domain: merchant-acquisition-testing
 kind: wiki_page
 slug: merchant-acquisition-notify-and-statement
 status: active

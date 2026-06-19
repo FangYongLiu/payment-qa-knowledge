@@ -1,7 +1,7 @@
 ---
 id: tbl_fiserv_out_bound
 object_type: Table
-domain: payby-authorization-protocol
+domain: authorization-protocol
 status: active
 owner: wiki-sync@acquire
 reviewer: UNREVIEWED

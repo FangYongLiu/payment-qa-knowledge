@@ -1,7 +1,7 @@
 ---
 id: flow_cash_in_topup
 object_type: Flow
-domain: payby-cash-in
+domain: withdraw-cash
 status: active
 owner: wiki-sync@acquire
 reviewer: UNREVIEWED

@@ -1,7 +1,7 @@
 ---
 id: api_payby_refund_place_order
 object_type: API
-domain: payby-acquiring-api
+domain: payby-open-api
 status: active
 owner: fangyong.liu@astratech.ae
 reviewer: UNREVIEWED

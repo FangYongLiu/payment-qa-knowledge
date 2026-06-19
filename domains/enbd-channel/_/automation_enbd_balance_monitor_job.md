@@ -1,7 +1,7 @@
 ---
 id: auto_enbd_balance_monitor_job
 object_type: AutomationAsset
-domain: enbd-channel
+domain: channel-integration
 status: active
 owner: wiki-sync@acquire
 reviewer: UNREVIEWED

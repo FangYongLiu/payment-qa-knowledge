@@ -1,7 +1,7 @@
 ---
 id: scn_fiserv_test_tid_creation
 object_type: Scenario
-domain: payby-authorization-protocol
+domain: authorization-protocol
 status: active
 owner: wiki-sync@acquire
 reviewer: UNREVIEWED
