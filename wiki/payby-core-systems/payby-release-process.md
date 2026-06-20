@@ -4,10 +4,10 @@ domain: payby-core-systems
 kind: wiki_page
 slug: payby-release-process
 status: active
-owner: wiki-sync@acquire
+owner: upload-sync@platform
 reviewer: UNREVIEWED
-source_type: wiki
-source_ref: confluence:AQ/1405976629
+source_type: wiki_image
+source_ref: wiki_image:bd27e7d8-aa76-4ea0-923e-bb495f0710b9
 tags: []
 ---
 
@@ -55,8 +55,6 @@ PayBy 常规发布窗口为每周二、周四 UAE 时间 06:00。任何在常规
 
 ## 角色与职责
 
-详细的角色分工与跨团队协作清单见 [[payby-release-process-roles-responsibilities]]。
-
 **DEVOPS / DBA**
 - 负责 UAT 与 PROD 的部署
 - 依据 release scoped tickets 中的信息执行：Build Version、CRs、Configuration files 等
@@ -69,6 +67,18 @@ PayBy 常规发布窗口为每周二、周四 UAE 时间 06:00。任何在常规
 **DEV**
 - 在 DEV 环境完成 Self Tests
 - 在 QA 完成 SIM 测试后，将代码合并到 master
+- 在发布日按 ticket 维度完成 Release Confirm 任务（见下文）
+
+### Release Confirm 任务
+
+在发布流程中，每个进入当次 release 的 ticket 会生成一条对应的 Release Confirm 任务，由该 ticket 的负责开发人员逐条确认完成。
+
+任务以表格形式跟踪，字段包括：
+
+- **Task**：以 ticket key 命名，例如 `PAYM-1234 Release confirm`、`PAYM-5678 Release confirm`
+- **Assigned to**：负责该 ticket 的开发人员（如 Developer 01 / Developer 02）
+- **Due date**：通常为发布当天（Today）
+- **Bucket**：初始状态为 `To do`，开发完成确认后勾选为已完成（completed，带删除线显示）
 
 ## 工作流新增状态
 
@@ -84,71 +94,8 @@ PayBy 常规发布窗口为每周二、周四 UAE 时间 06:00。任何在常规
 - 在 UAT 完成 QA 验证后，需要将状态切换为 `SECURITY CONFIRM`
 - 最终结束状态为 `SECURITY COMPLETED`，而不是普通的 `COMPLETED`
 
-## 发布日协作时间线（T-1 与 Release Day）
-
-发布按"T-1 准备日（MONDAY / WEDNESDAY）"与"上线日（TUESDAY / THURSDAY）"两阶段推进。所有确认动作通过 Teams 的 Loop 完成。
-
-### T-1（MONDAY / WEDNESDAY）
-
-**17:00 (UTC+4) — QA Lead 准备初版上线清单**
-- 确认上线日最终上线 Jira
-- 检查应用冲突
-- 在 Jira 中校验 CR 与配置规范
-- 交付物：The Release JIRA List
-
-**17:30 (UTC+4) — QA Lead 同步信息**
-- 将初版上线 List 与上线时间同步至 DBA、OPS、Dev
-- 在上线 Teams 群中创建 "Release confirmation Loop"
-- 创建 Wiki page `YYYY-MM-DD Release Detail` 归档上线 Jira
-- 注意：为避免与主发布群消息冲突，Confirmation Loop 在新建的 Teams 群中单独发布
-- 注意：T-1 发出的清单**不是最终版**，仅代表 QA 当前预估可按时上线的 Jira；如发现新缺陷或其他阻塞，仍可能被剔除，最终清单在上线日当天重新发出
-
-**Release Jira Dev 确认**
-- 在 Teams Loop 中勾选确认上线就绪
-
-### 上线日（TUESDAY / THURSDAY）
-
-**06:00 (UTC+4) — QA Lead 发布最终清单**
-- 在上线 Teams 群中同步最终上线 Jira List
-- 创建 "Online confirmation Loop" 用于开发 online 确认
-
-**Online 确认**
-- QA 在 Teams 群中 @ 对应项目开发确认是否 online
-- Dev 响应 QA 并在 Loop 中勾选 "online confirmed"
-- 规则：若开发超过 30 分钟仍未 online，该项目将以 "Dev not ready" 取消上线
-
-**推进部署**
-- QA 根据 Online Loop 状态推进上线
-- 如存在 **before CR**：发布版本前 @ DBA
-- 发布版本时 @ OPS
-- 如存在 **after CR**：发布版本后 @ DBA
-- QA Lead 在 Teams 群中创建 "CR/Config/LOG confirmation Loop"
-
-**DBA / OPS 执行反馈**
-- 执行完成后更新 Jira 状态并上传执行结果
-- 在 Teams 群中回复 QA
-
-**Dev 检查上线结果**
-- 如 Jira 存在 CR，检查执行结果
-- 如 Jira 存在配置变更，检查配置结果
-- 检查应用日志
-- 关注相关监控/告警
-- 在 "CR/Config/LOG confirmation Loop" 中勾选确认完成所有检查
-
-**生产验证**
-- QA 进行生产环境验证，将 Jira 状态更新为 `COMPLETED`（如不能实时验证，添加备注）
-- Dev 双重检查生产交易
-
-**收尾**
-- QA Lead 将当天上线情况更新至 Wiki page `YYYY-MM-DD Release Detail`，包括最终结果、上线异常记录、Loop 确认结果
-
 ## Definition of Done
 
 - 所有 ticket 已上线 PROD，且状态为 `COMPLETED` 或 `SECURITY COMPLETED`
-- 当天 Wiki page `YYYY-MM-DD Release Detail` 已更新最终结果、异常记录与 Loop 确认结果
+- 对应的 Release Confirm 任务已由负责开发人员勾选完成
 - 部署过程中出现的任何问题都需复盘，分析 root cause，并制定 action items，避免后续重复发生
-
-## 相关流程
-
-- Pre-Release Dev-Test-Product Collaboration Process (SIM → UAT → Go-Live Checklist)
-- PayBy Pre-Release Dev-Test-Product Collaboration Process (Channel)
