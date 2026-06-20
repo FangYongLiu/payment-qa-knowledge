@@ -7,7 +7,7 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:a3eae712-a4c3-4da3-b42d-ad8965cf4837
+source_ref: wiki_image:445d5644-ba36-4274-8ef4-edef945a9a6e
 tags: []
 ---
 
@@ -59,6 +59,41 @@ Merchant Portal 是商户体系的统一入口，承载商户注册/登录、业
 - **Billing**：计费与账务（账单账户、订单初始化、结算配置）
 - **Contract**：商户合同生成与管理
 - **Unified Portal**：商户注册与入驻提交的前端入口
+
+## 商户控台导航结构（PayBy Merchant Web）
+
+PayBy Merchant Web 控台左侧主导航包含：
+
+- **Home**
+- **Transactions**
+  - Fiat
+  - Crypto
+- **Accounts**
+  - Fiat
+  - （其余子项）
+
+## 收单端 Transaction Records 页面
+
+收单（Payment / Acquire）侧在 Web 控台 `Transactions => Fiat` 下提供 **Transaction Records** 页面，用于查询交易明细。
+
+交易类型筛选 Tab（Pills）：
+
+- `Purchase`（默认选中）
+- `Refund`
+- `Withdrawal`
+- `Cashback`
+- `Transfer`
+- `Transfer To Bank Account`
+- `Deposit`
+
+筛选输入项：
+
+- **Date range**：起止时间，格式 `dd-MM-yyyy HH:mm:ss ~ dd-MM-yyyy HH:mm:ss`（例如 `27-08-2024 00:00:00 ~ 02-09-2024 23:59:59`）
+- **(Merchant) Order No.**
+- **Subject**
+- **Terminal**
+
+> 注：上述筛选条件是收单服务交易查询慢 SQL 优化方案所针对的核心查询入口，定位/排查慢查询时优先核对这几项过滤条件组合。
 
 ## WPS 端 Transactions 与对账单下载
 
