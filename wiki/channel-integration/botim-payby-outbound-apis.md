@@ -4,87 +4,100 @@ domain: channel-integration
 kind: wiki_page
 slug: botim-payby-outbound-apis
 status: active
-owner: upload-sync@platform
+owner: wiki-sync@acquire
 reviewer: UNREVIEWED
 source_type: wiki
-source_ref: wiki:a01637cc-4974-45c3-b1e9-d194dac7ed1f
+source_ref: confluence:PMDPayment/1072791687
 tags: []
 ---
 
 # PayBy调用Botim Outbound API清单
 
-本页汇总 PayBy 侧调用 Botim 的 Outbound API 清单，覆盖用户信息查询、群组成员校验、通知推送、卡片消息、Widget 等场景。上层协议与加解密详见 [[botim-payby-grpc-gateway-protocol]] 与 [[botim-payby-payload-encryption]]，整体方案参见 [[botim-payby-server-integration-overview]]。
+本页汇总 PayBy 侧需要调用 Botim 的对外 API（Outbound APIs），按业务场景与所属系统归类，便于在好友转账、Cash Gift、Household、Landing Page、Status Tracker 等场景下定位接口与提醒触达通道。
+
+> 协议层、加解密与登录绑定相关请见 [[botim-payby-server-integration-overview]]、[[botim-payby-grpc-gateway-protocol]]、[[botim-payby-payload-security]]。UID/手机号变更兼容场景见 [[botim-uid-mobile-change-cases]]。
 
 ## 用户信息与 UID 查询
 
-| API Code | Usage | Product / Cases | 调用方 |
-|---|---|---|---|
-| `/api/uaepay/payby/callback/getUserInfo` | Inquiry User Info by UID | Friend Transfer 等：member 创建（CreatePersonalMemberByUidProcessor）；socialpay AA split (`/socialpay/sb/sendSplitBill`、`/socialpay/sb/v1/auth/collection-money`)；basis-cms Query by UID；sgs Partner check (`/common/partner/checkWhitelist`)；personal Transfer to mobile init (`/personal/transfer/submit`)、Mobile different check (`/personal/mobile/different/check`)；接收方未注册 PayBy 时通过 Botim UID 查询手机号并自动注册 | member / socialpay / basis-cms / personal / sgs / remittance* |
-| `/api/cuserrs/user/v1/userInfoDetail` | Inquiry User Info by Auth Code；配套 `/personal/auth/oauthByAuthCode`、`/personal/auth/loginByAuthCode`、`/personal/auth/followOA` | 基础接口 | personal / marketing-event* / member-future* / comp-service* |
-| `/api/buserrs/user/v1/inner/batchGetUidByMobile` | Inquiry UID by Mobile Number | household（Receiver remind、Transfer fail notification、Transfer remind）、basis-cms（Query UID by mobile） | household / basis-cms |
-| `/api/buserrs/user/v1/batchGetUserBaseInfo` | Batch Get User Info | — | marketing-event* / member-future* / comp-service* |
+用于按 UID/手机号反查用户信息，覆盖好友转账、AA Split、CMS 查询、自动注册等场景。
 
-UID 兼容与手机号变更相关的具体 case 见 [[botim-uid-compatibility-cases]]。
+| API Code | 用途 | 场景 / 调用方系统 |
+|---|---|---|
+| `/api/uaepay/payby/callback/getUserInfo` | 通过 UID 查询用户信息 | Friend Transfer 等；调用方：member（`CreatePersonalMemberByUidProcessor` 按 UID 创建 member）、socialpay（AA Split：`/socialpay/sb/sendSplitBill`、`/socialpay/sb/v1/auth/collection-money`）、basis-cms（按 UID 查询）、sgs（`/common/partner/checkWhitelist` 合作方校验）、personal（好友转账初始化 `/personal/transfer/submit`、`/personal/mobile/different/check`），收款方未注册 PayBy 时通过 Botim UID 反查手机号并自动注册 |
+| `/api/cuserrs/user/v1/userInfoDetail` | 通过 Auth Code 查询用户信息 | personal |
+| `/api/buserrs/user/v1/batchGetUserBaseInfo` | 批量获取用户基础信息 | marketing-event*、member-future*、comp-service* |
+| `/api/buserrs/user/v1/inner/batchGetUidByMobile` | 通过手机号反查 UID | household（收款人提醒、转账失败通知、转账提醒）、basis-cms（按手机号查 UID） |
 
-## 群组与红包成员校验
+## 群组与红包成员校验（Cash Gift）
 
-| API Code | Usage | Product | 调用入口 |
-|---|---|---|---|
-| `/api/uaepay/payby/callback/isGroupMember` | Check in group or not | Cash Gift（Collect cash gift check） | `/socialpay/redpkg/receive`（socialpay） |
-| `/api/uaepay/payby/callback/isGiftMember` | Check in official cash gift group or not | Official Cash Gift (Marketing) | `/socialpay/redpkg/receive`（socialpay） |
+用于领取红包/现金礼时校验用户是否在指定群或官方群。
 
-## OAuth 与公众号关注
+| API Code | 用途 | 场景 |
+|---|---|---|
+| `/api/uaepay/payby/callback/isGroupMember` | 校验是否在群中 | Cash Gift 领取校验 `/socialpay/redpkg/receive`（socialpay） |
+| `/api/uaepay/payby/callback/isGiftMember` | 校验是否在官方 Cash Gift 群中 | Official Cash Gift（Marketing）领取校验 `/socialpay/redpkg/receive`（socialpay） |
 
-| API Code | Usage |
+## OAuth 与登录授权
+
+PayBy 端用于 OAuth 授权、按 Auth Code 登录、关注公众号等基础能力。
+
+| API Code | 用途 | 调用方系统 |
+|---|---|---|
+| `/api/authserver/oauth2/token` | OAuth Token，基础 API | personal |
+| `/personal/auth/oauthByAuthCode` | 通过 Auth Code 进行 OAuth | marketing-event*、member-future*、comp-service*、personal |
+| `/personal/auth/loginByAuthCode` | 通过 Auth Code 登录 | personal |
+| `/personal/auth/followOA` | 关注 Official Account | marketing-event*、member-future*、comp-service* |
+| `/api/officialrs/subscribe/v1/follow` | 关注 Official Account | marketing-event*、member-future*、comp-service* |
+| `/api/cstatistics/stats/v1/numberOfCallsToday` | 今日调用次数统计 | marketing-event*、member-future*、comp-service* |
+
+> 注：PayBy 侧服务端登录入口对应 [[api_personal_v3_auth_login]]、[[api_personal_login_or_refresh]]，绑定客户见 [[api_personal_bind_customer]]。
+
+## VIP 发放（Old Marketing）
+
+| API Code | 用途 | 调用方系统 |
+|---|---|---|
+| `/api/buserrs/user/v1/giveOutVip` | 发放 Botim VIP | Old Marketing、mssii* |
+| `/api/buserrs/user/v1/checkGiveOutVipStatus` | 校验 VIP 发放状态 | Old Marketing、mssii* |
+
+## Household 卡片消息
+
+Household 业务向用户发送购物车卡片、卡片更新与卡片事件，调用方均为 household。
+
+| API Code | 用途 |
 |---|---|
-| `/api/authserver/oauth2/token` | OAuth，基础接口（personal） |
-| `/api/officialrs/subscribe/v1/follow` | Follow Official Account（marketing-event* / member-future* / comp-service*） |
-| `/api/cstatistics/stats/v1/numberOfCallsToday` | Statistics Number of Calls Today（同上） |
+| `/api/officialrs/msg/v1/sendShoppingCartCardMsg` | 发送购物车卡片消息 |
+| `/api/officialrs/msg/v1/sendSubmitShoppingCartResponse` | 发送提交购物车响应 |
+| `/api/officialrs/msg/v1/sendShoppingCartCardEvent` | 发送购物车卡片事件 |
+| `/api/payby/v1/inner/sendRichTextCard` | 发送富文本卡片 |
+| `/api/payby/v1/inner/sendRichTextCardUpdate` | 更新富文本卡片 |
 
-## VIP 发放
+## Landing Page Todo 卡片
 
-| API Code | Usage | 场景 |
+用于 Landing Page 提醒（低余额提醒、申请卡片提醒、汇率更新提醒等）。
+
+| API Code | 用途 | 调用方系统 |
 |---|---|---|
-| `/api/buserrs/user/v1/giveOutVip` | Give Customer Botim VIP | Old Marketing（mssii*） |
-| `/api/buserrs/user/v1/checkGiveOutVipStatus` | Check Give Status | Old Marketing（mssii*） |
-
-## 卡片消息（Household 等）
-
-| API Code | Usage | Product |
-|---|---|---|
-| `/api/officialrs/msg/v1/sendShoppingCartCardMsg` | Send Card | Household |
-| `/api/officialrs/msg/v1/sendSubmitShoppingCartResponse` | Send Card Response | Household |
-| `/api/officialrs/msg/v1/sendShoppingCartCardEvent` | Send Card Event | Household |
-| `/api/payby/v1/inner/sendRichTextCard` | Send Card | Household |
-| `/api/payby/v1/inner/sendRichTextCardUpdate` | Send Card | Household |
-
-## Landing Page Todo
-
-| API Code | Usage | 场景 |
-|---|---|---|
-| `/api/buserrs/lpage/upsertTodo` | Add or Update Todo Card | Landing Page：Low balance remind、Apply card remind、Exchange rate update remind 等（cns / remittance） |
-| `/api/buserrs/lpage/closeTodo` | Close Todo Card | 同上 |
+| `/api/buserrs/lpage/upsertTodo` | 新增/更新 Todo 卡片 | cns、remittance |
+| `/api/buserrs/lpage/closeTodo` | 关闭 Todo 卡片 | cns、remittance |
 
 ## Status Tracker / Widget
 
-| API Code | Usage | Product |
-|---|---|---|
-| `/api/buserrs/explore/v1/upsertWidgetItem` | Add or Update Widget | Status Tracker（remittance） |
-| `/api/buserrs/explore/v1/getWidgetItem` | Get Widget | Status Tracker（remittance） |
-| `https://openapi.botim.me/api/buserrs/explore/v1/updateUserWidgetData` | Update User Widget Data | Mobile Top-Up |
+用于 Status Tracker 与 Mobile Top-Up 等场景下的 Widget 维护与数据更新。
 
-## 通用通知推送
-
-| API Code | Usage | 场景 |
+| API Code | 用途 | 调用方系统 |
 |---|---|---|
-| `https://uaepaygw.botim.me/api/uaepay/payby/callback/notify` | Send Specific Notification to User | Friend Transfer / Cash Gift / Aani Transfer（socialpay / personal / ons） |
+| `/api/buserrs/explore/v1/upsertWidgetItem` | 新增/更新 Widget | remittance |
+| `/api/buserrs/explore/v1/getWidgetItem` | 获取 Widget | remittance |
+| `https://openapi.botim.me/api/buserrs/explore/v1/updateUserWidgetData` | 更新用户 Widget 数据 | Mobile Top-Up |
+
+## 通用通知触达
+
+| API Code | 用途 | 场景 / 调用方系统 |
+|---|---|---|
+| `https://uaepaygw.botim.me/api/uaepay/payby/callback/notify` | 向用户发送特定通知 | Friend Transfer / Cash Gift / Aani Transfer；socialpay、personal、ons |
 
 ## 4.0 兼容说明
 
-- 4.0 用户场景下，3.0 时代的 Friend Transfer / Cash Gift / Household / Landing Page Reminder / Status Tracker 等通知，由 Botim 侧负责兼容。
-- Friend Transfer 收款方未注册时通过 `/api/uaepay/payby/callback/getUserInfo` 查询手机号，由 Botim 兼容。
-- Cash Gift 领取时通过 `/api/uaepay/payby/callback/isGiftMember`、`/api/uaepay/payby/callback/isGroupMember` 校验，由 Botim 兼容。
-- 用户信息类接口（`batchGetUidByMobile`、`getUserInfo`、`userInfoDetail`）由 Botim 3.0 侧兼容。
-- 标注 `*` 的系统名（如 remittance*、marketing-event*、member-future*、comp-service*、mssii*）为原文未定稿/待确认的调用方系统。
-
-> PayBy 侧入站接口（`/personal/v1/bind-customer`、`/personal/v1/login-or-refresh`、`/personal/v3/auth/login`）见 [[api_personal_bind_customer]]、[[api_personal_login_or_refresh]]、[[api_personal_v3_auth_login]]。
+- Friend Transfer / Cash Gift / Household / Landing Page Reminder / Status Tracker 等通知仅在 Botim 3.0，但用户可能升级到 4.0：Botim 侧负责兼容。
+- 收款方未注册 PayBy 时，PayBy 通过 `/api/uaepay/payby/callback/getUserInfo` 反查手机号：Botim 侧兼容。
+- Cash Gift 领取时的群成员校验 `/api/uaepay/payby/callback/isGiftMember`：Bot
