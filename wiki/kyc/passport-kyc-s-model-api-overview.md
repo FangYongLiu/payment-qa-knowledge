@@ -4,69 +4,76 @@ domain: kyc
 kind: wiki_page
 slug: passport-kyc-s-model-api-overview
 status: active
-owner: wiki-sync@acquire
+owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki
-source_ref: confluence:PMDPayment/1446215797
+source_ref: wiki:e75788c0-8dcd-4b0c-95e3-8c08067ad9e7
 tags: []
 ---
 
 # Passport KYC S-Model API 总览
 
-本页汇总护照（Passport）KYC 主流程的 S-Model 接口集合，涵盖启动旅程、获取结果、确认信息、重拍自拍、重新验证以及放弃 KYC，并说明通用响应结构 `commandType` / `commandData` 的语义。所属业务域见 [[domain_kyc]]。
+本页汇总 Passport KYC 流程下的全部 S-Model API、统一的命令模型（commandType / commandData）以及端到端的调用顺序，便于快速定位每个接口在流程中的位置与作用。
 
-## 接入域名
+## 环境域名
 
 - SIM: `https://sim.test2pay.com/cgs/api`
-- UAT / PROD: 同结构（域名按环境替换）
-- 协议：所有请求/响应 body 均为 JSON
+- UAT: （待补充）
+- PROD: （待补充）
+
+所有请求与响应均为 JSON 协议。
 
 ## 接口清单
 
-护照 KYC 主流程接口（路径前缀 `/kyc/active-account/v1/passport/main/`）：
+Passport KYC 主流程包含以下 6 个接口（均为 POST，路径前缀 `/kyc/active-account/v1/passport/main/`）：
 
-| 功能 | 路径 | 说明 |
-|---|---|---|
-| 启动护照 KYC 旅程 | `/start-journey` | 创建 journey URL；若已执行过则返回结果。详见 [[api_kyc_passport_start_journey]] |
-| 获取 KYC 结果 | `/get-result` | 用户完成旅程后跳转结果页并返回结果。详见 [[api_kyc_passport_get_result]] |
-| 确认护照信息 | `/confirm-info` | 用户确认 OCR 信息，不可修改，且不进入人工审核。详见 [[api_kyc_passport_confirm_info]] |
-| 重新自拍 | `/retake-selfie` | 活体认证失败时，用户选择再次自拍。详见 [[api_kyc_passport_retake_selfie]] |
-| 重新验证 | `/verify-again` | 当 OCR 护照信息有误时，用户重新发起新的 journey。详见 [[api_kyc_passport_verify_again]] |
-| 放弃 KYC | `/leave-submit` | 记录用户放弃 KYC 的原因；不允许再次提交，前端无需校验响应。详见 [[api_kyc_passport_leave_submit]] |
+| # | 接口 | 路径 | 作用 |
+|---|------|------|------|
+| 1 | [[api_kyc_passport_start_journey]] | `/start-journey` | 启动 journey，创建 journey URL；若用户已执行过则直接取结果 |
+| 2 | [[api_kyc_passport_get_result]] | `/get-result` | 用户完成 journey 后，进入结果页并返回 KYC 结果 |
+| 3 | [[api_kyc_passport_confirm_info]] | `/confirm-info` | 用户确认 Passport 信息（不可修改，不进入人工审核） |
+| 4 | [[api_kyc_passport_retake_selfie]] | `/retake-selfie` | 活体校验失败后，用户选择重新拍摄自拍 |
+| 5 | [[api_kyc_passport_verify_again]] | `/verify-again` | OCR 信息错误时，用户重新发起一次新的 journey |
+| 6 | [[api_kyc_passport_leave_submit]] | `/leave-submit` | 用户放弃 KYC，记录放弃原因，且不允许再次提交 |
 
-所有接口 Method 均为 `POST`，`status=200` 表示成功。
+## 命令模型（commandType / commandData）
 
-## 通用响应结构
+所有接口的响应统一使用 `commandType` + `commandData` 的命令模型驱动前端动作：
 
-业务响应统一通过 `commandType` + `commandData` 两字段驱动前端跳转或提示：
+- `commandType = tips`：展示提示页/弹窗，`commandData` 为 `TipsInfo` 结构
+- `commandType = moveForward`：进入下一步，`commandData` 为跳转 action
+- `commandType = action`：携带业务数据（如 `passportInfo`）供前端继续处理
 
-### commandType 取值
+### TipsInfo 常用字段
 
-- `tips`：展示提示页/弹窗（`commandData` 为 TipsInfo）
-- `moveForward`：进入下一步（`commandData` 包含 `nextStep` 等动作信息）
-- `action`：返回业务数据动作（如 `get-result` 中返回 `passportInfo` 供用户确认）
+- `type`：`Page` / `Popup`
+- `title`、`tipText`、`tipContent`、`tipImg`
+- `redirectView[]`：包含 `viewName`、`viewType`、`viewUrl`、`viewAction`
 
-### commandData 形态
+### moveForward 常用字段
 
-- 当 `commandType = tips`：返回 TipsInfo，常见字段包括 `type`（`Page` / `Popup`）、`title`、`tipText`、`tipContent`、`tipImg`，以及 `redirectView` 数组（含 `viewName`、`viewType`、`viewUrl`、`viewAction`）。
-- 当 `commandType = moveForward`：返回下一步信息，如 `nextStep`（外部 URL，例如 `https://kyc-preproduction.signzy.app/...`，或路由如 `route://native/kyc/result`、`/kyc/home`）以及 `data.token`。
-- 当 `commandType = action`：返回结构化业务字段（如 `passportInfo`）。
+- `nextStep`：下一步跳转地址，可为外链（如 signzy journey URL）或路由（如 `route://native/kyc/result`、`/kyc/home`）
+- `data.token`：贯穿流程的 flow id
 
-## passportInfo 结构
+## 端到端调用顺序
 
-`get-result` 在 `commandType = action` 时返回的护照信息（姓名与护照号需 RSA 加密）：
+典型 Passport KYC 流转：
 
-| 字段 | 类型 | 必填 | 示例 | 说明 |
-|---|---|---|---|---|
-| passportNumber | String | Y | 784XXXXXXXXXX | 护照号（Eid 上的号码） |
-| nameEnglish | String | Y | SanZhang | 英文名 |
-| birthDate | String | Y | 1992-01-01 | yyyy-MM-dd |
-| nationality | String | Y | India | 国籍 |
-| gender | String | Y | Male | 性别 |
-| expiryDate | String | Y | 2026-12-01 | yyyy-MM-dd |
+1. 调用 [[api_kyc_passport_start_journey]]
+   - 未做过 KYC：返回 `moveForward` + signzy journey URL，前端跳转开始 journey
+   - 已做过：返回 `moveForward` 跳转结果页 `route://native/kyc/result`
+2. 用户完成外部 journey 后，前端使用返回的 `token` 调用 [[api_kyc_passport_get_result]]，根据结果分支：
+   - 活体失败 → `tips`，引导调用 [[api_kyc_passport_retake_selfie]]
+   - KYC 处理中 / KYC 成功 / KYC 失败 → `tips` 展示对应文案
+   - OCR 护照已过期 → `tips`，引导用户 Try again
+   - 需要确认信息 → `action` 返回 `passportInfo`（`passportNumber`、`nameEnglish`、`birthDate`、`nationality`、`gender`、`expiryDate`，姓名与证件号需 RSA 加密）
+3. 用户确认信息后调用 [[api_kyc_passport_confirm_info]]，根据响应进入失败/处理中/成功提示
+4. 若 OCR 信息有误，用户可调用 [[api_kyc_passport_verify_again]] 重启一次新 journey（`nextStep=/kyc/home`）
+5. 任意阶段用户放弃，调用 [[api_kyc_passport_leave_submit]] 上报 `reason`，且不允许再次提交，前端无需校验响应
 
-## 通用流转语义
+## 通用约定
 
-- `token`：贯穿 `get-result`、`confirm-info`、`retake-selfie`、`verify-again`、`leave-submit` 的 flow id，由 `start-journey` 在 `commandData.data.token` 中下发。
-- 典型 tips 场景：`Kyc fail`（失败可重试/不可重试）、`We are verifying your account`（人工审核中，最长 48 小时）、`Kyc success`（账户已激活）、`Your Passport has expired`（OCR 检测到护照过期，提示提供新护照）。
-- 失败可触发的后续动作通过 `redirectView` 暴露，例如 `Retake selfie`（携带 `retakeTooManyFlag`）、`Try again`、`Okay` 等。
+- 多数接口请求体仅包含 `token`（flow id），`start-journey` 例外，使用 `bizType` + `employeeId`
+- 响应 `status=200` 表示成功
+- 涉及证件信息的字段（姓名、证件号）需要 RSA 加密传输
+- 日期字段格式统一为 `yyyy-MM-dd`
