@@ -7,15 +7,14 @@ owner: upload-sync@platform
 reviewer: UNREVIEWED
 last_reviewed_at: '2026-06-20'
 source_type: wiki_image
-source_ref: wiki_image:2b437675-e3d9-4319-8cbe-f2a767763899
+source_ref: wiki_image:fd3750e9-7e0a-4f24-ae38-9100b02bfaad
 tags:
-- PIX
-- WeChat
-- Tenpay
-- 扫码支付
+- pix
+- wechat
+- scan-payment
 - cashier
 subdomain: pix
-module: null
+module: mpc
 sensitivity: normal
 name: PIX WeChat扫码支付端到端流程
 aliases: []
@@ -29,36 +28,38 @@ related_failures: []
 ---
 
 ## 概述
-PIX 接入 Tenpay(WeChat) 扫码支付的端到端流程。用户在 wallet 确认交易后，经 cgs → pix 调用 Tenpay 获取扫码并在 tradeii 创建 cashier trade；用户完成支付后，Tenpay 回调 tradeii，再由 pix 通知支付结果并在 bill 落账单。
+PIX渠道下WeChat扫码支付（STP）端到端时序流程。以wallet为客户端入口，cgs作为网关路由到pix编排器，pix对接外部vendor（Tenpay）完成扫码支付、创建收银台交易，并在交易成功后回调通知、落库账单与对账记录。来源：wiki页面 pix-RA-2405-STP-Wechat。
 
 ## 步骤(跨系统)
-**Phase 1：创建交易并展示收银台**
-1. User → wallet：confirm trade information
-1.1 wallet → cgs：`/pix/mpc/v1/create-trade`
-1.1.1 cgs → pix：(转发调用)
-1.1.1.1 pix → vendor(Tenpay)：scan code for payment(获取扫码)
-1.1.1.2 pix → tradeii：`CashierTradeFacade#createCashierTrade`
-1.1.1.3 pix → cgs：返回
-1.2 cgs → wallet：返回
-1.3 wallet → wallet：show cashier(展示收银台)
-1.4 wallet → User：返回
-
-**Phase 2：支付与结果回调**
-2. User → wallet：payment process(用户完成支付)
-3. vendor(Tenpay) → tradeii：trade success
-3.1 tradeii → pix：process result
-3.1.1 pix → vendor(Tenpay)：notify payment result
-3.1.2 pix → bill：save bill
+1. User → wallet：confirm trade information（用户确认交易信息）
+   - 1.1 wallet → cgs：`POST /pix/mpc/v1/create-trade`
+     - 1.1.1 cgs → pix：转发调用
+       - 1.1.1.1 pix → vendor(Tenpay)：scan code for payment（扫码支付）
+       - 1.1.1.2 pix → tradeii：`CashierTradeFacade#createCashierTrade`
+       - 1.1.1.3 pix → cgs：返回
+     - 1.2 cgs → wallet：返回
+   - 1.3 wallet → wallet：show cashier（展示收银台）
+   - 1.4 wallet → User：返回
+2. User → wallet：payment process（发起支付）
+3. query → tradeii：trade success（交易成功）
+   - 3.1 tradeii → pix：process result
+     - 3.1.1 pix → vendor(Tenpay)：notify payment result（通知支付结果）
+     - 3.1.2 pix → query：save bill（落库账单）
+     - 3.1.3 pix → reconciliation：save glide（对账落库）
+4. wallet → wallet：query mpc order（查询MPC订单）
+   - 4.1 wallet → cgs：`POST /pix/mpc/v1/confirm-trade-status`
+     - 4.1.1 cgs → pix：转发调用
 
 ## 涉及服务/表
-- **服务/参与方**：wallet、cgs、pix、tradeii、bill、vendor(Tenpay)
-- **关键接口**：
-  - cgs 入口：`/pix/mpc/v1/create-trade`
-  - tradeii：`CashierTradeFacade#createCashierTrade`
-- **外部渠道**：Tenpay(WeChat 扫码支付)
+- 服务/参与方：User、wallet、cgs（网关）、pix（中心编排，highlighted）、tradeii、query、reconciliation、vendor(Tenpay)
+- 接口：
+  - `/pix/mpc/v1/create-trade`
+  - `/pix/mpc/v1/confirm-trade-status`
+  - `CashierTradeFacade#createCashierTrade`
+- 外部交互：Tenpay 扫码支付、Tenpay 支付结果通知
 
 ## 校验点
-- Phase 1 中 pix 同时完成「向 Tenpay 取扫码」与「在 tradeii 创建 cashier trade」两件事，缺一会导致收银台无法正常展示。
-- `create-trade` 链路返回后 wallet 才能 show cashier；返回失败需阻断展示。
-- Phase 2 由 Tenpay 主动回调 tradeii，再触发 pix 的 process result。
-- pix 在收到结果后须：① 向 Tenpay `notify payment result`；② 向 bill `save bill`，两步顺序与完整性是落账正确性的关键校验点。
+- create-trade 阶段：pix须同时完成 Tenpay scan code 与 tradeii createCashierTrade
+- 支付结果回调：tradeii→pix→Tenpay notify、query save bill、reconciliation save glide 三动作齐全
+- wallet 通过 confirm-trade-status 轮询/确认 mpc 订单状态
+- cgs仅作路由，pix为编排中心
