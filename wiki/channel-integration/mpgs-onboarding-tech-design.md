@@ -7,54 +7,54 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:786a9371-2403-41c9-a05a-6ee477a01aab
+source_ref: wiki_image:fdd8444b-c0ce-48af-8f1d-db846d5b0da8
 tags: []
 ---
 
 # MPGS Onboarding技术方案
 
-本页描述 MPGS 渠道入驻（Onboarding）的领域模型与 Facade 接口设计，用于支撑入驻信息的注册、查询与重试。
+本页描述 MPGS 渠道入驻（Onboarding）的核心数据模型与 Facade 接口设计，用于支撑入驻信息注册、查询与失败重试。
 
-## 领域模型
+## 数据模型
 
 ### OnboardingItem
-表示一个入驻条目（实体）。
+表示一笔入驻条目的完整信息。
 
 - `fundProviderCode: string`
 - `ownerId: string`
-- `resultParamMap: map<string, string>`
+- `resultParamMap: map<string,string>`
 - `status: OnboardingItemStatus`
 - `type: ItemType`
 
 ### ItemIndex
-入驻条目的索引/查询键。
+作为 OnboardingItem 的查询键（lookup key），由三元组定位条目。
 
 - `fundProviderCode: string`
 - `ownerId: string`
 - `type: ItemType`
 
 ### ItemRegistrationInfo
-入驻注册信息，按 `ItemType` 聚合多类结果参数。
+入驻注册时携带的注册信息集合，按 ItemType 维度组织参数。
 
 - `fundProviderCode: string`
 - `ownerId: string`
-- `resultMap: map<ItemType, Map<string, string>>`
+- `registrationInfoMap: map<ItemType, Map<string,string>>`
 
-## Facade 接口
+## Facade接口
 
 ### OnboardingItemFacade
-提供单条入驻条目的查询能力。
+负责入驻条目的查询。
 
-- `getItem(ItemIndex): OnboardingItem`
+- `getItem(ItemIndex): OnboardingItem` —— 根据 ItemIndex 返回对应的 OnboardingItem。
 
 ### OnboardingFacade
-提供入驻注册与重试能力。
+负责入驻注册与重试。
 
-- `register(ItemRegistrationInfo): boolean`
-- `retry(ItemIndex): void`
+- `registerItem(ItemRegistrationInfo): boolean` —— 提交注册信息，触发入驻。
+- `retry(ItemIndex): void` —— 针对指定 ItemIndex 的入驻条目进行重试。
 
-## 依赖关系
+## 关系说明
 
-- `OnboardingItemFacade` 依赖 `ItemIndex`（入参）与 `OnboardingItem`（返回值）。
-- `OnboardingFacade` 依赖 `ItemRegistrationInfo`（`register` 入参）与 `ItemIndex`（`retry` 入参）。
-- `OnboardingItem` 与 `ItemIndex` 在类图中存在来自上层的关联（具体父类型未在本视图展开）。
+- `OnboardingItemFacade` 依赖 `ItemIndex`（入参）并返回 `OnboardingItem`。
+- `OnboardingFacade` 依赖 `ItemRegistrationInfo`（`registerItem` 入参）与 `ItemIndex`（`retry` 入参）。
+- `ItemIndex` 由 `fundProviderCode + ownerId + type` 唯一标识一笔入驻条目，用于查询与重试场景的定位。
