@@ -1,5 +1,5 @@
 ---
-title: PIX RA-2405 STP微信渠道退款流程
+title: pix-RA-2405-STP-Wechat 退款时序流程
 domain: channel-integration
 kind: wiki_page
 slug: pix-ra-2405-stp-wechat-refund-flow
@@ -7,45 +7,38 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:ef74365a-3441-4700-9b08-5ea12526da65
+source_ref: wiki_image:0c609e41-a9fd-4515-bf2f-9c82c4cce6e7
 tags: []
 ---
 
-# PIX RA-2405 STP微信渠道退款流程
+# pix-RA-2405-STP-Wechat 退款时序流程
 
-本页描述外部商户（Foreign Merchant）通过 vendor(Tenpay) 发起退款，经 pix 路由分发至 tradeii 实际处理、并通知 bill 的端到端调用时序。pix 作为本流程的核心路由系统。
+本页描述外商通过 Tenpay 渠道发起退款时，由 pix 作为中心编排组件协调 tradeii 与 query 完成端到端退款处理的时序。
 
 ## 参与方
 
-- **Foreign Merchant**：发起退款的外部商户
-- **vendor(Tenpay)**：微信渠道供应商
-- **pix**：路由与编排系统（本流程焦点）
-- **tradeii**：退款处理系统
-- **bill**：账单/账务通知系统
+- **Foreign Merchant**：退款发起方（外商）
+- **vendor(Tenpay)**：渠道侧供应商
+- **pix**：中心编排组件（退款流程的 orchestrator）
+- **tradeii**：实际退款处理服务
+- **query**：退款账单通知接收方
 
 ## 时序步骤
 
-按 UML 顺序图编号自上而下：
+请求链路（实线箭头表示请求调用）：
 
-1. `1: apply refund` — Foreign Merchant → vendor(Tenpay)：商户向微信渠道申请退款（同步）
-2. `1.1: refund` — vendor(Tenpay) → pix：Tenpay 将退款请求转发至 pix（同步）
-3. `1.1.1: refund` — pix → tradeii：pix 将退款下发到 tradeii（同步）
-4. `1.1.1.1: process refund` — tradeii → tradeii：tradeii 内部自处理退款（自循环）
-5. `1.1.1.2:` — tradeii ⇠ pix：tradeii 向 pix 返回处理结果（异步/返回）
-6. `1.1.2: notify refund bill` — pix → bill：pix 通知 bill 系统记账（同步）
-7. `1.1.3:` — pix ⇠ vendor(Tenpay)：pix 向 Tenpay 返回结果（返回）
-8. `1.1.4:` — vendor(Tenpay) ⇠ Foreign Merchant：Tenpay 向商户回执结果（返回）
+1. **1 apply refund**：Foreign Merchant → vendor(Tenpay)，外商向 Tenpay 申请退款
+2. **1.1 refund**：vendor(Tenpay) → pix，Tenpay 将退款请求转发至 pix
+3. **1.1.1 refund**：pix → tradeii，pix 将退款下发至 tradeii
+4. **1.1.1.1 process refund**：tradeii 自调用，执行退款处理逻辑
+5. **1.1.1.2**：tradeii → pix，返回处理结果（虚线响应）
+6. **1.1.2 notify refund bill**：pix → query，通知 query 服务退款账单
+7. **1.1.3**：pix → vendor(Tenpay)，返回响应（虚线响应）
+8. **1.1.4**：vendor(Tenpay) → Foreign Merchant，最终响应回传至外商（虚线响应）
 
-## 调用语义
+## 流程要点
 
-- **实线箭头**：同步调用（步骤 1、1.1、1.1.1、1.1.1.1、1.1.2）
-- **虚线箭头**：返回响应（步骤 1.1.1.2、1.1.3、1.1.4）
-- **退款处理路径**：Foreign Merchant → vendor(Tenpay) → pix → tradeii
-- **账务通知路径**：pix → bill（与返回链并行/串行触发）
-- **结果回传链路**：tradeii → pix → vendor(Tenpay) → Foreign Merchant
-
-## 关键要点
-
-- pix 在流程中承担**路由 + 通知编排**双重职责：既将退款下发 tradeii，也负责向 bill 发起 `notify refund bill`
-- tradeii 是退款的**实际处理方**，处理动作在其内部完成（`process refund` 自循环）
-- bill 通知发生在 pix 收到 tradeii 返回之后、回执 vendor(Tenpay) 之前/同链路中（编号 1.1.2 位于 1.1.3 之前）
+- 调用方向：Merchant → Tenpay → pix → tradeii，逐层下发；响应沿原路径反向回传
+- pix 在整个流程中作为中心编排者：既向 tradeii 分发实际退款处理，又向 query 异步通知退款账单
+- 实线箭头代表请求调用，虚线箭头代表响应返回
+- query 仅接收 `notify refund bill`，不参与请求链路上的同步响应
