@@ -1,56 +1,68 @@
 ---
-title: PIX微信接入Q&A与字段说明
+title: 微信渠道接入Q&A与字段说明
 domain: channel-integration
 kind: wiki_page
 slug: pix-wechat-qa-notes
 status: active
-owner: upload-sync@platform
+owner: wiki-sync@acquire
 reviewer: UNREVIEWED
 source_type: wiki
-source_ref: wiki:a68e3cf4-694f-4d32-9a67-4b4aaeee8675
+source_ref: confluence:PMDPayment/433881954
 tags: []
 ---
 
-# PIX微信接入Q&A与字段说明
+# 微信渠道接入Q&A与字段说明
 
-本页汇总 PIX 微信 MPC 渠道接入过程中各 Vendor API 的字段含义、行为约定与常见问答，便于联调与异常排查。相关流程见 [[pix-wechat-system-flow]]，API 清单见 [[pix-wechat-vendor-api-catalog]]。
+本页汇总微信MPC渠道接入过程中关键API的字段含义、行为约定及常见疑问点，覆盖支付、查询、退款、推定退款等核心场景。相关全局流程见 [[pix-wechat-mpc-integration-overview]]，API清单与场景映射见 [[pix-wechat-vendor-api-catalog]]。
 
 ## API: SCAN_CODE_FOR_PAYMENT
 
-用于扫码后向微信侧创建交易单，相关业务流程见 [[flow_pix_wechat_mpc_payment]]。
+扫码下单接口，对应 `/pix/mpc/v1/create-trade`。关键字段含义：
 
-字段含义说明：
+- `PyerTrxTrmNo`：Payer terminal code，付款方终端编号，取值为 Device Id。
+- `BizTp`：Bussiness type，业务类型，来源于 `QUERY_MERCHANT_CODE` 返回。
+- `TrxDtTm`：Transaction date，交易日期；其日期必须与 `TrxId` 中的日期保持一致。
+- `ClbckUrl`：Account institution callback acquirer institution URL，账户机构回调收单机构的URL（待确认）。
+- `PrmtInf`：Marketing information，营销信息（待确认）。
 
-- `PyerTrxTrmNo`：Payer terminal code，即 Device Id（付款方终端编号）。
-- `BizTp`：Bussiness type，业务类型，取自 `QUERY_MERCHANT_CODE` 的返回结果。
-- `TrxDtTm`：交易日期时间，需保证 `TrxDtTm` 的日期与 `TrxId` 中的日期一致。
-- `ClbckUrl`：Account institution callback acquirer institution URL，账户机构回调收单机构的 URL。
-- `PrmtInf`：Marketing information，营销信息。
+下单端到端流程见 [[flow_pix_wechat_mpc_payment]]。
 
 ## API: NOTIFY_PAYMENT_RESULT
 
-- 该接口是否可能收到失败结果？**会**，存在失败回调的可能。
-- 是否会通知交易关闭或失败？**会**，关闭与失败场景均会通过该接口通知。
+支付结果通知接口的行为说明：
+
+- 该接口可能返回失败结果（Yes，会收到 failure）。
+- 会通知交易关闭或失败的情形（Yes，trade close / failure 都会通过此接口通知）。
 
 ## API: QUERY_PAYMENT_ORDER_INFO
 
-字段是否必填的疑问：
+查询支付订单信息接口的字段是否必填问题待进一步确认：
 
-- `PyerIDTp`：是否必填待确认（TODO）。
-- `PyerIDNo`：是否必填待确认（TODO）。
+- `PyerIDTp`：付款方证件类型，是否必填 — TODO。
+- `PyerIDNo`：付款方证件号码，是否必填 — TODO。
 
 ## API: REFUND
 
-退款流程详见 [[flow_pix_wechat_refund]]。
+退款接口为同步响应，无异步通知，但 WeChat 侧存在配套的查询/推定机制：
 
-- 是否仅有同步响应、没有异步通知？**没有异步响应**。微信会在 10 分钟内通过 `QUERY_REFUND_ORDER_INFO` 主动查询退款结果。
-- 超过该 10 分钟窗口仍无结果时，会触发 `NOTIFY_PRESUPPTIVE_REFUND_SUCCESS`（退款推定成功）。
-- 退款是否允许失败？**允许**。
+- 仅有同步响应，无异步退款结果通知。
+- WeChat 会在 10 分钟内通过 `QUERY_REFUND_ORDER_INFO` 主动查询退款状态。
+- 若超过该时间窗口仍未获得明确结果，则会触发 `NOTIFY_PRESUPPTIVE_REFUND_SUCCESS`，假定退款成功。
+- 允许退款失败（refund fail allowed = Yes）。
+- 退款金额计算规则：`Refund pay amount = Refund transaction amount / Original transaction amount * Original pay amount`。
 
-## API: NOTIFY_PRESUPPTIVE_REFUND_SUCCESS
+完整退款流程见 [[flow_pix_wechat_refund]]。
 
-- 用途：见 `REFUND` 中关于退款推定的说明。
-- 触发条件：实际上已经经过多次查询且长时间（约 10 分钟）仍无结果时才会执行推定。
-- 通知次数：默认只会推定通知 **1 次**。
-- 处理原则：一旦推定，按 **退款成功** 处理。
-- 后续核对：钱包侧可通过次日账单获得推定的交易记录，对账逻辑见 [[flow_pix_wechat_reconciliation]]。
+## API: NOTIFY_PRESUPPTIVE_REFUND_SUCCESS（推定退款成功通知）
+
+用途与触发条件：
+
+- 用途：当多次查询、且超过 10 分钟仍未拿到 WeChat 退款结果时，执行"推定退款"，即默认按退款成功处理。
+- 推定通知默认只发送 1 次。
+- 一旦推定成功，后续按退款成功状态推进。
+- 钱包侧可通过次日账单获得推定的交易记录（参见 [[flow_pix_wechat_reconciliation]]）。
+
+## 关联说明
+
+- 渠道汇率与计费规则参考 [[pix-wechat-rate-sync]]。
+- 渠道接入侧的配置项（`PyerAcctIssrId`、`PyeeAcctIssrId`、`AppId` 等）参考 [[pix-wechat-configuration]]。

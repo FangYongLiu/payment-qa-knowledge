@@ -1,73 +1,64 @@
 ---
-title: PIX微信渠道汇率同步与计算规则
+title: 微信渠道汇率同步与计费规则
 domain: channel-integration
 kind: wiki_page
 slug: pix-wechat-rate-sync
 status: active
-owner: upload-sync@platform
+owner: wiki-sync@acquire
 reviewer: UNREVIEWED
 source_type: wiki
-source_ref: wiki:a68e3cf4-694f-4d32-9a67-4b4aaeee8675
+source_ref: confluence:PMDPayment/433881954
 tags: []
 ---
 
-# PIX微信渠道汇率同步与计算规则
+# 微信渠道汇率同步与计费规则
 
-本页说明 PIX 微信 MPC 渠道中，AED 到本地币种（CNY）的基础汇率如何从 remittance 同步、margin 如何配置，以及客户实付金额（Pay Amount）的计算规则。
+本页说明微信MPC渠道在 pix 侧的汇率同步机制、margin 配置方式，以及客户汇率与支付金额的计算规则。相关接入背景见 [[pix-wechat-mpc-integration-overview]]，配置项见 [[pix-wechat-configuration]]。
 
-## 汇率同步机制
+## 汇率来源与同步机制
 
-- 通过 dubbo api 周期性从 remittance 服务同步汇率配置。
-- 仅当查询到的汇率与当前不同才更新。
-- 系统设计参考：`pix-SD-FX Rate`。
-- 渠道接入与系统流程参见 [[pix-wechat-mpc-overview]] 与 [[pix-wechat-system-flow]]。
+- 基础汇率来源：remittance 服务，按 AED → 当地币种维护。
+- 同步方式：pix 通过 dubbo api 周期性向 remittance 查询基础汇率，发现与当前不一致时更新。
+- 设计参考：pix-SD-FX Rate。
 
 ## 关键概念
 
-- **Exchange Rate**：AED 到本地币种的基础汇率，来源于 remittance。
-- **Rate Margin Percent**：在基础汇率上叠加的利润 margin，按渠道配置。
-- **Customer Rate**：对客实际换算汇率，由基础汇率与 margin 计算得出。
+- **Exchange Rate**：从 AED 到当地币种的基础汇率，由 remittance 同步。
+- **Rate Margin Percent**：在基础汇率上叠加的利润 margin，按渠道单独配置。
+- **Customer Rate**：对客户展示并用于计费的实际汇率，由基础汇率和 margin 计算得出。
 
-## Margin 配置职责分工
+## 配置职责分工
 
-| 模块 | 职责 |
-|---|---|
-| pix | 周期性从 remittance 查询汇率并更新；提供 margin 配置 dubbo API |
-| remittance | 提供基础汇率查询 |
-| basis-customer | 提供查询汇率的 UI；提供查询与配置 margin 的 UI |
+| 项目 | 系统 | 功能 |
+| --- | --- | --- |
+| 查询基础汇率 | remittance | 提供基础汇率查询能力 |
+| 同步基础汇率 | pix | 周期性查询并更新 |
+| 配置 margin | pix | 提供 dubbo api 用于查询与配置 margin |
+| 汇率/margin UI | basis-customer | UI 查询基础汇率；UI 查询与配置 margin |
 
-## 计算规则
+## 客户汇率与支付金额计算
 
-以 WECHAT 渠道为例：
+以微信渠道为例，配置：
 
-- Exchange Rate = `1.96688000`
-- Margin Percent = `0.01`
-- Transaction Amount = `200 CNY`
+- Exchange Rate：`1.96688000`
+- Margin Percent：`0.01`
 
-计算步骤：
+计算规则：
 
-1. **Customer Rate** = `Exchange Rate × (1 - Margin Percent)`
-   - = `1.96688000 × (1 - 0.01)` = `1.9472112`
-2. **Pay Amount** = `Transaction Amount / Customer Rate`
-   - = `200 / 1.9472112` = `102.7109950887711` ≈ `102.72`
+- Customer Rate = Exchange Rate × (1 − Margin Percent)
+  - 例：`1.96688000 × (1 − 0.01) = 1.9472112`
+- Pay Amount = Transaction Amount / Customer Rate
+  - 例：`200 / 1.9472112 = 102.7109950887711 ≈ 102.72`
 
-> 取整规则（Round up / Ceiling）待确认（TODO）。
-> Profit 计算方式待确认（TODO）。
-
-## 视图区分
-
-- **Customer View**：展示给用户的汇率为 Customer Rate（已扣除 margin）。
-- **Inner View**：内部留存基础 Exchange Rate 与 Margin Percent，用于核算与利润统计。
+> 进位规则（Round up 或 Ceiling）以及利润口径仍为 TODO。
 
 ## 退款金额换算
 
-退款时不再重新换汇，按原单等比折算：
+- Refund Pay Amount = Refund Transaction Amount / Original Transaction Amount × Original Pay Amount
+- 即按原单的成交比例折算应退的 Pay Amount，避免重新走汇率。
+- 退款流程详见 [[flow_pix_wechat_refund]]。
 
-- `Refund Pay Amount = Refund Transaction Amount / Original Transaction Amount × Original Pay Amount`
+## 与其他流程的衔接
 
-详见 [[flow_pix_wechat_refund]]。
-
-## 关联
-
-- 钱包侧根据该汇率规则计算待支付的 AED 金额，再进入下单流程，详见 [[flow_pix_wechat_mpc_payment]]。
-- 字段与 API 细节参见 [[pix-wechat-vendor-api-catalog]] 与 [[pix-wechat-qa-notes]]。
+- 在 `MpcFacade.parseCode` 解析商户码时，会一并保存包括汇率信息在内的商户码信息至 ES；下单环节 `MpcFacade.creatTrade` 会基于该汇率配置进行金额校验。完整链路见 [[flow_pix_wechat_mpc_payment]]。
+- 钱包侧在确认交易信息时，依据该汇率计算需支付的 AED 金额。
