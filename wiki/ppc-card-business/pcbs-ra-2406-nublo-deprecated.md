@@ -1,119 +1,55 @@
 ---
-title: PCBS RA-2406 Nublo项目资金流程(已废弃)
+title: PCBS RA-2406 Nublo卡片Loading流程(已废弃)
 domain: ppc-card-business
 kind: wiki_page
 slug: pcbs-ra-2406-nublo-deprecated
 status: active
-owner: wiki-sync@acquire
+owner: upload-sync@platform
 reviewer: UNREVIEWED
-source_type: wiki
-source_ref: confluence:PMDPayment/564101170
+source_type: wiki_image
+source_ref: wiki_image:89086c7e-9ebd-4ff2-a4d6-a4654cbef082
 tags: []
 ---
 
-# PCBS RA-2406 Nublo项目资金流程(已废弃)
+# PCBS RA-2406 Nublo卡片Loading流程(已废弃)
 
-> ⚠️ 本页所述方案已废弃，仅作历史归档参考。
+> ⚠️ 本页面描述的流程为**已废弃**版本，仅作历史参考。
 
-本页汇总 Nublo 项目通过 NymCard 发卡的端到端资金流程总览：从持卡人加载、外汇、卡交易、清算到余额对账各环节的方案选型与账务动作。详细子流程见 [[nublo-cardholder-loading-flow]] 与 [[nublo-fx-and-transaction-settlement]]。
+本页基于 UML 时序图说明 NymCard 卡片 Loading 流程中持卡人、Client、NymCard、PayBy 四方的交互关系。
 
-## 资源与参考
-- PRD: Bin Sponsorship Flow
-- 资金流向图（Funds Flow）
+## 参与方
 
-## 持卡人加载 (Cardholder Loading)
+- **Cardholder**：持卡人，流程发起者
+- **Client**：客户端，承担 loading channel 处理逻辑
+- **NymCard**：卡片服务方，执行 load 动作
+- **PayBy**：资金方，提供 pre funds 划拨
 
-### 方案对比
-预资金（pre-funding）维护方式三种方案：
+## 时序流程
 
-| 方案 | 描述 | 额外集成 | 预资金不足时加载体验 | 流动性风险 |
-|---|---|---|---|---|
-| Solution 1 👍 | NymCard 在加载前检查并维护预资金 | ✔ 无需集成 | ✖ 加载校验 | ✔ 无风险 |
-| Solution 2 👎 | Client 自行处理 | ✖ 每个客户都需集成 | ✖ 加载校验 | 取决于客户实现 |
-| Solution 3 👎 | 无任何方处理 | ✔ 无需集成 | ✔ 不校验 | ✖ 预资金不足即风险 |
+时序图整体分为两个阶段：Client 内部的 loading channel 处理，以及对 NymCard 的 load 调用。
 
-最终选型：**Solution 1**。
+### 阶段一：Loading 发起与 channel 处理
 
-### 加载对账前置账户
-| Belong To | New Account Type | Purpose |
-|---|---|---|
-| Client | PCBS_PREFUNDING | Loading pre-funding |
-| Client | PCBS_ESCROW | Total cardholder funds |
+1. **1: loading** — Cardholder 向 Client 发起 loading 请求
+2. **1.1: loading channel process** — Client 内部自调用，处理 loading channel
+3. **1.2:** — Client 向 Cardholder 返回结果（dashed return）
 
-### 对账文件字段
-NymCard 向 Client 与 PayBy 提供 Loading 对账文件，包含：
-- Loading Order ID
-- Customer ID
-- Loading Amount (AED)
-- Submit Time
-- Finish Time
+### 阶段二：Load 执行与资金划拨
 
-### 账务动作
-- **Action 1 — PayBy 移至 Escrow**：将预资金转入 escrow
-  - DR: `PCBS_PREFUNDING`
-  - CR: `PCBS_ESCROW`
-- **Action 2 — Client 补充预资金**：Client 转账至 PayBy 指定 IBAN（归属 Client），PayBy 入账至预资金账户
-  - DR: `0040`
-  - CR: `PCBS_PREFUNDING`
+4. **2: loading** — Client 自调用，进入 load 执行环节
+5. **3: load** — Client 调用 NymCard 执行 load
+6. **3.1: move pre funds** — NymCard 调用 PayBy 划拨 pre funds
+7. **3.2:** — PayBy 向 NymCard 返回结果（dashed return）
+8. **3.3:** — NymCard 向 Client 返回结果（dashed return）
 
-详见 [[nublo-cardholder-loading-flow]]。
+## 交互说明
 
-## 外汇 (Foreign Exchange)
+- **实线箭头**：同步调用（synchronous call）
+- **虚线箭头**：返回（return）
+- **Activation bar**：Client 出现两段独立激活区间，NymCard 与 PayBy 各有一段激活区间，对应其在流程中的处理时段。
 
-- 系统集成：Client 仅与 NymCard 对接。
-- NymCard 向 Client 与 PayBy 提供 FX 对账文件。
-- 资金调拨方向：
-  - AED → 外币：将总 AED 金额划转给 NymCard
-  - 外币 → AED：从 NymCard 收取总 AED 金额
-- **Profit Amount (AED)**：从 Escrow Account 移至 Profit Account。
-- PayBy 与 NymCard 之间根据需要互转，用于 hedging tuning。
+## 流程要点
 
-### FX 对账字段
-- FX Order ID
-- Customer ID
-- From Currency / From Amount
-- To Currency / To Amount
-- Profit Amount (AED)
-
-## 卡交易 (Card Transaction)
-
-- 卡交易流程：Client 仅与 NymCard 对接。
-- 清算文件由 NymCard 提供给 Client 与 PayBy。
-
-### 清算资金流（外币部分）
-1. NymCard 按结算币种将金额转给 PayBy。
-2. PayBy 按相应金额转 AED 与 USD 给 MC（MasterCard）。
-3. PayBy 将利润（fees 与 interchange）移至 Client basic account。
-
-### 交易对账字段
-- Transaction ID
-- Customer ID
-- Wallet Currency / Wallet Amount
-- Customer Amount receive from NymCard (AED)
-- Customer Amount to Settle (AED)
-- Customer Amount to Profit (AED)
-- Settlement Currency / Settlement Amount
-- Transaction Time / Settlement Date / Settlement Cycle
-
-### 账务动作
-- **Customer Amount receive from NymCard (AED)** — 从 NymCard 收入总额
-  - DR: `0040`
-  - CR: `Client Customer Funds`
-- **Customer Amount to Settle (AED)** — 与 MasterCard 结算的金额
-  - DR: `Client Customer Funds`
-  - CR: `Settle Pending`
-- **Customer Amount to Profit (AED)** — 划转作为利润的金额
-  - DR: `Client Customer Funds`
-  - CR: `Merchant Basic Account`
-- TODO: Settle with MasterCard
-
-详见 [[nublo-fx-and-transaction-settlement]]。
-
-## 余额对账 (Balance Reconciliation)
-
-- NymCard 向 Client 与 PayBy 提供卡余额数据。
-- PayBy 在总账层面进行 AED 余额对账。
-
-## 每日清算流程 (Daily Settlement Flow)
-
-每日清算流程汇总以上加载、FX、卡交易、余额对账各环节资金动作（原文章节 7.1，未展开）。
+- 持卡人不直接与 NymCard / PayBy 交互，全部通过 Client 中转。
+- Client 在响应持卡人之后，才发起对 NymCard 的 load 调用（两段 activation 分离）。
+- 资金划拨由 NymCard 调用 PayBy 完成 `move pre funds`，结果逐层向上返回至 Client。
