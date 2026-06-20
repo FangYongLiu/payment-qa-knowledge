@@ -4,64 +4,71 @@ domain: ppc-card-business
 kind: wiki_page
 slug: jaywan-clearing-settlement-design
 status: active
-owner: upload-sync@platform
+owner: wiki-sync@acquire
 reviewer: UNREVIEWED
 source_type: wiki
-source_ref: wiki:b4ddb781-c8c9-4531-9714-54f78aa19fea
+source_ref: confluence:PMDPayment/877428845
 tags: []
 ---
 
 # Jaywan清算与结算设计
 
-本页聚焦 Jaywan 预付卡的 Clearing & Settlement 模块设计，包括清算文件处理框架、各类明细处理、结算文件生成与对账规则。相关上下文见 [[jaywan-phase1-system-design]] 与 [[jaywan-phase2-system-design]]，端到端流程见 [[flow_jaywan_card_lifecycle]]。
+本页聚焦 Jaywan 预付卡的清算文件处理、结算文件生成与对账流程的设计方案，属于 Phase 1 范围，承接 [[jaywan-system-design-phases]] 的整体规划，业务上属于 [[domain_jaywan_prepaid_card]]。
 
-## 范围与定位
+## 设计范围概览
 
-- 设计文档：gppc-SD-Jaywan Clearing & Settlement
-- 与 Phase 1 的交易处理（Provision / Reversal / Balance Inquiry / Declined Transaction）联动，在已有流程上补充 settlement 明细生成与 reconciliation 流程。
-- 用例总览参见 [[jaywan-use-case-list]]。
+清算与结算模块独立于交易主流程，主要处理 Dgpay 下发的 Clearing File，并由本侧生成 Settlement File，同时与 CS 团队对齐对账规则。
 
-## Clearing 文件处理框架
+设计文档：`gppc-SD-Jaywan Clearing & Settlement`。
 
-- 处理对象：Dgpay 下发的 Clearing File。
-- 框架职责：搭建清算文件的统一处理流程，并随框架同步落地 DECLINE 类型的清算明细处理。
-- 在已有交易流程中追加 settlement 明细生成逻辑（即交易发生时即写入用于后续对账/结算的明细）。
-- 优先级 P0，工作量约 2d。
+## 任务拆分与优先级
 
-## Clearing 明细处理
+| Case | Dgpay API | 说明 | Priority | Workload | Developer |
+|---|---|---|---|---|---|
+| Clearing file process frame | Clearing File | 清算文件处理框架；同步落地 `DECLINE` 类型清算明细处理；在已有流程中追加 settlement 明细生成 | 0 | 2d | yu.tang |
+| Clearing detail process - OFFLINE | - | `OFFLINE` 类型清算明细处理 | 1 | 1d | yu.tang |
+| Clearing detail process - PROVISION, BALANCE_INQUERY | - | `PROVISION`、`BALANCE_INQUERY` 类型清算明细处理 | 1 | 2d | yu.tang |
+| Clearing detail process - REVERSAL | - | `REVERSAL` 类型清算明细处理；对单条消息冲正补充 reverse settlement 更新 | 2 | 3d | yu.tang |
+| Settlement file generation | Settlement File | 在单条消息流程中追加 settlement 明细生成；汇总输出 settlement 文件 | 3 | 2d | yu.tang |
+| Reconciliation | - | 与 CS 团队对齐对账规则；在已有流程中接入对账信息发送 | 4 | 2d | yu.tang |
 
-按明细类型分别实现处理逻辑：
+## 清算文件处理（Clearing File）
 
-- **OFFLINE**：离线交易明细的清算处理。优先级 P1。
-- **PROVISION / BALANCE_INQUERY**：预授权/扣账类与余额查询类明细的清算处理。优先级 P1。
-- **REVERSAL**：冲正明细的清算处理；同时为 single message reversal 增加 reverse settlement update（在单笔冲正发生时反向更新 settlement 数据）。优先级 P2。
+- 整体作为统一的处理框架先行落地（Priority 0），再按明细类型逐步扩展。
+- 支持的清算明细类型：
+  - `DECLINE`（与框架同期落地）
+  - `OFFLINE`
+  - `PROVISION`
+  - `BALANCE_INQUERY`
+  - `REVERSAL`：除了清算明细处理外，还需在单条消息冲正流程中补充反向 settlement 明细的更新。
+- 处理思路：在已有的交易/冲正等单条消息流程中，扩展产生对应的 settlement 明细，使清算与单条消息侧数据保持一致。
 
-对应的交易侧 Provision、Reversal、Balance Inquiry、Declined Transaction 实现见 [[jaywan-phase1-system-design]]。
+相关交易侧实现见 [[jaywan-dgpay-integration-guide]]（Provision / Reversal / Balance Inquiry / Declined Transaction）。
 
-## Settlement 文件生成
+## 结算文件生成（Settlement File）
 
-- 在 single message 类交易中追加 settlement 明细生成。
-- 基于累计的 settlement 明细生成 Settlement File，对接 Dgpay Settlement File 规范。
-- 优先级 P3。
+- 在单条消息处理流程中嵌入 settlement 明细的生成逻辑。
+- 在此基础上汇总输出 Settlement File。
+- 优先级 3，依赖清算各明细类型处理已落地。
 
 ## 对账（Reconciliation）
 
-- 与 CS 团队对齐 reconciliation 规则后实现。
-- 在已有交易流程中追加 reconciliation 流转（将交易记录纳入对账数据流）。
-- 优先级 P4。
+- 需与 CS 团队对齐具体对账规则后再实现。
+- 在已有流程中追加将对账所需信息发送出去的环节。
+- 优先级 4，作为清算结算链路的最后一步。
 
-## Vendor 侧职责划分
+## 与供应商的职责分工
 
-来自 Dgpay 的确认（详见 [[jaywan-vendor-qa]]）：
+来自供应商 Q&A（详见 [[jaywan-vendor-qa]]）：
 
 - **Settlement**：由 Mbank 与 Botim 共同管理。
-- **Reconciliation**：由 Botim 负责。
-- **SWITCH 到 host 的对账**：若余额由 Botim 持有，则由 Botim 完成。
-- Settlement 与 Clearing 的报表/文件格式由 Dgpay 提供给 Botim。
-- 余额同步：Dgpay 侧可不维护余额，因此无需 balance sync（参考 UpdateCardBalance 相关说明）。
+- **Reconciliation**：由 Botim 负责；若余额由 Botim 持有，SWITCH 到 host 的对账活动也由 Botim 完成。
+- **Reports/formats**：Settlement 与 Clearing 的报文/文件格式由 Dgpay 侧提供给 Botim。
+- **余额同步**：若 Botim 持有余额，则 Dgpay 侧不维护余额，无需 balance sync；相关接口 `UpdateCardBalance` 在该模式下不需要。
 
-## 关联说明
+## 关联与上下游
 
-- 产品总览：[[jaywan-prepaid-card-overview]]
-- 产品 Q&A：[[jaywan-product-qa]]
-- Vendor Q&A：[[jaywan-vendor-qa]]
+- 上游交易消息：`provision`、`reversal`、`balance-inquiry`、`declined-transaction` 等 Institution API，详见 [[jaywan-dgpay-integration-guide]]。
+- 项目背景与整体范围参见 [[jaywan-prepaid-card-overview]]。
+- 阶段安排参见 [[jaywan-system-design-phases]]。
+- 产品侧相关问题参见 [[jaywan-product-qa]]。
