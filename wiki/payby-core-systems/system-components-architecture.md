@@ -7,13 +7,13 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:e7a58d61-3be2-4919-9611-113cb875997c
+source_ref: wiki_image:17d972e2-7c6e-42b7-b580-5d9db8f46dcd
 tags: []
 ---
 
 # 系统组件架构与依赖关系
 
-本页描述 merchant-portal 业务域所依赖的系统组件分类（内部服务、内部控台、Jar 组件、第三方服务、第三方控台）及其相互依赖关系，并给出业务调用链的分层视图。
+本页描述 merchant-portal 业务域所依赖的系统组件分类（内部服务、内部控台、Jar 组件、第三方服务、第三方控台）及其相互依赖关系，并补充支付核心系统的整体分层架构（网关层、业务层、中台层、渠道层、业务工具层）。
 
 ## 组件分类图例
 
@@ -25,39 +25,80 @@ tags: []
 - **3rdParty Service**（第三方服务）
 - **3rdParty Console**（第三方控台）
 
-## 业务分层架构
+## 整体分层架构
 
-从外部调用方到中台的整体请求路径，按层划分如下：
+支付核心系统按调用链路分为以下层次，整体读取方向为：**外部客户端 → 网关层 → 业务层 → 中台层 → 渠道层 → 银行**，业务工具层作为共享支撑层贯穿底部。
 
-### 外部调用方
+### 外部接入方
 
-- **merchant_system**：外部商户系统，作为调用入口。
+- Partner Server（合作方服务器）
+- 42Pay APP
+- MPOS
+- bank（银行，位于渠道层之外）
 
-### 网关层（Gateway Layer）
+### Gateway（网关层）
 
-- **sgs**
-- **merchant-frontend**
+- sgs
+- cgs
+- posp
+- pns
 
-### 业务层（Business Layer）
+接入关系：
 
-- **acquireii**
+- Partner Server → sgs
+- 42Pay APP → cgs
+- MPOS → posp
 
-### 中台（Middle Platform）
+### Biz Service（业务层）
 
-- **tradeii**：交易中台，处于中台核心位置
-- **grc**：风控相关组件
-- **pfs**：支付/资金相关组件
+- Acquire Service
+- Personal Service
+- AuthPay
 
-### 调用链关系
+接入关系：
 
-请求自上而下流转（箭头方向表示「依赖/调用」）：
+- sgs → Acquire Service
+- cgs → Personal Service
+- posp → AuthPay
+- Acquire Service、Personal Service 通过虚线依赖连接到 AuthPay 所在区域
 
-- merchant_system → sgs
-- sgs → merchant-frontend
-- merchant-frontend → acquireii
-- acquireii → tradeii
-- tradeii → grc
-- tradeii → pfs
+### Middle Platform（中台层）
+
+左列：trade、fundout、deposit、ma-web
+右列：pfs-payment、payment、dpm
+
+依赖关系：
+
+- trade、fundout、deposit → pfs-payment
+- pfs-payment → payment
+- payment → dpm
+- 业务层组件（虚线）依赖 pfs-payment
+
+### Channel（渠道层）
+
+- cmf
+- channel
+
+依赖关系：
+
+- cmf → channel
+- payment → channel
+- channel → bank（外部）
+
+### Biz Tool（业务工具层，底部共享支撑）
+
+- voucher
+- Qr Code Service
+- pbs
+- acs
+- nffs
+
+依赖关系：
+
+- pns（网关层）→ voucher
+- AuthPay → Qr Code Service
+- channel → nffs（虚线）
+- voucher 内部存在反向回连
 
 ## Jar 组件（Jar Component）
 
