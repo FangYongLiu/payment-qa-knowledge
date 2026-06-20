@@ -1,68 +1,71 @@
 ---
-title: WPS Payroll QA 入职计划(3周)
+title: WPS Payroll QA 入职计划
 domain: merchant-business
 kind: wiki_page
 slug: wps-payroll-qa-onboarding-plan
 status: active
-owner: wiki-sync@acquire
+owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki
-source_ref: confluence:AQ/2252570627
+source_ref: wiki:b9c47ea9-7a47-4cf2-9849-6bc4dfdabc97
 tags: []
 ---
 
-# WPS Payroll QA 入职计划(3周)
+# WPS Payroll QA 入职计划
 
-本页定义 WPS Payroll QA 角色 3 周入职的整体安排：工作范围、阶段时间线、评估方式与每周目标概览。
+本页定义 WPS Payroll QA 新人入职的整体规划：角色范围、三周时间线、评估方式与各周导航。
 
 ## 目的
 
-明确 WPS Payroll QA 入职期间的：
-- 工作内容
-- 学习与交付预期
-- 进度评估方式
+说明入职期间的预期，包括：
+
+- 入职期间将参与的工作
+- 需要学习与交付的内容
+- 进度的评估方式
 
 ## 角色范围
 
-**Role: WPS Payroll QA**，主要工作领域：
+**Role: WPS Payroll QA**，主要参与：
 
-- Company registration 与审批流程
+- Company registration and approval flows
 - Employee registration（Add Employee）
-- Payroll 创建与发放（WPS via CBUAE，以及 Direct Transfer）
-- Invoice/billing 校验
-- 测试用例编写与 Bug 报告
+- Payroll creation and disbursement（WPS via CBUAE，以及 Direct Transfer）
+- Invoice/billing verification
+- Test case writing and bug reporting
 
-聚焦 **WPS payroll（工资发放）** 场景及背后的集成：YSE via PPC、CBUAE file exchange、TradeII。
+聚焦 WPS payroll（薪资发放）场景及背后的集成：YSE via PPC、CBUAE file exchange、TradeII。
 
 ## 入职时间线
 
-总时长：**3 周**，分三个阶段递进。
+总时长 **3 周**，分为三个阶段：
 
 | Stage | Week | Theme |
 |---|---|---|
-| Guided | Week 1 | 基础、WPS 知识、有指导的 ticket |
-| Semi-independent | Week 2 | 在轻度指导下主导一个 ticket |
-| Independent | Week 3 | 端到端独立交付一个 ticket，含发布 |
+| Guided | Week 1 | Foundations、WPS knowledge、guided ticket |
+| Semi-independent | Week 2 | Lead a ticket with light guidance |
+| Independent | Week 3 | Own a ticket end to end，包含 release |
 
-- 从 Week 2 起，需在有限指导下完成任务
-- Week 3 完全自主负责并 ship
-- **Access note**：权限尚在配置中。Week 1 安排上，知识学习类内容立即开始，动手类内容随权限到位推进
+- 从 Week 2 起，预期在有限指导下完成任务。
+- Week 3 完全独立 own 并 ship。
+
+**Access note**：权限仍在开通中。Week 1 安排成知识学习部分可立即开始，动手部分随权限到位逐步开始。
 
 ## 评估方式
 
 - 每周有明确的学习与交付目标
-- 由 mentor 审核进度
-- 结果记录在本 Wiki
+- 由 mentor 评审进度
+- 结果记录在 Wiki
 
-可能结果：
+可能的结果：
 
-- ✅ **Pass** – 可以进入下一阶段
-- ⚠️ **High Risk** – 需要改进
-- ❌ **Fail** – 未通过入职
+- ✅ **Pass** – Ready to move forward
+- ⚠️ **High Risk** – Improvement required
+- ❌ **Fail** – Onboarding not passed
 
-通过入职 = 能够独立支持 WPS Payroll QA 工作，并把一个 ticket 带到 release。
+通过入职意味着：能独立支持 WPS Payroll QA 工作，并能把一个 ticket 推到 release。
 
-## 入职导航
+## 各周导航
 
-- 👉 [[wps-payroll-qa-onboarding-week1]] Week 1 – 基础与 WPS 入门（Guided）
-- 👉 [[wps-payroll-qa-onboarding-week2-week3]] Week 2-3 – 半独立到独立执行与发布
+- 👉 [[wps-payroll-qa-onboarding-week1]] – Foundation & WPS Fundamentals（Guided）
+- 👉 [[wps-payroll-qa-onboarding-week2]] – Lead a Ticket（Semi-Independent）
+- 👉 [[wps-payroll-qa-onboarding-week3]] – Independent Execution & Release
