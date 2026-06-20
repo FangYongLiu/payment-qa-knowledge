@@ -3,15 +3,15 @@ id: api_kyc_passport_init
 object_type: API
 domain: kyc
 status: active
-owner: upload-sync@platform
+owner: wiki-sync@acquire
 reviewer: UNREVIEWED
 last_reviewed_at: '2026-06-20'
 source_type: wiki
-source_ref: wiki:89009c95-2642-4856-b64c-da186d7ed287
+source_ref: confluence:PMDPayment/205914971
 tags:
 - passport
-- kyc
 - init
+- kyc
 subdomain: passport
 module: null
 sensitivity: normal
@@ -21,18 +21,18 @@ aliases:
 related_services: []
 related_tables: []
 related_scenarios:
-- passport-kyc-flow
+- kyc-passport-auth-flow
 related_logs: []
 related_requirements: []
 related_failures: []
 ---
 
 ## 用途
-护照流程初始化，启动护照认证流程并返回流程 token 与下一步骤指示。
+护照流程初始化，根据业务类型和业务数据创建认证流程，返回流程 token 及下一步骤指示。
 
 ## 路径/方法
 - 路径：`/kyc/passport/v1/init`
-- 方法：原文未注明（业务请求/响应形式）
+- 说明：护照流程初始化
 
 ## 入参
 业务请求：
@@ -52,11 +52,13 @@ related_failures: []
 | tips | String | Y | 返回文案（如 nextStep 为 AUDIT 或 DOWN 时会返回文案） | |
 
 ## 错误码
-原文未明确列出，仅说明：非200则不返回业务响应字段。
+- 非 200 则不返回业务响应（原文未列出具体错误码枚举）。
 
 ## 测试校验点
-- bizType、bizData 必填校验，bizData 需为合法 JSON（含 employeeId、bufferInvalidTime 等字段）。
+- 必填校验：bizType、bizData 缺失或为空时应拒绝。
+- bizData 需为合法 JSON 格式，包含如 employeeId、bufferInvalidTime 等业务字段。
 - 成功响应必须返回 token 与 nextStep。
-- nextStep 取值需在 {PP_OCR, PP_LIVENESS, AUDIT, DOWN} 范围内。
-- 当 nextStep = AUDIT 或 DOWN 时，tips 文案需返回且非空。
-- 非200状态下不应返回业务响应字段。
+- nextStep 取值仅在 {PP_OCR, PP_LIVENESS, AUDIT, DOWN} 范围内。
+- 当 nextStep = AUDIT 或 DOWN 时，tips 字段应返回对应文案。
+- 非 200 状态码下不应返回业务响应体。
+- token 应可用于后续接口（submit-passport / liveness / submit-ocr）作为流程串联凭证。
