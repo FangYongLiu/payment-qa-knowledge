@@ -1,5 +1,5 @@
 ---
-title: PayBy 发布流程
+title: PayBy 发布流程与排期
 domain: merchant-business
 kind: wiki_page
 slug: payby-release-process
@@ -7,63 +7,93 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:0d4b3bb1-202a-4b8c-a20b-a804553f5ceb
+source_ref: wiki_image:a2768609-6a41-4d3f-80a1-b7b854ad3bbc
 tags: []
 ---
 
-# PayBy 发布流程
+# PayBy 发布流程与排期
 
-PayBy 采用每周二、周四 UAE 时间 6:00am 的常规双周发布节奏；窗口外的 Hotfix 必须经管理团队严格审批。
+PayBy 常规发布窗口为每周二、周四 UAE 时间 06:00。任何在常规发布窗口之外的 Hotfix 部署都必须经过管理团队的严格审批流程。
 
-## 发布节奏（周一 ~ 周四）
+## 常规发布窗口
 
-| 日 | 主要活动 |
-|---|---|
-| MONDAY | Release 0 - UAT DEPLOYMENT；Release 0 - UAT TESTING；Release 1 - SIM TESTING；Release 1 - Release scope and Config Review |
-| TUESDAY | Release 0 - PROD DEPLOYMENT；Release 0 - PROD VALIDATION；Release 1 - QA SIM TESTING |
-| WEDNESDAY | Release 1 - UAT DEPLOYMENT；Release 1 - QA UAT TESTING；Release 2 - QA SIM TESTING；Release 2 - DEV Merge to Master (Cutoff Time)；Release 2 - Release scope and Config Review |
-| THURSDAY | Release 1 - PROD DEPLOYMENT；Release 1 - QA PROD VALIDATION；Release 2 - QA SIM TESTING；Release 1 - DEV Merge to Master (Cutoff Time) |
+- 每周二 06:00 (UAE Time)
+- 每周四 06:00 (UAE Time)
+- 窗口外的 Hotfix 需走管理团队严格审批
 
-> 周五及周末（FRIDAY/SA/SU）无常规发布动作。
+## 周排期
 
-## 各角色职责
+按一周排布两个发布序列（Release 1 与 Release 2），并保留上一周的 Release 0 收尾活动。
 
-- **DEVOPS / DBA**：负责 UAT 和 PROD 的部署，依据 release scoped tickets 中的信息执行（Build Version、CRs、Configuration files 等）。
-- **QA**：负责 SIM、UAT、PROD 的测试，覆盖 Functional Testing、Regression、Smoke，手工与自动化并行。
-- **DEV**：在 DEV 环境完成 Self Tests，并在 QA 于 SIM 完成测试后将代码合入 master。
+**MONDAY**
+- Release 0 - UAT DEPLOYMENT
+- Release 0 - UAT TESTING
+- Release 2 - QA SIM TESTING
 
-### 角色与职责任务表（示例）
+**TUESDAY**
+- Release 0 - PROD DEPLOYMENT
+- Release 0 - PROD VALIDATION
+- Release 1 - SIM TESTING
+- Release 1 - QA SIM TESTING
+- Release 1 - Release scope and Config Review
+- Release 1 - DEV Merge to Master (Cutoff Time)
 
-在 "PayBy Release Process -- Role & Responsibility" wiki 中以 Microsoft Loop 协作任务表的形式维护发布任务清单，用于演示如何把发布任务分配到具体责任人。
+**WEDNESDAY**
+- Release 1 - UAT DEPLOYMENT
+- Release 1 - QA UAT TESTING
+- Release 2 - QA SIM TESTING
 
-任务表字段：
+**THURSDAY**
+- Release 1 - PROD DEPLOYMENT
+- Release 1 - QA PROD VALIDATION
+- Release 2 - QA SIM TESTING
+- Release 2 - Release scope and Config Review
+- Release 2 - DEV Merge to Master (Cutoff Time)
 
-| 字段 | 说明 |
-|---|---|
-| Task | 工单编号（示例：PAYM-1234、PAYM-5678） |
-| Assigned | 责任人（示例：Developer 01、Developer 02） |
-| Due date | 到期日期（示例：Today） |
-| Bucket | 任务分桶 / 状态（示例：To do） |
+**FRIDAY / SA / SU**
+- 无固定发布活动
 
-支持通过 "+ Add task" 新增任务，并提供视图、排序、过滤等操作入口。
+## 角色与职责
 
-## 新增状态：UAT DB CHANGE 与 UAT DEPLOY
+**DEVOPS / DBA**
+- 负责 UAT 与 PROD 的部署
+- 依据 release scoped tickets 中的信息执行：Build Version、CRs、Configuration files 等
+- 所有 UAT 部署与配置变更仅限 DevOps 与 DBA 团队执行
 
-流程中新增两个状态：
+**QA**
+- 在 SIM、UAT、PROD 进行测试：Functional Testing、Regression、Smoke
+- 覆盖手工与自动化两种方式
 
-- **UAT DB CHANGE**
-- **UAT DEPLOY**
+**DEV**
+- 在 DEV 环境完成 Self Tests
+- 在 QA 完成 SIM 测试后，将代码合并到 master
 
-强化要求：所有 UAT 部署与配置变更**只能**由 DevOps 与 DBA 团队执行。
+### 任务跟踪示例
 
-## SECURITY CONFIRM 流转
+角色与职责的执行通过 Loop paragraph（Internal）任务组件进行跟踪。每个发布确认任务以 ticket（如 `PAYM-1234 Confirm release`）的形式登记，并包含以下字段：
 
-针对涉及暴露在公网的 core service 变更的工单：
+- **Task**：ticket 编号 + 任务描述（例如 `PAYM-1234 Confirm release`）
+- **Assigned**：负责人（例如 `Developer 01`、`Developer 02`）
+- **Due date**：截止日期（例如 `Today`）
+- **Bucket**：任务桶状态（例如 `To do`）
 
-- QA 在 UAT 完成验证后，状态须流转到 **SECURITY CONFIRM**。
-- 最终结束状态为 **SECURITY COMPLETED**（而非普通的 COMPLETED）。
+已完成的任务以勾选并加删除线显示，未完成的任务保持未勾选状态。
 
-## Definition of Done (DoD)
+## 工作流新增状态
 
-- 所有工单均已上线 PROD，状态变更为 **COMPLETED** 或 **SECURITY COMPLETED**。
-- 部署过程中出现的任何问题须进行复盘，分析根因并制定改进 action items，避免同类问题再次发生。
+整体流程中新增两个状态，配合"UAT 部署与配置变更仅由 DevOps/DBA 执行"的规范：
+
+- `UAT DB CHANGE`
+- `UAT DEPLOY`
+
+## 安全确认流程
+
+针对涉及暴露到公网的核心服务变更的 ticket：
+
+- 在 UAT 完成 QA 验证后，需要将状态切换为 `SECURITY CONFIRM`
+- 最终结束状态为 `SECURITY COMPLETED`，而不是普通的 `COMPLETED`
+
+## Definition of Done
+
+- 所有 ticket 已上线 PROD，且状态为 `COMPLETED` 或 `SECURITY COMPLETED`
+- 部署过程中出现的任何问题都需复盘，分析 root cause，并制定 action items，避免后续重复发生
