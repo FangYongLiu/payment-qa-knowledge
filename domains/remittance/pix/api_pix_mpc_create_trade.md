@@ -3,21 +3,20 @@ id: api_pix_mpc_create_trade
 object_type: API
 domain: remittance
 status: active
-owner: upload-sync@platform
+owner: wiki-sync@acquire
 reviewer: UNREVIEWED
 last_reviewed_at: '2026-06-20'
 source_type: wiki
-source_ref: wiki:f244c1d0-438b-46a8-be70-acdc8cfa85b4
+source_ref: confluence:PMDPayment/517832723
 tags:
+- PIX
 - MPC
-- Pix
 - create-trade
 subdomain: pix
 module: mpc
 sensitivity: normal
-name: 创建MPC交易接口 (/pix/mpc/v1/create-trade)
-aliases:
-- /pix/mpc/v1/create-trade
+name: MPC创建交易接口 (/pix/mpc/v1/create-trade)
+aliases: []
 related_services: []
 related_tables: []
 related_scenarios:
@@ -28,31 +27,28 @@ related_failures: []
 ---
 
 ## 用途
-在用户(可选)输入支付金额后，由 wallet 调用 pix 创建 MPC 交易。pix 侧基于费率(rate)配置对金额进行校验，并返回 cashierToken，供后续走既有收银台(cashier)支付流程使用。
+在 MPC 商户呈现码支付流程中，由 wallet 在用户确认交易信息（可选输入金额、按汇率计算本地金额）后调用，用于（可选地）创建交易并返回 cashierToken，同时基于费率配置（rate config）对金额进行校验。
 
 ## 路径/方法
 - 路径：/pix/mpc/v1/create-trade
-- 所属系统：pix
+- 系统：pix
 - 调用方：wallet
-- 下游 dubbo facade：MpcFacade.parseCode (由 pix-channel 实现)
-- 详细 CGS API Doc：TODO
+- 下游 dubbo facade：MpcFacade.parseCode（由 pix-channel 实现）
 
 ## 入参
-原文未给出字段级定义(CGS API Doc: TODO)。流程上下文中应包含：
-- 上一步 /pix/mpc/v1/parse 返回的 code id (用于关联商户与交易/费率信息)
-- (Optional) 用户输入的支付金额
+原文未提供具体入参字段。可推断的上下文输入：
+- 来自 /pix/mpc/v1/parse 返回的 code id
+- （可选）用户输入的支付金额
 
 ## 出参
-- cashierToken：用于进入既有 cashier 支付流程
-- 其他字段：原文未列出 (CGS API Doc: TODO)
+- cashierToken：用于后续进入 cashier 支付流程
 
 ## 错误码
-原文未列出，CGS API Doc: TODO。
+原文未提供。
 
 ## 测试校验点
-- 金额校验：依据 rate 配置 (rate config) 对入参金额进行校验，超出/不符合规则应被拒绝
-- 正常路径：成功创建交易并返回 cashierToken，wallet 可据此进入既有收银台支付流程
-- 与 /pix/mpc/v1/parse 的衔接：使用 parse 返回的 code id 创建交易，商户与交易信息(含费率)一致
-- 可选金额场景：用户未输入金额(若商户码本身已带金额)与用户输入金额(需用费率换算本币)两种分支均可创建成功
-- 后续衔接：返回的 cashierToken 能驱动 cashier 支付流程，并可被 /pix/mpc/v1/query-trade 查询到对应交易
-- dubbo 实现：底层走 MpcFacade.parseCode (pix-channel) 实现可达
+- 创建交易后必须返回 cashierToken，供后续 cashier 支付流程使用
+- 金额需结合 rate config 进行校验（Check amount with rate config）
+- 创建交易步骤为可选（Optional）：在需要用户输入金额或基于汇率换算本地金额的场景下触发
+- 后续支付完成后通过 /pix/mpc/v1/query-trade 可查询到该交易信息
+- pix 侧通过 MpcFacade（dubbo facade）调用 pix-channel 的实现
