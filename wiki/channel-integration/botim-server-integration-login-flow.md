@@ -1,5 +1,5 @@
 ---
-title: Botim服务端集成 - 登录与PayBy认证流程
+title: Botim服务端集成-登录流程
 domain: channel-integration
 kind: wiki_page
 slug: botim-server-integration-login-flow
@@ -7,55 +7,51 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:5fc1a54a-07c2-4842-b881-a2150e7a27e1
+source_ref: wiki_image:80e249f0-da50-4572-b397-a7d1c4b13711
 tags: []
 ---
 
-# Botim服务端集成 - 登录与PayBy认证流程
+# Botim服务端集成-登录流程
 
-本页描述用户在 Botim 登录时，Botim 服务端与 PayBy 侧（sgs-grpc、pts、member）之间的交互时序：首次登录需先完成绑定（First Authentication），后续登录走标准 PayBy Login 并返回 Botim token。
+本页描述 Botim App 登录并联动 PayBy 登录的端到端时序：先在 Botim 自有服务完成认证，再经 sgs 网关进入 personal 服务，由其编排设备落库、静默登录与风控咨询，最终将 accessToken 返回客户端。
 
 ## 参与方
 
-- **user**：终端用户
-- **botim**：Botim 服务端
-- **sgs-grpc**：PayBy 对接网关
-- **pts**：PayBy 内部服务
-- **member**：会员服务
+- app use（终端用户）
+- botim app（客户端）
+- botim server（Botim 服务端）
+- sgs（PayBy 网关）
+- personal（个人服务，登录编排）
+- pts（设备服务）
+- member（会员服务）
+- cps（风控服务）
 
-## 总体时序
+## 主流程时序
 
-1. `Login botim`：user → botim 发起登录
-2. **首次登录**：执行 First Authentication（绑定流程），获取 Member ID
-3. **后续登录**：调用 Login PayBy 完成认证
-4. `Botim token`：botim 将 token 返回给 user
+1. `login`：app use → botim app
+2. `botim login`：botim app → botim server
+   - `verified`：botim server 自校验
+3. `payby login`：botim app → botim server
+4. `/personal/v3/auth/login`：botim server → sgs
+5. `with device info`：sgs → personal（携带设备信息）
 
-## First Authentication（仅首次登录）
+## personal 内部编排（1.2.1.1.x）
 
-该分组框仅在初次登录时触发，用于在 PayBy 侧建立或更新客户并完成绑定：
+personal 在收到登录请求后，依次执行：
 
-- 1.1 `Call bind api`：botim → sgs-grpc
-- 1.1.1 `Bind`：sgs-grpc → pts
-- 1.1.1.1 `Create or update customer`：pts → member
-- 1.1.1.2 返回 `Member ID`：member ⇢ pts
-- 1.1.2 返回 `Member ID`：pts ⇢ sgs-grpc
-- 1.2 返回 `Member ID`：sgs-grpc ⇢ botim
+1. `checkAvailable`：personal 自检可用性
+2. `IDefaultDeviceFacade#save`：personal → pts，保存设备
+3. `AccessTokenFacade#silentLogin`：personal → member，静默登录
+4. `ConsultRiskServiceStub#consultRiskManager`：personal → cps，风控咨询
+5. `accessToken`：personal → sgs（返回）
 
-完成后，botim 持有该用户对应的 `Member ID`。
+## 返回链路
 
-## PayBy 登录（每次登录均执行）
-
-绑定完成或已存在绑定关系后，进入标准登录流程：
-
-- 1.3 `Login PayBy`：botim → sgs-grpc
-- 1.3.1 `Login`：sgs-grpc → pts
-- 1.3.2 pts ⇢ sgs-grpc 返回（登录结果）
-- 1.4 sgs-grpc ⇢ botim 返回（登录结果）
-- 1.5 `Botim token`：botim ⇢ user
+- sgs → botim server（返回登录结果）
+- botim server → botim app（返回 accessToken 等）
 
 ## 关键说明
 
-- 首次登录 = First Authentication（1.1–1.2） + PayBy 登录（1.3–1.5）
-- 非首次登录 = 仅 PayBy 登录（1.3–1.5）
-- 绑定步骤通过 `Create or update customer` 在 member 侧建立会员档案，并将 `Member ID` 逐层回传至 botim
-- 最终用户拿到的是 Botim token，而非 PayBy 内部凭证
+- Botim 侧认证（`botim login` / `verified`）与 PayBy 侧登录（`payby login`）是两段独立但顺序衔接的流程。
+- PayBy 登录入口固定为网关路径 `/personal/v3/auth/login`，由 sgs 透传至 personal。
+- personal 是登录编排中枢，分别协同 pts（设备）、member（令牌）、cps（风控）三方完成。
