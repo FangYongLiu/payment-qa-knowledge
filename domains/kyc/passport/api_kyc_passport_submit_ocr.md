@@ -3,17 +3,15 @@ id: api_kyc_passport_submit_ocr
 object_type: API
 domain: kyc
 status: active
-owner: upload-sync@platform
+owner: wiki-sync@acquire
 reviewer: UNREVIEWED
 last_reviewed_at: '2026-06-20'
 source_type: wiki
-source_ref: wiki:89009c95-2642-4856-b64c-da186d7ed287
+source_ref: confluence:PMDPayment/205914971
 tags:
 - passport
 - ocr
 - signzy
-- 临时方案
-- 已暂停
 subdomain: passport
 module: null
 sensitivity: normal
@@ -22,18 +20,17 @@ aliases: []
 related_services: []
 related_tables: []
 related_scenarios:
-- passport-kyc-flow
+- kyc-passport-auth-flow
 related_logs: []
 related_requirements: []
 related_failures: []
 ---
 
 ## 用途
-提交护照OCR识别信息，用于下线 mblink、使用 signzy 代替的临时方案。2025-10-10 新增，方案暂停。
+提交护照OCR识别信息，用于下线mblink，使用signzy代替的临时方案（2025-10-10新增，方案暂停）。
 
 ## 路径/方法
-- 路径：`/kyc/passport/v1/submit-ocr`
-- 所属流程：护照KYC认证（[[passport-kyc-flow]]）
+- 路径：/kyc/passport/v1/submit-ocr
 
 ## 入参
 业务请求：
@@ -62,12 +59,13 @@ related_failures: []
 | ocrServiceProvider | String | Y | ocr识别渠道 | signzy |
 
 ## 错误码
-原文未列出明确错误码，仅约定"非200则不返回"业务响应字段。
+原文未提供。
 
 ## 测试校验点
-- 该方案为临时替代 mblink 的过渡接口，状态为"暂停"，需确认是否启用。
-- 入参仅 `token` 与 `passportPageTag`，OCR 字段由后端通过 signzy 识别返回，需校验返回的 `ocrServiceProvider=signzy`。
-- nextStep 取值需在 {PP_OCR, PP_SUBMIT, PP_LIVENESS, AUDIT, DOWN} 范围内，正常分支为 `PP_SUBMIT`，后续衔接 [[api_kyc_passport_submit_v2]] (`/kyc/passport/v2/submit-passport`)。
-- 校验密文字段（passportNo、fullName）的加密格式。
-- 校验非空字段：token、passportPageTag、passportNo、passportAvatarTag、fullName、birthday、gender、expiryDate、nationality、ocrServiceProvider。
-- 可空字段：passportType、issueDate、issuePlace。
+- 入参 token、passportPageTag 必填校验。
+- 响应 nextStep 取值范围：PP_OCR、PP_SUBMIT、PP_LIVENESS、AUDIT、DOWN；正常流转下应为 PP_SUBMIT。
+- 响应 ocrServiceProvider 应为 signzy（区别于 v1/submit-passport 的 microblink）。
+- 必填字段校验：passportNo、passportAvatarTag、fullName、birthday、gender、expiryDate、nationality 不为空。
+- 可选字段：passportType、issueDate、issuePlace 允许为空。
+- 非200响应不返回业务体。
+- 该接口为临时方案，注意方案暂停状态下的可用性确认。
