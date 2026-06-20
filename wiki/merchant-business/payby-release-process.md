@@ -7,7 +7,7 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:a2768609-6a41-4d3f-80a1-b7b854ad3bbc
+source_ref: wiki_image:d4a1b3cd-6c70-4d9b-aec1-c2308a8c6cc3
 tags: []
 ---
 
@@ -67,17 +67,24 @@ PayBy 常规发布窗口为每周二、周四 UAE 时间 06:00。任何在常规
 **DEV**
 - 在 DEV 环境完成 Self Tests
 - 在 QA 完成 SIM 测试后，将代码合并到 master
+- 在 PROD 部署完成后，需按 ticket 完成 "Confirm online" 验证任务（见下文）
 
-### 任务跟踪示例
+### Confirm Online 任务分配模板
 
-角色与职责的执行通过 Loop paragraph（Internal）任务组件进行跟踪。每个发布确认任务以 ticket（如 `PAYM-1234 Confirm release`）的形式登记，并包含以下字段：
+PROD 部署完成后，使用 Loop paragraph（Internal）任务表对每个上线 ticket 进行 "Confirm online" 验证任务的分配与跟踪。模板字段如下：
 
-- **Task**：ticket 编号 + 任务描述（例如 `PAYM-1234 Confirm release`）
-- **Assigned**：负责人（例如 `Developer 01`、`Developer 02`）
-- **Due date**：截止日期（例如 `Today`）
-- **Bucket**：任务桶状态（例如 `To do`）
+| 列 | 说明 |
+| --- | --- |
+| Task | 形如 `PAYM-1234 Confirm online`，对应 JIRA ticket ID |
+| Assigned to | 指派的具体开发者（如 Developer 01） |
+| Due date | 通常为 `Today`（当日截止） |
+| Bucket | 初始为 `To do` |
 
-已完成的任务以勾选并加删除线显示，未完成的任务保持未勾选状态。
+示例：
+- `PAYM-1234 Confirm online` — Developer 01 — Today — To do
+- `PAYM-5678 Confirm online` — Developer 02 — Today — To do
+
+该模板用于在发布流程中明确每个 ticket 的上线确认责任人，确保 PROD 验证有据可查。
 
 ## 工作流新增状态
 
@@ -96,4 +103,5 @@ PayBy 常规发布窗口为每周二、周四 UAE 时间 06:00。任何在常规
 ## Definition of Done
 
 - 所有 ticket 已上线 PROD，且状态为 `COMPLETED` 或 `SECURITY COMPLETED`
+- 每个 ticket 的 `Confirm online` 任务已由指派开发者完成并归档
 - 部署过程中出现的任何问题都需复盘，分析 root cause，并制定 action items，避免后续重复发生
