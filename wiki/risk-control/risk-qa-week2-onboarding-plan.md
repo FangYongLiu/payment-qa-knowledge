@@ -1,34 +1,37 @@
 ---
-title: 风控QA第二周入职培训计划(QA Process & Release Flow)
+title: 风控QA第二周入职培训计划(QA流程与发布流程)
 domain: risk-control
 kind: wiki_page
 slug: risk-qa-week2-onboarding-plan
 status: active
-owner: upload-sync@platform
+owner: wiki-sync@acquire
 reviewer: UNREVIEWED
 source_type: wiki
-source_ref: wiki:c157e1f5-6343-427a-ad6b-afbd1f9cd965
+source_ref: confluence:AQ/2161967143
 tags: []
 ---
 
-# 风控QA第二周入职培训计划(QA Process & Release Flow)
+# 风控QA第二周入职培训计划(QA流程与发布流程)
 
-第二周入职培训聚焦于在真实项目环境中熟悉完整的 QA 工作流程，从用例设计到发布上线全链路跟随导师实践。
+本页描述风控QA第二周的入职培训目标、关键学习点与预期产出，重点是熟悉真实项目环境中的完整QA工作流。
 
-## 培训目标 (Objective)
+## 目标
 
-- 在真实项目环境中熟悉完整的 QA 工作流程 (Become familiar with the complete QA workflow in real project environments)
+- 熟悉真实项目环境中完整的 QA 工作流。
 
-## 关键学习点 (Key Learning Points)
+## 关键学习点
 
-- 理解 **QA testing workflow**（QA 测试工作流）
-- 学习 **JIRA ticket lifecycle and status transitions**（JIRA 工单生命周期与状态流转）
-- 掌握 **test case design and writing process**（测试用例设计与编写流程）
-- 学习 **bug reporting and tracking process**（Bug 上报与跟踪流程）
-- 参考资料：🧭 Payment Testing Workflow (QA Process)
-- 在导师指导下，完整走查一次 **end-to-end release process**（端到端发布流程）
+- 了解 QA 测试工作流（QA testing workflow）。
+- 学习 JIRA 工单生命周期与状态流转（JIRA ticket lifecycle and status transitions）。
+- 理解测试用例的设计与编写流程（test case design and writing process）。
+- 学习 Bug 提交与跟踪流程（bug reporting and tracking process）。
+- 参考资料：🧭 Payment Testing Workflow (QA Process)。
 
-## 预期产出 (Expected Outcome)
+## 端到端发布流程跟随实践
 
-- 理解发布过程中 QA 的职责范围 (scope of QA responsibilities during the release process)
-- 能够在指导下独立完成小型测试任务 (complete small testing tasks with guidance)
+- 在 mentor 指导下，完整走一遍 end-to-end 的发布流程（release process）。
+
+## 预期产出
+
+- 理解发布过程中 QA 的职责范围（scope of QA responsibilities during the release process）。
+- 能够在指导下完成小型测试任务。
