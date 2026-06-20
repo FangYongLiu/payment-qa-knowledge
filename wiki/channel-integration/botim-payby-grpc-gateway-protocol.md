@@ -1,86 +1,78 @@
 ---
-title: Botim-PayBy gRPC网关协议规范
+title: Botim-PayBy gRPC网关协议定义
 domain: channel-integration
 kind: wiki_page
 slug: botim-payby-grpc-gateway-protocol
 status: active
-owner: upload-sync@platform
+owner: wiki-sync@acquire
 reviewer: UNREVIEWED
 source_type: wiki
-source_ref: wiki:a01637cc-4974-45c3-b1e9-d194dac7ed1f
+source_ref: confluence:PMDPayment/1072791687
 tags: []
 ---
 
-# Botim-PayBy gRPC网关协议规范
+# Botim-PayBy gRPC网关协议定义
 
-本页定义 Botim 与 PayBy 之间 gRPC 网关的 Proto 接口、ApplicationMessage 报文结构、字段约束以及载荷加解密规则，供渠道接入侧实现报文编解码与安全传输。整体方案与背景见 [[botim-payby-server-integration-overview]]，加解密细节见 [[botim-payby-payload-encryption]]。
+本页定义 Botim 与 PayBy 之间网关通道使用的 gRPC 接口、`ApplicationMessage` 报文结构以及二进制编解码细节。加解密细节见 [[botim-payby-payload-security]]，整体方案背景见 [[botim-payby-server-integration-overview]]。
 
 ## gRPC Proto 定义
 
 - package：`at_df`
 - service：`DownstreamCaller`
-  - `rpc send(DFRequest) returns (google.protobuf.Empty)`
-  - `rpc call(DFRequest) returns (DFResponse)`
-- `DFRequest`：`bytes message = 1`
-- `DFResponse`：
-  - `bytes message = 1`
-  - `DownstreamStatus status = 2`
-  - 枚举 `DownstreamStatus { OK = 0; ERROR = 1; }`
+  - `rpc send(DFRequest) returns (google.protobuf.Empty)`：单向下行
+  - `rpc call(DFRequest) returns (DFResponse)`：请求/响应
 
-```proto
-syntax = "proto3";
-import "google/protobuf/empty.proto";
-package at_df;
+报文：
 
-service DownstreamCaller {
-  rpc send(DFRequest) returns (google.protobuf.Empty) {}
-  rpc call(DFRequest) returns (DFResponse) {}
-}
-```
+- `DFRequest { bytes message = 1; }`
+- `DFResponse { bytes message = 1; DownstreamStatus status = 2; }`
+- `enum DownstreamStatus { OK = 0; ERROR = 1; }`
 
-## ApplicationMessage 总体结构
+`message` 字段承载经过二进制编码（再经 AES-GCM 加密）的 `ApplicationMessage`。
 
-请求 `DFRequest.message` 中承载 ApplicationMessage，含以下顶层字段：
+## ApplicationMessage 顶层结构
 
-- `version` (byte)：报文版本
-- `id` (String, 16字节)：每次请求唯一 Request ID
-- `meta` (Meta)：元数据
-- `amp` (String)：Application Message Payload（JSON）
+`ApplicationMessage` 字段：
+
+| 字段 | 类型 | 说明 |
+| --- | --- | --- |
+| `version` | byte | 报文版本号 |
+| `id` | String | 每个请求的 Request ID，长度 16 |
+| `meta` | Meta | 元数据，见下文 |
+| `amp` | String | Application Message Payload（JSON） |
 
 ## Meta 字段定义
 
-| 字段 | 含义 | 长度约束 |
-|---|---|---|
-| `adn` | Application Downstream Name，下游来源标识 | 最大 127（1 byte 长度前缀） |
-| `adm` | Application Downstream Method，被调用的方法 | 最大 127（1 byte） |
-| `asn` | Application Source Name，请求来源 | 最大 127（1 byte） |
-| `asm` | Application Source Method | 最大 127（1 byte） |
-| `amt` | Trusty，可用于签名 | 最大 65535（2 byte） |
-| `amf` | Flags，1 bit 1 个标志 | 2 bytes |
-| `amh` | Header 键值对 | key ≤127(1B)，value ≤65535(2B) |
-| `ame` | Application Message Extension，文本/JSON 任意 | 最大 `Integer.MAX_VALUE`（4 byte） |
+| 字段 | 含义 | 长度限制 |
+| --- | --- | --- |
+| `adn` | Application Downstream Name，下游来源 | 最长 127（1 byte 长度前缀） |
+| `adm` | Application Downstream Method，被调用方法 | 最长 127（1 byte） |
+| `asn` | Application Source Name，请求来源 | 最长 127（1 byte） |
+| `asm` | Application Source Method | 最长 127（1 byte） |
+| `amt` | Trusty，可放签名等 | 最长 65535（2 bytes） |
+| `amf` | Flags，2 bytes，每 bit 一个 flag | Character |
+| `amh` | Header（key/value Map） | key < 127（1 byte），value < 65535（2 bytes） |
+| `ame` | Application Message Extension，可放任意 text/json | 最长 `Integer.MAX_VALUE`（4 bytes） |
 | `amc` | Communication Mode，默认 `ComMode.CALL` | 1 byte |
 
 ### Meta → adm
 
-用于指示客户端请求的 API，例如 `/personal/v1/bind-customer`。对应业务 API 见：
+用于指定客户端调用的具体 API，例如 `/personal/v1/bind-customer`。对应业务接口见：
 
 - [[api_personal_bind_customer]] `/personal/v1/bind-customer`
 - [[api_personal_login_or_refresh]] `/personal/v1/login-or-refresh`
 - [[api_personal_v3_auth_login]] `/personal/v3/auth/login`
 
-完整 Outbound API 清单参见 [[botim-payby-outbound-apis]]。
-
 ### Meta → adh（Header）
 
 | Header Name | Header Value | 示例 |
-|---|---|---|
+| --- | --- | --- |
 | `partner-id` | Partner ID | `20000000006` |
 | `Content-Language` | 语言类型 | `en`, `ar`, `zh` |
 
-## amp 载荷格式
+### amp（Application Message Payload）
 
-`amp` 为 JSON 字符串，承载具体业务请求/响应内容，例如：
+JSON 文本，包含业务字段。示例：
 
 ```json
 {
@@ -92,47 +84,49 @@ service DownstreamCaller {
 }
 ```
 
-## 二进制编解码规则
+## 二进制编解码规范
 
-ApplicationMessage 各字段按以下二进制布局序列化（参考 Rust 实现）：
+`ApplicationMessage` 经过自定义二进制编码后再传输（参考 Rust `ToBinRepr`/`FromBinRepr` 实现）。
 
-- **AMVer**：1 byte
-- **AMID**：16 bytes（UUID 原始字节）
-- **ASN / ASM / ADN / ADM**：`u8 长度` + UTF-8 字节
-- **AMTrusty**：`u16 长度（大端）` + UTF-8 字节
-- **AMP**：`u32 长度（大端）` + payload 字节
-- **AMFlag**：2 bytes
-- **AMHeaders**：
-  - `u8` headers 数量
-  - 每项：`u8 长度 key` + `u16 长度 value`
-- **AMExt**：`u32 长度（大端）` + 字节内容
+### 长度前缀约定
 
-字符串长度均使用大端字节序（`to_be_bytes`），超长会触发 panic（`exceeds u8::MAX` / `u16::MAX`）。解码侧逐段读取，长度不足时返回错误（如 `AMID is too short`、`String data is incomplete`、`Invalid UTF-8 string data`）。
+- **u8 长度前缀（≤127 字节）**：`asn`、`asm`、`adn`、`adm`
+  - 1 byte 长度 + UTF-8 字节
+- **u16 长度前缀（big-endian，≤65535 字节）**：`amt`（AMTrusty）
+  - 2 bytes 长度 + UTF-8 字节
+- **u32 长度前缀（big-endian）**：`amp`（AMP）
+  - 4 bytes 长度 + payload 字节
 
-## 请求安全：Payload 加解密概要
+### 各字段编码
 
-报文整体使用 AES 加密以密文传输，参数：
+| 字段 | 编码规则 |
+| --- | --- |
+| `AMVer` | 单字节 |
+| `AMID` | 16 字节（UUID bytes） |
+| `ASN` / `ASM` / `ADN` / `ADM` | u8 长度 + UTF-8 |
+| `AMTrusty` | u16 长度（big-endian）+ UTF-8 |
+| `AMP` | u32 长度（big-endian）+ 原始字节 |
+| `AMFlag` | 2 字节固定 |
 
-- Key length：AES-256
-- Algorithm：`AES/GCM/NoPadding`
-- IV length：16 字符
-- IV 拼接在密文之前
-- 最终结果使用 Base64 编码
+### 解码错误条件
 
-实现常量（Java 示例）：
+- `AMVer is too short`：剩余 < 1 字节
+- `AMID is too short`：剩余 < 16 字节
+- `String length field is missing` / `String data is incomplete`：长度前缀或内容不完整
+- `Invalid UTF-8 string data`：UTF-8 解码失败
+- `AMP length field is missing` / `AMP payload is incomplete`：AMP 长度/正文不完整
+- `AMFlag is too short`：剩余 < 2 字节
 
-- `GCM_TAG_LENGTH = 16`
-- `GCM_NONCE_LENGTH = 12`
-- `ALGORITHM = "AES"`
-- `TRANSFORMATION = "AES/GCM/NoPadding"`
-- 加密结果格式：`12 bytes nonce + encrypted bytes`
+## 报文安全
 
-详细加解密代码与流程见 [[botim-payby-payload-encryption]]。
+`message` 在 gRPC 传输前需经过 AES-256/GCM/NoPadding 加密，密文格式为 `12 bytes nonce + ciphertext`，再 Base64 编码。完整加解密流程与示例代码参见 [[botim-payby-payload-security]]。
 
-## 关联 API 文档
+## 关联接口
 
-- Personal 文档入口：`http://sim.intra.test2pay.com/api-doc/sgs-api/personal-sgs-api/`
-- 协议承载的核心 API：
-  - `/personal/v1/bind-customer` — Bind Customer
-  - `/personal/v1/login-or-refresh` — Login or Refresh Token
-  - `/personal/v3/auth/login` — Customer Login
+通过该网关调用的 API：
+
+- [[api_personal_bind_customer]] 绑定客户
+- [[api_personal_login_or_refresh]] 登录或刷新 Token
+- [[api_personal_v3_auth_login]] 客户登录（合并自 `/personal/apply/authToken` 与 `/personal/v2/auth/login`）
+
+反向（PayBy → Botim）调用清单见 [[botim-payby-outbound-apis]]；UID/手机号变更兼容场景见 [[botim-uid-mobile-change-cases]]。
