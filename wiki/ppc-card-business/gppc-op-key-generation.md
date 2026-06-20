@@ -7,48 +7,44 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:6254e0fb-2391-4859-b312-c64c7fbd2908
+source_ref: wiki_image:a8b7e3c3-4035-45a4-88aa-5ec03613577d
 tags: []
 ---
 
 # GPPC OP密钥生成指南
 
-本页说明如何使用 OpenSSL 查看并验证 GPPC OP 场景下 RSA 公钥的模数（Modulus）与指数（Exponent）。
+本页说明 GPPC 对接所需 RSA 密钥对的生成方法，以及如何查看公钥信息。
 
-## 适用场景
+## 生成 RSA 密钥对
 
-- 校验 PEM 格式公钥文件（如 `public.pem`）的内容
-- 提取 RSA 公钥的 Modulus 与 Exponent，用于密钥配置或对接核对
+使用 OpenSSL 生成私钥与对应公钥，用于 GPPC OP 接入。
 
-## 查看公钥命令
+## 查看公钥信息
 
-使用 OpenSSL 解析 PEM 公钥文件：
+可通过 OpenSSL 命令打印公钥的详细信息（如 `openssl rsa -pubin -text -modulus`），输出包含：
 
-```shell
-openssl rsa -pubin -in public.pem -text -noout -modulus
+- **RSA Public-Key**：密钥位数，例如 `RSA Public-Key: (1408 bit)`
+- **Modulus**：以冒号分隔的十六进制字节对形式逐行展示模数
+
+示例输出片段：
+
+```
+RSA Public-Key: (1408 bit)
+Modulus:
+    00:e0:a8:db:7c:a3:7b:22:00:46:d3:42:17:da:18:
+    ca:30:85:61:2f:92:a8:d6:10:19:5e:d4:3f:c0:95:
+    2d:17:f5:93:20:2d:3b:7d:09:d9:6d:f1:5f:2a:40:
+    2a:fa:47:7c:a5:f4:c7:82:46:a5:52:58:33:6f:3f:
+    7a:16:2b:99:ed:b1:df:42:8b:fd:9b:8f:b1:d6:2e:
+    cb:0e:a4:d6:5d:87:1d:14:48:62:18:0f:69:3f:80:
+    5a:1f:f9:39:d2:05:1b:58:62:14:24:bd:41:5b:ae:
+    37:17:c3:b7:52:ec:92:9a:8f:75:30:48:37:23:ed:
+    a7:c0:b8:80:3e:84:46:3e:41:63:8d:5d:6c:69:e8:
+    fc:38:d8:db:4b:02:50:9d:53:38:36:db:2e:0a:6f:
+    9b:e6:d1:5e:fc:a2
 ```
 
-参数说明：
+## 关注要点
 
-- `-pubin`：输入文件为公钥
-- `-in public.pem`：指定输入文件
-- `-text`：以文本形式打印密钥内容
-- `-noout`：不输出编码后的密钥
-- `-modulus`：额外打印一行连续十六进制的 Modulus
-
-## 输出内容解读
-
-执行后典型输出包含以下字段：
-
-- `RSA Public-Key: (2048 bit)`：表示该公钥为 2048 位 RSA
-- `Modulus:`：以冒号分隔的十六进制字节对形式按多行缩进打印模数
-  - 例如以 `00:b9:ef:33:89:19:2f:67:b0:61:39:5f:12:7a:2d:...` 开头，以 `...30:95` 结尾
-- `Exponent: 65537 (0x10001)`：公钥指数，固定为 `65537`（十六进制 `0x10001`）
-- `Modulus=`：将上述模数以单行连续大写十六进制字符串形式再次输出（无冒号分隔），便于直接复制粘贴使用
-  - 例如：`B9EF3389192F67B061395F127A2DB81C79ACCD33CB1C8E391C347A7C32C197C4B68D3D2A8B60653AF098C7569A3BE7B04DA6F3AE38DDFA...56D3D9182A1AAB78ADC1B6FBF6769256FA0D2861B02B3095`
-
-## 验证要点
-
-- 确认密钥长度为 `2048 bit`
-- 确认 `Exponent` 为 `65537 (0x10001)`
-- 使用 `Modulus=` 行的连续十六进制字符串与对端配置进行比对核验
+- 确认密钥位数是否符合对接要求（示例中为 1408 bit）。
+- Modulus 用于 GPPC 对端校验公钥一致性，需完整保留。
