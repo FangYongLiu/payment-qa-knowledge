@@ -7,13 +7,13 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:5750b3d7-e8e7-47c5-8d8c-d7cd82286322
+source_ref: wiki_image:e7a58d61-3be2-4919-9611-113cb875997c
 tags: []
 ---
 
 # 系统组件架构与依赖关系
 
-本页描述 merchant-portal 业务域所依赖的系统组件分类（内部服务、内部控台、Jar 组件、第三方服务、第三方控台）及其相互依赖关系，并补充 cmp webservice 的分层架构视图（外部客户端 / 网关层 / 应用层）。
+本页描述 merchant-portal 业务域所依赖的系统组件分类（内部服务、内部控台、Jar 组件、第三方服务、第三方控台）及其相互依赖关系，并给出业务调用链的分层视图。
 
 ## 组件分类图例
 
@@ -24,6 +24,40 @@ tags: []
 - **Jar Component**（Jar 组件）
 - **3rdParty Service**（第三方服务）
 - **3rdParty Console**（第三方控台）
+
+## 业务分层架构
+
+从外部调用方到中台的整体请求路径，按层划分如下：
+
+### 外部调用方
+
+- **merchant_system**：外部商户系统，作为调用入口。
+
+### 网关层（Gateway Layer）
+
+- **sgs**
+- **merchant-frontend**
+
+### 业务层（Business Layer）
+
+- **acquireii**
+
+### 中台（Middle Platform）
+
+- **tradeii**：交易中台，处于中台核心位置
+- **grc**：风控相关组件
+- **pfs**：支付/资金相关组件
+
+### 调用链关系
+
+请求自上而下流转（箭头方向表示「依赖/调用」）：
+
+- merchant_system → sgs
+- sgs → merchant-frontend
+- merchant-frontend → acquireii
+- acquireii → tradeii
+- tradeii → grc
+- tradeii → pfs
 
 ## Jar 组件（Jar Component）
 
@@ -83,58 +117,3 @@ tags: []
 - ues → redis
 - ues → mysql
 - mysql-starter → mysql
-
-## cmp webservice 分层架构
-
-cmp webservice 采用三层结构：**外部客户端 → 网关层（gateway layer）→ 应用层（application layer）**。
-
-### 外部客户端（External Clients）
-
-- merchant-console-website
-- pos_device
-- merchant_system
-- cashier-website（依赖 merchant_system，虚线依赖）
-- customer-app
-- customer-website
-
-### 网关层（Gateway Layer）
-
-上排（服务端网关）：
-- server-gateway-service
-- client-gateway-service
-
-下排（前端网关）：
-- merchant-console-frontend
-- pos-gateway
-- iso8583-gateway
-- merchant-frontend
-- customer-frontend
-
-外部客户端到网关层的依赖：
-- merchant-console-website → merchant-console-frontend
-- pos_device → pos-gateway（协议：https/rpc）
-- merchant_system → server-gateway-service → merchant-frontend
-- merchant_system → iso8583-gateway
-- cashier-website → client-gateway-service
-- customer-app → client-gateway-service
-- customer-website → client-gateway-service → customer-frontend
-
-### 应用层（Application Layer）
-
-应用层组件：
-
-- commission
-- merchant-mgmt
-- acquire-service 2.0
-- acquire-query-service
-- cash-eatm
-- pns
-
-网关层到应用层的调用：
-- merchant-console-frontend → commission、merchant-mgmt、acquire-service 2.0
-- pos-gateway → acquire-service 2.0
-- merchant-frontend → merchant-mgmt、acquire-query-service
-- customer-frontend → cash-eatm
-- iso8583-gateway → ac（来源截断）
-
-> 注：iso8583-gateway 的下游目标在原图描述中被截断，此处仅保留可确认信息。
