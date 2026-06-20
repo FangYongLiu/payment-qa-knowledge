@@ -4,20 +4,20 @@ domain: ppc-card-business
 kind: wiki_page
 slug: gppc-op-env-configuration
 status: active
-owner: upload-sync@platform
+owner: wiki-sync@acquire
 reviewer: UNREVIEWED
 source_type: wiki
-source_ref: wiki:8d4a2d70-a1c6-445a-9d57-d3882007e97e
+source_ref: confluence:PMDPayment/1143242758
 tags: []
 ---
 
 # GPPC OP环境配置(Dgpay与gppc-jaywan API)
 
-本页汇总 GPPC OP 在 SIM/UAT/PROD 三套环境下的 Dgpay 配置（费用收款商户号、集成网关 URL、产品号）以及 gppc-jaywan 对外暴露给机构的 API 地址清单。
+本页汇总 GPPC OP 业务在 Dgpay 侧的费用收单商户号、集成网关 URL、产品号配置，以及 gppc-jaywan 对接 Dgpay 的机构 API 端点清单（覆盖 SIM/UAT/PROD 三套环境）。
 
 ## Dgpay 配置
 
-### Fee Collection Merchant（Jaywan Fee Collection - Jaywan）
+### Fee Collection Merchant (Jaywan Fee Collection - Jaywan)
 
 | 环境 | 商户号 |
 |---|---|
@@ -29,22 +29,21 @@ tags: []
 
 - gppc-OP-Funds Flow
 
-### Dgpay Integration 网关地址
+### Dgpay Integration 网关 URL
 
-- SIM/TEST：`https://testmbankprepaid.dgpays.com/NetaIntegrationGateway/api/AstraTechIntegrationService/{{METHOD_NAME}}`
-- UAT：`https://kongapi.mbankuae-uat.local:8443/uat/api/AstraTechIntegrationService/{{METHOD_NAME}}`
-- PROD：（原文未列出）
+- SIM/TEST: `https://testmbankprepaid.dgpays.com/NetaIntegrationGateway/api/AstraTechIntegrationService/{{METHOD_NAME}}`
+- UAT: `https://kongapi.mbankuae-uat.local:8443/uat/api/AstraTechIntegrationService/{{METHOD_NAME}}`
 
-### Product 配置
+### 产品号配置
 
 | Item | SIM | UAT | PROD |
 |---|---|---|---|
 | ProductNumber | 051 | 051 | 051 |
 | SubProductNumber | 051 | 051 | 051 |
 
-## gppc-jaywan 机构对外 API
+## Institution API: gppc-jaywan
 
-### URL 前缀
+### Url Prefix
 
 | 环境 | Url Prefix |
 |---|---|
@@ -52,16 +51,16 @@ tags: []
 | UAT | `https://uat-gppc-ext.test2pay.com/gppc-jaywan/api/dgpay/{UrlSuffix}` |
 | PROD | `https://gppc-ext.payby.com/gppc-jaywan/api/dgpay/{UrlSuffix}` |
 
-### API 列表（以 PROD 为例）
+### API 列表 (Url Suffix)
 
-| API | Url Suffix | PROD 示例 URL |
-|---|---|---|
-| Get token | `/get-token` | `https://gppc-ext.payby.com/gppc-jaywan/api/dgpay/get-token` |
-| Update prepaid card status | `/update-prepaid-card-status` | `https://gppc-ext.payby.com/gppc-jaywan/api/dgpay/update-prepaid-card-status` |
-| Provision | `/provision` | `https://gppc-ext.payby.com/gppc-jaywan/api/dgpay/provision` |
-| Balance inquiry | `/balance-inquiry` | `https://gppc-ext.payby.com/gppc-jaywan/api/dgpay/balance-inquiry` |
-| Reversal | `/reversal` | `https://gppc-ext.payby.com/gppc-jaywan/api/dgpay/reversal` |
-| Declined transaction | `/declined-transaction` | `https://gppc-ext.payby.com/gppc-jaywan/api/dgpay/declined-transaction` |
-| Notify courier process | `/notify-courier-process` | `https://gppc-ext.payby.com/gppc-jaywan/api/dgpay/notify-courier-process` |
+| API | Url Suffix |
+|---|---|
+| Get token | `/get-token` |
+| Update prepaid card status | `/update-prepaid-card-status` |
+| Provision | `/provision` |
+| Balance inquiry | `/balance-inquiry` |
+| Reversal | `/reversal` |
+| Declined transaction | `/declined-transaction` |
+| Notify courier process | `/notify-courier-process` |
 
-> SIM/UAT 环境下，将上述 Url Suffix 拼接到对应环境的 Url Prefix 即可得到完整地址。
+PROD 完整地址示例：`https://gppc-ext.payby.com/gppc-jaywan/api/dgpay/{UrlSuffix}`，将 `{UrlSuffix}` 替换为上表对应路径即可（如 `/get-token` → `https://gppc-ext.payby.com/gppc-jaywan/api/dgpay/get-token`）。
