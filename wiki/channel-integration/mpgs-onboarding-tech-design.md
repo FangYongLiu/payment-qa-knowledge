@@ -1,5 +1,5 @@
 ---
-title: MPGS Onboarding 技术方案
+title: MPGS Onboarding技术方案
 domain: channel-integration
 kind: wiki_page
 slug: mpgs-onboarding-tech-design
@@ -7,56 +7,54 @@ status: active
 owner: upload-sync@platform
 reviewer: UNREVIEWED
 source_type: wiki_image
-source_ref: wiki_image:4cf298fc-0772-4e55-90a4-e4984464d285
+source_ref: wiki_image:786a9371-2403-41c9-a05a-6ee477a01aab
 tags: []
 ---
 
-# MPGS Onboarding 技术方案
+# MPGS Onboarding技术方案
 
-本页描述 MPGS 渠道下，商户 / 门店 / 设备登记系统的用例结构与触发事件来源。
+本页描述 MPGS 渠道入驻（Onboarding）的领域模型与 Facade 接口设计，用于支撑入驻信息的注册、查询与重试。
 
-## 参与者与触发事件
+## 领域模型
 
-- **pcenter 发起商户开通产品集事件**（包含 `payChannel`）
-- **开通门店事件**
-- **绑定设备事件**
-- **管理员**（通过 Onboarding Management 页面操作上报）
+### OnboardingItem
+表示一个入驻条目（实体）。
 
-## 登记系统用例
+- `fundProviderCode: string`
+- `ownerId: string`
+- `resultParamMap: map<string, string>`
+- `status: OnboardingItemStatus`
+- `type: ItemType`
 
-登记系统包含 4 个入口任务，分别对应不同来源：
+### ItemIndex
+入驻条目的索引/查询键。
 
-- 商户开通产品集的登记任务（来自 pcenter 事件）
-- 门店开通的登记任务（来自开通门店事件）
-- 绑定设备的登记任务（来自绑定设备事件）
-- Onboarding Management 页面操作上报（来自管理员）
+- `fundProviderCode: string`
+- `ownerId: string`
+- `type: ItemType`
 
-## 核心登记用例
+### ItemRegistrationInfo
+入驻注册信息，按 `ItemType` 聚合多类结果参数。
 
-中间层的三个核心登记动作：
+- `fundProviderCode: string`
+- `ownerId: string`
+- `resultMap: map<ItemType, Map<string, string>>`
 
-- 登记商户
-- 登记门店
-- 登记设备
+## Facade 接口
 
-## 共享子用例
+### OnboardingItemFacade
+提供单条入驻条目的查询能力。
 
-所有核心登记动作共享以下两个子用例：
+- `getItem(ItemIndex): OnboardingItem`
 
-- 分配号段
-- 保存登记结果
+### OnboardingFacade
+提供入驻注册与重试能力。
 
-## 用例 include 关系
+- `register(ItemRegistrationInfo): boolean`
+- `retry(ItemIndex): void`
 
-入口任务到核心登记的 «include» 关系：
+## 依赖关系
 
-- 商户开通产品集的登记任务 → **登记商户**
-- 门店开通的登记任务 → **登记门店**（上游同时 include 登记商户）
-- 绑定设备的登记任务 → **登记设备**（上游同时 include 登记门店 / 登记商户）
-- Onboarding Management 页面操作上报 → **登记设备**
-
-核心登记到共享子用例的 «include» 关系：
-
-- 登记商户 → 分配号段、保存登记结果
-- 登记门店 → 分配号段、保存登记结果
-- 登记设备 → 分配号段、保存登记结果
+- `OnboardingItemFacade` 依赖 `ItemIndex`（入参）与 `OnboardingItem`（返回值）。
+- `OnboardingFacade` 依赖 `ItemRegistrationInfo`（`register` 入参）与 `ItemIndex`（`retry` 入参）。
+- `OnboardingItem` 与 `ItemIndex` 在类图中存在来自上层的关联（具体父类型未在本视图展开）。
