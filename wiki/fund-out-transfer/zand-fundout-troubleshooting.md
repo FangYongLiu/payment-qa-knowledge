@@ -4,78 +4,79 @@ domain: fund-out-transfer
 kind: wiki_page
 slug: zand-fundout-troubleshooting
 status: active
-owner: upload-sync@platform
+owner: wiki-sync@acquire
 reviewer: UNREVIEWED
 source_type: wiki
-source_ref: wiki:7f334321-3b49-4c87-b6d9-8949925a962a
+source_ref: confluence:AQ/2049867832
 tags: []
 ---
 
 # ZAND Fundout常见问题排查
 
-本页汇总 ZAND Fundout 在 UAT 环境常见的故障现象、根因与处置方法，便于 QA 在订单异常时快速定位。完整流程见 [[zand-fundout-overview]]，链路与表结构见 [[zand-fundout-system-architecture]]。
+本页汇总 ZAND Fundout 在 UAT 测试与生产排障中常见的故障症状、根因与处理方式，覆盖路由、SP/SQ/VS 各阶段以及回调签名等关键环节。相关测试方法见 [[zand-fundout-testing-guide]]，系统调用链见 [[zand-fundout-system-architecture]]。
 
-## 故障速查表
+## 常见症状与解决方案
 
-| 现象 | 可能原因 | 处置 |
+| 症状 | 可能原因 | 处理方式 |
 |---|---|---|
-| 订单已创建但 CMF 中查不到 | `unity_result_code = cmf.route.fail`（路由失败） | 查 Kibana 日志与路由配置 |
-| SP 已受理但 VS 一直不到 | SQ `RETRY_TIMES > 50`，已接近停止轮询 | 发送 Mock VS、找 Zand 团队确认，或重置 RETRY_TIMES |
-| VS 已收到但订单仍停留 In Process | `router.t_channel_result_code` 映射错误 | 确认 `PROCESSED` 对应的 `result_status=S` |
-| VS 报 `Invalid signature` | HMAC 密钥错误 | 使用对应环境（UAT/SIM）正确密钥 |
-| 银行拒绝：`BIC and destination country mismatch` | 受益人 `countryCode` 与 BIC 国家不一致 | 重新创建受益人并填写正确国家 |
-| 路由到 `TEST201` 而不是 `ZAND203` | 商户路由配置错误 | 更新 CMF 中的 partner routing |
+| 订单已创建但 CMF 中无对应记录 | `unity_result_code = cmf.route.fail` | 查 Kibana 日志，检查路由配置 |
+| SP 已受理但始终未收到 VS | SQ `RETRY_TIMES > 50` | 发送 Mock VS、联系 Zand 团队，或重置 retries |
+| 收到 VS 但订单仍处于 In Process | `router.t_channel_result_code` 映射错误 | 确认 PROCESSED 对应 `result_status=S` |
+| VS 提示 Invalid signature | HMAC key 错误 | 按环境(UAT/SIM)使用正确的 key |
+| Bank 拒绝：`BIC and destination country mismatch` | Beneficiary `countryCode` 不一致 | 用正确的 country 重新创建 beneficiary |
+| 路由到 TEST201 而非 ZAND203 | Partner 路由配置错误 | 在 CMF 配置中更新 partner 路由 |
 
-## 路由失败：订单不进 CMF
+## 路由与下单阶段
 
-- 现象：[[tbl_mhtfundout_t_fundout_order]] 中已生成订单，但 [[tbl_cmf_tt_inst_order]] 中无对应记录。
-- 关键字段：`t_fundout_order.unity_result_code = cmf.route.fail`。
-- 排查：
-  - 查 Kibana 日志中 Fundout Service -> Kafka -> CMF Router 的路由信息。
-  - 校验该 partner 的渠道路由是否正确（例如本应走 ZAND203 却落到 TEST201，需更新 CMF 的 partner routing）。
+- **症状**：Fundout 订单已落库，但 [[tbl_cmf_tt_inst_order]] 中查不到对应 `INST_ORDER_NO`。
+- **判定**：检查 [[tbl_mhtfundout_t_fundout_order]] 的 `unity_result_code`，若为 `cmf.route.fail` 即路由失败。
+- **处理**：
+  - 查 Kibana 日志定位 CMF Router 异常。
+  - 核对 partner 路由配置，确认目标渠道(ZAND201/203/204/207/210)。
+  - 若错误地路由到 `TEST201`，需更新 CMF partner 路由配置。
 
-## SP 已发出但 VS 不到达
+## SP 阶段问题
 
-- 仅国际单（ZAND203 / ZAND207）依赖 SQ 轮询 + VS；域内单（ZAND201 / ZAND210）走 SP -> VS。
-- 检查 [[tbl_cmf_tt_inst_order]] 的 `RETRY_TIMES`：
-  - 超过 35 后轮询间隔会拉长到小时级。
-  - 达到 54 即停止 SQ 轮询。
-- 处置方式：
-  - 使用 [[auto_zand_mock_vs_tool]] 手动回调 VS 完成订单。
-  - 联系 ZAND 银行侧确认 ChannelRefId 状态。
-  - 必要时重置 `RETRY_TIMES`，让 SQ 继续轮询。
+- **SP 失败/超时**：由 retry handler 以指数退避方式入重试队列，由 worker 重新提交；若达到永久失败则反向冲销手续费。
+- **银行拒单**：常见 `BIC and destination country mismatch`，根因是 beneficiary 的 `countryCode` 与 BIC 国家不一致；需重建 beneficiary。
 
-## VS 已到但订单仍 In Process
+## SQ 轮询问题
 
-- [[tbl_cmf_tt_inst_order_result]] 中存在 `API_TYPE=VS` 的记录，但 [[tbl_cmf_tt_inst_order]] `STATUS` 仍为 `I`。
-- 根因通常在 [[tbl_router_t_channel_result_code]]：渠道返回码到 CMF 状态的映射缺失或错误。
-- 检查项：
-  - 国际单 VS 的 `MEMO=PROCESSED` 应映射到 `result_status=S`。
-  - 域内单 VS 的 `MEMO=Credited To Beneficiary` 同理。
-- 修正映射后该订单应被推进到 `S`，并由 DPM 完成扣款/手续费记账。
+- 前 ~2 分钟密集轮询，间隔逐步增大；`RETRY_TIMES > 35` 后间隔达到小时级；`RETRY_TIMES = 54` 时停止。
+- **症状**：SP 已成功(返回 `ZIT...`)但久未推进。
+- **处理**：
+  - 若 `RETRY_TIMES > 50`，可使用 Mock VS 工具补推回调（参见 [[auto_zand_mock_vs_tool]]）。
+  - 必要时联系 Zand 团队确认银行侧最终状态，或重置 retries 重新轮询。
 
-## VS 签名错误（Invalid signature）
+## VS 回调问题
 
-- 现象：FCW Webhook 接收 VS 时校验 HMAC 失败。
-- 根因：使用了错误环境的 HMAC Key。
-- UAT 环境密钥：`CoQnNYbgefTzpvhV1yr8L/Q7RX0m/JjsWMEFmQRFTj8=`
-- 回调地址：`https://uat-fcw.test2pay.com/fcw/zand/notify`
-- 使用 Mock VS 工具时务必匹配环境，详见 [[auto_zand_mock_vs_tool]]。
+### Invalid signature
+- 原因：HMAC 密钥与环境不匹配。
+- 处理：按环境取正确 key；UAT 使用 `CoQnNYbgefTzpvhV1yr8L/Q7RX0m/JjsWMEFmQRFTj8=`，回调地址 `https://uat-fcw.test2pay.com/fcw/zand/notify`。
 
-## BIC 与国家不匹配（银行拒付）
+### VS 已收到但订单未流转到 SUCCESS
+- 原因：`router.t_channel_result_code` 中渠道结果到 CMF 状态的映射缺失或错误。
+- 处理：确认对应 `channel_code` + `api_type=VS` 下的 result code（如国际 `PROCESSED`、国内 `Credited To Beneficiary`）映射为 `result_status=S`。
+- 验证：查询 [[tbl_cmf_tt_inst_order_result]]，确认存在 `API_TYPE=VS` 且 `INST_STATUS=S` 的行。
 
-- 现象：ZAND 银行返回 `BIC and destination country mismatch`，SP 直接被拒。
-- 根因：受益人录入时 `countryCode` 与该 BIC 实际所属国家不一致。
-- 处置：删除/重建受益人，填入与 BIC 一致的国家代码，然后重新发起 Fundout。
+## Extension 字段一致性
 
-## 路由错走到 TEST201
+- SP/SQ/VS 三阶段的 `EXTENSION` 应保持 `CreationDateTime`、`ChannelRefId`、`channelTransTime` 一致。
+- 不一致通常意味着串单或回调匹配错误，应以 `INST_SEQ_NO`(`D.../ZIT...`) 为关键字横向比对。
 
-- 现象：本应走 ZAND203（国际 SWIFT）的订单，CMF 中 `FUND_CHANNEL_CODE=TEST201`。
-- 根因：商户在 CMF 中的渠道路由未正确指向 ZAND 渠道。
-- 处置：更新 partner routing 配置，确认相应 `product_code`（如 220402）映射到正确的 ZAND 渠道。
+## 排查常用 SQL
 
-## 关联资源
+按 `partner_id` / `INST_ORDER_NO` 关联查询：
 
-- 排障所需 SQL 与字段含义：[[zand-fundout-test-guide]]
-- 端到端流程参考：[[flow_zand_fundout]]
-- 用例覆盖：[[scn_zand_fundout_test_cases]]
+- `mhtfundout.t_fundout_order` 看主单 `status`、`unity_result_code`。
+- `cmf.tt_inst_order` 看渠道单 `STATUS`、`RETRY_TIMES`。
+- `cmf.tt_inst_order_result` 按 `GMT_CREATE` 升序查看 SP -> SQ -> VS 轨迹。
+
+具体语句见 [[zand-fundout-testing-guide]]。
+
+## 相关链接
+
+- 业务与渠道总览：[[zand-fundout-overview]]
+- 端到端流程：[[flow_zand_fundout]]
+- 核心用例：[[scn_zand_fundout_test_cases]]
+- Mock VS 工具：[[auto_zand_mock_vs_tool]]
