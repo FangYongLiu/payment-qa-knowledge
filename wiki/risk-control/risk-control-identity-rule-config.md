@@ -1,60 +1,50 @@
 ---
-title: 风控核身规则配置说明
+title: 风控核身规则配置指南(3DS)
 domain: risk-control
 kind: wiki_page
 slug: risk-control-identity-rule-config
 status: active
-owner: upload-sync@platform
+owner: wiki-sync@acquire
 reviewer: UNREVIEWED
-source_type: wiki_image
-source_ref: wiki_image:177543ab-8600-454c-ad0f-81030f9f5112
+source_type: wiki
+source_ref: confluence:AQ/1057685568
 tags: []
 ---
 
-# 风控核身规则配置说明
+# 风控核身规则配置指南(3DS)
 
-本页说明风控核身规则在 Redis 中的缓存 Key 命名以及商户核身数据的存储结构示例，便于在配置/排查风控核身规则时定位对应缓存数据。
+本页说明如何在 SIM 环境的 Basis 系统中，通过配置风控核身规则来控制支付场景是否触发 3DS 核身验证。
 
-## Redis 连接与库
+## 背景
 
-- 连接名：`Payby_Sim_Azure`
-- 数据库：`DB0`
+在支付测试中，部分场景需触发 3DS 验证，部分场景无需触发；是否出 3DS 核身由风控规则决定。本指南介绍在 SIM 环境配置该规则的方法。
 
-## 核身相关缓存 Key
+## 配置路径
 
-在 `DB0` 中以前缀 `grc` 检索，可见以下两类 Key：
+Basis => Risk Control => Risk Event => Identity Rule Management
 
-- `gp079_grc-check-identity-provider`（1 条）
-  - 用途：核身校验（check identity）相关配置/数据
-- `gp079_grc-component-connect-provider`（167 条）
-  - 用途：核身组件连接（component connect）相关配置/数据
+## 添加核身规则
 
-## 商户核身数据示例
+在上述路径下新增规则，关键字段：
 
-以 Key `gp045_merchar...`（String 类型）为例：
+- **EvenType**：风控事件，例如 `PAYMENT`
+- **IdentityRule**：规则条件，例如 `payAmount>=10`
+- **IdentityCheckType**：多规则条件之间的关系，例如 `&&`
+- **IdentityType**：要出示的核身方式，例如 `THREEDS`
+- **Priority**：优先级，值越小优先级越高
 
-- 类型：String
-- TTL：`7249778`
-- 大小：`3.98KB`
-- 序列化格式：Json
+## 审核流程
 
-JSON 内容（节选）字段示例：
+核身规则的以下操作均需审核：
 
-- `paymen...`: `"601"`
-- `taxRegCertificatePath`: `"20240920/1726837793478.png"`
-- `taxRegistrationNo`: `"434645765235346"`
-- `tradeLicenseNo`: `"43645325634"`
-- `website`: `"www.payby.com"`
-- `merchantMid`: `"200000432860"`
+- 新增
+- 生效
+- 停用
 
-字段说明（按用途）：
+## 清除 Redis 缓存
 
-- 商户标识：`merchantMid`
-- 税务相关：`taxRegistrationNo`（税号）、`taxRegCertificatePath`（税务登记证文件路径）
-- 营业执照：`tradeLicenseNo`
-- 站点信息：`website`
+规则审核通过后，需清除以下缓存才会真正生效：
 
-## 使用提示
+- 缓存 key：`gp079_grc-check-identity-provider`
 
-- 通过 `gp079_grc-*` 前缀可快速过滤出核身规则相关 Key。
-- 商户维度的核身资料以 JSON 串形式缓存，包含税务、营业执照、站点等关键资质字段，可用于核身规则匹配与校验。
+清理方式提供两种（方法 1 / 方法 2），任选其一即可使配置生效。
