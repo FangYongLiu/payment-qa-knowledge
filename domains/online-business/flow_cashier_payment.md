@@ -11,7 +11,7 @@ source_ref: SERVICE_FLOW_CASHIER_PAYMENT.md
 tags: [cashier, acquiring, payment, refund]
 name: 收银台 / 收单卡支付端到端流程（含退款）
 aliases: [收银台支付流程, cashier-payment-flow, 收单卡支付]
-related_services: [svc_merchant_frontend, svc_acquireii, svc_voucher, svc_tradeii, svc_ppcenter, svc_cashdesk_api, svc_cashierii, svc_grc_check_identity_provider, svc_member, svc_pbs, svc_cmf, svc_router, svc_pfs_payment, svc_payment, svc_dpm_manager, svc_counter, svc_pns]
+related_services: [svc_merchant_frontend, svc_acquireii, svc_voucher, svc_tradeii, svc_ppcenter, svc_cashdesk_api, svc_cashierii, svc_grc_check_identity_provider, svc_grc_cps_provider, svc_member, svc_pbs, svc_cmf, svc_router, svc_pfs_payment, svc_payment, svc_dpm_manager, svc_dpm_accounting, svc_counter, svc_pns, svc_aml, svc_deduct, svc_remittance, svc_host, svc_coupon_service, svc_query_datasync, svc_cgs, svc_authpay]
 related_tables: []
 ---
 
@@ -58,5 +58,25 @@ related_tables: []
 | 通知 | 收银/交易→pns | `notifyMerchant` | — |
 | 查单/退款 | acquireii→tradeii | `queryTradeOrder`,`queryRefundOrder`,`refund` | `/acquire2/getOrder`,`/acquire2/refund/*` |
 
+## 真实单笔实测时序（按 paymentOrderNo 从 Kibana 还原 · 非推断）
+> 源:`SERVICE_FLOW_REAL_TRACE.md`。单号 `paymentOrderNo=311782162523029632`(唯一,123 条日志/15 服务)。
+> 起于**确认支付**(该单号此刻才生成,故下单/收银台初始化段不在此单号内)。
+
+**★ 关键实测结论(修正上面的"理想线性链"理解):**
+1. **这是事件驱动(MQ 发布/订阅)流,不是线性 RPC 链**:[[svc_tradeii]] 确认支付后发"支付通知"事件,
+   [[svc_aml]](反洗钱上报)/ [[svc_deduct]](代扣)/ [[svc_remittance]] / [[svc_host]](主机记账)/
+   [[svc_coupon_service]](优惠券)/ [[svc_query_datasync]](资金同步)等**多个订阅方并行消费**(类名 `*NotifyHandler`/`*Listener`/`*Processor`)。
+2. **同步确认支付 ~9 秒内完成**;之后是**异步结算/对账长尾**——[[svc_pfs_payment]] 清分 + [[svc_query_datasync]] 资金操作
+   + [[svc_host]] 记账,间隔 3.6min→6.4min→2h→…→**4.8 小时**反复。
+3. 同步段关键边(+ms=相对耗时):tradeii ConfirmPayProcessor(+651)→ [[svc_voucher]] 取全局ID(+692)→
+   [[svc_cashierii]]→[[svc_grc_cps_provider]] 风控(+744)→ tradeii→[[svc_dpm_accounting]] 记账(+1466)→
+   tradeii↔确认(+1745)→ **MQ 扇出**(aml +1848 / remittance +2167 / deduct +2647 / host +6093 / coupon +8780)→
+   tradeii→[[svc_pfs_payment]] 发起清分(+2674)→ [[svc_authpay]] 免密验证(+6745)。
+
+**与逻辑重建版的差异(都对,真实版才是这一笔实际时序)**:逻辑版是理想线性链;真实版显示确认支付后是
+**事件扇出**(并非顺序调用)+ **异步小时级长尾**。要画下单段需用下单期的 `orderNo/requestNo` 再同样还原。
+复现:Kibana `message:"311782162523029632"`,`@timestamp` 升序,全 index。
+
 ## 边界
 `payment` 的入边、渠道末跳(router→qpay-*→外部)本窗口未直接采到,按职责/概念补。来自单次回归窗口,真实但非穷尽。
+MQ 事件边(tradeii→订阅方)是 *ClientImpl 调用图采不到的(异步),靠本单笔 trace 补上。
