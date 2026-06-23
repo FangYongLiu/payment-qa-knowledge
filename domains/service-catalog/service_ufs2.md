@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp114
 name: ufs2
+dev_owner: 曹永兴
 aliases: [gp114_ufs2]
 related_services: []
 related_tables: []

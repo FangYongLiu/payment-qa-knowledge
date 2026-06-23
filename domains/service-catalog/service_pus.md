@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp230
 name: pus
+dev_owner: 丁武江
 aliases: [gp230_pus]
 related_services: []
 related_tables: []

@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp131
 name: marketnotify
+dev_owner: 曹永兴
 aliases: [gp131_marketnotify]
 related_services: []
 related_tables: []

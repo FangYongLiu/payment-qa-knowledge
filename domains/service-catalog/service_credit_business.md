@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp130
 name: credit-business
+dev_owner: 闫晓沛
 aliases: [gp130_credit-business]
 related_services: [svc_member]
 related_tables: []

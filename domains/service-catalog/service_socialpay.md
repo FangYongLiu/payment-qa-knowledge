@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp035
 name: socialpay
+dev_owner: 刘智斌
 aliases: [gp035_socialpay]
 related_services: []
 related_tables: []

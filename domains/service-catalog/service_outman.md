@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp016
 name: outman
+dev_owner: 沈纲领
 aliases: [gp016_outman]
 related_services: []
 related_tables: []

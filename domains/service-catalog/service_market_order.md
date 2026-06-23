@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp076
 name: market-order
+dev_owner: 刘智斌
 aliases: [gp076_market-order]
 related_services: []
 related_tables: []

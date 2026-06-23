@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp233
 name: leanlink
+dev_owner: 马国友
 aliases: [gp233_leanlink]
 related_services: []
 related_tables: []

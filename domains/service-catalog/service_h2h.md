@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp062
 name: h2h
+dev_owner: 马国友
 aliases: [gp062_h2h]
 related_services: []
 related_tables: []

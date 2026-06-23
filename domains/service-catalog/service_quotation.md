@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp142
 name: quotation
+dev_owner: 刘舟
 aliases: [gp142_quotation]
 related_services: [svc_asset_info]
 related_tables: []

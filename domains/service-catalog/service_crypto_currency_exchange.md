@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp138
 name: crypto-currency-exchange
+dev_owner: 王斌
 aliases: [gp138_crypto-currency-exchange]
 related_services: []
 related_tables: []

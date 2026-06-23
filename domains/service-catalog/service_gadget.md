@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp185
 name: gadget
+dev_owner: 刘智斌
 aliases: [gp185_gadget]
 related_services: []
 related_tables: []

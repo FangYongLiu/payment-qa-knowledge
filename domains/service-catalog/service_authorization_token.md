@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp101
 name: authorization-token
+dev_owner: 沈阅
 aliases: [gp101_authorization-token]
 related_services: []
 related_tables: []

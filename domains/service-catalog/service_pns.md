@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp013
 name: pns
+dev_owner: 刘智斌
 aliases: [gp013_pns]
 related_services: []
 related_tables: []

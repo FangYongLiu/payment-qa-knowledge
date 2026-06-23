@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp099
 name: gpoint
+dev_owner: 周聪
 aliases: [gp099_gpoint]
 related_services: []
 related_tables: []

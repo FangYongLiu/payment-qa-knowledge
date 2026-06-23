@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp058
 name: cash-eatm
+dev_owner: 王斌
 aliases: [gp058_cash-eatm]
 related_services: []
 related_tables: []

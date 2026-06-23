@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp200
 name: qpay-fsii
+dev_owner: 马国友
 aliases: [gp200_qpay-fsii]
 related_services: []
 related_tables: []

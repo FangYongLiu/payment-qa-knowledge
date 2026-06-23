@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp096
 name: css
+dev_owner: 黄美美
 aliases: [gp096_css]
 related_services: []
 related_tables: []

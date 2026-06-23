@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp212
 name: ppc
+dev_owner: 唐宇
 aliases: [gp212_ppc]
 related_services: []
 related_tables: []

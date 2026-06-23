@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp085
 name: resource-service-rpc-dubbo-provider
+dev_owner: 沈纲领
 aliases: [gp085_resource-service-rpc-dubbo-provider]
 related_services: []
 related_tables: []

@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp053
 name: transfer
+dev_owner: 刘智斌
 aliases: [gp053_transfer]
 related_services: []
 related_tables: []

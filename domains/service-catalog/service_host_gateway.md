@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp151
 name: host-gateway
+dev_owner: 刘智斌
 aliases: [gp151_host-gateway]
 related_services: []
 related_tables: []

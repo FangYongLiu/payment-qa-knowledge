@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp075
 name: market-goods
+dev_owner: 刘智斌
 aliases: [gp075_market-goods]
 related_services: []
 related_tables: []

@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp159
 name: cc-channel-btc
+dev_owner: 沈阅
 aliases: [gp159_cc-channel-btc]
 related_services: []
 related_tables: []

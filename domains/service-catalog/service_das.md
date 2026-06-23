@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp207
 name: das
+dev_owner: 喻赛
 aliases: [gp207_das]
 related_services: []
 related_tables: []

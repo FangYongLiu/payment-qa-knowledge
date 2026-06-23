@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp149
 name: vis
+dev_owner: 王迁
 aliases: [gp149_vis]
 related_services: [svc_voucher, svc_pfs_payment, svc_deposit]
 related_tables: []

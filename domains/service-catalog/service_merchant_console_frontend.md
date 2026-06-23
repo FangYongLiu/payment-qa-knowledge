@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp045
 name: merchant-console-frontend
+dev_owner: 王斌
 aliases: [gp045_merchant-console-frontend]
 related_services: [svc_member, svc_merchant, svc_grc_check_identity_provider]
 related_tables: []

@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp210
 name: npss-gateway
+dev_owner: 王迁
 aliases: [gp210_npss-gateway]
 related_services: [svc_npss]
 related_tables: []

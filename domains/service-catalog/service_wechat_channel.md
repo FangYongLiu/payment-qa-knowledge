@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp236
 name: wechat-channel
+dev_owner: 陆亚东
 aliases: [gp236_wechat-channel]
 related_services: [svc_acs, svc_ues_ws]
 related_tables: []

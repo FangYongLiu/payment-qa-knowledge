@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp136
 name: custom
+dev_owner: 刘智斌
 aliases: [gp136_custom]
 related_services: [svc_member]
 related_tables: []

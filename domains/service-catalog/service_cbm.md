@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp081
 name: cbm
+dev_owner: 闫晓沛
 aliases: [gp081_cbm]
 related_services: []
 related_tables: []

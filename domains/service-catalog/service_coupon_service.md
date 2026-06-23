@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp164
 name: coupon-service
+dev_owner: 黄美美
 aliases: [gp164_coupon-service]
 related_services: []
 related_tables: []

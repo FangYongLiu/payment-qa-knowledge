@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp001
 name: ues-ws
+dev_owner: 曹永兴
 aliases: [gp001_ues-ws]
 related_services: []
 related_tables: []

@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp070
 name: csimple
+dev_owner: 刘智斌
 aliases: [gp070_csimple]
 related_services: []
 related_tables: []

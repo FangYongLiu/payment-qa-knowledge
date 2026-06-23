@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp178
 name: calculator
+dev_owner: 李德文
 aliases: [gp178_calculator]
 related_services: []
 related_tables: []

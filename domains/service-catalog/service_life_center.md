@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp074
 name: life-center
+dev_owner: 刘智斌
 aliases: [gp074_life-center]
 related_services: []
 related_tables: []

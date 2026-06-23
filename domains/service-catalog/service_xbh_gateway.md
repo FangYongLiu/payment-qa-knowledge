@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp033
 name: xbh-gateway
+dev_owner: 王斌
 aliases: [gp033_xbh-gateway]
 related_services: []
 related_tables: []

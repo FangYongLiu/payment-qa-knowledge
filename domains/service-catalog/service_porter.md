@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp065
 name: porter
+dev_owner: 曹永兴
 aliases: [gp065_porter]
 related_services: []
 related_tables: []

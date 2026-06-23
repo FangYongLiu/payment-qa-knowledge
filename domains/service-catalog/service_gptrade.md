@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp110
 name: gptrade
+dev_owner: 周聪
 aliases: [gp110_gptrade]
 related_services: []
 related_tables: []

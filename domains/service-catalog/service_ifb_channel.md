@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp238
 name: ifb-channel
+dev_owner: 黄美美
 aliases: [gp238_ifb-channel]
 related_services: []
 related_tables: []

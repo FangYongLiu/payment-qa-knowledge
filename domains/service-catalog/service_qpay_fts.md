@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp245
 name: qpay-fts
+dev_owner: 马国友
 aliases: [gp245_qpay-fts]
 related_services: []
 related_tables: []

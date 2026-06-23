@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp034
 name: authpay
+dev_owner: 刘智斌
 aliases: [gp034_authpay]
 related_services: []
 related_tables: []

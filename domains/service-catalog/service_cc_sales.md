@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp145
 name: cc-sales
+dev_owner: 王斌
 aliases: [gp145_cc-sales]
 related_services: []
 related_tables: []

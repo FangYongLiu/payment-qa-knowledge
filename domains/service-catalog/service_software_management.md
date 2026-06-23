@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp022
 name: software-management
+dev_owner: 沈阅
 aliases: [gp022_software-management]
 related_services: []
 related_tables: []

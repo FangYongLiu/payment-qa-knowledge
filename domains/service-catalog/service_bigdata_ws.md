@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp038
 name: bigdata-ws
+dev_owner: 李德文
 aliases: [gp038_bigdata-ws]
 related_services: []
 related_tables: []

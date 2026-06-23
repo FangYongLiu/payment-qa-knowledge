@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp239
 name: feebill
+dev_owner: 曹永兴
 aliases: [gp239_feebill]
 related_services: []
 related_tables: []

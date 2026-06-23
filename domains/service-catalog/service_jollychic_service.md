@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp997
 name: jollychic-service
+dev_owner: 王斌
 aliases: [gp997_jollychic-service]
 related_services: []
 related_tables: []

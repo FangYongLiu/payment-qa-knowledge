@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp197
 name: preauth
+dev_owner: 王斌
 aliases: [gp197_preauth]
 related_services: []
 related_tables: []

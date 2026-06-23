@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp073
 name: supplier
+dev_owner: 刘智斌
 aliases: [gp073_supplier]
 related_services: []
 related_tables: []

@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp194
 name: basis-customer
+dev_owner: 夏一冰
 aliases: [gp194_basis-customer]
 related_services: []
 related_tables: []

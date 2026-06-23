@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp084
 name: otps
+dev_owner: 陆亚东
 aliases: [gp084_otps]
 related_services: []
 related_tables: []

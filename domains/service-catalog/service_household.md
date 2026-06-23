@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp240
 name: household
+dev_owner: 丁武江
 aliases: [gp240_household]
 related_services: []
 related_tables: []

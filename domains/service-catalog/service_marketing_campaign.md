@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp189
 name: marketing-campaign
+dev_owner: 陆亚东
 aliases: [gp189_marketing-campaign]
 related_services: []
 related_tables: []

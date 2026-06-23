@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp176
 name: cc-cashier
+dev_owner: 王斌
 aliases: [gp176_cc-cashier]
 related_services: []
 related_tables: []

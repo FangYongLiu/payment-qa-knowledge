@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp137
 name: asset-info
+dev_owner: 王斌
 aliases: [gp137_asset-info]
 related_services: []
 related_tables: []

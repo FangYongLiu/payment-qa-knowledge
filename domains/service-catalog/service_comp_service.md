@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp160
 name: comp-service
+dev_owner: 黄美美
 aliases: [gp160_comp-service]
 related_services: []
 related_tables: []

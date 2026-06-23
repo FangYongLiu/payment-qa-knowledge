@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp247
 name: datasavvy
+dev_owner: 许广
 aliases: [gp247_datasavvy]
 related_services: []
 related_tables: []

@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp094
 name: basis-cms
+dev_owner: 刘智斌
 aliases: [gp094_basis-cms]
 related_services: []
 related_tables: []

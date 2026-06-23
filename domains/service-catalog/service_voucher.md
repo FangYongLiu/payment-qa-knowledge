@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp009
 name: voucher
+dev_owner: 李德文
 aliases: [gp009_voucher]
 related_services: []
 related_tables: []

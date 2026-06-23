@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp148
 name: member-feature
+dev_owner: 沈纲领
 aliases: [gp148_member-feature]
 related_services: []
 related_tables: []

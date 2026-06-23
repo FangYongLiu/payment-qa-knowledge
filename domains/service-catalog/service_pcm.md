@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp046
 name: pcm
+dev_owner: 唐宇
 aliases: [gp046_pcm]
 related_services: []
 related_tables: []

@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp104
 name: escrow
+dev_owner: 王迁
 aliases: [gp104_escrow]
 related_services: [svc_deposit, svc_voucher, svc_ues_ws, svc_ufs2]
 related_tables: []

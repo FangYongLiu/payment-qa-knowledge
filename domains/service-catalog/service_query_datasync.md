@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp030
 name: query-datasync
+dev_owner: 曹永兴
 aliases: [gp030_query-datasync]
 related_services: []
 related_tables: []

@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp125
 name: adtaxi
+dev_owner: 王斌
 aliases: [gp125_adtaxi]
 related_services: []
 related_tables: []

@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp216
 name: rdgs
+dev_owner: 喻赛
 aliases: [gp216_rdgs]
 related_services: [svc_query, svc_ufs2]
 related_tables: []

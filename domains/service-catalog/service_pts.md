@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp040
 name: pts
+dev_owner: 刘智斌
 aliases: [gp040_pts]
 related_services: []
 related_tables: []

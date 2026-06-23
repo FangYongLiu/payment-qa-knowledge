@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp080
 name: cqm
+dev_owner: 闫晓沛
 aliases: [gp080_cqm]
 related_services: []
 related_tables: []

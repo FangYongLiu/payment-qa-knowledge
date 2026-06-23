@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp222
 name: npss
+dev_owner: 王迁
 aliases: [gp222_npss]
 related_services: [svc_member]
 related_tables: []

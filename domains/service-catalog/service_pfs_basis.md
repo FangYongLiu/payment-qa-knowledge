@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp014
 name: pfs-basis
+dev_owner: 李德文
 aliases: [gp014_pfs-basis]
 related_services: []
 related_tables: []

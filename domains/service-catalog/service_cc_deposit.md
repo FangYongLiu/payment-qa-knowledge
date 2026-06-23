@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp155
 name: cc-deposit
+dev_owner: 王斌
 aliases: [gp155_cc-deposit]
 related_services: [svc_member]
 related_tables: []

@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp141
 name: mssii
+dev_owner: 陆亚东
 aliases: [gp141_mssii]
 related_services: [svc_merchant, svc_member]
 related_tables: []

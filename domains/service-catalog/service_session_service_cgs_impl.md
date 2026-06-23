@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp085
 name: session-service-cgs-impl
+dev_owner: 沈纲领
 aliases: [gp085_session-service-cgs-impl]
 related_services: []
 related_tables: []

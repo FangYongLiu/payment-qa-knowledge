@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp120
 name: protocol
+dev_owner: 陆亚东
 aliases: [gp120_protocol]
 related_services: []
 related_tables: []

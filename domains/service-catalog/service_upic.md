@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp153
 name: upic
+dev_owner: 唐宇
 aliases: [gp153_upic]
 related_services: []
 related_tables: []

@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp050
 name: cps
+dev_owner: 李德文
 aliases: [gp050_cps]
 related_services: []
 related_tables: []

@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp190
 name: marketing-gateway
+dev_owner: 陆亚东
 aliases: [gp190_marketing-gateway]
 related_services: []
 related_tables: []

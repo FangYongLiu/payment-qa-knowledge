@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp181
 name: cc-channel-tron
+dev_owner: 沈阅
 aliases: [gp181_cc-channel-tron]
 related_services: []
 related_tables: []

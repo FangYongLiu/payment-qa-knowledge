@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp170
 name: cc-trade
+dev_owner: 王斌
 aliases: [gp170_cc-trade]
 related_services: []
 related_tables: []

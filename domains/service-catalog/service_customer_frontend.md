@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp064
 name: customer-frontend
+dev_owner: 王斌
 aliases: [gp064_customer-frontend]
 related_services: [svc_merchant]
 related_tables: []

@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp232
 name: qpay-aplus
+dev_owner: 张鹤飞
 aliases: [gp232_qpay-aplus]
 related_services: []
 related_tables: []

@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp120
 name: protocol-duplicate
+dev_owner: 沈纲领
 aliases: [gp120_protocol-duplicate]
 related_services: []
 related_tables: []

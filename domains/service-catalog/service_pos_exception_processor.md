@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp213
 name: pos-exception-processor
+dev_owner: 王斌
 aliases: [gp213_pos-exception-processor]
 related_services: []
 related_tables: []

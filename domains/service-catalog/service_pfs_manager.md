@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp014
 name: pfs-manager
+dev_owner: 李德文
 aliases: [gp014_pfs-manager]
 related_services: []
 related_tables: []

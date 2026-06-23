@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp126
 name: cmsii
+dev_owner: 刘智斌
 aliases: [gp126_cmsii]
 related_services: []
 related_tables: []

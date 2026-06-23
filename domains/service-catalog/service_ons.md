@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp100
 name: ons
+dev_owner: 曹永兴
 aliases: [gp100_ons]
 related_services: []
 related_tables: []

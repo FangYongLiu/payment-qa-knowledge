@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp086
 name: cbs
+dev_owner: 黄美美
 aliases: [gp086_cbs]
 related_services: []
 related_tables: []

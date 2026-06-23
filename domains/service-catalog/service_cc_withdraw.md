@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp146
 name: cc-withdraw
+dev_owner: 王斌
 aliases: [gp146_cc-withdraw]
 related_services: []
 related_tables: []

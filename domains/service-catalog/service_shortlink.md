@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp116
 name: shortlink
+dev_owner: 李德文
 aliases: [gp116_shortlink]
 related_services: []
 related_tables: []

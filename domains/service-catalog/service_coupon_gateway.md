@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp165
 name: coupon-gateway
+dev_owner: 黄美美
 aliases: [gp165_coupon-gateway]
 related_services: []
 related_tables: []

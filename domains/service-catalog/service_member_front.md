@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp135
 name: member-front
+dev_owner: 沈纲领
 aliases: [gp135_member-front]
 related_services: [svc_member, svc_acs]
 related_tables: []

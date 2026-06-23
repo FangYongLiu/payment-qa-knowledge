@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp205
 name: deduct
+dev_owner: 刘智斌
 aliases: [gp205_deduct]
 related_services: [svc_protocol, svc_tradeii]
 related_tables: []

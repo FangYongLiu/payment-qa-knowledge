@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp237
 name: payroll-core-service
+dev_owner: 毕有为
 aliases: [gp237_payroll-core-service]
 related_services: []
 related_tables: []

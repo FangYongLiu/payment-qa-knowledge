@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp162
 name: cc-transfer
+dev_owner: 王斌
 aliases: [gp162_cc-transfer]
 related_services: []
 related_tables: []

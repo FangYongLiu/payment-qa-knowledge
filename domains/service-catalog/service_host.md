@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp150
 name: host
+dev_owner: 黄美美
 aliases: [gp150_host]
 related_services: []
 related_tables: []

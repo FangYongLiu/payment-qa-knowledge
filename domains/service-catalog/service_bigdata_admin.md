@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp038
 name: bigdata-admin
+dev_owner: 李德文
 aliases: [gp038_bigdata-admin]
 related_services: []
 related_tables: []

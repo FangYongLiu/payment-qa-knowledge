@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp144
 name: holding
+dev_owner: 王斌
 aliases: [gp144_holding]
 related_services: []
 related_tables: []

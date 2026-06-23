@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp154
 name: cc-channel-eth
+dev_owner: 沈阅
 aliases: [gp154_cc-channel-eth]
 related_services: []
 related_tables: []

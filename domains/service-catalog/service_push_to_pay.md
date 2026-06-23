@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp227
 name: push-to-pay
+dev_owner: 丁武江
 aliases: [gp227_push-to-pay]
 related_services: []
 related_tables: []

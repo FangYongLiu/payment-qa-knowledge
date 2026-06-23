@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp140
 name: ccdpm-accounting
+dev_owner: 周聪
 aliases: [gp140_ccdpm-accounting]
 related_services: []
 related_tables: []

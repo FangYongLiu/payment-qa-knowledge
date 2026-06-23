@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: rt003
 name: pqs
+dev_owner: 丁武江
 aliases: [rt003_pqs]
 related_services: []
 related_tables: []

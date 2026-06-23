@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp042
 name: pcs
+dev_owner: 唐宇
 aliases: [gp042_pcs]
 related_services: []
 related_tables: []

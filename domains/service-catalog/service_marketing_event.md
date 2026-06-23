@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp105
 name: marketing-event
+dev_owner: 陆亚东
 aliases: [gp105_marketing-event]
 related_services: [svc_mssii, svc_acs]
 related_tables: []
