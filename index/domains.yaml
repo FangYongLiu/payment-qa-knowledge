@@ -1,2 +1,98 @@
-# 路由索引：domains 对象。reindex 据此快速定位 + 实体匹配(name/aliases)。
-# 白板起步：随真实知识入库逐步补充。
+# 业务域注册表(团队分工权威源)。reindex 据此建路由 index_entries;
+# owner/reviewer 为该域负责人(多人逗号分隔)。对象 frontmatter 的 owner/reviewer 据此填。
+
+- id: domain_online_business
+  object_type: Domain
+  name: online-business
+  domain: online-business
+  status: active
+  owner: fangyong.liu
+  reviewer: fangyong.liu
+
+- id: domain_offline_business
+  object_type: Domain
+  name: offline-business
+  domain: offline-business
+  status: active
+  owner: xiaoqian.wei,wanmei.ding
+  reviewer: xiaoqian.wei,wanmei.ding
+
+- id: domain_payment_core
+  object_type: Domain
+  name: payment-core
+  domain: payment-core
+  status: active
+  owner: xiaoyan.zhou
+  reviewer: xiaoyan.zhou
+
+- id: domain_payment_tools
+  object_type: Domain
+  name: payment-tools
+  domain: payment-tools
+  status: active
+  owner: xiaoyan.zhou
+  reviewer: xiaoyan.zhou
+
+- id: domain_portal_operations
+  object_type: Domain
+  name: portal-operations
+  domain: portal-operations
+  status: active
+  owner: yijian.tan
+  reviewer: yijian.tan
+
+- id: domain_remittance
+  object_type: Domain
+  name: remittance
+  domain: remittance
+  status: active
+  owner: lei.pan
+  reviewer: lei.pan
+
+- id: domain_wallet
+  object_type: Domain
+  name: wallet
+  domain: wallet
+  status: active
+  owner: qianlong.wang
+  reviewer: qianlong.wang
+
+- id: domain_card
+  object_type: Domain
+  name: card
+  domain: card
+  status: active
+  owner: jianfei.wang
+  reviewer: jianfei.wang
+
+- id: domain_kyc
+  object_type: Domain
+  name: kyc
+  domain: kyc
+  status: active
+  owner: xinwei.cao
+  reviewer: xinwei.cao
+
+- id: domain_risk
+  object_type: Domain
+  name: risk
+  domain: risk
+  status: active
+  owner: xinwei.cao,dewen.li
+  reviewer: xinwei.cao,dewen.li
+
+- id: domain_wps
+  object_type: Domain
+  name: wps
+  domain: wps
+  status: active
+  owner: xinwei.cao
+  reviewer: xinwei.cao
+
+- id: domain_compliance
+  object_type: Domain
+  name: compliance
+  domain: compliance
+  status: active
+  owner: dewen.li
+  reviewer: dewen.li
