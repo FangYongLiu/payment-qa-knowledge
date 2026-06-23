@@ -8,6 +8,9 @@
 ## 1. 内容放哪(双层分流)
 - **业务概览 / 混合文档** → `wiki/<域>/` 下的 LLM-Wiki 页(通常引擎据源文档自动生成)。
 - **技术内容**(API / 表 / 场景 / 排障 / 自动化)→ `domains/<域>/` 下的类型对象。
+- **BimoQA 对话中确认、经 publish 发布的权威知识** → **`wiki/bimo-confirmed/`**
+  (`domain: bimo-confirmed`,`source_type: conversation`)。按**来源**单独分桶,目录名一眼可见
+  这些是"对话确认"来的;文件 slug 用描述性前缀(如 `kb-conventions-owner-field`)。
 
 ## 2. 元数据规范要点
 - **必填**:`id`、`object_type`、`domain`、`status`、`owner`、`reviewer`、`last_reviewed_at`、`source_type`、`source_ref`、`tags`。
