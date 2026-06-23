@@ -13,19 +13,23 @@ app_group: gp148
 name: member-feature
 dev_owner: 沈纲领
 aliases: [gp148_member-feature]
-related_services: []
+related_services: [svc_member, svc_acs, svc_member_front, svc_grc_check_identity_provider]
 related_tables: []
 ---
 
 # member-feature
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp148` · domain=`wallet`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp148` · domain=`wallet`。
 
 ## 作用
-(本回归窗口未观测到该服务的运行时活动,作用待业务补充。)
+会员 / 账户服务（feature）  **(据名推断 · 待核实:无作用文字证据,但下方有观测到的调用关系)**
 
 ## 系统中的位置
 - 业务域:`wallet`
 
 ## 关联关系
-(本窗口未观测到与其它服务的调用关系)
+**调用(下游)—— 本服务依赖:**
+- [[svc_member]] member（会员 / 账户核心） · 750 次 · high
+- [[svc_acs]] acs（反欺诈 / 风控 + 渠道密钥） · 18 次 · high
+- [[svc_member_front]] member-front（会员前置服务） · 6 次 · high
+- [[svc_grc_check_identity_provider]] grc-check-identity-provider（风控合规身份校验） · 4 次 · med·待核实

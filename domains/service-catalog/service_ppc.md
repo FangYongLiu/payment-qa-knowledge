@@ -13,22 +13,36 @@ app_group: gp212
 name: ppc
 dev_owner: 唐宇
 aliases: [gp212_ppc]
-related_services: []
+related_services: [svc_member, svc_voucher, svc_dpm_manager, svc_grc_check_identity_provider, svc_pfs_payment, svc_reconciliation, svc_pns, svc_csimple, svc_cms, svc_shortlink, svc_merchant, svc_tradeii, svc_query, svc_crs]
 related_tables: []
 ---
 
 # ppc
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp212` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp212` · domain=`service-catalog`。
 
 ## 作用
-(本回归窗口未观测到该服务的运行时活动,作用待业务补充。)
+ppc  **(据名推断 · 待核实:无作用文字证据,但下方有观测到的调用关系)**
 
 ## 系统中的位置
 - 业务域:`service-catalog`
 
 ## 关联关系
-(本窗口未观测到与其它服务的调用关系)
+**调用(下游)—— 本服务依赖:**
+- [[svc_member]] member（会员 / 账户核心） · 47501 次 · high
+- [[svc_voucher]] voucher（全局 ID 与幂等凭证） · 35799 次 · high
+- [[svc_dpm_manager]] dpm-manager（账务平台管理） · 5258 次 · high
+- [[svc_grc_check_identity_provider]] grc-check-identity-provider（风控合规身份校验） · 1360 次 · med·待核实
+- [[svc_pfs_payment]] pfs-payment（支付履约 / 清分） · 1160 次 · high
+- [[svc_reconciliation]] reconciliation（对账） · 832 次 · high
+- [[svc_pns]] pns（支付通知服务） · 754 次 · high
+- [[svc_csimple]] csimple · 241 次 · high
+- [[svc_cms]] cms（内容 / 配置管理） · 109 次 · high
+- [[svc_shortlink]] shortlink · 77 次 · high
+- [[svc_merchant]] merchant（商户主数据 / 商户管理） · 40 次 · high
+- [[svc_tradeii]] tradeii（交易订单引擎） · 38 次 · high
+- [[svc_query]] query（查询 / 报表服务） · 3 次 · high
+- [[svc_crs]] crs · 1 次 · high
 
 ## 参与的业务场景(cgs 回归)
 - §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）

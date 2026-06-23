@@ -19,7 +19,7 @@ related_tables: []
 
 # ues-ws
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp001` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp001` · domain=`service-catalog`。
 
 ## 作用
 用户事件 / 数据服务（saveDataByParam）—— 被收银 / 渠道 / 通知调用

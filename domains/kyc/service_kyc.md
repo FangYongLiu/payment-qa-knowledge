@@ -13,13 +13,13 @@ app_group: gp078
 name: kyc
 dev_owner: 沈纲领
 aliases: [gp078_kyc]
-related_services: [svc_member]
+related_services: [svc_member, svc_outman, svc_acs, svc_pts]
 related_tables: []
 ---
 
 # kyc
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp078` · domain=`kyc`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp078` · domain=`kyc`。
 
 ## 作用
 实名认证（KYC，调 member）
@@ -29,8 +29,11 @@ related_tables: []
 - 业务域:`kyc`
 
 ## 关联关系
-**调用(下游)—— 本服务依赖这些服务完成处理:**
-- [[svc_member]] member（会员 / 账户核心） · 26 次 · high
+**调用(下游)—— 本服务依赖:**
+- [[svc_member]] member（会员 / 账户核心） · 188462 次 · high
+- [[svc_outman]] outman · 11206 次 · high
+- [[svc_acs]] acs（反欺诈 / 风控 + 渠道密钥） · 5046 次 · high
+- [[svc_pts]] pts · 4 次 · high
 
 **被调用(上游)—— 这些服务调用本服务:**
 merchant-frontend

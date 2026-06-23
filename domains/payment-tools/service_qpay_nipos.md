@@ -18,7 +18,7 @@ related_tables: []
 
 # qpay-nipos
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp244` · domain=`payment-tools`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp244` · domain=`payment-tools`。
 
 ## 作用
 NI POS 渠道接入
@@ -28,5 +28,5 @@ NI POS 渠道接入
 - 业务域:`payment-tools`
 
 ## 关联关系
-**调用(下游)—— 本服务依赖这些服务完成处理:**
-- [[svc_cmf]] cmf（渠道管理与资金） · 22 次 · high
+**调用(下游)—— 本服务依赖:**
+- [[svc_cmf]] cmf（渠道管理与资金） · 36425 次 · high

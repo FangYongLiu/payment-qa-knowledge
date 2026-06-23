@@ -12,13 +12,13 @@ tags: []
 app_group: gp234
 name: qpay-lean
 aliases: [gp234_qpay-lean]
-related_services: []
+related_services: [svc_leanlink, svc_deposit]
 related_tables: []
 ---
 
 # qpay-lean
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp234` · domain=`payment-tools`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp234` · domain=`payment-tools`。
 
 ## 作用
 Lean 渠道接入（开放银行）
@@ -28,6 +28,9 @@ Lean 渠道接入（开放银行）
 - 业务域:`payment-tools`
 
 ## 关联关系
+**调用(下游)—— 本服务依赖:**
+- [[svc_leanlink]] leanlink · 662 次 · high
+- [[svc_deposit]] deposit（充值 / 存款服务） · 110 次 · high
 
 **被调用(上游)—— 这些服务调用本服务:**
 cashierii

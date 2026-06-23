@@ -19,7 +19,7 @@ related_tables: []
 
 # credit-business
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp130` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp130` · domain=`service-catalog`。
 
 ## 作用
 信贷业务（调 member(Ma)）
@@ -29,5 +29,5 @@ related_tables: []
 - 业务域:`service-catalog`
 
 ## 关联关系
-**调用(下游)—— 本服务依赖这些服务完成处理:**
-- [[svc_member]] member（会员 / 账户核心） · 3436 次 · med·待核实
+**调用(下游)—— 本服务依赖:**
+- [[svc_member]] member（会员 / 账户核心） · 204477 次 · med·待核实

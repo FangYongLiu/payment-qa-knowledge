@@ -12,19 +12,20 @@ tags: []
 app_group: gp079
 name: grc-cps-provider
 aliases: [gp079_grc-cps-provider]
-related_services: []
+related_services: [svc_aml]
 related_tables: []
 ---
 
 # grc-cps-provider
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp079` · domain=`risk`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp079` · domain=`risk`。
 
 ## 作用
-(本回归窗口未观测到该服务的运行时活动,作用待业务补充。)
+风控合规(GRC)组件（cps-provider）  **(据名推断 · 待核实:无作用文字证据,但下方有观测到的调用关系)**
 
 ## 系统中的位置
 - 业务域:`risk`
 
 ## 关联关系
-(本窗口未观测到与其它服务的调用关系)
+**调用(下游)—— 本服务依赖:**
+- [[svc_aml]] aml（反洗钱） · 53 次 · high

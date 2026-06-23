@@ -19,7 +19,7 @@ related_tables: []
 
 # cards
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp093` · domain=`card`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp093` · domain=`card`。
 
 ## 作用
 卡管理 —— 绑卡 / 卡 token（被收单 / 收银 / 渠道广泛调用）

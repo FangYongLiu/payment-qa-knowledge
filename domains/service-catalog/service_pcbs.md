@@ -18,7 +18,7 @@ related_tables: []
 
 # pcbs
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp283` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp283` · domain=`service-catalog`。
 
 ## 作用
 计费 / 账务相关（推断：调 member-account）  **(待核实:仅凭调用关系推断)**
@@ -28,5 +28,5 @@ related_tables: []
 - 业务域:`service-catalog`
 
 ## 关联关系
-**调用(下游)—— 本服务依赖这些服务完成处理:**
-- [[svc_member]] member（会员 / 账户核心） · 61 次 · high
+**调用(下游)—— 本服务依赖:**
+- [[svc_member]] member（会员 / 账户核心） · 6019 次 · high

@@ -13,13 +13,13 @@ app_group: gp209
 name: aml
 dev_owner: 许广
 aliases: [gp209_aml]
-related_services: [svc_grc_check_identity_provider]
+related_services: [svc_grc_check_identity_provider, svc_member, svc_remittance, svc_vis, svc_deposit, svc_kyc_service]
 related_tables: []
 ---
 
 # aml
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp209` · domain=`compliance`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp209` · domain=`compliance`。
 
 ## 作用
 反洗钱（AML），调 grc 身份校验
@@ -29,8 +29,13 @@ related_tables: []
 - 业务域:`compliance`
 
 ## 关联关系
-**调用(下游)—— 本服务依赖这些服务完成处理:**
-- [[svc_grc_check_identity_provider]] grc-check-identity-provider（风控合规身份校验） · 141 次 · med·待核实
+**调用(下游)—— 本服务依赖:**
+- [[svc_grc_check_identity_provider]] grc-check-identity-provider（风控合规身份校验） · 20172 次 · med·待核实
+- [[svc_member]] member（会员 / 账户核心） · 1496 次 · high
+- [[svc_remittance]] remittance（跨境汇款核心） · 522 次 · high
+- [[svc_vis]] vis · 12 次 · high
+- [[svc_deposit]] deposit（充值 / 存款服务） · 6 次 · high
+- [[svc_kyc_service]] kyc-service（实名认证服务） · 4 次 · high
 
 **被调用(上游)—— 这些服务调用本服务:**
 merchant, remittance

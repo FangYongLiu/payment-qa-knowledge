@@ -19,7 +19,7 @@ related_tables: []
 
 # rdgs
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp216` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp216` · domain=`service-catalog`。
 
 ## 作用
 报表 / 数据服务（调 query/ufs）
@@ -29,6 +29,6 @@ related_tables: []
 - 业务域:`service-catalog`
 
 ## 关联关系
-**调用(下游)—— 本服务依赖这些服务完成处理:**
-- [[svc_query]] query（查询 / 报表服务） · 92 次 · high
-- [[svc_ufs2]] ufs2（用户文件 / 数据服务） · 44 次 · med·待核实
+**调用(下游)—— 本服务依赖:**
+- [[svc_query]] query（查询 / 报表服务） · 2583 次 · high
+- [[svc_ufs2]] ufs2（用户文件 / 数据服务） · 1097 次 · med·待核实

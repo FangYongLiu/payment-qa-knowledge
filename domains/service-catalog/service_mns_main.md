@@ -18,7 +18,7 @@ related_tables: []
 
 # mns-main
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp037` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp037` · domain=`service-catalog`。
 
 ## 作用
 消息通知中枢（短信 / 邮件 / 推送，被 mns-listener 调用）
@@ -28,8 +28,8 @@ related_tables: []
 - 业务域:`service-catalog`
 
 ## 关联关系
-**调用(下游)—— 本服务依赖这些服务完成处理:**
-- [[svc_ues_ws]] ues-ws（用户事件 / 数据服务） · 1004 次 · med·待核实
+**调用(下游)—— 本服务依赖:**
+- [[svc_ues_ws]] ues-ws（用户事件 / 数据服务） · 66093 次 · med·待核实
 
 **被调用(上游)—— 这些服务调用本服务:**
 mns-listener, cashierii

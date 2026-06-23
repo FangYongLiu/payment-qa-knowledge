@@ -12,13 +12,13 @@ tags: []
 app_group: gp291
 name: rtp
 aliases: [gp291_rtp]
-related_services: [svc_npss]
+related_services: [svc_npss, svc_pns, svc_voucher]
 related_tables: []
 ---
 
 # rtp
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp291` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp291` · domain=`service-catalog`。
 
 ## 作用
 实时支付请求（Request To Pay，调 npss）
@@ -28,8 +28,10 @@ related_tables: []
 - 业务域:`service-catalog`
 
 ## 关联关系
-**调用(下游)—— 本服务依赖这些服务完成处理:**
-- [[svc_npss]] npss（即时支付 / 账单） · 1050 次 · high
+**调用(下游)—— 本服务依赖:**
+- [[svc_npss]] npss（即时支付 / 账单） · 2390179 次 · high
+- [[svc_pns]] pns（支付通知服务） · 18600 次 · high
+- [[svc_voucher]] voucher（全局 ID 与幂等凭证） · 13249 次 · high
 
 ## 参与的业务场景(cgs 回归)
 - §8. 账单 / 即时支付（`test_ppcTransaction`，NPSS）

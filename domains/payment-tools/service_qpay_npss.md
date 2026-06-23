@@ -12,19 +12,21 @@ tags: []
 app_group: gp301
 name: qpay-npss
 aliases: [gp301_qpay-npss]
-related_services: []
+related_services: [svc_merchant, svc_npss_gateway]
 related_tables: []
 ---
 
 # qpay-npss
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp301` · domain=`payment-tools`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp301` · domain=`payment-tools`。
 
 ## 作用
-(本回归窗口未观测到该服务的运行时活动,作用待业务补充。)
+支付渠道接入(qpay 适配器)（npss）  **(据名推断 · 待核实:无作用文字证据,但下方有观测到的调用关系)**
 
 ## 系统中的位置
 - 业务域:`payment-tools`
 
 ## 关联关系
-(本窗口未观测到与其它服务的调用关系)
+**调用(下游)—— 本服务依赖:**
+- [[svc_merchant]] merchant（商户主数据 / 商户管理） · 388 次 · high
+- [[svc_npss_gateway]] npss-gateway（NPSS） · 241 次 · high

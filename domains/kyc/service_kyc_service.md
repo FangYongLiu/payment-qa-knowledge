@@ -19,7 +19,7 @@ related_tables: []
 
 # kyc-service
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp202` · domain=`kyc`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp202` · domain=`kyc`。
 
 ## 作用
 实名认证服务（EID journey，调 member）
@@ -29,8 +29,11 @@ related_tables: []
 - 业务域:`kyc`
 
 ## 关联关系
-**调用(下游)—— 本服务依赖这些服务完成处理:**
-- [[svc_member]] member（会员 / 账户核心） · 320 次 · high
+**调用(下游)—— 本服务依赖:**
+- [[svc_member]] member（会员 / 账户核心） · 21344 次 · high
+
+**被调用(上游)—— 这些服务调用本服务:**
+aml, basis
 
 ## 参与的业务场景(cgs 回归)
 - §9. 登录 / KYC / 绑卡（basic_cases：`test_login` / `test_*eid*` / `test_bankcards`）

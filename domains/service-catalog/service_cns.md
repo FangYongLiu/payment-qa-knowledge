@@ -12,13 +12,13 @@ tags: []
 app_group: gp289
 name: cns
 aliases: [gp289_cns]
-related_services: [svc_member, svc_csimple]
+related_services: [svc_member, svc_csimple, svc_cms]
 related_tables: []
 ---
 
 # cns
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp289` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp289` · domain=`service-catalog`。
 
 ## 作用
 （推断：客户通知 / 客户服务，调 member/csimple）  **(待核实:仅凭调用关系推断)**
@@ -28,6 +28,7 @@ related_tables: []
 - 业务域:`service-catalog`
 
 ## 关联关系
-**调用(下游)—— 本服务依赖这些服务完成处理:**
-- [[svc_member]] member（会员 / 账户核心） · 866 次 · high
-- [[svc_csimple]] csimple · 866 次 · high
+**调用(下游)—— 本服务依赖:**
+- [[svc_member]] member（会员 / 账户核心） · 19562098 次 · high
+- [[svc_csimple]] csimple · 613391 次 · high
+- [[svc_cms]] cms（内容 / 配置管理） · 123 次 · high

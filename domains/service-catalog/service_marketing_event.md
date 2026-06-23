@@ -13,13 +13,13 @@ app_group: gp105
 name: marketing-event
 dev_owner: 陆亚东
 aliases: [gp105_marketing-event]
-related_services: [svc_mssii, svc_acs]
+related_services: [svc_mssii, svc_acs, svc_member]
 related_tables: []
 ---
 
 # marketing-event
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp105` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp105` · domain=`service-catalog`。
 
 ## 作用
 营销事件（调 mssii/acs）
@@ -29,6 +29,7 @@ related_tables: []
 - 业务域:`service-catalog`
 
 ## 关联关系
-**调用(下游)—— 本服务依赖这些服务完成处理:**
-- [[svc_mssii]] mssii（营销 / 商户消息服务） · 360 次 · high
-- [[svc_acs]] acs（反欺诈 / 风控 + 渠道密钥） · 180 次 · high
+**调用(下游)—— 本服务依赖:**
+- [[svc_mssii]] mssii（营销 / 商户消息服务） · 84052 次 · high
+- [[svc_acs]] acs（反欺诈 / 风控 + 渠道密钥） · 42027 次 · high
+- [[svc_member]] member（会员 / 账户核心） · 10528 次 · high
