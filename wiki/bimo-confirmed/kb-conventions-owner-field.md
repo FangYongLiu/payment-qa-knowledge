@@ -1,6 +1,6 @@
 ---
 title: 知识库约定：业务域 owner 字段语义
-domain: service-catalog
+domain: bimo-confirmed
 kind: wiki_page
 slug: kb-conventions-owner-field
 status: active

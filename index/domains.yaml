@@ -104,3 +104,13 @@
   status: active
   owner: unassigned
   reviewer: unassigned
+
+# 来源型分桶(非业务域):BimoQA 对话中确认、经 publish 发布到库的权威知识。
+# 目录 wiki/bimo-confirmed/。详见 CONTRIBUTING.md。
+- id: domain_bimo_confirmed
+  object_type: Domain
+  name: bimo-confirmed
+  domain: bimo-confirmed
+  status: active
+  owner: unassigned
+  reviewer: unassigned
