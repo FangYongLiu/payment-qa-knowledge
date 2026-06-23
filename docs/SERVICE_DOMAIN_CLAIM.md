@@ -1,11 +1,13 @@
-# 服务域认领表（每位 owner 填自己负责的服务）
+# 服务认领表（可选 · 按需自取）
 
 > 由 `scripts/import_services.py` 从 SYSTEM_APP_INVENTORY.md 生成。共 282 个服务 / 242 个 app_group。
-> 填法：在每行 `domain` / `owner` 列填上归属（domain 用 12 域之一，见 index/domains.yaml）。
-> 认领后由我把对应文件从 `domains/_unassigned/` 移到 `domains/<domain>/` 并写入 frontmatter。
+> **认领是可选的**：全部 282 个服务骨架已激活在中性域 `service-catalog`，Bimo 已能
+> 检索到「有哪些服务、属于哪个 app 组」。**只有要为某服务建测试知识时才认领**——填下面的
+> `domain`(12 业务域之一) / `owner`，我据此把文件移到 `domains/<domain>/`、写 frontmatter、补内容。
+> 不认领的服务一直保持骨架即可（基础设施/mock/admin 等长尾通常无需认领）。
 > **同一 app_group 通常属于同一个域**——可整组一起认领。
 
-12 个域：online-business / offline-business / payment-core / payment-tools / portal-operations / remittance / wallet / card / kyc / risk / wps / compliance
+12 个业务域：online-business / offline-business / payment-core / payment-tools / portal-operations / remittance / wallet / card / kyc / risk / wps / compliance
 
 ## app_group `bd002`（1 个）
 

@@ -96,3 +96,11 @@
   status: active
   owner: dewen.li
   reviewer: dewen.li
+
+- id: domain_service_catalog
+  object_type: Domain
+  name: service-catalog
+  domain: service-catalog
+  status: active
+  owner: unassigned
+  reviewer: unassigned
