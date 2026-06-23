@@ -1,0 +1,31 @@
+---
+id: svc_dpm_task
+object_type: Service
+domain: payment-core
+status: active
+owner: xiaoyan.zhou
+reviewer: xiaoyan.zhou
+last_reviewed_at: '2026-06-23'
+source_type: app_inventory
+source_ref: SYSTEM_APP_INVENTORY.md
+tags: []
+app_group: gp004
+name: dpm-task
+dev_owner: 周聪
+aliases: [gp004_dpm-task]
+related_services: []
+related_tables: []
+---
+
+# dpm-task
+
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp004` · domain=`payment-core`。
+
+## 作用
+(本回归窗口未观测到该服务的运行时活动,作用待业务补充。)
+
+## 系统中的位置
+- 业务域:`payment-core`
+
+## 关联关系
+(本窗口未观测到与其它服务的调用关系)

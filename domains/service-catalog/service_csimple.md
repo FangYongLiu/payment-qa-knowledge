@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp070
 name: csimple
+dev_owner: 刘智斌
 aliases: [gp070_csimple]
 related_services: []
 related_tables: []
@@ -18,20 +19,16 @@ related_tables: []
 
 # csimple
 
-> 作用与调用关系来自 **UAT Kibana trace 观测**(2026-06-22T20:00Z..06-23T01:00Z UAT cgs 回归窗口,真实但**非穷尽**——
-> 未被该窗口触达的调用不会出现)。**候选,待人审**(核心原则 #2)。app_group=`gp070`。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp070` · domain=`service-catalog`。
 
 ## 作用
-（推断：客户简易服务，被 cns 调用）  **(待核实:仅凭调用关系推断,无方法证据)**
+（推断：客户简易服务，被 cns 调用）  **(待核实:仅凭调用关系推断)**
 
-## 下游调用（UAT trace 观测;observed_count=频次/权重）
-(本窗口未观测到下游调用)
+## 系统中的位置
+- 功能层:客服 / 内容 / 查询 / 其他 (CS / Content / Query / Misc)
+- 业务域:`service-catalog`
 
-## 被调用方（←被调,本窗口观测）
+## 关联关系
+
+**被调用(上游)—— 这些服务调用本服务:**
 cns
-
-## 观测到的对外方法
-(无方法级证据)
-
-## 同组服务（app_group=gp070，共 1 个模块）
-- （本组仅此一个）

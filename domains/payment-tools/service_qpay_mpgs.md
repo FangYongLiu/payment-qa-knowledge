@@ -1,0 +1,37 @@
+---
+id: svc_qpay_mpgs
+object_type: Service
+domain: payment-tools
+status: active
+owner: xiaoyan.zhou
+reviewer: xiaoyan.zhou
+last_reviewed_at: '2026-06-23'
+source_type: app_inventory
+source_ref: SYSTEM_APP_INVENTORY.md
+tags: []
+app_group: gp267
+name: qpay-mpgs
+aliases: [gp267_qpay-mpgs]
+related_services: [svc_onboarding, svc_cards, svc_grc_check_identity_provider]
+related_tables: []
+---
+
+# qpay-mpgs
+
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp267` · domain=`payment-tools`。
+
+## 作用
+Mastercard Payment Gateway（MPGS）渠道接入，3DS2 卡支付
+
+## 系统中的位置
+- 功能层:接入网关 / 前端 BFF (Gateway / Frontend)
+- 业务域:`payment-tools`
+
+## 关联关系
+**调用(下游)—— 本服务依赖这些服务完成处理:**
+- [[svc_onboarding]] onboarding（商户 / 用户入网） · 142 次 · high
+- [[svc_cards]] cards（卡管理） · 42 次 · high
+- [[svc_grc_check_identity_provider]] grc-check-identity-provider（风控合规身份校验） · 42 次 · med·待核实
+
+## 参与的业务场景(cgs 回归)
+- §4. 卡渠道入金 3DS（`test_mpgs_fundIn` / `test_cko_fundIn`）

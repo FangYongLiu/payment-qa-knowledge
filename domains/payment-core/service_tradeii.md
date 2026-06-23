@@ -1,0 +1,56 @@
+---
+id: svc_tradeii
+object_type: Service
+domain: payment-core
+status: active
+owner: xiaoyan.zhou
+reviewer: xiaoyan.zhou
+last_reviewed_at: '2026-06-23'
+source_type: app_inventory
+source_ref: SYSTEM_APP_INVENTORY.md
+tags: []
+app_group: gp123
+name: tradeii
+dev_owner: 唐宇
+aliases: [gp123_tradeii]
+related_services: [svc_voucher, svc_member, svc_cmf, svc_pfs_payment, svc_pbs, svc_acs, svc_cards, svc_css, svc_cashierii, svc_authpay, svc_cms, svc_deduct]
+related_tables: []
+---
+
+# tradeii
+
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp123` · domain=`payment-core`。
+
+## 作用
+交易订单引擎（Trade II）—— 创建 / 查询交易、退款、收银交易（queryTradeOrder/createCashierTrade/refund），编排 voucher/cmf/pbs/acs/cards/cashier/pfs
+
+## 系统中的位置
+- 功能层:交易 / 支付中台 (Trade / Payment Core)
+- 业务域:`payment-core`
+
+## 关联关系
+**调用(下游)—— 本服务依赖这些服务完成处理:**
+- [[svc_voucher]] voucher（全局 ID 与幂等凭证） · 11646 次 · high
+- [[svc_member]] member（会员 / 账户核心） · 1595 次 · high
+- [[svc_cmf]] cmf（渠道管理与资金） · 1505 次 · high
+- [[svc_pfs_payment]] pfs-payment（支付履约 / 清分） · 520 次 · high
+- [[svc_pbs]] pbs（计费 / 定价） · 192 次 · high
+- [[svc_acs]] acs（反欺诈 / 风控 + 渠道密钥） · 190 次 · high
+- [[svc_cards]] cards（卡管理） · 150 次 · high
+- [[svc_css]] css（客服系统） · 117 次 · high
+- [[svc_cashierii]] cashierii（收银核心） · 114 次 · high
+- [[svc_authpay]] authpay（授权支付 / 免密代扣执行） · 21 次 · high
+- [[svc_cms]] cms（内容 / 配置管理） · 21 次 · high
+- [[svc_deduct]] deduct（自动代扣执行） · 14 次 · high
+
+**被调用(上游)—— 这些服务调用本服务:**
+acquireii, cashierii, cashdesk-api, remittance, merchant-fundout, deduct
+
+## 参与的业务场景(cgs 回归)
+- §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）
+- §2. 收银台 / 收银（`test_bpg_paypage` 收银侧、cashier 用例）
+- §3. 自动代扣 / 签约（`test_auto_debit`）
+- §7. 跨境汇款（toC，`test_remittance`）
+
+## 观测到的对外方法
+queryTradeOrder, queryRefundOrder, createCashierTrade, refund

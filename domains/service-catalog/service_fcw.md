@@ -18,23 +18,20 @@ related_tables: []
 
 # fcw
 
-> 作用与调用关系来自 **UAT Kibana trace 观测**(2026-06-22T20:00Z..06-23T01:00Z UAT cgs 回归窗口,真实但**非穷尽**——
-> 未被该窗口触达的调用不会出现)。**候选,待人审**(核心原则 #2)。app_group=`gp039`。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp039` · domain=`service-catalog`。
 
 ## 作用
 前置渠道网关（Front Channel Web）—— 3DS 跳转 / 渠道通知页；下游 cmf/remittance
 
-## 下游调用（UAT trace 观测;observed_count=频次/权重）
-| 被调服务 | 频次 | 置信 |
-| --- | --- | ---: |
-| cmf (`svc_cmf`) | 364 | high |
-| remittance (`svc_remittance`) | 36 | high |
+## 系统中的位置
+- 功能层:接入网关 / 前端 BFF (Gateway / Frontend)
+- 业务域:`service-catalog`
 
-## 被调用方（←被调,本窗口观测）
-(无)
+## 关联关系
+**调用(下游)—— 本服务依赖这些服务完成处理:**
+- [[svc_cmf]] cmf（渠道管理与资金） · 364 次 · high
+- [[svc_remittance]] remittance（跨境汇款核心） · 36 次 · high
 
-## 观测到的对外方法
-(无方法级证据)
-
-## 同组服务（app_group=gp039，共 1 个模块）
-- （本组仅此一个）
+## 参与的业务场景(cgs 回归)
+- §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）
+- §4. 卡渠道入金 3DS（`test_mpgs_fundIn` / `test_cko_fundIn`）

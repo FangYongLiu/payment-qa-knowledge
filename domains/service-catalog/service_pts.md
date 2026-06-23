@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp040
 name: pts
+dev_owner: 刘智斌
 aliases: [gp040_pts]
 related_services: []
 related_tables: []
@@ -18,20 +19,19 @@ related_tables: []
 
 # pts
 
-> 作用与调用关系来自 **UAT Kibana trace 观测**(2026-06-22T20:00Z..06-23T01:00Z UAT cgs 回归窗口,真实但**非穷尽**——
-> 未被该窗口触达的调用不会出现)。**候选,待人审**(核心原则 #2)。app_group=`gp040`。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp040` · domain=`service-catalog`。
 
 ## 作用
-（推断：支付 token / 会话服务，被 personal 调用）  **(待核实:仅凭调用关系推断,无方法证据)**
+（推断：支付 token / 会话服务，被 personal 调用）  **(待核实:仅凭调用关系推断)**
 
-## 下游调用（UAT trace 观测;observed_count=频次/权重）
-(本窗口未观测到下游调用)
+## 系统中的位置
+- 功能层:会员 / 账户 / 卡 / 协议 (Member / Account / Card)
+- 业务域:`service-catalog`
 
-## 被调用方（←被调,本窗口观测）
+## 关联关系
+
+**被调用(上游)—— 这些服务调用本服务:**
 personal
 
-## 观测到的对外方法
-(无方法级证据)
-
-## 同组服务（app_group=gp040，共 1 个模块）
-- （本组仅此一个）
+## 参与的业务场景(cgs 回归)
+- §6. 提现（toC，`test_withdraw`）

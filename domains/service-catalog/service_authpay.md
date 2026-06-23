@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp034
 name: authpay
+dev_owner: 刘智斌
 aliases: [gp034_authpay]
 related_services: []
 related_tables: []
@@ -18,20 +19,20 @@ related_tables: []
 
 # authpay
 
-> 作用与调用关系来自 **UAT Kibana trace 观测**(2026-06-22T20:00Z..06-23T01:00Z UAT cgs 回归窗口,真实但**非穷尽**——
-> 未被该窗口触达的调用不会出现)。**候选,待人审**(核心原则 #2)。app_group=`gp034`。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp034` · domain=`service-catalog`。
 
 ## 作用
 授权支付 / 免密代扣执行（被 cashier/cashdesk/trade 调用）
 
-## 下游调用（UAT trace 观测;observed_count=频次/权重）
-(本窗口未观测到下游调用)
+## 系统中的位置
+- 功能层:收单 / 收银 (Acquiring / Cashier)
+- 业务域:`service-catalog`
 
-## 被调用方（←被调,本窗口观测）
+## 关联关系
+
+**被调用(上游)—— 这些服务调用本服务:**
 cashierii, cashdesk-api, tradeii
 
-## 观测到的对外方法
-(无方法级证据)
-
-## 同组服务（app_group=gp034，共 1 个模块）
-- （本组仅此一个）
+## 参与的业务场景(cgs 回归)
+- §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）
+- §2. 收银台 / 收银（`test_bpg_paypage` 收银侧、cashier 用例）

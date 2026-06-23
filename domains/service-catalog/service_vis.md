@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp149
 name: vis
+dev_owner: 王迁
 aliases: [gp149_vis]
 related_services: [svc_voucher, svc_pfs_payment, svc_deposit]
 related_tables: []
@@ -18,24 +19,24 @@ related_tables: []
 
 # vis
 
-> 作用与调用关系来自 **UAT Kibana trace 观测**(2026-06-22T20:00Z..06-23T01:00Z UAT cgs 回归窗口,真实但**非穷尽**——
-> 未被该窗口触达的调用不会出现)。**候选,待人审**(核心原则 #2)。app_group=`gp149`。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp149` · domain=`service-catalog`。
 
 ## 作用
-（推断：虚拟账户 / 收款，调 voucher/pfs/deposit）  **(待核实:仅凭调用关系推断,无方法证据)**
+（推断：虚拟账户 / 收款，调 voucher/pfs/deposit）  **(待核实:仅凭调用关系推断)**
 
-## 下游调用（UAT trace 观测;observed_count=频次/权重）
-| 被调服务 | 频次 | 置信 |
-| --- | --- | ---: |
-| voucher (`svc_voucher`) | 669 | high |
-| pfs-payment (`svc_pfs_payment`) | 620 | high |
-| deposit (`svc_deposit`) | 160 | high |
+## 系统中的位置
+- 功能层:客服 / 内容 / 查询 / 其他 (CS / Content / Query / Misc)
+- 业务域:`service-catalog`
 
-## 被调用方（←被调,本窗口观测）
+## 关联关系
+**调用(下游)—— 本服务依赖这些服务完成处理:**
+- [[svc_voucher]] voucher（全局 ID 与幂等凭证） · 669 次 · high
+- [[svc_pfs_payment]] pfs-payment（支付履约 / 清分） · 620 次 · high
+- [[svc_deposit]] deposit（充值 / 存款服务） · 160 次 · high
+
+**被调用(上游)—— 这些服务调用本服务:**
 fundout
 
-## 观测到的对外方法
-(无方法级证据)
-
-## 同组服务（app_group=gp149，共 1 个模块）
-- （本组仅此一个）
+## 参与的业务场景(cgs 回归)
+- §5. 银行/卡转账、出款（`test_transfer_to_bank` / `test_transfer_to_card`）
+- §10. 红包 / 社交支付、生活缴费、VAM（toC：`test_red_pkg` / `test_friend_transfer` / `test_vam` / 充值）

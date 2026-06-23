@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp053
 name: transfer
+dev_owner: 刘智斌
 aliases: [gp053_transfer]
 related_services: []
 related_tables: []
@@ -18,15 +19,17 @@ related_tables: []
 
 # transfer
 
-> APP 服务骨架。app_group=`gp053`,源=APP 清单。
-> 当前归中性域 `service-catalog`(已激活、可检索)。上下游/API/表/业务细节待补。
-> **认领可选**:某团队要为本服务建测试知识时,把 domain 改成 12 业务域之一 + 填
-> owner + 补内容(见 docs/SERVICE_DOMAIN_CLAIM.md)。不认领则一直保持骨架。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp053` · domain=`service-catalog`。
 
-## 同组服务（app_group=gp053，共 1 个模块）
-- （本组仅此一个）
+## 作用
+(本回归窗口未观测到该服务的运行时活动,作用待业务补充。)
 
-## 待补（认领后）
-- domain / owner：认领时填（默认 service-catalog / unassigned）
-- 上下游 related_services：TODO（认领后按系统知识/架构图补）
-- 涉及 API / 表：TODO
+## 系统中的位置
+- 业务域:`service-catalog`
+
+## 关联关系
+(本窗口未观测到与其它服务的调用关系)
+
+## 参与的业务场景(cgs 回归)
+- §5. 银行/卡转账、出款（`test_transfer_to_bank` / `test_transfer_to_card`）
+- §6. 提现（toC，`test_withdraw`）
