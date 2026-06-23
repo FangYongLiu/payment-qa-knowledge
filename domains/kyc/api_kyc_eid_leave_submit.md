@@ -20,10 +20,19 @@ aliases:
 - Leave kyc
 related_services:
 - svc_kyc
+related_tables: []
+related_scenarios:
+- scn_kyc_eid_leave
 ---
 
 ## 用途
 当用户放弃 KYC 时，记录用户放弃的原因。放弃后不允许重新提交。前端无需校验该接口的响应。
+
+## 关联关系
+- **所属服务**:[[svc_kyc]](related_services;api→service 边)
+- **读写的表**:待补
+- **被哪些场景测**:[[scn_kyc_eid_leave]]
+- **被哪些自动化覆盖**:[[auto_kyc_eid_journey]]
 
 ## 路径/方法
 - API: `/kyc/active-account/v1/eid/main/leave-submit`

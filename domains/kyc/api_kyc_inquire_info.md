@@ -20,10 +20,20 @@ aliases:
 - /kyc/active-account/v1/kyc/inquire-info
 related_services:
 - svc_kyc
+related_tables: []
+related_scenarios:
+- scn_kyc_status_inquire
+- scn_kyc_eid_full_journey
 ---
 
 ## 用途
 获取用户的 KYC 状态及对应的 EID/护照信息。根据 kycStatus 不同，决定是否返回 eidInfo / passportInfo；VIP 用户的敏感字段以 `******` 脱敏返回。
+
+## 关联关系
+- **所属服务**:[[svc_kyc]](related_services;api→service 边)
+- **读写的表**:待补
+- **被哪些场景测**:[[scn_kyc_status_inquire]]、[[scn_kyc_eid_full_journey]]
+- **被哪些自动化覆盖**:[[auto_kyc_eid_journey]]
 
 ## 路径/方法
 - API: `/kyc/active-account/v1/kyc/inquire-info`

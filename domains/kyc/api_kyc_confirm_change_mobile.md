@@ -21,10 +21,17 @@ aliases:
 - confirm-change-mobile
 related_services:
 - svc_kyc
+related_tables: []
+related_scenarios: []
 ---
 
 ## 用途
 EID KYC 换绑手机号流程的最终确认接口（CGS API v2）。用户在前序步骤完成 EID 验证、选择需换绑的会员账号、密码校验后，调用本接口提交 token 与 id，由后端完成换绑动作并返回展示指令（tips/moveForward），用于驱动前端展示成功/挂起/失败/异常等结果页或进入下一步。
+
+## 关联关系
+- **所属服务**:[[svc_kyc]](related_services;api→service 边)
+- **读写的表**:待补
+- **被哪些场景测**:§9 登录/KYC 回归(待补具体 scenario 对象)
 
 ## 路径/方法
 - Path：`/kyc/active-account/v1/eid/main/confirm-change-mobile`

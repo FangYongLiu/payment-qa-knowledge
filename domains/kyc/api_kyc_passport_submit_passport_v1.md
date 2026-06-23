@@ -19,10 +19,17 @@ name: 提交护照识别信息接口(v1)
 aliases: []
 related_services:
 - svc_kyc
+related_tables: []
+related_scenarios: []
 ---
 
 ## 用途
 提交护照识别信息（microblink方案），属于护照KYC认证流程中OCR识别完成后的信息提交步骤。
+
+## 关联关系
+- **所属服务**:[[svc_kyc]](related_services;api→service 边)
+- **读写的表**:待补
+- **被哪些场景测**:§9 登录/KYC 回归(待补具体 scenario 对象)
 
 ## 路径/方法
 - 路径：/kyc/passport/v1/submit-passport

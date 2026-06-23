@@ -20,10 +20,19 @@ aliases:
 - inquire-industry
 related_services:
 - svc_kyc
+related_tables: []
+related_scenarios:
+- scn_kyc_eid_full_journey
 ---
 
 ## 用途
 获取行业列表，供用户在确认 EID 信息（confirm-info）或提交修改 EID 信息（submit-edit）时选择一个行业项作为 `industry` 入参。
+
+## 关联关系
+- **所属服务**:[[svc_kyc]](related_services;api→service 边)
+- **读写的表**:待补
+- **被哪些场景测**:[[scn_kyc_eid_full_journey]]
+- **被哪些自动化覆盖**:[[auto_kyc_eid_journey]]
 
 ## 路径/方法
 - 路径：`/kyc/active-account/v1/eid/inquire-industry`

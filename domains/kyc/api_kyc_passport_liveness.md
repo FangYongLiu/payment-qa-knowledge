@@ -16,10 +16,17 @@ name: 护照活体认证接口
 aliases: []
 related_services:
 - svc_kyc
+related_tables: []
+related_scenarios: []
 ---
 
 ## 用途
 活体验证：在护照KYC流程中提交活体视频包，完成活体认证。
+
+## 关联关系
+- **所属服务**:[[svc_kyc]](related_services;api→service 边)
+- **读写的表**:待补
+- **被哪些场景测**:§9 登录/KYC 回归(待补具体 scenario 对象)
 
 ## 路径/方法
 - 路径：/kyc/passport/v1/liveness

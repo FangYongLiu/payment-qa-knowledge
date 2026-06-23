@@ -1,42 +1,52 @@
 ---
-id: api_<service>_<name>
+# API 对象规范(与 curation 引擎 _SKELETONS[API] 对齐,人/引擎共用)。
+id: api_<service>_<name>           # api_ 前缀 + 服务 + 接口名
 object_type: API
-name: "<API 名称>"
+name: <人类可读接口名>(<英文短名>)
 aliases: []
-domain: <domain>
-subdomain: ""
-module: ""
-status: draft
-owner: QA-Team
-reviewer: Domain-Owner
-last_reviewed_at: 2026-01-01
-source_type: confluence
-source_ref: ""
+domain: <所属服务的业务域>
+status: active
+owner: <知识负责人=所属服务域负责人>
+reviewer: <评审人>
+last_reviewed_at: 'YYYY-MM-DD'
+source_type: <接口文档|wiki|uat_kibana|...>
+source_ref: <来源>
 tags: []
-related_services: []
-related_tables: []
-related_scenarios: []
-related_logs: []
+related_services: [svc_<owning_service>]   # ★ 反指所属服务(api→service 边;服务正文反查/链接)
+related_tables: [tbl_x]                     # 读写的表(可选)
+related_scenarios: [scn_x]                  # 覆盖的测试场景(可选)
 ---
 
-## 业务目的
-<这个 API 解决什么业务问题>
+# <接口名>
 
-## 关键请求 / 响应字段
-- 请求：
-- 响应：
+## 用途
+这个接口做什么、在什么业务场景/流程里被调用。一句话定位 + 必要展开。
 
-## 测试步骤
-1. <步骤>
+## 关联关系
+- **所属服务**:[[svc_<owning>]](= frontmatter `related_services`,api→service 边)
+- **读写的表**:[[tbl_x]] …(= `related_tables`;不清楚标「待补」)
+- **被哪些场景测**:[[scn_x]] …(= `related_scenarios`)
+- **自动化 / 流程**:无直接边——经由场景间接关联([[auto_*]] 覆盖 [[scn_x]] → 测本接口;[[flow_*]] 里出现)。
 
-## 预期结果
-- <预期>
+## 路径 / 方法
+- 路径:`/path/to/api`
+- 方法:POST / GET
 
-## DB 校验
-- <查哪张表的哪个字段，related_tables>
+## 入参
+| 参数 | 类型 | 必填 | 示例 | 说明 |
+| --- | --- | --- | --- | --- |
+| ... | ... | Y/N | ... | ...(敏感字段注明加密,如 RSA/密文) |
 
-## Kibana 校验
-- <看哪个服务的日志，related_logs>
+## 出参
+| 参数 | 类型 | 必填 | 示例 | 说明 |
+| --- | --- | --- | --- | --- |
+| ... | ... | Y/N | ... | ...(嵌套对象用 `--字段` 缩进表示层级) |
 
-## 常见风险 / 失败模式
-- <易错点>
+## 错误码
+| code | 含义 | 触发条件 |
+| --- | --- | --- |
+| ... | ... | ...（**原文若缺,写「待补:原文未提供错误码」**,便于检索发现、人工补充） |
+
+## 测试校验点(QA)
+- 正常/异常分支、边界、幂等、DB 落库点、与上下游接口的联动校验。
+- **缺失的点也写在这里(标「待补」),将来检索可发现,人工更新。**

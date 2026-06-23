@@ -20,10 +20,19 @@ aliases:
 - confirm-info
 related_services:
 - svc_kyc
+related_tables: []
+related_scenarios:
+- scn_kyc_eid_full_journey
 ---
 
 ## 用途
 用户确认 EID 信息（不修改），并提交所选 industry。该接口不会进入人工审核流程（This api will not be submitted for manual review）。
+
+## 关联关系
+- **所属服务**:[[svc_kyc]](related_services;api→service 边)
+- **读写的表**:待补
+- **被哪些场景测**:[[scn_kyc_eid_full_journey]]
+- **被哪些自动化覆盖**:[[auto_kyc_eid_journey]]
 
 ## 路径/方法
 - 路径：`/kyc/active-account/v1/eid/main/confirm-info`

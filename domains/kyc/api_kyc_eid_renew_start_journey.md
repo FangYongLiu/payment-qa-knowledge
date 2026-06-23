@@ -19,10 +19,17 @@ name: 启动EID续期Journey接口
 aliases: []
 related_services:
 - svc_kyc
+related_tables: []
+related_scenarios: []
 ---
 
 ## 用途
 启动EID续期journey，创建journey URL；如果用户已经完成过journey，则直接获取结果并跳转到对应页面（结果页 / re-submit页）。
+
+## 关联关系
+- **所属服务**:[[svc_kyc]](related_services;api→service 边)
+- **读写的表**:待补
+- **被哪些场景测**:§9 登录/KYC 回归(待补具体 scenario 对象)
 
 ## 路径/方法
 - API：`/kyc/active-account/v1/eid/renew/start-journey`
