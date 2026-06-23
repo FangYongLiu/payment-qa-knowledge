@@ -18,7 +18,7 @@ related_tables: []
 
 # qpay-cko
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp221` · domain=`payment-tools`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp221` · domain=`payment-tools`。
 
 ## 作用
 Checkout.com（CKO）渠道接入
@@ -28,9 +28,9 @@ Checkout.com（CKO）渠道接入
 - 业务域:`payment-tools`
 
 ## 关联关系
-**调用(下游)—— 本服务依赖这些服务完成处理:**
-- [[svc_cards]] cards（卡管理） · 12 次 · high
-- [[svc_grc_check_identity_provider]] grc-check-identity-provider（风控合规身份校验） · 12 次 · med·待核实
+**调用(下游)—— 本服务依赖:**
+- [[svc_cards]] cards（卡管理） · 380 次 · high
+- [[svc_grc_check_identity_provider]] grc-check-identity-provider（风控合规身份校验） · 380 次 · med·待核实
 
 ## 参与的业务场景(cgs 回归)
 - §4. 卡渠道入金 3DS（`test_mpgs_fundIn` / `test_cko_fundIn`）

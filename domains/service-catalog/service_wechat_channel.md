@@ -13,13 +13,13 @@ app_group: gp236
 name: wechat-channel
 dev_owner: 陆亚东
 aliases: [gp236_wechat-channel]
-related_services: [svc_acs, svc_ues_ws]
+related_services: [svc_acs, svc_ues_ws, svc_remittance]
 related_tables: []
 ---
 
 # wechat-channel
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp236` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp236` · domain=`service-catalog`。
 
 ## 作用
 微信支付渠道接入，调 acs 风控 / ues 用户数据
@@ -29,6 +29,7 @@ related_tables: []
 - 业务域:`service-catalog`
 
 ## 关联关系
-**调用(下游)—— 本服务依赖这些服务完成处理:**
-- [[svc_acs]] acs（反欺诈 / 风控 + 渠道密钥） · 31318 次 · high
-- [[svc_ues_ws]] ues-ws（用户事件 / 数据服务） · 7830 次 · med·待核实
+**调用(下游)—— 本服务依赖:**
+- [[svc_acs]] acs（反欺诈 / 风控 + 渠道密钥） · 2942812 次 · high
+- [[svc_ues_ws]] ues-ws（用户事件 / 数据服务） · 736246 次 · med·待核实
+- [[svc_remittance]] remittance（跨境汇款核心） · 94 次 · high

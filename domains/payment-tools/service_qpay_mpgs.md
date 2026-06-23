@@ -12,13 +12,13 @@ tags: []
 app_group: gp267
 name: qpay-mpgs
 aliases: [gp267_qpay-mpgs]
-related_services: [svc_onboarding, svc_cards, svc_grc_check_identity_provider]
+related_services: [svc_onboarding, svc_cards, svc_grc_check_identity_provider, svc_ues_ws]
 related_tables: []
 ---
 
 # qpay-mpgs
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp267` · domain=`payment-tools`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp267` · domain=`payment-tools`。
 
 ## 作用
 Mastercard Payment Gateway（MPGS）渠道接入，3DS2 卡支付
@@ -28,10 +28,11 @@ Mastercard Payment Gateway（MPGS）渠道接入，3DS2 卡支付
 - 业务域:`payment-tools`
 
 ## 关联关系
-**调用(下游)—— 本服务依赖这些服务完成处理:**
-- [[svc_onboarding]] onboarding（商户 / 用户入网） · 142 次 · high
-- [[svc_cards]] cards（卡管理） · 42 次 · high
-- [[svc_grc_check_identity_provider]] grc-check-identity-provider（风控合规身份校验） · 42 次 · med·待核实
+**调用(下游)—— 本服务依赖:**
+- [[svc_onboarding]] onboarding（商户 / 用户入网） · 21348 次 · high
+- [[svc_cards]] cards（卡管理） · 2356 次 · high
+- [[svc_grc_check_identity_provider]] grc-check-identity-provider（风控合规身份校验） · 1762 次 · med·待核实
+- [[svc_ues_ws]] ues-ws（用户事件 / 数据服务） · 6 次 · med·待核实
 
 ## 参与的业务场景(cgs 回归)
 - §4. 卡渠道入金 3DS（`test_mpgs_fundIn` / `test_cko_fundIn`）

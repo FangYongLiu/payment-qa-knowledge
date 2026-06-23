@@ -12,13 +12,13 @@ tags: []
 app_group: gp037
 name: mns-scheduler
 aliases: [gp037_mns-scheduler]
-related_services: [svc_ues_ws]
+related_services: [svc_ues_ws, svc_member]
 related_tables: []
 ---
 
 # mns-scheduler
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp037` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp037` · domain=`service-catalog`。
 
 ## 作用
 消息通知调度（定时通知，调 ues）
@@ -28,5 +28,6 @@ related_tables: []
 - 业务域:`service-catalog`
 
 ## 关联关系
-**调用(下游)—— 本服务依赖这些服务完成处理:**
-- [[svc_ues_ws]] ues-ws（用户事件 / 数据服务） · 12 次 · med·待核实
+**调用(下游)—— 本服务依赖:**
+- [[svc_ues_ws]] ues-ws（用户事件 / 数据服务） · 1688 次 · med·待核实
+- [[svc_member]] member（会员 / 账户核心） · 6 次 · high

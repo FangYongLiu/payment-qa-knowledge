@@ -13,13 +13,13 @@ app_group: gp014
 name: pfs-payment
 dev_owner: 李德文
 aliases: [gp014_pfs-payment]
-related_services: [svc_member, svc_payment, svc_dpm_manager]
+related_services: [svc_dpm_manager, svc_member, svc_payment]
 related_tables: []
 ---
 
 # pfs-payment
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp014` · domain=`payment-core`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp014` · domain=`payment-core`。
 
 ## 作用
 支付履约 / 清分（Payment Fulfillment，enterMulti），被 trade/payment/offline/vis 调用
@@ -29,10 +29,10 @@ related_tables: []
 - 业务域:`payment-core`
 
 ## 关联关系
-**调用(下游)—— 本服务依赖这些服务完成处理:**
-- [[svc_member]] member（会员 / 账户核心） · 20798 次 · med·待核实
-- [[svc_payment]] payment（支付中台） · 20583 次 · high
-- [[svc_dpm_manager]] dpm-manager（账务平台管理） · 19978 次 · high
+**调用(下游)—— 本服务依赖:**
+- [[svc_dpm_manager]] dpm-manager（账务平台管理） · 10290661 次 · high
+- [[svc_member]] member（会员 / 账户核心） · 8303794 次 · med·待核实
+- [[svc_payment]] payment（支付中台） · 6310579 次 · high
 
 **被调用(上游)—— 这些服务调用本服务:**
 offline-payment, vis, payment, tradeii, fundout, reconciliation

@@ -18,7 +18,7 @@ related_tables: []
 
 # mns-listener
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp037` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp037` · domain=`service-catalog`。
 
 ## 作用
 消息通知监听（MailNotify/SnsNotify，转 mns-main）
@@ -28,6 +28,6 @@ related_tables: []
 - 业务域:`service-catalog`
 
 ## 关联关系
-**调用(下游)—— 本服务依赖这些服务完成处理:**
-- [[svc_mns_main]] mns-main（消息通知中枢） · 3986 次 · med·待核实
-- [[svc_ues_ws]] ues-ws（用户事件 / 数据服务） · 8 次 · med·待核实
+**调用(下游)—— 本服务依赖:**
+- [[svc_mns_main]] mns-main（消息通知中枢） · 251333 次 · med·待核实
+- [[svc_ues_ws]] ues-ws（用户事件 / 数据服务） · 3314 次 · med·待核实

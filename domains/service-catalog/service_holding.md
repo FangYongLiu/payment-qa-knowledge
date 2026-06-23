@@ -13,19 +13,25 @@ app_group: gp144
 name: holding
 dev_owner: 王斌
 aliases: [gp144_holding]
-related_services: []
+related_services: [svc_quotation, svc_member, svc_asset_info]
 related_tables: []
 ---
 
 # holding
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp144` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp144` · domain=`service-catalog`。
 
 ## 作用
-(本回归窗口未观测到该服务的运行时活动,作用待业务补充。)
+holding  **(据名推断 · 待核实:无作用文字证据,但下方有观测到的调用关系)**
 
 ## 系统中的位置
 - 业务域:`service-catalog`
 
 ## 关联关系
-(本窗口未观测到与其它服务的调用关系)
+**调用(下游)—— 本服务依赖:**
+- [[svc_quotation]] quotation（报价服务） · 5448 次 · high
+- [[svc_member]] member（会员 / 账户核心） · 2652 次 · high
+- [[svc_asset_info]] asset-info（资产信息） · 2379 次 · high
+
+**被调用(上游)—— 这些服务调用本服务:**
+member-front

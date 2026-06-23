@@ -19,7 +19,7 @@ related_tables: []
 
 # pts
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp040` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp040` · domain=`service-catalog`。
 
 ## 作用
 （推断：支付 token / 会话服务，被 personal 调用）  **(待核实:仅凭调用关系推断)**

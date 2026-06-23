@@ -19,7 +19,7 @@ related_tables: []
 
 # dpm-manager
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp004` · domain=`payment-core`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp004` · domain=`payment-core`。
 
 ## 作用
 账务平台管理（DPM）—— 记账主入口，被 pfs/payment/reconciliation 调用

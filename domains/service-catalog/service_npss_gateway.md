@@ -19,7 +19,7 @@ related_tables: []
 
 # npss-gateway
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp210` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp210` · domain=`service-catalog`。
 
 ## 作用
 NPSS（即时支付系统）报文网关
@@ -29,8 +29,11 @@ NPSS（即时支付系统）报文网关
 - 业务域:`service-catalog`
 
 ## 关联关系
-**调用(下游)—— 本服务依赖这些服务完成处理:**
-- [[svc_npss]] npss（即时支付 / 账单） · 32 次 · high
+**调用(下游)—— 本服务依赖:**
+- [[svc_npss]] npss（即时支付 / 账单） · 17610 次 · high
+
+**被调用(上游)—— 这些服务调用本服务:**
+npss, qpay-npss
 
 ## 参与的业务场景(cgs 回归)
 - §8. 账单 / 即时支付（`test_ppcTransaction`，NPSS）

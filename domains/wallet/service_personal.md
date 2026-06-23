@@ -13,13 +13,13 @@ app_group: gp032
 name: personal
 dev_owner: 刘智斌
 aliases: [gp032_personal]
-related_services: [svc_member, svc_pts, svc_fundout, svc_acs, svc_cmf]
+related_services: [svc_member, svc_acs, svc_pts, svc_fundout, svc_kyc, svc_cmf, svc_cashdesk_api]
 related_tables: []
 ---
 
 # personal
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp032` · domain=`wallet`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp032` · domain=`wallet`。
 
 ## 作用
 个人（C 端）账户服务 —— 登录 / 绑卡 / 转账 / 提现入口，调 member(Ma)/pts/acs/cmf
@@ -29,12 +29,14 @@ related_tables: []
 - 业务域:`wallet`
 
 ## 关联关系
-**调用(下游)—— 本服务依赖这些服务完成处理:**
-- [[svc_member]] member（会员 / 账户核心） · 344 次 · med·待核实
-- [[svc_pts]] pts · 156 次 · high
-- [[svc_fundout]] fundout（出款 / 代付核心） · 72 次 · high
-- [[svc_acs]] acs（反欺诈 / 风控 + 渠道密钥） · 70 次 · high
-- [[svc_cmf]] cmf（渠道管理与资金） · 4 次 · high
+**调用(下游)—— 本服务依赖:**
+- [[svc_member]] member（会员 / 账户核心） · 61829 次 · med·待核实
+- [[svc_acs]] acs（反欺诈 / 风控 + 渠道密钥） · 41366 次 · high
+- [[svc_pts]] pts · 30418 次 · high
+- [[svc_fundout]] fundout（出款 / 代付核心） · 4868 次 · high
+- [[svc_kyc]] kyc（实名认证） · 2993 次 · high
+- [[svc_cmf]] cmf（渠道管理与资金） · 156 次 · high
+- [[svc_cashdesk_api]] cashdesk-api（统一收银台） · 34 次 · high
 
 ## 参与的业务场景(cgs 回归)
 - §6. 提现（toC，`test_withdraw`）

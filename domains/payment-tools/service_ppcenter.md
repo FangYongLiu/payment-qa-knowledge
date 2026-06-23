@@ -13,13 +13,13 @@ app_group: gp047
 name: ppcenter
 dev_owner: 黄美美
 aliases: [gp047_ppcenter]
-related_services: []
+related_services: [svc_member, svc_acs, svc_contract]
 related_tables: []
 ---
 
 # ppcenter
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp047` · domain=`payment-tools`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp047` · domain=`payment-tools`。
 
 ## 作用
 产品中心（商户开通产品状态 queryMerchantOpenedProductStatus，被 acquire/device/merchant-fundout 调用）
@@ -29,6 +29,10 @@ related_tables: []
 - 业务域:`payment-tools`
 
 ## 关联关系
+**调用(下游)—— 本服务依赖:**
+- [[svc_member]] member（会员 / 账户核心） · 1820 次 · high
+- [[svc_acs]] acs（反欺诈 / 风控 + 渠道密钥） · 102 次 · high
+- [[svc_contract]] contract · 14 次 · high
 
 **被调用(上游)—— 这些服务调用本服务:**
 device, acquireii, merchant-fundout

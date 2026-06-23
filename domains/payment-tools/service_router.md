@@ -19,7 +19,7 @@ related_tables: []
 
 # router
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp124` · domain=`payment-tools`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp124` · domain=`payment-tools`。
 
 ## 作用
 渠道路由（Channel Router）—— 按 apiType 选可用渠道（queryChannelArchive/getChannelsByApiTypes），下游 onboarding/cmf
@@ -29,9 +29,9 @@ related_tables: []
 - 业务域:`payment-tools`
 
 ## 关联关系
-**调用(下游)—— 本服务依赖这些服务完成处理:**
-- [[svc_onboarding]] onboarding（商户 / 用户入网） · 4852 次 · high
-- [[svc_cmf]] cmf（渠道管理与资金） · 706 次 · high
+**调用(下游)—— 本服务依赖:**
+- [[svc_onboarding]] onboarding（商户 / 用户入网） · 497702 次 · high
+- [[svc_cmf]] cmf（渠道管理与资金） · 36844 次 · high
 
 **被调用(上游)—— 这些服务调用本服务:**
 remittance, cmf, cmf-task, reconciliation, cregister

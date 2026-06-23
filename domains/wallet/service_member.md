@@ -13,13 +13,13 @@ app_group: gp005
 name: member
 dev_owner: 陆亚东
 aliases: [gp005_member]
-related_services: [svc_dpm_accounting, svc_ccdpm_accounting, svc_cms]
+related_services: [svc_dpm_accounting, svc_ccdpm_accounting, svc_cms, svc_kyc, svc_acs, svc_pts, svc_cards]
 related_tables: []
 ---
 
 # member
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp005` · domain=`wallet`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp005` · domain=`wallet`。
 
 ## 作用
 会员 / 账户核心 —— 开户 / 查账户 / 校验支付密码 / 受益人（openAccount/checkPassword/queryAccountById），下游 dpm-accounting
@@ -29,10 +29,14 @@ related_tables: []
 - 业务域:`wallet`
 
 ## 关联关系
-**调用(下游)—— 本服务依赖这些服务完成处理:**
-- [[svc_dpm_accounting]] dpm-accounting（账务平台记账） · 10913 次 · high
-- [[svc_ccdpm_accounting]] ccdpm-accounting（加密货币账务记账） · 607 次 · high
-- [[svc_cms]] cms（内容 / 配置管理） · 26 次 · high
+**调用(下游)—— 本服务依赖:**
+- [[svc_dpm_accounting]] dpm-accounting（账务平台记账） · 3401522 次 · high
+- [[svc_ccdpm_accounting]] ccdpm-accounting（加密货币账务记账） · 60299 次 · high
+- [[svc_cms]] cms（内容 / 配置管理） · 4806 次 · high
+- [[svc_kyc]] kyc（实名认证） · 814 次 · high
+- [[svc_acs]] acs（反欺诈 / 风控 + 渠道密钥） · 390 次 · high
+- [[svc_pts]] pts · 238 次 · high
+- [[svc_cards]] cards（卡管理） · 2 次 · high
 
 **被调用(上游)—— 这些服务调用本服务:**
 remittance, pfs-payment, reconciliation, credit-business, merchant-frontend, tradeii

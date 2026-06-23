@@ -13,13 +13,13 @@ app_group: gp096
 name: css
 dev_owner: 黄美美
 aliases: [gp096_css]
-related_services: []
+related_services: [svc_router]
 related_tables: []
 ---
 
 # css
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp096` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp096` · domain=`service-catalog`。
 
 ## 作用
 客服系统（被 fundout 调用，推断）  **(待核实:仅凭调用关系推断)**
@@ -29,6 +29,8 @@ related_tables: []
 - 业务域:`service-catalog`
 
 ## 关联关系
+**调用(下游)—— 本服务依赖:**
+- [[svc_router]] router（渠道路由） · 690 次 · high
 
 **被调用(上游)—— 这些服务调用本服务:**
 fundout, tradeii

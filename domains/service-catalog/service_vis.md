@@ -13,13 +13,13 @@ app_group: gp149
 name: vis
 dev_owner: 王迁
 aliases: [gp149_vis]
-related_services: [svc_voucher, svc_pfs_payment, svc_deposit]
+related_services: [svc_voucher, svc_pfs_payment, svc_grc_check_identity_provider, svc_query, svc_deposit, svc_pns, svc_member, svc_reconciliation, svc_qpay_fts]
 related_tables: []
 ---
 
 # vis
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp149` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp149` · domain=`service-catalog`。
 
 ## 作用
 （推断：虚拟账户 / 收款，调 voucher/pfs/deposit）  **(待核实:仅凭调用关系推断)**
@@ -29,10 +29,16 @@ related_tables: []
 - 业务域:`service-catalog`
 
 ## 关联关系
-**调用(下游)—— 本服务依赖这些服务完成处理:**
-- [[svc_voucher]] voucher（全局 ID 与幂等凭证） · 669 次 · high
-- [[svc_pfs_payment]] pfs-payment（支付履约 / 清分） · 620 次 · high
-- [[svc_deposit]] deposit（充值 / 存款服务） · 160 次 · high
+**调用(下游)—— 本服务依赖:**
+- [[svc_voucher]] voucher（全局 ID 与幂等凭证） · 121081 次 · high
+- [[svc_pfs_payment]] pfs-payment（支付履约 / 清分） · 114156 次 · high
+- [[svc_grc_check_identity_provider]] grc-check-identity-provider（风控合规身份校验） · 69036 次 · med·待核实
+- [[svc_query]] query（查询 / 报表服务） · 69028 次 · high
+- [[svc_deposit]] deposit（充值 / 存款服务） · 29218 次 · high
+- [[svc_pns]] pns（支付通知服务） · 5346 次 · high
+- [[svc_member]] member（会员 / 账户核心） · 2374 次 · high
+- [[svc_reconciliation]] reconciliation（对账） · 48 次 · high
+- [[svc_qpay_fts]] qpay-fts（FTS 渠道接入） · 36 次 · med·待核实
 
 **被调用(上游)—— 这些服务调用本服务:**
 fundout

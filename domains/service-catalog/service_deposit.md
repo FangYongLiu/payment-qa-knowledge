@@ -12,13 +12,13 @@ tags: []
 app_group: gp011
 name: deposit
 aliases: [gp011_deposit]
-related_services: []
+related_services: [svc_cashierii, svc_tradeii, svc_acs]
 related_tables: []
 ---
 
 # deposit
 
-> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp011` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp011` · domain=`service-catalog`。
 
 ## 作用
 充值 / 存款服务（被 escrow/vis 调用，推断）  **(待核实:仅凭调用关系推断)**
@@ -28,6 +28,10 @@ related_tables: []
 - 业务域:`service-catalog`
 
 ## 关联关系
+**调用(下游)—— 本服务依赖:**
+- [[svc_cashierii]] cashierii（收银核心） · 405 次 · high
+- [[svc_tradeii]] tradeii（交易订单引擎） · 405 次 · high
+- [[svc_acs]] acs（反欺诈 / 风控 + 渠道密钥） · 102 次 · high
 
 **被调用(上游)—— 这些服务调用本服务:**
 escrow, vis
