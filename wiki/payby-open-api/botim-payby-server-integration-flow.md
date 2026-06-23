@@ -4,11 +4,10 @@ domain: payby-open-api
 kind: wiki_page
 slug: botim-payby-server-integration-flow
 status: active
-owner: upload-sync@platform
+owner: relink
 reviewer: UNREVIEWED
-source_type: wiki_image
-source_ref: wiki_image:d34203e7-c1b5-4464-b9ba-5424888fdab2
-tags: []
+source_type: relink
+source_ref: relink:payby-open-api
 ---
 
 # Botim-PayBy服务端集成时序流程
@@ -41,7 +40,7 @@ tags: []
 
 - 3. **Show PayBy protocol page**：botim 自身动作，展示 PayBy 协议页。
 - 4. **Login and sign protocol**：user → botim 登录并签署协议。
-- 4.1 **`/personal/v1/bind-customer`**：botim → sgs-grpc。
+- 4.1 **`/personal/v1/bind-customer`**：botim → sgs-grpc。参见 [[api_personal_bind_customer]]。
   - 4.1.1 **Bind customer**：sgs-grpc → personal。
     - 4.1.1.1 **Register or update customer**：personal → member。
     - 4.1.1.2 返回：member → personal。
@@ -54,7 +53,7 @@ tags: []
 
 首次签约完成之后（或后续每次需要 token 时）执行。
 
-- 4.3 **`/personal/v1/login-or-refresh`**：botim → sgs-grpc。
+- 4.3 **`/personal/v1/login-or-refresh`**：botim → sgs-grpc。参见 [[api_personal_v3_auth_login]]。
   - 4.3.1 **Login**：sgs-grpc → personal。
     - 4.3.1.1 **Apple token**：personal → pts。
     - 4.3.1.2 **Access token**：pts → personal。
@@ -75,3 +74,7 @@ tags: []
 - **Member ID**：由 `bind-customer` 流程在 sgs-grpc 返回给 botim。
 - **Access token**：由 `login-or-refresh` 流程经 pts → personal → sgs-grpc → botim 透传。
 - **Apple token**：personal 向 pts 提交以换取 Access token 的中间凭证。
+
+## 相关流程
+
+- [[flow_botim_transfer]]：BOTIM Transfer 端到端转账流程，后续转账场景会复用此处获得的 Access token。
