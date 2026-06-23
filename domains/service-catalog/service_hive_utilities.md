@@ -1,0 +1,40 @@
+---
+id: svc_hive_utilities
+object_type: Service
+domain: service-catalog
+status: active
+owner: unassigned
+reviewer: unassigned
+last_reviewed_at: '2026-06-23'
+source_type: app_inventory
+source_ref: SYSTEM_APP_INVENTORY.md
+tags: []
+app_group: gp048
+name: hive-utilities
+aliases: [gp048_hive-utilities]
+related_services: []
+related_tables: []
+---
+
+# hive-utilities
+
+> APP 服务骨架。app_group=`gp048`,源=APP 清单。
+> 当前归中性域 `service-catalog`(已激活、可检索)。上下游/API/表/业务细节待补。
+> **认领可选**:某团队要为本服务建测试知识时,把 domain 改成 12 业务域之一 + 填
+> owner + 补内容(见 docs/SERVICE_DOMAIN_CLAIM.md)。不认领则一直保持骨架。
+
+## 同组服务（app_group=gp048，共 10 个模块）
+- hive-activities  (`svc_hive_activities`)
+- hive-bank-console  (`svc_hive_bank_console`)
+- hive-cashier  (`svc_hive_cashier`)
+- hive-checkout  (`svc_hive_checkout`)
+- hive-developers  (`svc_hive_developers`)
+- hive-m-topay  (`svc_hive_m_topay`)
+- hive-mcashier  (`svc_hive_mcashier`)
+- hive-merchant-console  (`svc_hive_merchant_console`)
+- hive-portal  (`svc_hive_portal`)
+
+## 待补（认领后）
+- domain / owner：认领时填（默认 service-catalog / unassigned）
+- 上下游 related_services：TODO（认领后按系统知识/架构图补）
+- 涉及 API / 表：TODO
