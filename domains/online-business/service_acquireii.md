@@ -45,5 +45,8 @@ related_tables: []
 **被调用(上游)—— 这些服务调用本服务:**
 merchant-frontend
 
+## 涉及的 API / 数据库表
+**读写的表:** [[tbl_acquireii_t_refund_order]] 退款订单表、[[tbl_acquireii_t_payment_info]] 支付信息表 (t_payment_info)、[[tbl_acquireii_t_fiserv_channel_param]] Fiserv渠道参数表、[[tbl_acquireii_t_promotion_info]] 优惠券信息表 t_promotion_info、[[tbl_acquireii_t_sharing_info]] 分账信息表、[[tbl_acquireii_t_revoke_order]] 冲正订单表、[[tbl_acquireii_t_card_info]] 支付卡信息表、[[tbl_acquireii_t_secondary_merchant_detail]] 二级商户明细表、[[tbl_acquireii_t_event_param]] 事件参数表 (t_event_param)、[[tbl_acquireii_t_dcc_info_log]] DCC信息日志表、[[tbl_acquireii_t_inst_code_config]] 机构代码配置表、[[tbl_acquireii_t_channel_param]] 渠道参数表、[[tbl_acquireii_t_revoke_order_param]] 冲正订单参数表、[[tbl_acquireii_t_stmt_event]] 对账事件表 (t_stmt_event)、[[tbl_acquireii_t_dcc_info]] DCC信息表 t_dcc_info、[[tbl_acquireii_t_void_order]] 撤销订单表、[[tbl_acquireii_t_command_param]] 指令参数表、[[tbl_acquireii_t_pay_scene_param]] 支付场景参数表、[[tbl_acquireii_t_command]] 指令表 t_command、[[tbl_acquireii_t_preauth_control]] 预授权控制表、[[tbl_acquireii_t_void_ops_order]] 运营撤销订单表、[[tbl_acquireii_t_preauth_relation]] 预授权关系表 t_preauth_relation、[[tbl_acquireii_t_deposit_order]] 充值订单表、[[tbl_acquireii_t_sequence_table]] 序号生成表、[[tbl_acquireii_t_reversal_orderii]] Reversal Order II 表、[[tbl_acquireii_t_request_identity]] 请求标识表、[[tbl_acquireii_t_acquire_order]] 收单订单主表 t_acquire_order、[[tbl_acquireii_t_terminal_detail]] 终端明细表、[[tbl_acquireii_t_reversal_order]] Reversal订单表、[[tbl_acquireii_t_unretryable_command]] 不可重试指令表、[[tbl_acquireii_t_goods_detail]] 商品明细表、[[tbl_acquireii_t_retryable_command]] 可重试指令表、[[tbl_acquireii_t_amount_detail]] 金额明细表
+
 ## 参与的业务场景(cgs 回归)
 - §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）

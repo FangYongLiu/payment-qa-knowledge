@@ -36,6 +36,9 @@ related_tables: []
 **被调用(上游)—— 这些服务调用本服务:**
 remittance, cmf, cmf-task, reconciliation, cregister
 
+## 涉及的 API / 数据库表
+**读写的表:** [[tbl_router_t_channel_result_code]] 渠道返回码映射表 t_channel_result_code
+
 ## 参与的业务场景(cgs 回归)
 - §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）
 - §4. 卡渠道入金 3DS（`test_mpgs_fundIn` / `test_cko_fundIn`）

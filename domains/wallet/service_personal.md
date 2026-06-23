@@ -38,6 +38,9 @@ related_tables: []
 - [[svc_cmf]] cmf（渠道管理与资金） · 156 次 · high
 - [[svc_cashdesk_api]] cashdesk-api（统一收银台） · 34 次 · high
 
+## 涉及的 API / 数据库表
+**暴露 / 相关 API:** [[api_personal_bind_customer]] 绑定客户接口 (bind-customer)、[[api_personal_v3_auth_login]] 客户登录接口(v3)
+
 ## 参与的业务场景(cgs 回归)
 - §6. 提现（toC，`test_withdraw`）
 - §9. 登录 / KYC / 绑卡（basic_cases：`test_login` / `test_*eid*` / `test_bankcards`）

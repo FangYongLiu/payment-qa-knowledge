@@ -44,6 +44,9 @@ related_tables: []
 **被调用(上游)—— 这些服务调用本服务:**
 reconciliation, tradeii, payment, router, fcw, cashdesk-api
 
+## 涉及的 API / 数据库表
+**读写的表:** [[tbl_cmf_tt_inst_order]] CMF渠道订单表 tt_inst_order、[[tbl_cmf_tt_inst_order_result]] CMF指令结果表 tt_inst_order_result
+
 ## 参与的业务场景(cgs 回归)
 - §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）
 - §2. 收银台 / 收银（`test_bpg_paypage` 收银侧、cashier 用例）

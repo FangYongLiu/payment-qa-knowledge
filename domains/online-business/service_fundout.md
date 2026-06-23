@@ -46,6 +46,9 @@ related_tables: []
 **被调用(上游)—— 这些服务调用本服务:**
 merchant-fundout, merchant-frontend, personal, cashdesk-api
 
+## 涉及的 API / 数据库表
+**读写的表:** [[tbl_mhtfundout_t_fundout_order]] Fundout订单主表 t_fundout_order、[[tbl_mhtfundout_t_fundout_bankcard_order]] Fundout银行卡订单表 t_fundout_bankcard_order
+
 ## 参与的业务场景(cgs 回归)
 - §5. 银行/卡转账、出款（`test_transfer_to_bank` / `test_transfer_to_card`）
 - §6. 提现（toC，`test_withdraw`）

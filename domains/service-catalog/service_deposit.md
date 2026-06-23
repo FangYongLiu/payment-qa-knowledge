@@ -36,5 +36,8 @@ related_tables: []
 **被调用(上游)—— 这些服务调用本服务:**
 escrow, vis
 
+## 涉及的 API / 数据库表
+**暴露 / 相关 API:** [[api_payby_notify_vam_deposit]] VAM充值通知接口
+
 ## 参与的业务场景(cgs 回归)
 - §10. 红包 / 社交支付、生活缴费、VAM（toC：`test_red_pkg` / `test_friend_transfer` / `test_vam` / 充值）

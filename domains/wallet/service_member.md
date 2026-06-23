@@ -41,6 +41,10 @@ related_tables: []
 **被调用(上游)—— 这些服务调用本服务:**
 remittance, pfs-payment, reconciliation, credit-business, merchant-frontend, tradeii
 
+## 涉及的 API / 数据库表
+**暴露 / 相关 API:** [[api_payby_get_member_balance]] 查询会员余额接口、[[api_member_query_eid_bound_account]] 查询EID绑定手机账户接口、[[api_member_change_mobile_refresh_kyc]] 变更手机并刷新KYC接口
+**读写的表:** [[tbl_member_tr_bank_card_token]] 银行卡签约Token表、[[tbl_member_tr_deduct_channel]] 代扣渠道表 tr_deduct_channel、[[tbl_member_db]] 会员相关库(member)核心表
+
 ## 参与的业务场景(cgs 回归)
 - §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）
 - §2. 收银台 / 收银（`test_bpg_paypage` 收银侧、cashier 用例）

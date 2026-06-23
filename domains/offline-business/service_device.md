@@ -35,3 +35,6 @@ related_tables: []
 
 **被调用(上游)—— 这些服务调用本服务:**
 acquireii
+
+## 涉及的 API / 数据库表
+**读写的表:** [[tbl_device_apply_order]] 设备申请订单表、[[tbl_device_db]] 设备库(device)核心表

@@ -34,6 +34,10 @@ related_tables: []
 **被调用(上游)—— 这些服务调用本服务:**
 router, qpay-mpgs
 
+## 涉及的 API / 数据库表
+**暴露 / 相关 API:** [[api_onboarding_get_config]] 供应商登记配置查询接口 getConfig、[[api_onboarding_manual_register]] 人工录入报备接口 manualRegister
+**读写的表:** [[tbl_onboarding_t_manual_register_rule_field]] 人工登记字段配置表 t_manual_register_rule_field、[[tbl_onboarding_t_manual_register_rule]] 人工登记规则表 t_manual_register_rule、[[tbl_onboarding_t_fund_provider]] 资金供应商配置表 t_fund_provider
+
 ## 参与的业务场景(cgs 回归)
 - §4. 卡渠道入金 3DS（`test_mpgs_fundIn` / `test_cko_fundIn`）
 - §9. 登录 / KYC / 绑卡（basic_cases：`test_login` / `test_*eid*` / `test_bankcards`）

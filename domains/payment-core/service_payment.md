@@ -39,6 +39,10 @@ related_tables: []
 **被调用(上游)—— 这些服务调用本服务:**
 pfs-payment
 
+## 涉及的 API / 数据库表
+**暴露 / 相关 API:** [[api_payby_payment_create_order]] PayBy创建支付订单接口
+**读写的表:** [[tbl_grc_t_payment_event]] GRC支付事件表 t_payment_event_<yyyy>
+
 ## 参与的业务场景(cgs 回归)
 - §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）
 - §5. 银行/卡转账、出款（`test_transfer_to_bank` / `test_transfer_to_card`）
