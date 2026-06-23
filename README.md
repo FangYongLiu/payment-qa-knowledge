@@ -1,46 +1,37 @@
 # payment-qa-knowledge
 
-The Payment QA team's **canonical knowledge repository** — the single source of truth.
-It stores **reviewed** markdown/yaml knowledge only; **no code** (code lives in the
-engine repo `payment-qa-brain`).
+Payment QA 团队的**权威知识库** —— 唯一可信源。只存**经评审的** markdown / yaml 知识,
+**不放代码**(代码在引擎仓 `payment-qa-brain`)。
 
-The knowledge engine (`payment-qa-brain`) derives its runtime index
-(PostgreSQL + pgvector) from this repo; merging a PR triggers a reindex.
+知识引擎(`payment-qa-brain`)据本仓重建运行时索引(PostgreSQL + pgvector);
+合并 PR 触发 reindex。
 
-## Two-layer knowledge model
-- **Base · LLM-Wiki pages (`wiki/`)** — every source document becomes one linked
-  markdown page with light frontmatter (`domain` + `tags` + `[[links]]`). Flexible and
-  readable; holds any kind of document (business overviews, specs, notes).
-- **Upper · Typed objects (`domains/`)** — for **technical content only**, the engine
-  additionally extracts the 8 typed objects + relations into the graph (powering
-  requirement-impact analysis and test-case generation). Business overviews stay as
-  wiki pages.
+## 双层知识模型
+- **底座 · LLM-Wiki 页(`wiki/`)** —— 每篇源文档 → 一篇带链接的 markdown 页(轻元数据
+  `domain` + `tags` + `[[链接]]`)。灵活可读,容纳任何文档(业务概览、规格、笔记)。
+- **上层 · 类型对象(`domains/`)** —— **仅技术内容**额外抽成 8 类对象 + 关系进图谱
+  (撑需求影响分析 + 用例生成)。业务概览停在 wiki 页。
 
-> Do **not** force every document into the 8 types — that was the v1 mistake. Let
-> business-level content live as wiki pages; reserve typed objects for technical content.
+> 不要把每篇文档都硬塞进 8 类(那是 v1 的错)。业务级内容留作 wiki 页,类型对象只留给技术内容。
 
-## Layout
-- `wiki/<domain>/<slug>.md` — LLM-Wiki base pages (one per source document)
-- `domains/<domain>/<subdomain?>/<file>.md` — typed knowledge objects (subdomain is
-  optional; when absent the file sits directly under the domain — no placeholder dir)
-- `templates/` — templates for the 8 object types (copy one to author a new object)
-- `index/` — per-type routing index (id / name / aliases / domain / status / path)
+## 目录
+- `domains/<域>/<file>.md` —— 类型知识对象(按 12 业务域分目录;**以服务为锚**,API/表/场景/自动化挂其上)
+- `wiki/<域>/<slug>.md` —— LLM-Wiki 底座页(每篇源文档一页)
+- `templates/` —— 8 类对象模板 + **`README.md`(新建 / 上传文档前必读规范)**
+- `index/domains.yaml` —— 12 业务域注册表(owner / reviewer 权威源 + 路由)
+- `legacy/` —— 旧的零散内容(已隔离,不进检索;待重整理)
 
-> Physical layout is for humans; retrieval relies on `index/` + metadata + vectors,
-> not on the directory structure.
+> 物理目录给人看;检索靠元数据 + 向量 + 图,不依赖目录结构。改文件名**不改 id**(reindex 按 id 重建)。
 
-## Knowledge objects (8 types)
-Domain / Service / API / Table / Flow / Scenario / Troubleshooting / AutomationAsset.
-Each typed object = one markdown file + frontmatter metadata. Metadata spec: see
-CONTRIBUTING.md.
+## 8 类对象
+Domain / Service / API / Table / Flow / Scenario / Troubleshooting / AutomationAsset。
+每个 = 一个 markdown + frontmatter 元数据。**编写规范(模板 + 全连边)见 [`templates/README.md`](templates/README.md)**。
+完整样板见 `domains/kyc/`(Domain → Service → API → Scenario → Automation 五层全连边)。
 
-## How to contribute
-**Preferred:** the workbench / knowledge-engine update-request workflow
-(named submission → review → the engine opens the PR). Approval in the review UI is the
-**human gate**; the engine then auto-opens and auto-merges its own PR (Plan B), and the
-merge triggers a reindex. Direct edits to this repo also go through a PR + review.
-See CONTRIBUTING.md.
+## 怎么贡献
+首选工作台 / 引擎的 update-request 流程(具名提交 → 评审 → 引擎开 PR)。评审 UI 里的
+**批准是人审门**;引擎随后自动开并合并自己的 PR(方案 B),合并触发 reindex。
+直接改本仓也走 PR + 评审。流程见 [`CONTRIBUTING.md`](CONTRIBUTING.md)。
 
-## Validation
-Before committing / in CI, run `python scripts/check_knowledge.py` (in the engine repo)
-to ensure `related_*` and eval references contain no dangling ids.
+## 校验
+提交前 / CI 跑 `python scripts/check_knowledge.py`(引擎仓):确认 `related_*` 与 eval 引用无悬空 id。
