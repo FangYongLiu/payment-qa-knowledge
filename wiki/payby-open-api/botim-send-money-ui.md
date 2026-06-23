@@ -4,16 +4,15 @@ domain: payby-open-api
 kind: wiki_page
 slug: botim-send-money-ui
 status: active
-owner: upload-sync@platform
+owner: relink
 reviewer: UNREVIEWED
-source_type: wiki_image
-source_ref: wiki_image:0287e24e-5ee7-4c02-93f1-77efd948261d
-tags: []
+source_type: relink
+source_ref: relink:payby-open-api
 ---
 
 # Botim Send Money 界面说明
 
-本页描述 Botim 应用中"Send money"底部弹窗的 UI 元素与可选转账渠道，用于发起转账操作。
+本页描述 Botim 应用中"Send money"底部弹窗的 UI 元素与可选转账渠道，用于发起转账操作。相关后端流程参考 [[flow_botim_transfer]]。
 
 ## 弹窗整体结构
 
@@ -58,7 +57,7 @@ tags: []
 
 ## 操作流程
 
-用户输入金额 → 选择转账渠道（Botim contact / Aani / International）→ 点击 `Send →` 提交。
+用户输入金额 → 选择转账渠道（Botim contact / Aani / International）→ 点击 `Send →` 提交，后端通过 [[api_transfer_place_transfer_order]] 创建转账订单。
 
 ## 背景上下文（非弹窗）
 

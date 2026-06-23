@@ -4,16 +4,15 @@ domain: payby-open-api
 kind: wiki_page
 slug: payby-add-funds-flow
 status: active
-owner: upload-sync@platform
+owner: relink
 reviewer: UNREVIEWED
-source_type: wiki_image
-source_ref: wiki_image:b67afc99-27cc-4620-b601-f4b4f72c21d4
-tags: []
+source_type: relink
+source_ref: relink:payby-open-api
 ---
 
 # PayBy Add Funds 充值时序流程
 
-本页描述 Customer 发起充值（Add funds / deposit）后，从 app-sdk 经 cgs、personal、deposit、tradeii 到 cashierii 的完整调用时序与关键接口。
+本页描述 Customer 发起充值（Add funds / deposit）后，从 app-sdk 经 cgs、personal、deposit、tradeii 到 cashierii 的完整调用时序与关键接口。相关端到端流程参见 [[flow_toc_add_funds]]。
 
 ## 参与方（Lifelines）
 
