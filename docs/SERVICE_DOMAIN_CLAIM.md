@@ -398,7 +398,7 @@
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| merchant-frontend | `svc_merchant_frontend` | online-business | 谢跃男 |
+| merchant-frontend | `svc_merchant_frontend` | portal-operations | 谢跃男 |
 
 ## app_group `gp073`（1）
 
@@ -492,13 +492,13 @@
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| qpay-mcii | `svc_qpay_mcii` | service-catalog | 谢跃男 |
+| qpay-mcii | `svc_qpay_mcii` | payment-tools | 谢跃男 |
 
 ## app_group `gp088`（1）
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| qpay-fs | `svc_qpay_fs` | service-catalog |  |
+| qpay-fs | `svc_qpay_fs` | payment-tools |  |
 
 ## app_group `gp089`（1）
 
@@ -516,7 +516,7 @@
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| qpay-pl-channel | `svc_qpay_pl_channel` | service-catalog |  |
+| qpay-pl-channel | `svc_qpay_pl_channel` | payment-tools |  |
 
 ## app_group `gp093`（1）
 
@@ -691,7 +691,7 @@
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| member-front | `svc_member_front` | service-catalog | 谢跃男 |
+| member-front | `svc_member_front` | wallet | 谢跃男 |
 
 ## app_group `gp136`（1）
 
@@ -721,9 +721,9 @@
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| ccdpm-accounting | `svc_ccdpm_accounting` | service-catalog | 周晓妍 |
-| ccdpm-manager | `svc_ccdpm_manager` | service-catalog | 周晓妍 |
-| ccdpm-task | `svc_ccdpm_task` | service-catalog |  |
+| ccdpm-accounting | `svc_ccdpm_accounting` | payment-core | 周晓妍 |
+| ccdpm-manager | `svc_ccdpm_manager` | payment-core | 周晓妍 |
+| ccdpm-task | `svc_ccdpm_task` | payment-core |  |
 
 ## app_group `gp141`（1）
 
@@ -759,7 +759,7 @@
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| member-feature | `svc_member_feature` | service-catalog | 谢跃男 |
+| member-feature | `svc_member_feature` | wallet | 谢跃男 |
 
 ## app_group `gp149`（1）
 
@@ -807,7 +807,7 @@
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| qpay-installment | `svc_qpay_installment` | service-catalog |  |
+| qpay-installment | `svc_qpay_installment` | payment-tools |  |
 
 ## app_group `gp159`（1）
 
@@ -903,7 +903,7 @@
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| qpay-ni-channel | `svc_qpay_ni_channel` | service-catalog |  |
+| qpay-ni-channel | `svc_qpay_ni_channel` | payment-tools |  |
 
 ## app_group `gp188`（1）
 
@@ -963,13 +963,13 @@
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| qpay-fsii | `svc_qpay_fsii` | service-catalog |  |
+| qpay-fsii | `svc_qpay_fsii` | payment-tools |  |
 
 ## app_group `gp201`（1）
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| qpay-klip | `svc_qpay_klip` | service-catalog |  |
+| qpay-klip | `svc_qpay_klip` | payment-tools |  |
 
 ## app_group `gp202`（1）
 
@@ -1035,7 +1035,7 @@
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| qpay-cko | `svc_qpay_cko` | service-catalog |  |
+| qpay-cko | `svc_qpay_cko` | payment-tools |  |
 
 ## app_group `gp222`（1）
 
@@ -1077,7 +1077,7 @@
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| qpay-aplus | `svc_qpay_aplus` | service-catalog | 谢跃男 |
+| qpay-aplus | `svc_qpay_aplus` | payment-tools | 谢跃男 |
 
 ## app_group `gp233`（1）
 
@@ -1089,7 +1089,7 @@
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| qpay-lean | `svc_qpay_lean` | service-catalog |  |
+| qpay-lean | `svc_qpay_lean` | payment-tools |  |
 
 ## app_group `gp236`（1）
 
@@ -1101,7 +1101,7 @@
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| payroll-core-service | `svc_payroll_core_service` | service-catalog |  |
+| payroll-core-service | `svc_payroll_core_service` | wps |  |
 
 ## app_group `gp238`（1）
 
@@ -1137,13 +1137,13 @@
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| qpay-nipos | `svc_qpay_nipos` | service-catalog |  |
+| qpay-nipos | `svc_qpay_nipos` | payment-tools |  |
 
 ## app_group `gp245`（1）
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| qpay-fts | `svc_qpay_fts` | service-catalog | 谢跃男 |
+| qpay-fts | `svc_qpay_fts` | payment-tools | 谢跃男 |
 
 ## app_group `gp247`（1）
 
@@ -1161,7 +1161,7 @@
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| qpay-nisocket | `svc_qpay_nisocket` | service-catalog |  |
+| qpay-nisocket | `svc_qpay_nisocket` | payment-tools |  |
 
 ## app_group `gp254`（1）
 
@@ -1173,7 +1173,7 @@
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| remittance-swiftx | `svc_remittance_swiftx` | service-catalog |  |
+| remittance-swiftx | `svc_remittance_swiftx` | remittance |  |
 
 ## app_group `gp258`（1）
 
@@ -1197,19 +1197,19 @@
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| qpay-niboarding | `svc_qpay_niboarding` | service-catalog |  |
+| qpay-niboarding | `svc_qpay_niboarding` | payment-tools |  |
 
 ## app_group `gp264`（1）
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| remittance-bdo | `svc_remittance_bdo` | service-catalog |  |
+| remittance-bdo | `svc_remittance_bdo` | remittance |  |
 
 ## app_group `gp267`（1）
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| qpay-mpgs | `svc_qpay_mpgs` | service-catalog |  |
+| qpay-mpgs | `svc_qpay_mpgs` | payment-tools |  |
 
 ## app_group `gp268`（2）
 
@@ -1222,13 +1222,13 @@
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| qpay-enbd | `svc_qpay_enbd` | service-catalog |  |
+| qpay-enbd | `svc_qpay_enbd` | payment-tools |  |
 
 ## app_group `gp270`（1）
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| member-task | `svc_member_task` | service-catalog |  |
+| member-task | `svc_member_task` | wallet |  |
 
 ## app_group `gp274`（1）
 
@@ -1246,7 +1246,7 @@
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| remittance-ime | `svc_remittance_ime` | service-catalog |  |
+| remittance-ime | `svc_remittance_ime` | remittance |  |
 
 ## app_group `gp278`（1）
 
@@ -1294,7 +1294,7 @@
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| remittance-ext | `svc_remittance_ext` | service-catalog |  |
+| remittance-ext | `svc_remittance_ext` | remittance |  |
 
 ## app_group `gp288`（1）
 
@@ -1312,7 +1312,7 @@
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| remittance-fuze | `svc_remittance_fuze` | service-catalog |  |
+| remittance-fuze | `svc_remittance_fuze` | remittance |  |
 
 ## app_group `gp291`（1）
 
@@ -1330,7 +1330,7 @@
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| remittance-platon | `svc_remittance_platon` | service-catalog |  |
+| remittance-platon | `svc_remittance_platon` | remittance |  |
 
 ## app_group `gp294`（1）
 
@@ -1360,13 +1360,13 @@
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| remittance-trustbank | `svc_remittance_trustbank` | service-catalog |  |
+| remittance-trustbank | `svc_remittance_trustbank` | remittance |  |
 
 ## app_group `gp299`（1）
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| remittance-fawry | `svc_remittance_fawry` | service-catalog |  |
+| remittance-fawry | `svc_remittance_fawry` | remittance |  |
 
 ## app_group `gp300`（1）
 
@@ -1378,7 +1378,7 @@
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| qpay-npss | `svc_qpay_npss` | service-catalog |  |
+| qpay-npss | `svc_qpay_npss` | payment-tools |  |
 
 ## app_group `gp302`（1）
 
@@ -1390,7 +1390,7 @@
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| remittance-codepoint | `svc_remittance_codepoint` | service-catalog |  |
+| remittance-codepoint | `svc_remittance_codepoint` | remittance |  |
 
 ## app_group `gp304`（1）
 
@@ -1402,7 +1402,7 @@
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| remittance-cbe | `svc_remittance_cbe` | service-catalog |  |
+| remittance-cbe | `svc_remittance_cbe` | remittance |  |
 
 ## app_group `gp308`（1）
 
@@ -1420,13 +1420,13 @@
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| remittance-jinglepay | `svc_remittance_jinglepay` | service-catalog |  |
+| remittance-jinglepay | `svc_remittance_jinglepay` | remittance |  |
 
 ## app_group `gp313`（1）
 
 | 服务 | id | 当前域 | 建议评审人(qa_tester) |
 | --- | --- | --- | --- |
-| qpay-zand | `svc_qpay_zand` | service-catalog |  |
+| qpay-zand | `svc_qpay_zand` | payment-tools |  |
 
 ## app_group `gp317`（1）
 
