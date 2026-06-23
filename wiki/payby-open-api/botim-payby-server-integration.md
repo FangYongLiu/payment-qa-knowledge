@@ -4,11 +4,10 @@ domain: payby-open-api
 kind: wiki_page
 slug: botim-payby-server-integration
 status: active
-owner: upload-sync@platform
+owner: relink
 reviewer: UNREVIEWED
-source_type: wiki_image
-source_ref: wiki_image:ec7e5263-5d43-4b97-8875-4fc89278075f
-tags: []
+source_type: relink
+source_ref: relink:payby-open-api
 ---
 
 # BOTIM接入PayBy服务端集成流程
@@ -41,7 +40,7 @@ tags: []
 
 3. `Show PayBy protocol page`：展示 PayBy 协议页
 4. `Login and sign protocol`：user → botim，用户登录并同意签约
-5. `4.1 /personal/v1/bind-customer`：botim → sgs-grpc
+5. `4.1 /personal/v1/bind-customer`：botim → sgs-grpc [[api_personal_bind_customer]]
    - `4.1.1 Bind customer`：sgs-grpc → personal
      - `4.1.1.1 Register or update customer`：personal → member
      - `4.1.1.2` member → personal 返回
@@ -56,7 +55,7 @@ tags: []
 
 首次认证完成后（或用户已绑定时）继续走登录流程：
 
-- `4.3 /personal/v1/login`：botim → sgs-grpc
+- `4.3 /personal/v1/login`：botim → sgs-grpc [[api_personal_v3_auth_login]]
   - `4.3.1 Login`：sgs-grpc → personal
     - `4.3.1.1 Apple token`：personal → pts
     - `4.3.1.2 Access token`：pts → personal
