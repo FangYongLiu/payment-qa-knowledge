@@ -33,6 +33,10 @@ related_tables: []
 **被调用(上游)—— 这些服务调用本服务:**
 cashdesk-api, cashierii, deduct
 
+## 涉及的 API / 数据库表
+**暴露 / 相关 API:** [[api_payby_get_protocol]] 查询协议接口、[[api_payby_apply_protocol]] 申请签约协议接口、[[api_payby_protocol_notify]] 签约协议结果通知接口
+**读写的表:** [[tbl_protocol_t_contract_sign_info]] 签约协议信息表 t_contract_sign_info、[[tbl_deduct_t_deduct_protocol]] 代扣协议表 t_deduct_protocol
+
 ## 参与的业务场景(cgs 回归)
 - §2. 收银台 / 收银（`test_bpg_paypage` 收银侧、cashier 用例）
 - §3. 自动代扣 / 签约（`test_auto_debit`）

@@ -29,3 +29,6 @@ related_tables: []
 
 ## 关联关系
 (本窗口未观测到与其它服务的调用关系)
+
+## 涉及的 API / 数据库表
+**暴露 / 相关 API:** [[api_sgs_place_mobile_order_prepaid]] 预付话费下单接口

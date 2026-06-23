@@ -40,5 +40,8 @@ related_tables: []
 **被调用(上游)—— 这些服务调用本服务:**
 merchant, remittance
 
+## 涉及的 API / 数据库表
+**读写的表:** [[tbl_aml_t_system_param]] AML系统参数表 t_system_param
+
 ## 参与的业务场景(cgs 回归)
 - §7. 跨境汇款（toC，`test_remittance`）

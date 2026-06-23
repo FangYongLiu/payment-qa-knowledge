@@ -44,5 +44,8 @@ ppc  **(据名推断 · 待核实:无作用文字证据,但下方有观测到的
 - [[svc_query]] query（查询 / 报表服务） · 3 次 · high
 - [[svc_crs]] crs · 1 次 · high
 
+## 涉及的 API / 数据库表
+**暴露 / 相关 API:** [[api_ppc_jeebly_delivery_status]] Jeebly配送状态回调接口、[[api_ppc_card_apply_virtual]] 申请虚拟卡接口、[[api_ppc_card_set_pin]] 设置卡PIN接口、[[api_ppc_card_lock]] 锁卡接口、[[api_ppc_card_reset_pin]] 重置卡PIN接口、[[api_ppc_card_apply_physical]] 申请实体卡接口、[[api_ppc_card_replace]] 替换卡接口、[[api_ppc_yse_clearing_notify]] YSE清算回调接口、[[api_ppc_card_close]] 关闭卡接口、[[api_ppc_card_unlock]] 解锁卡接口、[[api_ppc_card_activate]] 激活实体卡接口、[[api_ppc_yse_auth_notify]] YSE授权回调接口、[[api_ppc_card_track_physical]] 跟踪实体卡配送接口
+
 ## 参与的业务场景(cgs 回归)
 - §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）

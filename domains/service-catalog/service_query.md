@@ -32,3 +32,6 @@ related_tables: []
 
 **被调用(上游)—— 这些服务调用本服务:**
 rdgs
+
+## 涉及的 API / 数据库表
+**暴露 / 相关 API:** [[api_sgs_query_prepaid_mobile_topup]] 查询本地预付话费充值接口、[[api_pix_mpc_query_trade]] MPC查询交易接口 (/pix/mpc/v1/query-trade)、[[api_sgs_query_prepaid_international]] 查询国际预付话费接口、[[api_sgs_query_postpaid_mobile_bill]] 查询后付费话费账单接口

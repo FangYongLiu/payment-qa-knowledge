@@ -43,6 +43,9 @@ related_tables: []
 **被调用(上游)—— 这些服务调用本服务:**
 fundout
 
+## 涉及的 API / 数据库表
+**读写的表:** [[tbl_vis_t_virtual_account]] vis.t_virtual_account 虚拟账户表、[[tbl_vis_t_notify_transaction_flow]] vis.t_notify_transaction_flow 交易通知流水表
+
 ## 参与的业务场景(cgs 回归)
 - §5. 银行/卡转账、出款（`test_transfer_to_bank` / `test_transfer_to_card`）
 - §10. 红包 / 社交支付、生活缴费、VAM（toC：`test_red_pkg` / `test_friend_transfer` / `test_vam` / 充值）

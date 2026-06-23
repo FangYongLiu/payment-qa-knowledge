@@ -33,6 +33,9 @@ related_tables: []
 **被调用(上游)—— 这些服务调用本服务:**
 wechat-channel, pbs, iso8583-gateway, fundout, tradeii, marketing-event
 
+## 涉及的 API / 数据库表
+**读写的表:** [[tbl_acs_db]] 网关库(acs)核心表
+
 ## 参与的业务场景(cgs 回归)
 - §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）
 - §3. 自动代扣 / 签约（`test_auto_debit`）
