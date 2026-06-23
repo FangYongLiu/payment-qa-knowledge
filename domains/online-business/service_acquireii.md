@@ -19,31 +19,30 @@ related_tables: []
 
 # acquireii
 
-> 作用与调用关系来自 **UAT Kibana trace 观测**(2026-06-22T20:00Z..06-23T01:00Z UAT cgs 回归窗口,真实但**非穷尽**——
-> 未被该窗口触达的调用不会出现)。**候选,待人审**(核心原则 #2)。app_group=`gp069`。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp069` · domain=`online-business`。
 
 ## 作用
 收单核心（Acquire II）—— 商户订单受理 / 下单 / 退款受理，编排 tradeii、voucher、ppcenter、marketing、member
 
-## 下游调用（UAT trace 观测;observed_count=频次/权重）
-| 被调服务 | 频次 | 置信 |
-| --- | --- | ---: |
-| tradeii (`svc_tradeii`) | 958 | high |
-| voucher (`svc_voucher`) | 349 | high |
-| ppcenter (`svc_ppcenter`) | 275 | high |
-| ues-ws (`svc_ues_ws`) | 176 | med · **待核实** |
-| marketing (`svc_marketing`) | 136 | high |
-| member (`svc_member`) | 131 | high |
-| cmf (`svc_cmf`) | 24 | high |
-| device (`svc_device`) | 21 | high |
-| cashdesk-api (`svc_cashdesk_api`) | 6 | high |
-| cashierii (`svc_cashierii`) | 1 | high |
+## 系统中的位置
+- 功能层:收单 / 收银 (Acquiring / Cashier)
+- 业务域:`online-business`
 
-## 被调用方（←被调,本窗口观测）
+## 关联关系
+**调用(下游)—— 本服务依赖这些服务完成处理:**
+- [[svc_tradeii]] tradeii（交易订单引擎） · 958 次 · high
+- [[svc_voucher]] voucher（全局 ID 与幂等凭证） · 349 次 · high
+- [[svc_ppcenter]] ppcenter（产品中心） · 275 次 · high
+- [[svc_ues_ws]] ues-ws（用户事件 / 数据服务） · 176 次 · med·待核实
+- [[svc_marketing]] marketing（营销服务） · 136 次 · high
+- [[svc_member]] member（会员 / 账户核心） · 131 次 · high
+- [[svc_cmf]] cmf（渠道管理与资金） · 24 次 · high
+- [[svc_device]] device（设备 / 产品中心接入） · 21 次 · high
+- [[svc_cashdesk_api]] cashdesk-api（统一收银台） · 6 次 · high
+- [[svc_cashierii]] cashierii（收银核心） · 1 次 · high
+
+**被调用(上游)—— 这些服务调用本服务:**
 merchant-frontend
 
-## 观测到的对外方法
-(无方法级证据)
-
-## 同组服务（app_group=gp069，共 1 个模块）
-- （本组仅此一个）
+## 参与的业务场景(cgs 回归)
+- §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）

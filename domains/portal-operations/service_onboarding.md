@@ -18,20 +18,20 @@ related_tables: []
 
 # onboarding
 
-> 作用与调用关系来自 **UAT Kibana trace 观测**(2026-06-22T20:00Z..06-23T01:00Z UAT cgs 回归窗口,真实但**非穷尽**——
-> 未被该窗口触达的调用不会出现)。**候选,待人审**(核心原则 #2)。app_group=`gp254`。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp254` · domain=`portal-operations`。
 
 ## 作用
 商户 / 用户入网（被 router/qpay-mpgs 调用，加载商户 MerchantFacade）
 
-## 下游调用（UAT trace 观测;observed_count=频次/权重）
-(本窗口未观测到下游调用)
+## 系统中的位置
+- 功能层:会员 / 账户 / 卡 / 协议 (Member / Account / Card)
+- 业务域:`portal-operations`
 
-## 被调用方（←被调,本窗口观测）
+## 关联关系
+
+**被调用(上游)—— 这些服务调用本服务:**
 router, qpay-mpgs
 
-## 观测到的对外方法
-(无方法级证据)
-
-## 同组服务（app_group=gp254，共 1 个模块）
-- （本组仅此一个）
+## 参与的业务场景(cgs 回归)
+- §4. 卡渠道入金 3DS（`test_mpgs_fundIn` / `test_cko_fundIn`）
+- §9. 登录 / KYC / 绑卡（basic_cases：`test_login` / `test_*eid*` / `test_bankcards`）

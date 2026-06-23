@@ -17,10 +17,16 @@ related_tables: []
 
 # remittance-terrapay
 
-> ⚠️ **目录缺口(待人确认)**:本服务在 UAT trace 中被观测到(汇款渠道,被 remittance 编排),
-> 但**不在 282 APP 权威清单**里。按交接红线建为 **draft 骨架**交人确认——是否纳入清单、
-> 归属哪个域(remittance?)、是否内部服务。确认前不连边、不当定论。源=uat_kibana 单窗口观测。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`` · domain=`remittance`。
 
-## 待确认
-- 是否纳入 282 清单(它无 gpXXX 编号,可能是外部汇款渠道集成而非内部 APP)
-- 归属域 / owner
+## 作用
+(本回归窗口未观测到该服务的运行时活动,作用待业务补充。)
+
+## 系统中的位置
+- 业务域:`remittance`
+
+## 关联关系
+(本窗口未观测到与其它服务的调用关系)
+
+## 参与的业务场景(cgs 回归)
+- §7. 跨境汇款（toC，`test_remittance`）

@@ -19,24 +19,17 @@ related_tables: []
 
 # merchant-console-frontend
 
-> 作用与调用关系来自 **UAT Kibana trace 观测**(2026-06-22T20:00Z..06-23T01:00Z UAT cgs 回归窗口,真实但**非穷尽**——
-> 未被该窗口触达的调用不会出现)。**候选,待人审**(核心原则 #2)。app_group=`gp045`。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp045` · domain=`service-catalog`。
 
 ## 作用
 商户控制台前端 BFF（商户后台操作入口）
 
-## 下游调用（UAT trace 观测;observed_count=频次/权重）
-| 被调服务 | 频次 | 置信 |
-| --- | --- | ---: |
-| member (`svc_member`) | 27 | high |
-| merchant (`svc_merchant`) | 9 | high |
-| grc-check-identity-provider (`svc_grc_check_identity_provider`) | 3 | med · **待核实** |
+## 系统中的位置
+- 功能层:接入网关 / 前端 BFF (Gateway / Frontend)
+- 业务域:`service-catalog`
 
-## 被调用方（←被调,本窗口观测）
-(无)
-
-## 观测到的对外方法
-(无方法级证据)
-
-## 同组服务（app_group=gp045，共 1 个模块）
-- （本组仅此一个）
+## 关联关系
+**调用(下游)—— 本服务依赖这些服务完成处理:**
+- [[svc_member]] member（会员 / 账户核心） · 27 次 · high
+- [[svc_merchant]] merchant（商户主数据 / 商户管理） · 9 次 · high
+- [[svc_grc_check_identity_provider]] grc-check-identity-provider（风控合规身份校验） · 3 次 · med·待核实

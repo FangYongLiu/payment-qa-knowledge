@@ -18,25 +18,18 @@ related_tables: []
 
 # offline-payment
 
-> 作用与调用关系来自 **UAT Kibana trace 观测**(2026-06-22T20:00Z..06-23T01:00Z UAT cgs 回归窗口,真实但**非穷尽**——
-> 未被该窗口触达的调用不会出现)。**候选,待人审**(核心原则 #2)。app_group=`gp308`。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp308` · domain=`service-catalog`。
 
 ## 作用
 线下支付（扫码 / POS 收款），编排 pfs/member/voucher/pbs
 
-## 下游调用（UAT trace 观测;observed_count=频次/权重）
-| 被调服务 | 频次 | 置信 |
-| --- | --- | ---: |
-| pfs-payment (`svc_pfs_payment`) | 13546 | high |
-| member (`svc_member`) | 1304 | high |
-| voucher (`svc_voucher`) | 648 | high |
-| pbs (`svc_pbs`) | 339 | high |
+## 系统中的位置
+- 功能层:收单 / 收银 (Acquiring / Cashier)
+- 业务域:`service-catalog`
 
-## 被调用方（←被调,本窗口观测）
-(无)
-
-## 观测到的对外方法
-(无方法级证据)
-
-## 同组服务（app_group=gp308，共 1 个模块）
-- （本组仅此一个）
+## 关联关系
+**调用(下游)—— 本服务依赖这些服务完成处理:**
+- [[svc_pfs_payment]] pfs-payment（支付履约 / 清分） · 13546 次 · high
+- [[svc_member]] member（会员 / 账户核心） · 1304 次 · high
+- [[svc_voucher]] voucher（全局 ID 与幂等凭证） · 648 次 · high
+- [[svc_pbs]] pbs（计费 / 定价） · 339 次 · high

@@ -19,26 +19,24 @@ related_tables: []
 
 # personal
 
-> 作用与调用关系来自 **UAT Kibana trace 观测**(2026-06-22T20:00Z..06-23T01:00Z UAT cgs 回归窗口,真实但**非穷尽**——
-> 未被该窗口触达的调用不会出现)。**候选,待人审**(核心原则 #2)。app_group=`gp032`。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp032` · domain=`wallet`。
 
 ## 作用
 个人（C 端）账户服务 —— 登录 / 绑卡 / 转账 / 提现入口，调 member(Ma)/pts/acs/cmf
 
-## 下游调用（UAT trace 观测;observed_count=频次/权重）
-| 被调服务 | 频次 | 置信 |
-| --- | --- | ---: |
-| member (`svc_member`) | 344 | med · **待核实** |
-| pts (`svc_pts`) | 156 | high |
-| fundout (`svc_fundout`) | 72 | high |
-| acs (`svc_acs`) | 70 | high |
-| cmf (`svc_cmf`) | 4 | high |
+## 系统中的位置
+- 功能层:会员 / 账户 / 卡 / 协议 (Member / Account / Card)
+- 业务域:`wallet`
 
-## 被调用方（←被调,本窗口观测）
-(无)
+## 关联关系
+**调用(下游)—— 本服务依赖这些服务完成处理:**
+- [[svc_member]] member（会员 / 账户核心） · 344 次 · med·待核实
+- [[svc_pts]] pts · 156 次 · high
+- [[svc_fundout]] fundout（出款 / 代付核心） · 72 次 · high
+- [[svc_acs]] acs（反欺诈 / 风控 + 渠道密钥） · 70 次 · high
+- [[svc_cmf]] cmf（渠道管理与资金） · 4 次 · high
 
-## 观测到的对外方法
-(无方法级证据)
-
-## 同组服务（app_group=gp032，共 1 个模块）
-- （本组仅此一个）
+## 参与的业务场景(cgs 回归)
+- §6. 提现（toC，`test_withdraw`）
+- §9. 登录 / KYC / 绑卡（basic_cases：`test_login` / `test_*eid*` / `test_bankcards`）
+- §10. 红包 / 社交支付、生活缴费、VAM（toC：`test_red_pkg` / `test_friend_transfer` / `test_vam` / 充值）

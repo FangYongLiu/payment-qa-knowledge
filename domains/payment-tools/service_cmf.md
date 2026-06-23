@@ -19,27 +19,30 @@ related_tables: []
 
 # cmf
 
-> 作用与调用关系来自 **UAT Kibana trace 观测**(2026-06-22T20:00Z..06-23T01:00Z UAT cgs 回归窗口,真实但**非穷尽**——
-> 未被该窗口触达的调用不会出现)。**候选,待人审**(核心原则 #2)。app_group=`gp002`。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp002` · domain=`payment-tools`。
 
 ## 作用
 渠道管理与资金（Channel Mgmt & Fund）—— 经 router 选渠道，连 member/exchange/cashdesk，被 payment/trade/reconciliation/fcw 等广泛调用
 
-## 下游调用（UAT trace 观测;observed_count=频次/权重）
-| 被调服务 | 频次 | 置信 |
-| --- | --- | ---: |
-| router (`svc_router`) | 45109 | high |
-| member (`svc_member`) | 396 | high |
-| grc-check-identity-provider (`svc_grc_check_identity_provider`) | 197 | med · **待核实** |
-| cashdesk-api (`svc_cashdesk_api`) | 50 | high |
-| exchange (`svc_exchange`) | 47 | med · **待核实** |
-| ues-ws (`svc_ues_ws`) | 45 | med · **待核实** |
+## 系统中的位置
+- 功能层:交易 / 支付中台 (Trade / Payment Core)
+- 业务域:`payment-tools`
 
-## 被调用方（←被调,本窗口观测）
+## 关联关系
+**调用(下游)—— 本服务依赖这些服务完成处理:**
+- [[svc_router]] router（渠道路由） · 45109 次 · high
+- [[svc_member]] member（会员 / 账户核心） · 396 次 · high
+- [[svc_grc_check_identity_provider]] grc-check-identity-provider（风控合规身份校验） · 197 次 · med·待核实
+- [[svc_cashdesk_api]] cashdesk-api（统一收银台） · 50 次 · high
+- [[svc_exchange]] exchange（换汇 / 汇率服务） · 47 次 · med·待核实
+- [[svc_ues_ws]] ues-ws（用户事件 / 数据服务） · 45 次 · med·待核实
+
+**被调用(上游)—— 这些服务调用本服务:**
 reconciliation, tradeii, payment, router, fcw, cashdesk-api
 
-## 观测到的对外方法
-(无方法级证据)
-
-## 同组服务（app_group=gp002，共 2 个模块）
-- cmf-task  (`svc_cmf_task`)
+## 参与的业务场景(cgs 回归)
+- §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）
+- §2. 收银台 / 收银（`test_bpg_paypage` 收银侧、cashier 用例）
+- §4. 卡渠道入金 3DS（`test_mpgs_fundIn` / `test_cko_fundIn`）
+- §5. 银行/卡转账、出款（`test_transfer_to_bank` / `test_transfer_to_card`）
+- §6. 提现（toC，`test_withdraw`）

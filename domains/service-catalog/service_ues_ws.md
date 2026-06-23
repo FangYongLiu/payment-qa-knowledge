@@ -19,20 +19,19 @@ related_tables: []
 
 # ues-ws
 
-> 作用与调用关系来自 **UAT Kibana trace 观测**(2026-06-22T20:00Z..06-23T01:00Z UAT cgs 回归窗口,真实但**非穷尽**——
-> 未被该窗口触达的调用不会出现)。**候选,待人审**(核心原则 #2)。app_group=`gp001`。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp001` · domain=`service-catalog`。
 
 ## 作用
 用户事件 / 数据服务（saveDataByParam）—— 被收银 / 渠道 / 通知调用
 
-## 下游调用（UAT trace 观测;observed_count=频次/权重）
-(本窗口未观测到下游调用)
+## 系统中的位置
+- 功能层:通知 / 消息 (Notification)
+- 业务域:`service-catalog`
 
-## 被调用方（←被调,本窗口观测）
+## 关联关系
+
+**被调用(上游)—— 这些服务调用本服务:**
 wechat-channel, merchant-frontend, mns-main, escrow, acquireii, cashdesk-api
 
 ## 观测到的对外方法
 saveDataByParam
-
-## 同组服务（app_group=gp001，共 1 个模块）
-- （本组仅此一个）

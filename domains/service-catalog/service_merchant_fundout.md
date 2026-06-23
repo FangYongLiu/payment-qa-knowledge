@@ -19,28 +19,21 @@ related_tables: []
 
 # merchant-fundout
 
-> 作用与调用关系来自 **UAT Kibana trace 观测**(2026-06-22T20:00Z..06-23T01:00Z UAT cgs 回归窗口,真实但**非穷尽**——
-> 未被该窗口触达的调用不会出现)。**候选,待人审**(核心原则 #2)。app_group=`gp083`。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp083` · domain=`service-catalog`。
 
 ## 作用
 商户出款 / 结算代付，调 merchant/fundout(Fos)/voucher/ppcenter
 
-## 下游调用（UAT trace 观测;observed_count=频次/权重）
-| 被调服务 | 频次 | 置信 |
-| --- | --- | ---: |
-| fundout (`svc_fundout`) | 1825 | med · **待核实** |
-| merchant (`svc_merchant`) | 246 | high |
-| voucher (`svc_voucher`) | 218 | high |
-| member (`svc_member`) | 108 | high |
-| ppcenter (`svc_ppcenter`) | 80 | high |
-| tradeii (`svc_tradeii`) | 24 | high |
-| ues-ws (`svc_ues_ws`) | 14 | med · **待核实** |
+## 系统中的位置
+- 功能层:出款 / 账务 / 对账 (Fundout / Accounting / Recon)
+- 业务域:`service-catalog`
 
-## 被调用方（←被调,本窗口观测）
-(无)
-
-## 观测到的对外方法
-(无方法级证据)
-
-## 同组服务（app_group=gp083，共 1 个模块）
-- （本组仅此一个）
+## 关联关系
+**调用(下游)—— 本服务依赖这些服务完成处理:**
+- [[svc_fundout]] fundout（出款 / 代付核心） · 1825 次 · med·待核实
+- [[svc_merchant]] merchant（商户主数据 / 商户管理） · 246 次 · high
+- [[svc_voucher]] voucher（全局 ID 与幂等凭证） · 218 次 · high
+- [[svc_member]] member（会员 / 账户核心） · 108 次 · high
+- [[svc_ppcenter]] ppcenter（产品中心） · 80 次 · high
+- [[svc_tradeii]] tradeii（交易订单引擎） · 24 次 · high
+- [[svc_ues_ws]] ues-ws（用户事件 / 数据服务） · 14 次 · med·待核实

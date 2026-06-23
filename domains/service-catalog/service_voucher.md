@@ -19,20 +19,26 @@ related_tables: []
 
 # voucher
 
-> 作用与调用关系来自 **UAT Kibana trace 观测**(2026-06-22T20:00Z..06-23T01:00Z UAT cgs 回归窗口,真实但**非穷尽**——
-> 未被该窗口触达的调用不会出现)。**候选,待人审**(核心原则 #2)。app_group=`gp009`。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp009` · domain=`service-catalog`。
 
 ## 作用
 全局 ID 与幂等凭证（getGlobalId / recordReqVoucher）—— 被交易 / 收单 / 出款广泛调用的基础设施
 
-## 下游调用（UAT trace 观测;observed_count=频次/权重）
-(本窗口未观测到下游调用)
+## 系统中的位置
+- 功能层:客服 / 内容 / 查询 / 其他 (CS / Content / Query / Misc)
+- 业务域:`service-catalog`
 
-## 被调用方（←被调,本窗口观测）
+## 关联关系
+
+**被调用(上游)—— 这些服务调用本服务:**
 tradeii, vis, offline-payment, acquireii, escrow, merchant-fundout
+
+## 参与的业务场景(cgs 回归)
+- §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）
+- §2. 收银台 / 收银（`test_bpg_paypage` 收银侧、cashier 用例）
+- §5. 银行/卡转账、出款（`test_transfer_to_bank` / `test_transfer_to_card`）
+- §7. 跨境汇款（toC，`test_remittance`）
+- §10. 红包 / 社交支付、生活缴费、VAM（toC：`test_red_pkg` / `test_friend_transfer` / `test_vam` / 充值）
 
 ## 观测到的对外方法
 getGlobalId, recordReqVoucher
-
-## 同组服务（app_group=gp009，共 1 个模块）
-- （本组仅此一个）

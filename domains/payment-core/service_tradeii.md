@@ -19,33 +19,38 @@ related_tables: []
 
 # tradeii
 
-> 作用与调用关系来自 **UAT Kibana trace 观测**(2026-06-22T20:00Z..06-23T01:00Z UAT cgs 回归窗口,真实但**非穷尽**——
-> 未被该窗口触达的调用不会出现)。**候选,待人审**(核心原则 #2)。app_group=`gp123`。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp123` · domain=`payment-core`。
 
 ## 作用
 交易订单引擎（Trade II）—— 创建 / 查询交易、退款、收银交易（queryTradeOrder/createCashierTrade/refund），编排 voucher/cmf/pbs/acs/cards/cashier/pfs
 
-## 下游调用（UAT trace 观测;observed_count=频次/权重）
-| 被调服务 | 频次 | 置信 |
-| --- | --- | ---: |
-| voucher (`svc_voucher`) | 11646 | high |
-| member (`svc_member`) | 1595 | high |
-| cmf (`svc_cmf`) | 1505 | high |
-| pfs-payment (`svc_pfs_payment`) | 520 | high |
-| pbs (`svc_pbs`) | 192 | high |
-| acs (`svc_acs`) | 190 | high |
-| cards (`svc_cards`) | 150 | high |
-| css (`svc_css`) | 117 | high |
-| cashierii (`svc_cashierii`) | 114 | high |
-| authpay (`svc_authpay`) | 21 | high |
-| cms (`svc_cms`) | 21 | high |
-| deduct (`svc_deduct`) | 14 | high |
+## 系统中的位置
+- 功能层:交易 / 支付中台 (Trade / Payment Core)
+- 业务域:`payment-core`
 
-## 被调用方（←被调,本窗口观测）
+## 关联关系
+**调用(下游)—— 本服务依赖这些服务完成处理:**
+- [[svc_voucher]] voucher（全局 ID 与幂等凭证） · 11646 次 · high
+- [[svc_member]] member（会员 / 账户核心） · 1595 次 · high
+- [[svc_cmf]] cmf（渠道管理与资金） · 1505 次 · high
+- [[svc_pfs_payment]] pfs-payment（支付履约 / 清分） · 520 次 · high
+- [[svc_pbs]] pbs（计费 / 定价） · 192 次 · high
+- [[svc_acs]] acs（反欺诈 / 风控 + 渠道密钥） · 190 次 · high
+- [[svc_cards]] cards（卡管理） · 150 次 · high
+- [[svc_css]] css（客服系统） · 117 次 · high
+- [[svc_cashierii]] cashierii（收银核心） · 114 次 · high
+- [[svc_authpay]] authpay（授权支付 / 免密代扣执行） · 21 次 · high
+- [[svc_cms]] cms（内容 / 配置管理） · 21 次 · high
+- [[svc_deduct]] deduct（自动代扣执行） · 14 次 · high
+
+**被调用(上游)—— 这些服务调用本服务:**
 acquireii, cashierii, cashdesk-api, remittance, merchant-fundout, deduct
+
+## 参与的业务场景(cgs 回归)
+- §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）
+- §2. 收银台 / 收银（`test_bpg_paypage` 收银侧、cashier 用例）
+- §3. 自动代扣 / 签约（`test_auto_debit`）
+- §7. 跨境汇款（toC，`test_remittance`）
 
 ## 观测到的对外方法
 queryTradeOrder, queryRefundOrder, createCashierTrade, refund
-
-## 同组服务（app_group=gp123，共 1 个模块）
-- （本组仅此一个）

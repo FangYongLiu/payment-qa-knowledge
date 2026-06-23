@@ -19,25 +19,27 @@ related_tables: []
 
 # pfs-payment
 
-> 作用与调用关系来自 **UAT Kibana trace 观测**(2026-06-22T20:00Z..06-23T01:00Z UAT cgs 回归窗口,真实但**非穷尽**——
-> 未被该窗口触达的调用不会出现)。**候选,待人审**(核心原则 #2)。app_group=`gp014`。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp014` · domain=`payment-core`。
 
 ## 作用
 支付履约 / 清分（Payment Fulfillment，enterMulti），被 trade/payment/offline/vis 调用
 
-## 下游调用（UAT trace 观测;observed_count=频次/权重）
-| 被调服务 | 频次 | 置信 |
-| --- | --- | ---: |
-| member (`svc_member`) | 20798 | med · **待核实** |
-| payment (`svc_payment`) | 20583 | high |
-| dpm-manager (`svc_dpm_manager`) | 19978 | high |
+## 系统中的位置
+- 功能层:交易 / 支付中台 (Trade / Payment Core)
+- 业务域:`payment-core`
 
-## 被调用方（←被调,本窗口观测）
+## 关联关系
+**调用(下游)—— 本服务依赖这些服务完成处理:**
+- [[svc_member]] member（会员 / 账户核心） · 20798 次 · med·待核实
+- [[svc_payment]] payment（支付中台） · 20583 次 · high
+- [[svc_dpm_manager]] dpm-manager（账务平台管理） · 19978 次 · high
+
+**被调用(上游)—— 这些服务调用本服务:**
 offline-payment, vis, payment, tradeii, fundout, reconciliation
+
+## 参与的业务场景(cgs 回归)
+- §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）
+- §5. 银行/卡转账、出款（`test_transfer_to_bank` / `test_transfer_to_card`）
 
 ## 观测到的对外方法
 enterMulti
-
-## 同组服务（app_group=gp014，共 3 个模块）
-- pfs-basis  (`svc_pfs_basis`)
-- pfs-manager  (`svc_pfs_manager`)

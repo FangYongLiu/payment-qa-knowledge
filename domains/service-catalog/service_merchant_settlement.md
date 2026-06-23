@@ -18,20 +18,16 @@ related_tables: []
 
 # merchant-settlement
 
-> 作用与调用关系来自 **UAT Kibana trace 观测**(2026-06-22T20:00Z..06-23T01:00Z UAT cgs 回归窗口,真实但**非穷尽**——
-> 未被该窗口触达的调用不会出现)。**候选,待人审**(核心原则 #2)。app_group=`gp288`。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp288` · domain=`service-catalog`。
 
 ## 作用
-商户结算（被 statementii 调用，推断）  **(待核实:仅凭调用关系推断,无方法证据)**
+商户结算（被 statementii 调用，推断）  **(待核实:仅凭调用关系推断)**
 
-## 下游调用（UAT trace 观测;observed_count=频次/权重）
-(本窗口未观测到下游调用)
+## 系统中的位置
+- 功能层:出款 / 账务 / 对账 (Fundout / Accounting / Recon)
+- 业务域:`service-catalog`
 
-## 被调用方（←被调,本窗口观测）
+## 关联关系
+
+**被调用(上游)—— 这些服务调用本服务:**
 statementii
-
-## 观测到的对外方法
-(无方法级证据)
-
-## 同组服务（app_group=gp288，共 1 个模块）
-- （本组仅此一个）

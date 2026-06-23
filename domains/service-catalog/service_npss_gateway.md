@@ -19,22 +19,18 @@ related_tables: []
 
 # npss-gateway
 
-> 作用与调用关系来自 **UAT Kibana trace 观测**(2026-06-22T20:00Z..06-23T01:00Z UAT cgs 回归窗口,真实但**非穷尽**——
-> 未被该窗口触达的调用不会出现)。**候选,待人审**(核心原则 #2)。app_group=`gp210`。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp210` · domain=`service-catalog`。
 
 ## 作用
 NPSS（即时支付系统）报文网关
 
-## 下游调用（UAT trace 观测;observed_count=频次/权重）
-| 被调服务 | 频次 | 置信 |
-| --- | --- | ---: |
-| npss (`svc_npss`) | 32 | high |
+## 系统中的位置
+- 功能层:接入网关 / 前端 BFF (Gateway / Frontend)
+- 业务域:`service-catalog`
 
-## 被调用方（←被调,本窗口观测）
-(无)
+## 关联关系
+**调用(下游)—— 本服务依赖这些服务完成处理:**
+- [[svc_npss]] npss（即时支付 / 账单） · 32 次 · high
 
-## 观测到的对外方法
-(无方法级证据)
-
-## 同组服务（app_group=gp210，共 1 个模块）
-- （本组仅此一个）
+## 参与的业务场景(cgs 回归)
+- §8. 账单 / 即时支付（`test_ppcTransaction`，NPSS）

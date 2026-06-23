@@ -19,22 +19,26 @@ related_tables: []
 
 # pbs
 
-> 作用与调用关系来自 **UAT Kibana trace 观测**(2026-06-22T20:00Z..06-23T01:00Z UAT cgs 回归窗口,真实但**非穷尽**——
-> 未被该窗口触达的调用不会出现)。**候选,待人审**(核心原则 #2)。app_group=`gp003`。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp003` · domain=`payment-tools`。
 
 ## 作用
 计费 / 定价（Pricing & Billing，pricingPayFee），调 acs
 
-## 下游调用（UAT trace 观测;observed_count=频次/权重）
-| 被调服务 | 频次 | 置信 |
-| --- | --- | ---: |
-| acs (`svc_acs`) | 2761 | high |
+## 系统中的位置
+- 功能层:出款 / 账务 / 对账 (Fundout / Accounting / Recon)
+- 业务域:`payment-tools`
 
-## 被调用方（←被调,本窗口观测）
+## 关联关系
+**调用(下游)—— 本服务依赖这些服务完成处理:**
+- [[svc_acs]] acs（反欺诈 / 风控 + 渠道密钥） · 2761 次 · high
+
+**被调用(上游)—— 这些服务调用本服务:**
 fundout, offline-payment, tradeii, cashierii, cashdesk-api
+
+## 参与的业务场景(cgs 回归)
+- §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）
+- §2. 收银台 / 收银（`test_bpg_paypage` 收银侧、cashier 用例）
+- §5. 银行/卡转账、出款（`test_transfer_to_bank` / `test_transfer_to_card`）
 
 ## 观测到的对外方法
 pricingPayFee
-
-## 同组服务（app_group=gp003，共 1 个模块）
-- （本组仅此一个）

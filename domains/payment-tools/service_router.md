@@ -19,23 +19,26 @@ related_tables: []
 
 # router
 
-> 作用与调用关系来自 **UAT Kibana trace 观测**(2026-06-22T20:00Z..06-23T01:00Z UAT cgs 回归窗口,真实但**非穷尽**——
-> 未被该窗口触达的调用不会出现)。**候选,待人审**(核心原则 #2)。app_group=`gp124`。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp124` · domain=`payment-tools`。
 
 ## 作用
 渠道路由（Channel Router）—— 按 apiType 选可用渠道（queryChannelArchive/getChannelsByApiTypes），下游 onboarding/cmf
 
-## 下游调用（UAT trace 观测;observed_count=频次/权重）
-| 被调服务 | 频次 | 置信 |
-| --- | --- | ---: |
-| onboarding (`svc_onboarding`) | 4852 | high |
-| cmf (`svc_cmf`) | 706 | high |
+## 系统中的位置
+- 功能层:交易 / 支付中台 (Trade / Payment Core)
+- 业务域:`payment-tools`
 
-## 被调用方（←被调,本窗口观测）
+## 关联关系
+**调用(下游)—— 本服务依赖这些服务完成处理:**
+- [[svc_onboarding]] onboarding（商户 / 用户入网） · 4852 次 · high
+- [[svc_cmf]] cmf（渠道管理与资金） · 706 次 · high
+
+**被调用(上游)—— 这些服务调用本服务:**
 remittance, cmf, cmf-task, reconciliation, cregister
 
-## 观测到的对外方法
-(无方法级证据)
-
-## 同组服务（app_group=gp124，共 1 个模块）
-- （本组仅此一个）
+## 参与的业务场景(cgs 回归)
+- §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）
+- §4. 卡渠道入金 3DS（`test_mpgs_fundIn` / `test_cko_fundIn`）
+- §5. 银行/卡转账、出款（`test_transfer_to_bank` / `test_transfer_to_card`）
+- §7. 跨境汇款（toC，`test_remittance`）
+- §9. 登录 / KYC / 绑卡（basic_cases：`test_login` / `test_*eid*` / `test_bankcards`）

@@ -19,24 +19,33 @@ related_tables: []
 
 # member
 
-> 作用与调用关系来自 **UAT Kibana trace 观测**(2026-06-22T20:00Z..06-23T01:00Z UAT cgs 回归窗口,真实但**非穷尽**——
-> 未被该窗口触达的调用不会出现)。**候选,待人审**(核心原则 #2)。app_group=`gp005`。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp005` · domain=`wallet`。
 
 ## 作用
 会员 / 账户核心 —— 开户 / 查账户 / 校验支付密码 / 受益人（openAccount/checkPassword/queryAccountById），下游 dpm-accounting
 
-## 下游调用（UAT trace 观测;observed_count=频次/权重）
-| 被调服务 | 频次 | 置信 |
-| --- | --- | ---: |
-| dpm-accounting (`svc_dpm_accounting`) | 10913 | high |
-| ccdpm-accounting (`svc_ccdpm_accounting`) | 607 | high |
-| cms (`svc_cms`) | 26 | high |
+## 系统中的位置
+- 功能层:会员 / 账户 / 卡 / 协议 (Member / Account / Card)
+- 业务域:`wallet`
 
-## 被调用方（←被调,本窗口观测）
+## 关联关系
+**调用(下游)—— 本服务依赖这些服务完成处理:**
+- [[svc_dpm_accounting]] dpm-accounting（账务平台记账） · 10913 次 · high
+- [[svc_ccdpm_accounting]] ccdpm-accounting（加密货币账务记账） · 607 次 · high
+- [[svc_cms]] cms（内容 / 配置管理） · 26 次 · high
+
+**被调用(上游)—— 这些服务调用本服务:**
 remittance, pfs-payment, reconciliation, credit-business, merchant-frontend, tradeii
+
+## 参与的业务场景(cgs 回归)
+- §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）
+- §2. 收银台 / 收银（`test_bpg_paypage` 收银侧、cashier 用例）
+- §5. 银行/卡转账、出款（`test_transfer_to_bank` / `test_transfer_to_card`）
+- §6. 提现（toC，`test_withdraw`）
+- §7. 跨境汇款（toC，`test_remittance`）
+- §8. 账单 / 即时支付（`test_ppcTransaction`，NPSS）
+- §9. 登录 / KYC / 绑卡（basic_cases：`test_login` / `test_*eid*` / `test_bankcards`）
+- §10. 红包 / 社交支付、生活缴费、VAM（toC：`test_red_pkg` / `test_friend_transfer` / `test_vam` / 充值）
 
 ## 观测到的对外方法
 queryAccountById, queryMemberIntegratedInfo, openAccount, queryAccountByMemberId, checkPassword, queryBeneficiaryConfig
-
-## 同组服务（app_group=gp005，共 1 个模块）
-- （本组仅此一个）

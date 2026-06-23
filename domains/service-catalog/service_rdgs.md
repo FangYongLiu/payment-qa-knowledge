@@ -19,23 +19,16 @@ related_tables: []
 
 # rdgs
 
-> 作用与调用关系来自 **UAT Kibana trace 观测**(2026-06-22T20:00Z..06-23T01:00Z UAT cgs 回归窗口,真实但**非穷尽**——
-> 未被该窗口触达的调用不会出现)。**候选,待人审**(核心原则 #2)。app_group=`gp216`。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp216` · domain=`service-catalog`。
 
 ## 作用
 报表 / 数据服务（调 query/ufs）
 
-## 下游调用（UAT trace 观测;observed_count=频次/权重）
-| 被调服务 | 频次 | 置信 |
-| --- | --- | ---: |
-| query (`svc_query`) | 92 | high |
-| ufs2 (`svc_ufs2`) | 44 | med · **待核实** |
+## 系统中的位置
+- 功能层:客服 / 内容 / 查询 / 其他 (CS / Content / Query / Misc)
+- 业务域:`service-catalog`
 
-## 被调用方（←被调,本窗口观测）
-(无)
-
-## 观测到的对外方法
-(无方法级证据)
-
-## 同组服务（app_group=gp216，共 1 个模块）
-- （本组仅此一个）
+## 关联关系
+**调用(下游)—— 本服务依赖这些服务完成处理:**
+- [[svc_query]] query（查询 / 报表服务） · 92 次 · high
+- [[svc_ufs2]] ufs2（用户文件 / 数据服务） · 44 次 · med·待核实

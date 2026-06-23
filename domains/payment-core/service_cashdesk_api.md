@@ -19,36 +19,40 @@ related_tables: []
 
 # cashdesk-api
 
-> 作用与调用关系来自 **UAT Kibana trace 观测**(2026-06-22T20:00Z..06-23T01:00Z UAT cgs 回归窗口,真实但**非穷尽**——
-> 未被该窗口触达的调用不会出现)。**候选,待人审**(核心原则 #2)。app_group=`gp007`。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp007` · domain=`payment-core`。
 
 ## 作用
 统一收银台（Cashdesk）—— 收银台初始化 / 确认支付 / 协议签约 / 匿名卡支付（cardPayForAnonymous）
 
-## 下游调用（UAT trace 观测;observed_count=频次/权重）
-| 被调服务 | 频次 | 置信 |
-| --- | --- | ---: |
-| tradeii (`svc_tradeii`) | 648 | high |
-| member (`svc_member`) | 592 | high |
-| grc-check-identity-provider (`svc_grc_check_identity_provider`) | 280 | med · **待核实** |
-| protocol (`svc_protocol`) | 208 | high |
-| cmf (`svc_cmf`) | 166 | high |
-| authpay (`svc_authpay`) | 150 | high |
-| voucher (`svc_voucher`) | 114 | high |
-| ues-ws (`svc_ues_ws`) | 112 | med · **待核实** |
-| custom (`svc_custom`) | 80 | high |
-| cards (`svc_cards`) | 74 | med · **待核实** |
-| merchant (`svc_merchant`) | 56 | high |
-| fundout (`svc_fundout`) | 48 | high |
-| cms (`svc_cms`) | 16 | high |
-| pbs (`svc_pbs`) | 16 | high |
-| marketing (`svc_marketing`) | 15 | high |
+## 系统中的位置
+- 功能层:收单 / 收银 (Acquiring / Cashier)
+- 业务域:`payment-core`
 
-## 被调用方（←被调,本窗口观测）
+## 关联关系
+**调用(下游)—— 本服务依赖这些服务完成处理:**
+- [[svc_tradeii]] tradeii（交易订单引擎） · 648 次 · high
+- [[svc_member]] member（会员 / 账户核心） · 592 次 · high
+- [[svc_grc_check_identity_provider]] grc-check-identity-provider（风控合规身份校验） · 280 次 · med·待核实
+- [[svc_protocol]] protocol（代扣 / 签约协议管理） · 208 次 · high
+- [[svc_cmf]] cmf（渠道管理与资金） · 166 次 · high
+- [[svc_authpay]] authpay（授权支付 / 免密代扣执行） · 150 次 · high
+- [[svc_voucher]] voucher（全局 ID 与幂等凭证） · 114 次 · high
+- [[svc_ues_ws]] ues-ws（用户事件 / 数据服务） · 112 次 · med·待核实
+- [[svc_custom]] custom（客户 / 定制配置） · 80 次 · high
+- [[svc_cards]] cards（卡管理） · 74 次 · med·待核实
+- [[svc_merchant]] merchant（商户主数据 / 商户管理） · 56 次 · high
+- [[svc_fundout]] fundout（出款 / 代付核心） · 48 次 · high
+- [[svc_cms]] cms（内容 / 配置管理） · 16 次 · high
+- [[svc_pbs]] pbs（计费 / 定价） · 16 次 · high
+- [[svc_marketing]] marketing（营销服务） · 15 次 · high
+
+**被调用(上游)—— 这些服务调用本服务:**
 merchant-frontend, cmf, acquireii, cmf-task
+
+## 参与的业务场景(cgs 回归)
+- §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）
+- §2. 收银台 / 收银（`test_bpg_paypage` 收银侧、cashier 用例）
+- §3. 自动代扣 / 签约（`test_auto_debit`）
 
 ## 观测到的对外方法
 cardPayForAnonymous
-
-## 同组服务（app_group=gp007，共 1 个模块）
-- （本组仅此一个）

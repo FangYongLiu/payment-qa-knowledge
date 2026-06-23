@@ -19,26 +19,26 @@ related_tables: []
 
 # payment
 
-> 作用与调用关系来自 **UAT Kibana trace 观测**(2026-06-22T20:00Z..06-23T01:00Z UAT cgs 回归窗口,真实但**非穷尽**——
-> 未被该窗口触达的调用不会出现)。**候选,待人审**(核心原则 #2)。app_group=`gp006`。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp006` · domain=`payment-core`。
 
 ## 作用
 支付中台 —— 支付指令处理，编排 dpm（记账）/cmf（渠道）/pfs（履约）/counter
 
-## 下游调用（UAT trace 观测;observed_count=频次/权重）
-| 被调服务 | 频次 | 置信 |
-| --- | --- | ---: |
-| dpm-manager (`svc_dpm_manager`) | 2653 | high |
-| cmf (`svc_cmf`) | 999 | high |
-| pfs-payment (`svc_pfs_payment`) | 536 | high |
-| counter (`svc_counter`) | 456 | high |
-| member (`svc_member`) | 78 | med · **待核实** |
+## 系统中的位置
+- 功能层:交易 / 支付中台 (Trade / Payment Core)
+- 业务域:`payment-core`
 
-## 被调用方（←被调,本窗口观测）
+## 关联关系
+**调用(下游)—— 本服务依赖这些服务完成处理:**
+- [[svc_dpm_manager]] dpm-manager（账务平台管理） · 2653 次 · high
+- [[svc_cmf]] cmf（渠道管理与资金） · 999 次 · high
+- [[svc_pfs_payment]] pfs-payment（支付履约 / 清分） · 536 次 · high
+- [[svc_counter]] counter（账务记账） · 456 次 · high
+- [[svc_member]] member（会员 / 账户核心） · 78 次 · med·待核实
+
+**被调用(上游)—— 这些服务调用本服务:**
 pfs-payment
 
-## 观测到的对外方法
-(无方法级证据)
-
-## 同组服务（app_group=gp006，共 1 个模块）
-- （本组仅此一个）
+## 参与的业务场景(cgs 回归)
+- §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）
+- §5. 银行/卡转账、出款（`test_transfer_to_bank` / `test_transfer_to_card`）

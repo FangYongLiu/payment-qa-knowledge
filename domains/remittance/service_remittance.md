@@ -19,30 +19,29 @@ related_tables: []
 
 # remittance
 
-> 作用与调用关系来自 **UAT Kibana trace 观测**(2026-06-22T20:00Z..06-23T01:00Z UAT cgs 回归窗口,真实但**非穷尽**——
-> 未被该窗口触达的调用不会出现)。**候选,待人审**(核心原则 #2)。app_group=`gp188`。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp188` · domain=`remittance`。
 
 ## 作用
 跨境汇款核心 —— 编排 member/router/acs/tradeii/reconciliation + 各汇款渠道（terrapay/arp/fuze）
 
-## 下游调用（UAT trace 观测;observed_count=频次/权重）
-| 被调服务 | 频次 | 置信 |
-| --- | --- | ---: |
-| member (`svc_member`) | 64072 | high |
-| router (`svc_router`) | 52455 | high |
-| acs (`svc_acs`) | 118 | high |
-| tradeii (`svc_tradeii`) | 105 | high |
-| cms (`svc_cms`) | 56 | high |
-| reconciliation (`svc_reconciliation`) | 42 | high |
-| voucher (`svc_voucher`) | 42 | high |
-| grc-check-identity-provider (`svc_grc_check_identity_provider`) | 35 | med · **待核实** |
-| aml (`svc_aml`) | 18 | high |
+## 系统中的位置
+- 功能层:汇款 (Remittance)
+- 业务域:`remittance`
 
-## 被调用方（←被调,本窗口观测）
+## 关联关系
+**调用(下游)—— 本服务依赖这些服务完成处理:**
+- [[svc_member]] member（会员 / 账户核心） · 64072 次 · high
+- [[svc_router]] router（渠道路由） · 52455 次 · high
+- [[svc_acs]] acs（反欺诈 / 风控 + 渠道密钥） · 118 次 · high
+- [[svc_tradeii]] tradeii（交易订单引擎） · 105 次 · high
+- [[svc_cms]] cms（内容 / 配置管理） · 56 次 · high
+- [[svc_reconciliation]] reconciliation（对账） · 42 次 · high
+- [[svc_voucher]] voucher（全局 ID 与幂等凭证） · 42 次 · high
+- [[svc_grc_check_identity_provider]] grc-check-identity-provider（风控合规身份校验） · 35 次 · med·待核实
+- [[svc_aml]] aml（反洗钱） · 18 次 · high
+
+**被调用(上游)—— 这些服务调用本服务:**
 fcw
 
-## 观测到的对外方法
-(无方法级证据)
-
-## 同组服务（app_group=gp188，共 1 个模块）
-- （本组仅此一个）
+## 参与的业务场景(cgs 回归)
+- §7. 跨境汇款（toC，`test_remittance`）

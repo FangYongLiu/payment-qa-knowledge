@@ -18,25 +18,18 @@ related_tables: []
 
 # cmf-task
 
-> 作用与调用关系来自 **UAT Kibana trace 观测**(2026-06-22T20:00Z..06-23T01:00Z UAT cgs 回归窗口,真实但**非穷尽**——
-> 未被该窗口触达的调用不会出现)。**候选,待人审**(核心原则 #2)。app_group=`gp002`。
+> 来源:UAT Kibana trace 观测(2026-06-22~23 UAT cgs 回归窗口,真实但非穷尽)+ 作用说明。候选待人审。app_group=`gp002` · domain=`payment-tools`。
 
 ## 作用
 cmf 异步任务（定时 / 后台渠道处理）
 
-## 下游调用（UAT trace 观测;observed_count=频次/权重）
-| 被调服务 | 频次 | 置信 |
-| --- | --- | ---: |
-| router (`svc_router`) | 13198 | high |
-| exchange (`svc_exchange`) | 18 | med · **待核实** |
-| ues-ws (`svc_ues_ws`) | 12 | med · **待核实** |
-| cashdesk-api (`svc_cashdesk_api`) | 4 | high |
+## 系统中的位置
+- 功能层:交易 / 支付中台 (Trade / Payment Core)
+- 业务域:`payment-tools`
 
-## 被调用方（←被调,本窗口观测）
-(无)
-
-## 观测到的对外方法
-(无方法级证据)
-
-## 同组服务（app_group=gp002，共 2 个模块）
-- cmf  (`svc_cmf`)
+## 关联关系
+**调用(下游)—— 本服务依赖这些服务完成处理:**
+- [[svc_router]] router（渠道路由） · 13198 次 · high
+- [[svc_exchange]] exchange（换汇 / 汇率服务） · 18 次 · med·待核实
+- [[svc_ues_ws]] ues-ws（用户事件 / 数据服务） · 12 次 · med·待核实
+- [[svc_cashdesk_api]] cashdesk-api（统一收银台） · 4 次 · high
