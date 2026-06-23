@@ -20,10 +20,17 @@ aliases:
 - /kyc/passport/v1/init
 related_services:
 - svc_kyc
+related_tables: []
+related_scenarios: []
 ---
 
 ## 用途
 护照流程初始化，根据业务类型和业务数据创建认证流程，返回流程 token 及下一步骤指示。
+
+## 关联关系
+- **所属服务**:[[svc_kyc]](related_services;api→service 边)
+- **读写的表**:待补
+- **被哪些场景测**:§9 登录/KYC 回归(待补具体 scenario 对象)
 
 ## 路径/方法
 - 路径：`/kyc/passport/v1/init`

@@ -21,10 +21,17 @@ aliases:
 - 未认证活体核身申请
 related_services:
 - svc_kyc
+related_tables: []
+related_scenarios: []
 ---
 
 ## 用途
 为未登录/未认证场景下的业务功能提供安全保障，基于手机号申请活体核身（liveness verify），生成视频采集验证入口。与已认证场景的 `/kyc/body-auth/v1/liveness/apply` 区别在于：未认证用户需在请求中显式传入 `mobile`（密文）。
+
+## 关联关系
+- **所属服务**:[[svc_kyc]](related_services;api→service 边)
+- **读写的表**:待补
+- **被哪些场景测**:§9 登录/KYC 回归(待补具体 scenario 对象)
 
 ## 路径/方法
 - API：`/kyc/body-unauth/v1/liveness/apply`

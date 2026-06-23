@@ -20,10 +20,17 @@ name: 提交修改后EID信息接口
 aliases: []
 related_services:
 - svc_kyc
+related_tables: []
+related_scenarios: []
 ---
 
 ## 用途
 用户确认修改后的 EID 信息后调用本接口提交。当用户修改了 EID 信息时，将进入人工审核阶段；若用户未做任何修改，则无需人工审核。
+
+## 关联关系
+- **所属服务**:[[svc_kyc]](related_services;api→service 边)
+- **读写的表**:待补
+- **被哪些场景测**:§9 登录/KYC 回归(待补具体 scenario 对象)
 
 ## 路径/方法
 - API: `/kyc/active-account/v1/eid/renew/submit-edit`

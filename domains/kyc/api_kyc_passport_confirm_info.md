@@ -20,10 +20,17 @@ aliases:
 - confirm-info
 related_services:
 - svc_kyc
+related_tables: []
+related_scenarios: []
 ---
 
 ## 用途
 用户确认OCR识别出的护照信息（用户不可修改）。该接口提交后**不会进入人工审核流程**。通常在 `get-result` 返回 `commandType=action` 且携带 `passportInfo` 后调用，由用户点击确认触发。
+
+## 关联关系
+- **所属服务**:[[svc_kyc]](related_services;api→service 边)
+- **读写的表**:待补
+- **被哪些场景测**:§9 登录/KYC 回归(待补具体 scenario 对象)
 
 ## 路径/方法
 - Path: `/kyc/active-account/v1/passport/main/confirm-info`

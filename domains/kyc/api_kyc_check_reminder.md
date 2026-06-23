@@ -20,10 +20,19 @@ aliases:
 - KYC Reminder
 related_services:
 - svc_kyc
+related_tables: []
+related_scenarios:
+- scn_kyc_status_inquire
 ---
 
 ## 用途
 检查 KYC 状态：当用户已完成 KYC 流程并处于待确认状态时，提醒用户尽快确认 EID 信息。
+
+## 关联关系
+- **所属服务**:[[svc_kyc]](related_services;api→service 边)
+- **读写的表**:待补
+- **被哪些场景测**:[[scn_kyc_status_inquire]]
+- **被哪些自动化覆盖**:[[auto_kyc_eid_journey]]
 
 ## 路径/方法
 - API: `/kyc/active-account/v1/kyc/check-reminder`

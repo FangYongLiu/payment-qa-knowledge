@@ -22,10 +22,17 @@ aliases:
 - get-retake-selfie-result
 related_services:
 - svc_kyc
+related_tables: []
+related_scenarios: []
 ---
 
 ## 用途
 当用户在活体认证失败后选择重新自拍 (retake-selfie) 并完成 KYC journey，调用本接口获取重拍后的 KYC 结果，前端据此跳转到结果页或后续流程。
+
+## 关联关系
+- **所属服务**:[[svc_kyc]](related_services;api→service 边)
+- **读写的表**:待补
+- **被哪些场景测**:§9 登录/KYC 回归(待补具体 scenario 对象)
 
 ## 路径/方法
 - API: `/kyc/active-account/v1/eid/main/get-retake-selfie-result`

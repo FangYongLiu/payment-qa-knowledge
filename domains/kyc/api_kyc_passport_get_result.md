@@ -19,10 +19,17 @@ name: 获取Passport KYC结果接口
 aliases: []
 related_services:
 - svc_kyc
+related_tables: []
+related_scenarios: []
 ---
 
 ## 用途
 当用户完成 KYC journey 后，跳转到结果页时调用，用于展示 KYC journey 的结果（含 liveness 失败、审核中、需确认 passport 信息、成功、失败、护照过期等场景）。
+
+## 关联关系
+- **所属服务**:[[svc_kyc]](related_services;api→service 边)
+- **读写的表**:待补
+- **被哪些场景测**:§9 登录/KYC 回归(待补具体 scenario 对象)
 
 ## 路径/方法
 - API: `/kyc/active-account/v1/passport/main/get-result`

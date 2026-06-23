@@ -20,10 +20,17 @@ aliases:
 - /kyc/passport/v1/submit-passport
 related_services:
 - svc_kyc
+related_tables: []
+related_scenarios: []
 ---
 
 ## 用途
 提交OCR识别后的护照信息（microblink方案），属于护照KYC流程中的提交识别信息环节，提交后由后端返回下一步骤（如活体认证、审核等）。
+
+## 关联关系
+- **所属服务**:[[svc_kyc]](related_services;api→service 边)
+- **读写的表**:待补
+- **被哪些场景测**:§9 登录/KYC 回归(待补具体 scenario 对象)
 
 ## 路径/方法
 - 路径：`/kyc/passport/v1/submit-passport`

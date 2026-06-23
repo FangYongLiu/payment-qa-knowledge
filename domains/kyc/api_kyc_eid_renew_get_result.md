@@ -20,10 +20,17 @@ aliases:
 - Get result
 related_services:
 - svc_kyc
+related_tables: []
+related_scenarios: []
 ---
 
 ## 用途
 当用户完成 EID 续期 journey 后，前端调用该接口进入结果页，根据返回的 commandType / commandData 渲染不同结果场景：liveness 失败、续期处理中、续期信息确认、跳转 reSubmit eid 页、续期成功、续期失败、OCR 识别到 EID 已过期。
+
+## 关联关系
+- **所属服务**:[[svc_kyc]](related_services;api→service 边)
+- **读写的表**:待补
+- **被哪些场景测**:§9 登录/KYC 回归(待补具体 scenario 对象)
 
 ## 路径/方法
 - 路径：`/kyc/active-account/v1/eid/renew/get-result`

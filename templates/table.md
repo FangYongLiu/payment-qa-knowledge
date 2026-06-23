@@ -1,34 +1,39 @@
 ---
+# Table 对象规范(与 curation 引擎 _SKELETONS[Table] 对齐,人/引擎共用)。
 id: tbl_<schema>_<table>
 object_type: Table
-name: "<库.表名>"
+name: <人类可读表名>(<物理表名>)
 aliases: []
-domain: <domain>
-subdomain: ""
-module: ""
-status: draft
-owner: QA-Team
-reviewer: Domain-Owner
-last_reviewed_at: 2026-01-01
-source_type: manual
-source_ref: ""
+domain: <所属服务的业务域>
+status: active
+owner: <知识负责人=所属服务域负责人>
+reviewer: <评审人>
+last_reviewed_at: 'YYYY-MM-DD'
+source_type: <DB 文档|wiki|...>
+source_ref: <来源>
 tags: []
-related_services: []
+related_services: [svc_<owning_service>]   # ★ 反指所属服务(tbl→service 边)
+related_scenarios: [scn_x]                  # 校验这张表的场景(可选)
 ---
 
+# <表名>
+
 ## 用途
-<这张表存什么>
+这张表存什么、属于哪个服务/业务、在什么流程里读写。
 
-## 关键字段
-| 字段 | 含义 | 备注 |
+## 关联关系
+- **所属服务**:[[svc_<owning>]](= frontmatter `related_services`,tbl→service 边)
+- **谁读写它**:服务 [[svc_*]] / 接口 [[api_*]](由对方的 `related_tables` 声明,impact 分析反向可达,本侧不重复列)。
+- **哪些场景校验它**:[[scn_x]](= `related_scenarios`,或由 scenario 的 `related_tables` 声明)。
+
+## 关键列
+| 列 | 类型 | 说明 |
 | --- | --- | --- |
-| <col> | <desc> | <note> |
+| ... | ... | ...（不清楚的列写「待补」） |
 
-## 写入方
-- <哪些服务/API 写这张表，related_services>
+## 主键 / 索引
+- 主键:... ;索引:...（缺则「待补:原文未提供」）
 
-## 校验点
-- <QA 该看哪些字段>
-
-## 注意事项
-- <坑>
+## 校验点(QA 关注)
+- 落库检查、状态流转、与上下游表/接口的一致性。
+- **不确定 / 缺失的点标「待补」,留给人工补充更新。**

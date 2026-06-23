@@ -19,10 +19,17 @@ name: 提交护照OCR接口(signzy临时方案)
 aliases: []
 related_services:
 - svc_kyc
+related_tables: []
+related_scenarios: []
 ---
 
 ## 用途
 提交护照OCR识别信息，用于下线mblink，使用signzy代替的临时方案（2025-10-10新增，方案暂停）。
+
+## 关联关系
+- **所属服务**:[[svc_kyc]](related_services;api→service 边)
+- **读写的表**:待补
+- **被哪些场景测**:§9 登录/KYC 回归(待补具体 scenario 对象)
 
 ## 路径/方法
 - 路径：/kyc/passport/v1/submit-ocr
