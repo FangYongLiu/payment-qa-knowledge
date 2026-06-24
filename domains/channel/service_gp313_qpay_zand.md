@@ -1,7 +1,7 @@
 ---
 id: svc_qpay_zand
 object_type: Service
-domain: acquiring
+domain: channel
 status: active
 owner: unassigned
 reviewer: unassigned
@@ -18,14 +18,14 @@ related_tables: []
 
 # qpay-zand
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp313` · domain=`acquiring`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp313` · domain=`channel`。
 
 ## 作用
 Zand 银行渠道接入
 
 ## 系统中的位置
 - 功能层:接入网关 / 前端 BFF (Gateway / Frontend)
-- 业务域:`acquiring`
+- 业务域:`channel`
 
 ## 关联关系
 **调用(下游)—— 本服务依赖:**

@@ -113,10 +113,10 @@
   owner: unassigned
   reviewer: unassigned
 
-- id: domain_acquiring
+- id: domain_channel
   object_type: Domain
-  name: acquiring
-  domain: acquiring
+  name: channel
+  domain: channel
   status: active
   owner: unassigned
   reviewer: unassigned

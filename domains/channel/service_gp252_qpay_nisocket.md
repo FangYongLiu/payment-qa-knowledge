@@ -1,7 +1,7 @@
 ---
 id: svc_qpay_nisocket
 object_type: Service
-domain: acquiring
+domain: channel
 status: active
 owner: unassigned
 reviewer: unassigned
@@ -18,13 +18,13 @@ related_tables: []
 
 # qpay-nisocket
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp252` · domain=`acquiring`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp252` · domain=`channel`。
 
 ## 作用
 支付渠道接入(qpay 适配器)（nisocket）  **(据名推断 · 待核实:无作用文字证据,但下方有观测到的调用关系)**
 
 ## 系统中的位置
-- 业务域:`acquiring`
+- 业务域:`channel`
 
 ## 关联关系
 **调用(下游)—— 本服务依赖:**
