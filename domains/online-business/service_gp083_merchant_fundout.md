@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp083
 name: merchant-fundout
+subdomain: fundout
 dev_owner: Sijia.Zhang
 aliases: [gp083_merchant-fundout]
 related_services: [svc_fundout, svc_merchant, svc_voucher, svc_tradeii, svc_ppcenter, svc_member, svc_cmf, svc_ues_ws, svc_pbs]

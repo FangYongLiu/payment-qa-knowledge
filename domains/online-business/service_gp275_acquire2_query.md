@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp275
 name: acquire2-query
+subdomain: acquiring
 dev_owner: Sijia.Zhang
 aliases: [gp275_acquire2-query]
 related_services: []

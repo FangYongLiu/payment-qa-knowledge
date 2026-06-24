@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp197
 name: preauth
+subdomain: acquiring
 dev_owner: Sijia.Zhang
 aliases: [gp197_preauth]
 related_services: []

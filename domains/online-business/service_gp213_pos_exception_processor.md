@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp213
 name: pos-exception-processor
+subdomain: acquiring
 dev_owner: Sijia.Zhang
 aliases: [gp213_pos-exception-processor]
 related_services: []

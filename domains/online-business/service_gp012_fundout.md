@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp012
 name: fundout
+subdomain: fundout
 aliases: [gp012_fundout]
 related_services: [svc_member, svc_pbs, svc_pfs_payment, svc_css, svc_acs, svc_vis, svc_merchant, svc_voucher, svc_cards, svc_exchange, svc_cashierii, svc_ues_ws, svc_cmf]
 related_tables: []
