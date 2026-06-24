@@ -97,6 +97,30 @@
   owner: dewen.li
   reviewer: dewen.li
 
+- id: domain_crypto
+  object_type: Domain
+  name: crypto
+  domain: crypto
+  status: active
+  owner: unassigned
+  reviewer: unassigned
+
+- id: domain_marketing
+  object_type: Domain
+  name: marketing
+  domain: marketing
+  status: active
+  owner: unassigned
+  reviewer: unassigned
+
+- id: domain_acquiring
+  object_type: Domain
+  name: acquiring
+  domain: acquiring
+  status: active
+  owner: unassigned
+  reviewer: unassigned
+
 - id: domain_infrastructure
   object_type: Domain
   name: infrastructure

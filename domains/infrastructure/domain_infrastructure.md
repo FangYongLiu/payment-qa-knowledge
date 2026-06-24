@@ -11,7 +11,7 @@ last_reviewed_at: '2026-06-24'
 source_type: app_inventory
 source_ref: SYSTEM_APP_INVENTORY.md
 tags: [infrastructure, 基础设施, 运维, 大数据, ops]
-related_services: [svc_auth_server, svc_uae_data_server, svc_data_server, svc_mysql_member_sync, svc_feature_calculate_server_new, svc_crawl_leantech_server, svc_feature_calculate_server, svc_crawl_server, svc_dubbo_admin, svc_elasticjob_console, svc_spring_cloud_config, svc_spring_boot_admin, svc_data_etl, svc_cloud_mis, svc_bigdata_router, svc_sqlmonitor, svc_cicd, svc_cgs_apitest, svc_bigdata_router_admin, svc_at_beb]
+related_services: [svc_auth_server, svc_uae_data_server, svc_data_server, svc_mysql_member_sync, svc_feature_calculate_server_new, svc_crawl_leantech_server, svc_feature_calculate_server, svc_crawl_server, svc_dubbo_admin, svc_elasticjob_console, svc_spring_cloud_config, svc_spring_boot_admin, svc_data_etl, svc_cloud_mis, svc_bigdata_router, svc_sqlmonitor, svc_cicd, svc_cgs_apitest, svc_bigdata_router_admin, svc_at_beb, svc_resource_service_sgs_impl, svc_resource_service_rpc_dubbo_provider, svc_session_service_cgs_impl, svc_resource_service_web, svc_session_service_rpc_dubbo_provider, svc_oauth_client_service_cgs_impl, svc_resource_service_cgs_impl]
 ---
 
 # infrastructure(基础设施 / 运维 / 大数据)
