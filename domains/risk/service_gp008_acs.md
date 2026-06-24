@@ -15,6 +15,7 @@ dev_owner: Yongxing.Cao
 aliases: [gp008_acs]
 related_services: []
 related_tables: []
+related_scenarios: [scn_online_business_direct_pay, scn_online_business_pre_auth]
 ---
 
 # acs

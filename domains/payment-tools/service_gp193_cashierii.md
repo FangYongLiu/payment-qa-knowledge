@@ -15,6 +15,7 @@ dev_owner: Guoyou.Ma
 aliases: [gp193_cashierii]
 related_services: [svc_tradeii, svc_member, svc_grc_check_identity_provider, svc_voucher, svc_authpay, svc_merchant, svc_cashdesk_api, svc_cards, svc_pbs, svc_member_front, svc_protocol, svc_cmsii, svc_cmf, svc_mns_main, svc_qpay_lean, svc_custom, svc_npss]
 related_tables: []
+related_scenarios: [scn_online_business_cashier_pay, scn_remittance_cross_border, scn_wallet_consumer_pay, scn_wallet_deposit, scn_wallet_p2p]
 ---
 
 # cashierii

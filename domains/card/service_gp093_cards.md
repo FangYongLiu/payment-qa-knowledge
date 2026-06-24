@@ -15,6 +15,7 @@ dev_owner: Qian.Wang
 aliases: [gp093_cards]
 related_services: []
 related_tables: []
+related_scenarios: [scn_online_business_auto_debit, scn_online_business_cashier_pay, scn_online_business_direct_pay, scn_online_business_merchant_payout, scn_online_business_pre_auth, scn_wallet_deposit]
 ---
 
 # cards

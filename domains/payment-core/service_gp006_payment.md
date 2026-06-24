@@ -15,6 +15,7 @@ dev_owner: Dewen.Li
 aliases: [gp006_payment]
 related_services: [svc_dpm_manager, svc_cmf, svc_counter, svc_pfs_payment, svc_member]
 related_tables: []
+related_scenarios: [scn_online_business_auto_debit, scn_online_business_cashier_pay, scn_online_business_direct_pay, scn_online_business_merchant_payout, scn_online_business_merchant_split, scn_online_business_pre_auth, scn_remittance_cross_border, scn_wallet_consumer_pay, scn_wallet_deposit, scn_wallet_p2p, scn_wallet_withdraw]
 ---
 
 # payment
