@@ -15,6 +15,7 @@ dev_owner: Yongxing.Cao
 aliases: [gp024_cgs]
 related_services: []
 related_tables: []
+related_scenarios: [scn_wallet_account_mgmt]
 ---
 
 # cgs

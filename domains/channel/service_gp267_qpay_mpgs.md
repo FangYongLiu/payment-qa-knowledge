@@ -14,6 +14,7 @@ name: qpay-mpgs
 aliases: [gp267_qpay-mpgs]
 related_services: [svc_onboarding, svc_cards, svc_grc_check_identity_provider, svc_ues_ws]
 related_tables: []
+related_scenarios: [scn_channel_fund_in]
 ---
 
 # qpay-mpgs

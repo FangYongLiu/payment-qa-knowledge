@@ -16,7 +16,7 @@ dev_owner: Sijia.Zhang
 aliases: [gp069_acquireii]
 related_services: [svc_tradeii, svc_voucher, svc_cmf, svc_ppcenter, svc_ues_ws, svc_member, svc_marketing, svc_device, svc_merchant, svc_offline_payment, svc_deposit]
 related_tables: []
-related_scenarios: [scn_online_business_cashier_pay, scn_online_business_direct_pay, scn_online_business_pre_auth]
+related_scenarios: [scn_online_business_cashier_pay, scn_online_business_direct_pay, scn_online_business_pre_auth, scn_channel_fund_in]
 ---
 
 # acquireii

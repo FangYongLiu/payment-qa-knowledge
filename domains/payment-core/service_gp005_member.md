@@ -15,7 +15,7 @@ dev_owner: Yadong.Lu
 aliases: [gp005_member]
 related_services: [svc_dpm_accounting, svc_ccdpm_accounting, svc_cms, svc_kyc, svc_acs, svc_pts, svc_cards]
 related_tables: []
-related_scenarios: [scn_online_business_auto_debit, scn_online_business_cashier_pay, scn_remittance_cross_border, scn_wallet_consumer_pay, scn_wallet_deposit, scn_wallet_p2p, scn_wallet_withdraw]
+related_scenarios: [scn_online_business_auto_debit, scn_online_business_cashier_pay, scn_remittance_cross_border, scn_wallet_consumer_pay, scn_wallet_deposit, scn_wallet_p2p, scn_wallet_withdraw, scn_card_manage, scn_payment_tools_deduct_channel, scn_wallet_account_mgmt, scn_wallet_zand_iban_migration]
 ---
 
 # member
