@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: rt005
 name: at-beb
+dev_owner: Shenghua.Fang
 aliases: [rt005_at-beb]
 related_services: []
 related_tables: []
