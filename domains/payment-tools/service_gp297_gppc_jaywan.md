@@ -1,16 +1,17 @@
 ---
 id: svc_gppc_jaywan
 object_type: Service
-domain: service-catalog
+domain: payment-tools
 status: active
-owner: unassigned
-reviewer: unassigned
+owner: xiaoyan.zhou
+reviewer: xiaoyan.zhou
 last_reviewed_at: '2026-06-23'
 source_type: app_inventory
 source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp297
 name: gppc-jaywan
+dev_owner: Yu.Tang,Xiaoyu.Sun
 aliases: [gp297_gppc-jaywan]
 related_services: [svc_cms, svc_voucher, svc_tradeii]
 related_tables: []
@@ -18,13 +19,13 @@ related_tables: []
 
 # gppc-jaywan
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp297` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp297` · domain=`payment-tools`。
 
 ## 作用
 gppc-jaywan  **(据名推断 · 待核实:无作用文字证据,但下方有观测到的调用关系)**
 
 ## 系统中的位置
-- 业务域:`service-catalog`
+- 业务域:`payment-tools`
 
 ## 关联关系
 **调用(下游)—— 本服务依赖:**
