@@ -25,4 +25,5 @@ related_services: [svc_ues_ws, svc_pbs, svc_dpm_accounting, svc_dpm_manager, svc
 共 63 个服务:ues-ws、pbs、dpm-accounting、dpm-manager、dpm-task、member、payment、deposit、pfs-payment、outman、software-management、cgs、sgs、query、query-datasync、counter、mns-listener、mns-main、mns-scheduler、pbs-bos、pcs、reconciliation、pcm、ppcenter、csc、fido-mgmt、fidoservice、authorization-service、porter、otpmock、otps、cbs、css、ons、authorization-token、escrow、ufs2、protocol、tradeii、mcs、vcs、member-front、mssii、member-feature、vis、host、upic、comp-service、basis-customer、das、npss-gateway、ppc、rdgs、npss、escrowii、wechat-channel、ifb-channel、feebill、pix、commission、cns、tts、visii。
 
 ## QA 关注点
-- 待补。
+- **已知坑(UAT Kibana 7d 错误日志实测)**:[[ts_pfs_payment_account_query_fail]](支付保存账户查询异常,~153万次/7d,疑测试数据)、[[ts_reconciliation_settlement_processing]](重复结算明细 + SFTP 对账下载,~91万)、[[ts_outman_ufs_download_fail]](UFS 下载/OCR 失败,~13.7万,与 KYC 取图互为上下游)、[[ts_pbs_pricing_strategy_empty]](定价策略为空,~12万)、[[ts_ppc_compensation_customer_exists]](补偿事件 customer 已存在,疑幂等缺陷,~9万)。
+- ⚠️ 多数量级极高,**需先区分 UAT 测试数据噪声 vs 真实缺陷**(详见各排障对象)。
