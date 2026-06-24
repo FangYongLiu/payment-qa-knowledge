@@ -3,8 +3,8 @@ id: svc_push_to_pay
 object_type: Service
 domain: wallet
 status: active
-owner: unassigned
-reviewer: unassigned
+owner: qianlong.wang
+reviewer: qianlong.wang
 last_reviewed_at: '2026-06-23'
 source_type: app_inventory
 source_ref: SYSTEM_APP_INVENTORY.md

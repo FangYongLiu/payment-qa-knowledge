@@ -3,8 +3,8 @@ id: svc_member_feature
 object_type: Service
 domain: payment-core
 status: active
-owner: qianlong.wang
-reviewer: qianlong.wang
+owner: xiaoyan.zhou
+reviewer: xiaoyan.zhou
 last_reviewed_at: '2026-06-23'
 source_type: app_inventory
 source_ref: SYSTEM_APP_INVENTORY.md

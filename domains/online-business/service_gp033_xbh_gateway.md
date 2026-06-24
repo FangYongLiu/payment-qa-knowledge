@@ -3,8 +3,8 @@ id: svc_xbh_gateway
 object_type: Service
 domain: online-business
 status: active
-owner: unassigned
-reviewer: unassigned
+owner: fangyong.liu
+reviewer: fangyong.liu
 last_reviewed_at: '2026-06-23'
 source_type: app_inventory
 source_ref: SYSTEM_APP_INVENTORY.md

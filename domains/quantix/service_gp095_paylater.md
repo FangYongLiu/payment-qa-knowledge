@@ -3,8 +3,8 @@ id: svc_paylater
 object_type: Service
 domain: quantix
 status: active
-owner: unassigned
-reviewer: unassigned
+owner: Xiaopei.Yan
+reviewer: Xiaopei.Yan
 last_reviewed_at: '2026-06-23'
 source_type: app_inventory
 source_ref: SYSTEM_APP_INVENTORY.md

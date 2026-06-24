@@ -3,8 +3,8 @@ id: svc_pfs_basis
 object_type: Service
 domain: risk
 status: active
-owner: unassigned
-reviewer: unassigned
+owner: xinwei.cao,dewen.li
+reviewer: xinwei.cao,dewen.li
 last_reviewed_at: '2026-06-23'
 source_type: app_inventory
 source_ref: SYSTEM_APP_INVENTORY.md

@@ -3,8 +3,8 @@ id: svc_resource_service_rpc_dubbo_provider
 object_type: Service
 domain: payment-core
 status: active
-owner: unassigned
-reviewer: unassigned
+owner: xiaoyan.zhou
+reviewer: xiaoyan.zhou
 last_reviewed_at: '2026-06-23'
 source_type: app_inventory
 source_ref: SYSTEM_APP_INVENTORY.md
