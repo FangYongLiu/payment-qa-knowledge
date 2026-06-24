@@ -16,7 +16,9 @@ name: 护照活体认证接口
 aliases: []
 related_services:
 - svc_kyc
-related_tables: []
+related_tables:
+- tbl_kyc_tr_biz_record_passport_live
+- tbl_kyc_tr_biz_record_face_match
 related_scenarios: []
 ---
 

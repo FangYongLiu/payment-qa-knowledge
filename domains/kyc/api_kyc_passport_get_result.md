@@ -19,7 +19,9 @@ name: 获取Passport KYC结果接口
 aliases: []
 related_services:
 - svc_kyc
-related_tables: []
+related_tables:
+- tbl_kyc_tm_kyc_apply
+- tbl_kyc_tr_biz_record_customer_detail
 related_scenarios: []
 ---
 

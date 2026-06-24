@@ -19,7 +19,8 @@ name: 启动EID续期Journey接口
 aliases: []
 related_services:
 - svc_kyc
-related_tables: []
+related_tables:
+- tbl_kyc_tm_kyc_apply
 related_scenarios: []
 ---
 

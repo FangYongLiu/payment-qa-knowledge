@@ -20,7 +20,8 @@ name: EID Change Mobile 确认接口
 aliases: []
 related_services:
 - svc_kyc
-related_tables: []
+related_tables:
+- tbl_kyc_tr_biz_record_change_mobile
 related_scenarios: []
 ---
 

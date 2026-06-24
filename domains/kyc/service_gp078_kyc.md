@@ -14,7 +14,7 @@ layer: 风控/合规/KYC
 name: kyc
 dev_owner: 沈纲领
 aliases: [gp078_kyc]
-related_services: [svc_member, svc_outman, svc_acs, svc_pts]
+related_services: [svc_member, svc_outman, svc_acs, svc_mns_main, svc_pts]
 related_tables: []
 related_scenarios: []
 ---
@@ -33,8 +33,9 @@ related_scenarios: []
 - 业务域:`kyc`(owner xinwei.cao / dev 沈纲领)
 
 ## 关联关系
-**调用(下游):** [[svc_member]] 会员账户(188462 次)、[[svc_outman]](11206)、[[svc_acs]] 风控(5046)、[[svc_pts]](4)。
-**被调用(上游):** merchant-frontend。
+**调用(下游):** [[svc_member]] 会员账户(8.4万/7d)、[[svc_outman]] 文件/影像(5062)、[[svc_acs]] 风控(996)、[[svc_mns_main]] 消息通知(470)、bps(6,未入 catalog)、[[svc_pts]](4)。
+**被调用(上游):** `member-front`(1.7万/7d)、`grc-check-identity-provider`(1608,风控身份核验)、`personal`(1072)、[[svc_mssii]](788)、`member`(272)。
+> 频次来源:UAT Kibana 7d 实测(2026-06-24,`*ClientImpl` 聚合);此前 120d 宽窗口频次见 git 历史。outman 取图失败见 [[ts_kyc_outman_file_download_failed]]。
 
 ## 涉及的 API / 接口
 实名认证两条 journey + 通用查询,共 33 个接口(每个的**完整规格——路径/入参/出参/错误码/校验点——见对应接口对象**):

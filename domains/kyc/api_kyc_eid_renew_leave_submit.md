@@ -19,7 +19,8 @@ aliases:
 - Leave kyc
 related_services:
 - svc_kyc
-related_tables: []
+related_tables:
+- tbl_kyc_tr_leave_record
 related_scenarios: []
 ---
 

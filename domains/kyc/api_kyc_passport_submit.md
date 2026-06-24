@@ -20,7 +20,9 @@ aliases:
 - /kyc/passport/v1/submit-passport
 related_services:
 - svc_kyc
-related_tables: []
+related_tables:
+- tbl_kyc_tm_biz_record
+- tbl_kyc_tr_biz_record_passport
 related_scenarios: []
 ---
 

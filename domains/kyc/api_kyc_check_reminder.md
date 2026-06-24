@@ -20,7 +20,9 @@ aliases:
 - KYC Reminder
 related_services:
 - svc_kyc
-related_tables: []
+related_tables:
+- tbl_kyc_tm_eid_expiry_notify_event
+- tbl_kyc_tm_pp_expiry_notify_event
 related_scenarios:
 - scn_kyc_status_inquire
 ---

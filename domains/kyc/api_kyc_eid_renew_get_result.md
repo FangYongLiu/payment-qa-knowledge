@@ -20,7 +20,9 @@ aliases:
 - Get result
 related_services:
 - svc_kyc
-related_tables: []
+related_tables:
+- tbl_kyc_tm_kyc_apply
+- tbl_kyc_tm_biz_record
 related_scenarios: []
 ---
 

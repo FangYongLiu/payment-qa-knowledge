@@ -19,7 +19,8 @@ aliases:
 - Retake selfie
 related_services:
 - svc_kyc
-related_tables: []
+related_tables:
+- tbl_kyc_tr_biz_record_passport_live
 related_scenarios: []
 ---
 

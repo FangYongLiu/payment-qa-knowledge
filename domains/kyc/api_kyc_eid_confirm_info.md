@@ -20,7 +20,10 @@ aliases:
 - confirm-info
 related_services:
 - svc_kyc
-related_tables: []
+related_tables:
+- tbl_kyc_tm_kyc_apply
+- tbl_kyc_tr_biz_record_ica
+- tbl_kyc_tr_biz_record_ocr
 related_scenarios:
 - scn_kyc_eid_full_journey
 ---
