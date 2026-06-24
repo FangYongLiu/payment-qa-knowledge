@@ -14,6 +14,7 @@ name: qpay-cko
 aliases: [gp221_qpay-cko]
 related_services: [svc_cards, svc_grc_check_identity_provider]
 related_tables: []
+related_scenarios: [scn_channel_fund_in]
 ---
 
 # qpay-cko

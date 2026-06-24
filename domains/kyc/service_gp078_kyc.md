@@ -16,7 +16,7 @@ dev_owner: Gangling.Shen
 aliases: [gp078_kyc]
 related_services: [svc_member, svc_outman, svc_acs, svc_mns_main, svc_pts]
 related_tables: []
-related_scenarios: []
+related_scenarios: [scn_wallet_account_mgmt, scn_wallet_zand_iban_migration]
 ---
 
 # kyc

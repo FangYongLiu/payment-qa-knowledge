@@ -15,6 +15,7 @@ dev_owner: Qian.Wang
 aliases: [gp149_vis]
 related_services: [svc_voucher, svc_pfs_payment, svc_grc_check_identity_provider, svc_query, svc_deposit, svc_pns, svc_member, svc_reconciliation, svc_qpay_fts]
 related_tables: []
+related_scenarios: [scn_wallet_zand_iban_migration]
 ---
 
 # vis

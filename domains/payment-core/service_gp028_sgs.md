@@ -15,7 +15,7 @@ dev_owner: Yongxing.Cao
 aliases: [gp028_sgs]
 related_services: []
 related_tables: []
-related_scenarios: [scn_online_business_direct_pay]
+related_scenarios: [scn_online_business_direct_pay, scn_wallet_account_mgmt]
 ---
 
 # sgs

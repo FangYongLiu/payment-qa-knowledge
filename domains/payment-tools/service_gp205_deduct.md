@@ -15,7 +15,7 @@ dev_owner: Guoyou.Ma
 aliases: [gp205_deduct]
 related_services: [svc_member, svc_protocol, svc_tradeii, svc_acs, svc_voucher, svc_pns, svc_cashdesk_api, svc_grc_check_identity_provider, svc_authpay, svc_mns_main, svc_cmf]
 related_tables: []
-related_scenarios: [scn_online_business_auto_debit]
+related_scenarios: [scn_online_business_auto_debit, scn_payment_tools_deduct_channel]
 ---
 
 # deduct
