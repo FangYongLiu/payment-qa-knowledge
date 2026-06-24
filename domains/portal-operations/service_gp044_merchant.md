@@ -45,5 +45,11 @@ merchant-frontend, merchant-fundout, cashierii, mssii, fundout, device
 - §2. 收银台 / 收银（`test_bpg_paypage` 收银侧、cashier 用例）
 - §5. 银行/卡转账、出款（`test_transfer_to_bank` / `test_transfer_to_card`）
 
-## 观测到的对外方法
+## 关键方法 / 入口
 queryStaffPage, getStaff
+
+## 测试要点 / 排障 / 常见问题
+- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
+
+## 来源与置信
+- UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp044` · domain=`portal-operations`。

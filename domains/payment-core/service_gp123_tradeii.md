@@ -54,5 +54,15 @@ acquireii, cashierii, cashdesk-api, remittance, merchant-fundout, deduct
 - §3. 自动代扣 / 签约（`test_auto_debit`）
 - §7. 跨境汇款（toC，`test_remittance`）
 
-## 观测到的对外方法
+## 关键方法 / 入口
 queryTradeOrder, queryRefundOrder, createCashierTrade, refund
+
+## 涉及的 API / 数据库表
+- **暴露/相关 API**:待补
+- **读写的表**:待补
+
+## 测试要点 / 排障 / 常见问题
+- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
+
+## 来源与置信
+- UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp123` · domain=`payment-core`。

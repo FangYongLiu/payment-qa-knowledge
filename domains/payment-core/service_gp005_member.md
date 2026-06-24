@@ -55,5 +55,11 @@ remittance, pfs-payment, reconciliation, credit-business, merchant-frontend, tra
 - §9. 登录 / KYC / 绑卡（basic_cases：`test_login` / `test_*eid*` / `test_bankcards`）
 - §10. 红包 / 社交支付、生活缴费、VAM（toC：`test_red_pkg` / `test_friend_transfer` / `test_vam` / 充值）
 
-## 观测到的对外方法
+## 关键方法 / 入口
 queryAccountById, queryMemberIntegratedInfo, openAccount, queryAccountByMemberId, checkPassword, queryBeneficiaryConfig
+
+## 测试要点 / 排障 / 常见问题
+- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
+
+## 来源与置信
+- UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp005` · domain=`payment-core`。

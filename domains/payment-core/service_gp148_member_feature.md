@@ -33,3 +33,16 @@ related_tables: []
 - [[svc_acs]] acs（反欺诈 / 风控 + 渠道密钥） · 18 次 · high
 - [[svc_member_front]] member-front（会员前置服务） · 6 次 · high
 - [[svc_grc_check_identity_provider]] grc-check-identity-provider（风控合规身份校验） · 4 次 · med·待核实
+
+## 涉及的 API / 数据库表
+- **暴露/相关 API**:待补
+- **读写的表**:待补
+
+## 关键方法 / 入口
+- 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。
+
+## 测试要点 / 排障 / 常见问题
+- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
+
+## 来源与置信
+- UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp148` · domain=`payment-core`。
