@@ -1,15 +1,16 @@
 ---
 id: svc_botim_snpl
 object_type: Service
-domain: service-catalog
+domain: quantix
 status: draft
-owner: unassigned
-reviewer: unassigned
+owner: Xiaopei.Yan
+reviewer: Xiaopei.Yan
 last_reviewed_at: '2026-06-24'
 source_type: callgraph_observed
 source_ref: SERVICE_CALLGRAPH_UAT_20260623.md
 tags: []
 name: botim-snpl
+dev_owner: Xiaopei.Yan
 aliases: [botim-snpl]
 related_services: [svc_member, svc_pns]
 related_tables: []
@@ -17,13 +18,13 @@ related_tables: []
 
 # botim-snpl
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`` · domain=`quantix`。
 
 ## 作用
 botim-snpl  **(据名推断 · 待核实:无作用文字证据,但下方有观测到的调用关系)**
 
 ## 系统中的位置
-- 业务域:`service-catalog`
+- 业务域:`quantix`
 
 ## 关联关系
 **调用(下游)—— 本服务依赖:**

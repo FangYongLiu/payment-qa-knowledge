@@ -11,7 +11,7 @@ last_reviewed_at: '2026-06-24'
 source_type: app_inventory
 source_ref: SYSTEM_APP_INVENTORY.md
 tags: [quantix, 信贷, paylater, 先买后付]
-related_services: [svc_paylater, svc_credit_business, svc_cqm, svc_cbm]
+related_services: [svc_paylater, svc_credit_business, svc_cqm, svc_cbm, svc_botim_credit, svc_botim_snpl]
 ---
 
 # quantix(信贷业务)
