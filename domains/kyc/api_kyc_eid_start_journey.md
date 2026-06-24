@@ -20,7 +20,8 @@ aliases:
 - start-journey
 related_services:
 - svc_kyc
-related_tables: []
+related_tables:
+- tbl_kyc_tm_kyc_apply
 related_scenarios:
 - scn_kyc_eid_full_journey
 - scn_kyc_eid_leave

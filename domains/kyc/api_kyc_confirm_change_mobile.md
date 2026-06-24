@@ -21,7 +21,9 @@ aliases:
 - confirm-change-mobile
 related_services:
 - svc_kyc
-related_tables: []
+related_tables:
+- tbl_kyc_tr_biz_record_change_mobile
+- tbl_kyc_tm_kyc_apply
 related_scenarios: []
 ---
 

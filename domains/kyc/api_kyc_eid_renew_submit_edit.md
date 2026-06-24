@@ -20,7 +20,9 @@ name: 提交修改后EID信息接口
 aliases: []
 related_services:
 - svc_kyc
-related_tables: []
+related_tables:
+- tbl_kyc_tm_biz_record
+- tbl_kyc_tr_biz_record_ocr
 related_scenarios: []
 ---
 

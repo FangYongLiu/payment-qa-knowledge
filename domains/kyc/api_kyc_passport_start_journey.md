@@ -21,7 +21,8 @@ aliases:
 - Start Passport Kyc journey
 related_services:
 - svc_kyc
-related_tables: []
+related_tables:
+- tbl_kyc_tm_kyc_apply
 related_scenarios: []
 ---
 

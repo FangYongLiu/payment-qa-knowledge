@@ -20,7 +20,9 @@ aliases:
 - /kyc/active-account/v1/kyc/inquire-info
 related_services:
 - svc_kyc
-related_tables: []
+related_tables:
+- tbl_kyc_tm_kyc_apply
+- tbl_kyc_tm_biz_record
 related_scenarios:
 - scn_kyc_status_inquire
 - scn_kyc_eid_full_journey
