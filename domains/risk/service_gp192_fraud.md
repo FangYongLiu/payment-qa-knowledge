@@ -11,7 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp192
 name: fraud
-dev_owner: 沈纲领
+dev_owner: Gangling.Shen
 aliases: [gp192_fraud]
 related_services: [svc_member, svc_outman]
 related_tables: []

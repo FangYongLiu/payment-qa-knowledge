@@ -11,7 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp008
 name: acs
-dev_owner: 喻赛
+dev_owner: Yongxing.Cao
 aliases: [gp008_acs]
 related_services: []
 related_tables: []

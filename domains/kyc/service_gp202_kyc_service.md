@@ -12,7 +12,7 @@ tags: []
 app_group: gp202
 layer: 风控/合规/KYC
 name: kyc-service
-dev_owner: 沈纲领
+dev_owner: Gangling.Shen
 aliases: [gp202_kyc-service]
 related_services: [svc_member]
 related_tables: []
@@ -53,4 +53,4 @@ aml, basis
 
 ## 来源与置信
 - **下游调用 + 频次**:UAT Kibana 120d 宽窗口 trace(observed,候选待人审)。
-- **作用 / API / 表 / 方法**:大部分**待补**——本服务观测稀,需 owner(xinwei.cao)/ dev(沈纲领)确认。
+- **作用 / API / 表 / 方法**:大部分**待补**——本服务观测稀,需 owner(xinwei.cao)/ dev(Gangling.Shen)确认。

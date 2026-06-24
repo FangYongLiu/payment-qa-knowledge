@@ -11,7 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp014
 name: pfs-payment
-dev_owner: 李德文
+dev_owner: Dewen.Li
 aliases: [gp014_pfs-payment]
 related_services: [svc_dpm_manager, svc_member, svc_payment]
 related_tables: []

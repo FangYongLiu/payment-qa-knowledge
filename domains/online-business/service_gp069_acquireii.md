@@ -11,7 +11,8 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp069
 name: acquireii
-dev_owner: 王斌
+subdomain: acquiring
+dev_owner: Sijia.Zhang
 aliases: [gp069_acquireii]
 related_services: [svc_tradeii, svc_voucher, svc_cmf, svc_ppcenter, svc_ues_ws, svc_member, svc_marketing, svc_device, svc_merchant, svc_offline_payment, svc_deposit]
 related_tables: []

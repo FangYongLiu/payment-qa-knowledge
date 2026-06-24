@@ -12,7 +12,7 @@ tags: []
 app_group: gp078
 layer: 风控/合规/KYC
 name: kyc
-dev_owner: 沈纲领
+dev_owner: Gangling.Shen
 aliases: [gp078_kyc]
 related_services: [svc_member, svc_outman, svc_acs, svc_pts]
 related_tables: []
@@ -21,7 +21,7 @@ related_scenarios: []
 
 # kyc
 
-> 来源:UAT Kibana trace(宽窗口)+ 接口文档整合。app_group=`gp078` · domain=`kyc` · dev_owner=沈纲领。
+> 来源:UAT Kibana trace(宽窗口)+ 接口文档整合。app_group=`gp078` · domain=`kyc` · dev_owner=Gangling.Shen。
 
 ## 作用
 实名认证(KYC)核心服务:支撑 **EID(阿联酋身份证)** 与 **Passport(护照)** 两类实名认证 journey
@@ -30,7 +30,7 @@ related_scenarios: []
 
 ## 系统中的位置
 - 功能层:风控 / 合规 / KYC
-- 业务域:`kyc`(owner xinwei.cao / dev 沈纲领)
+- 业务域:`kyc`(owner xinwei.cao / dev Gangling.Shen)
 
 ## 关联关系
 **调用(下游):** [[svc_member]] 会员账户(188462 次)、[[svc_outman]](11206)、[[svc_acs]] 风控(5046)、[[svc_pts]](4)。

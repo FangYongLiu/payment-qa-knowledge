@@ -97,6 +97,46 @@
   owner: dewen.li
   reviewer: dewen.li
 
+- id: domain_crypto
+  object_type: Domain
+  name: crypto
+  domain: crypto
+  status: active
+  owner: unassigned
+  reviewer: unassigned
+
+- id: domain_marketing
+  object_type: Domain
+  name: marketing
+  domain: marketing
+  status: active
+  owner: unassigned
+  reviewer: unassigned
+
+- id: domain_channel
+  object_type: Domain
+  name: channel
+  domain: channel
+  status: active
+  owner: unassigned
+  reviewer: unassigned
+
+- id: domain_infrastructure
+  object_type: Domain
+  name: infrastructure
+  domain: infrastructure
+  status: active
+  owner: unassigned
+  reviewer: unassigned
+
+- id: domain_quantix
+  object_type: Domain
+  name: quantix
+  domain: quantix
+  status: active
+  owner: Xiaopei.Yan
+  reviewer: Xiaopei.Yan
+
 - id: domain_service_catalog
   object_type: Domain
   name: service-catalog

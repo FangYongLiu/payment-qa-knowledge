@@ -11,7 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp002
 name: cmf
-dev_owner: 张鹤飞
+dev_owner: Hefei.Zhang
 aliases: [gp002_cmf]
 related_services: [svc_router, svc_cards, svc_member, svc_grc_check_identity_provider, svc_exchange, svc_ues_ws, svc_cashdesk_api, svc_acs, svc_counter, svc_escrow]
 related_tables: []

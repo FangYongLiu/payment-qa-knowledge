@@ -11,7 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp093
 name: cards
-dev_owner: 王迁
+dev_owner: Qian.Wang
 aliases: [gp093_cards]
 related_services: []
 related_tables: []

@@ -11,7 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp188
 name: remittance
-dev_owner: 喻赛
+dev_owner: Wujiang.Ding
 aliases: [gp188_remittance]
 related_services: [svc_member, svc_router, svc_acs, svc_cms, svc_grc_check_identity_provider, svc_paylater, svc_tradeii, svc_voucher, svc_pns, svc_reconciliation, svc_query, svc_aml, svc_protocol, svc_ufs2]
 related_tables: []

@@ -11,7 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp079
 name: grc-check-identity-provider
-dev_owner: 李德文
+dev_owner: Dewen.Li
 aliases: [gp079_grc-check-identity-provider]
 related_services: [svc_member, svc_kyc, svc_gadget, svc_merchant]
 related_tables: []
