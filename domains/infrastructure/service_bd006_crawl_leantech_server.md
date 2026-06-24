@@ -1,7 +1,7 @@
 ---
-id: svc_mysql_member_sync
+id: svc_crawl_leantech_server
 object_type: Service
-domain: service-catalog
+domain: infrastructure
 status: active
 owner: unassigned
 reviewer: unassigned
@@ -9,22 +9,23 @@ last_reviewed_at: '2026-06-23'
 source_type: app_inventory
 source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
-app_group: bd002
-name: mysql-member-sync
-aliases: [bd002_mysql-member-sync]
+app_group: bd006
+name: crawl-leantech-server
+dev_owner: Yunfei.Ma
+aliases: [bd006_crawl-leantech-server]
 related_services: []
 related_tables: []
 ---
 
-# mysql-member-sync
+# crawl-leantech-server
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`bd002` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`bd006` · domain=`infrastructure`。
 
 ## 作用
 (本窗口未观测到该服务的运行时活动,作用待业务补充。)
 
 ## 系统中的位置
-- 业务域:`service-catalog`
+- 业务域:`infrastructure`
 
 ## 关联关系
 (本窗口未观测到与其它服务的调用关系)

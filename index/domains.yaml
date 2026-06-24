@@ -97,6 +97,14 @@
   owner: dewen.li
   reviewer: dewen.li
 
+- id: domain_infrastructure
+  object_type: Domain
+  name: infrastructure
+  domain: infrastructure
+  status: active
+  owner: unassigned
+  reviewer: unassigned
+
 - id: domain_quantix
   object_type: Domain
   name: quantix

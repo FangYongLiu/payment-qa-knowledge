@@ -1,7 +1,7 @@
 ---
-id: svc_elasticjob_console
+id: svc_spring_cloud_config
 object_type: Service
-domain: service-catalog
+domain: infrastructure
 status: active
 owner: unassigned
 reviewer: unassigned
@@ -9,22 +9,23 @@ last_reviewed_at: '2026-06-23'
 source_type: app_inventory
 source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
-app_group: gp021
-name: elasticjob-console
-aliases: [gp021_elasticjob-console]
+app_group: gp019
+name: spring-cloud-config
+dev_owner: Cong.Zhou
+aliases: [gp019_spring-cloud-config]
 related_services: []
 related_tables: []
 ---
 
-# elasticjob-console
+# spring-cloud-config
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp021` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp019` · domain=`infrastructure`。
 
 ## 作用
 (本窗口未观测到该服务的运行时活动,作用待业务补充。)
 
 ## 系统中的位置
-- 业务域:`service-catalog`
+- 业务域:`infrastructure`
 
 ## 关联关系
 (本窗口未观测到与其它服务的调用关系)
