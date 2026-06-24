@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp283
 name: pcbs
+subdomain: transaction
 aliases: [gp283_pcbs]
 related_services: [svc_member]
 related_tables: []

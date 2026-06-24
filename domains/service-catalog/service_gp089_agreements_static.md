@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp089
 name: agreements-static
+subdomain: misc
 aliases: [gp089_agreements-static]
 related_services: []
 related_tables: []

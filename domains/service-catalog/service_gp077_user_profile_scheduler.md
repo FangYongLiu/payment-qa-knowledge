@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp077
 name: user-profile-scheduler
+subdomain: member-account
 aliases: [gp077_user-profile-scheduler]
 related_services: []
 related_tables: []

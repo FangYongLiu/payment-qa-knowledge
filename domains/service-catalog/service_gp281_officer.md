@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp281
 name: officer
+subdomain: member-account
 aliases: [gp281_officer]
 related_services: []
 related_tables: []

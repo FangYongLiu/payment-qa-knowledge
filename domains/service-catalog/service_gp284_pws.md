@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp284
 name: pws
+subdomain: transaction
 aliases: [gp284_pws]
 related_services: []
 related_tables: []

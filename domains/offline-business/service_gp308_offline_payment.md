@@ -1,10 +1,10 @@
 ---
 id: svc_offline_payment
 object_type: Service
-domain: service-catalog
+domain: offline-business
 status: active
-owner: unassigned
-reviewer: unassigned
+owner: xiaoqian.wei,wanmei.ding
+reviewer: xiaoqian.wei,wanmei.ding
 last_reviewed_at: '2026-06-23'
 source_type: app_inventory
 source_ref: SYSTEM_APP_INVENTORY.md
@@ -18,14 +18,14 @@ related_tables: []
 
 # offline-payment
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp308` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp308` · domain=`offline-business`。
 
 ## 作用
 线下支付（扫码 / POS 收款），编排 pfs/member/voucher/pbs
 
 ## 系统中的位置
 - 功能层:收单 / 收银 (Acquiring / Cashier)
-- 业务域:`service-catalog`
+- 业务域:`offline-business`
 
 ## 关联关系
 **调用(下游)—— 本服务依赖:**

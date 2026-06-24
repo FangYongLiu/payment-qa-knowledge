@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: rt002
 name: afis
+subdomain: risk-compliance
 aliases: [rt002_afis]
 related_services: []
 related_tables: []
