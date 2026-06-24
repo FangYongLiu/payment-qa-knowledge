@@ -41,8 +41,11 @@ fraud, kyc, member-task
 - **读写的表**:待补
 
 ## 关键方法 / 入口
-- 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。
-
+**UAT Kibana 7d INFO 观测的主要业务类**(app_id=`outman`,=实际在跑的业务操作 / 入口):
+- `UfsServiceClientImpl`×113,915 — 调 UFS 文件存储
+- `LoopInvokeRouter`×188,390 — 循环调用路由
+- `CachedChannelManager`×99,434 — 通道缓存管理
+- (类名为 Dubbo/RPC 处理器/门面;次数为 7d 调用量级,反映主链路。)
 ## 测试要点 / 排障 / 常见问题
 
 **UAT Kibana 7d 错误观测**(自动回归 + UAT 流量,app_id=`outman`):

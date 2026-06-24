@@ -57,8 +57,13 @@ remittance, pfs-payment, reconciliation, credit-business, merchant-frontend, tra
 - §10. 红包 / 社交支付、生活缴费、VAM（toC：`test_red_pkg` / `test_friend_transfer` / `test_vam` / 充值）
 
 ## 关键方法 / 入口
-queryAccountById, queryMemberIntegratedInfo, openAccount, queryAccountByMemberId, checkPassword, queryBeneficiaryConfig
-
+**UAT Kibana 7d INFO 观测的主要业务类**(app_id=`member`,=实际在跑的业务操作 / 入口):
+- `QueryMemberIntegratedInfoByIdProcessor`×2,013,365 — 会员综合信息查询
+- `QueryKycInfoProcessor`×1,199,127 — KYC 信息查询
+- `DpmAccountClientImpl`×1,125,316 — 账户(dpm)查询
+- `QueryMemberDecipherInfoProcessor`×462,530 — 会员敏感信息解密查询
+- `AccountClientHolder`×1,145,508 — 账户客户端
+- (类名为 Dubbo/RPC 处理器/门面;次数为 7d 调用量级,反映主链路。)
 ## 测试要点 / 排障 / 常见问题
 
 **UAT Kibana 7d 错误观测**(自动回归 + UAT 流量,app_id=`member`):

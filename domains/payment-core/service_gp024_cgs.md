@@ -35,8 +35,12 @@ related_tables: []
 - **读写的表**:待补
 
 ## 关键方法 / 入口
-- 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。
-
+**UAT Kibana 7d INFO 观测的主要业务类**(app_id=`cgs`,=实际在跑的业务操作 / 入口):
+- `ReceiveOrderServiceImpl`×1,064,283 — 收单/收银下单受理(网关核心)
+- `AppServiceImpl`×500,382 — 应用服务
+- `AcsGatewayApiServiceImpl`×25,974 — ACS 风控网关
+- `PtsClient`×18,628 — PTS 调用
+- (类名为 Dubbo/RPC 处理器/门面;次数为 7d 调用量级,反映主链路。)
 ## 测试要点 / 排障 / 常见问题
 
 **UAT Kibana 7d 错误观测**(自动回归 + UAT 流量,app_id=`cgs`):

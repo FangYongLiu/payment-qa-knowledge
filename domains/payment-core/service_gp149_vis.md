@@ -51,8 +51,13 @@ fundout
 - §10. 红包 / 社交支付、生活缴费、VAM（toC：`test_red_pkg` / `test_friend_transfer` / `test_vam` / 充值）
 
 ## 关键方法 / 入口
-- 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。
-
+**UAT Kibana 7d INFO 观测的主要业务类**(app_id=`vis`,=实际在跑的业务操作 / 入口):
+- `QueryMigrateTpStaProvider`×57,075 — ZAND 迁移状态查询
+- `AbstractMigrateJob`×48,503 — ZAND 迁移任务
+- `TransAuditRecordHandlerJob`×46,245 — 流水审计
+- `VoucherClientImpl`×52,367 — 调 voucher
+- `PfsClientImpl`×48,968 — 调 pfs 清分
+- (类名为 Dubbo/RPC 处理器/门面;次数为 7d 调用量级,反映主链路。)
 ## 测试要点 / 排障 / 常见问题
 
 **UAT Kibana 7d 错误观测**(自动回归 + UAT 流量,app_id=`vis`):

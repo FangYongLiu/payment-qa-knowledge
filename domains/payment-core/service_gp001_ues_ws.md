@@ -34,8 +34,10 @@ related_tables: []
 wechat-channel, merchant-frontend, mns-main, escrow, acquireii, cashdesk-api
 
 ## 关键方法 / 入口
-saveDataByParam
-
+**UAT Kibana 7d INFO 观测的主要业务类**(app_id=`ues-ws`,=实际在跑的业务操作 / 入口):
+- `NettyServerHandler`×14,327 — Netty 长连接服务
+- `UpdateCertificationRoutine`×4,033 — 证书更新
+- (类名为 Dubbo/RPC 处理器/门面;次数为 7d 调用量级,反映主链路。)
 ## 涉及的 API / 数据库表
 - **暴露/相关 API**:待补
 - **读写的表**:待补

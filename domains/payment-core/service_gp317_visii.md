@@ -52,8 +52,11 @@ counter, fcw, npss
 - **读写的表**:待补
 
 ## 关键方法 / 入口
-- 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。
-
+**UAT Kibana 7d INFO 观测的主要业务类**(app_id=`visii`,=实际在跑的业务操作 / 入口):
+- `QueryVamAcctProcessor`×1,563,933 — VAM 虚拟账户查询
+- `PayByIbanNotifyListener`×1,027,682 — IBAN 入账通知监听
+- `VamAuthInfoQueryProcessor`×833,036 — VAM 鉴权信息查询
+- (类名为 Dubbo/RPC 处理器/门面;次数为 7d 调用量级,反映主链路。)
 ## 测试要点 / 排障 / 常见问题
 
 **UAT Kibana 7d 错误观测**(自动回归 + UAT 流量,app_id=`visii`):

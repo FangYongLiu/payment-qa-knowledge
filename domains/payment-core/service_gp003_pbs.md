@@ -41,8 +41,12 @@ fundout, offline-payment, tradeii, cashierii, cashdesk-api
 - §5. 银行/卡转账、出款（`test_transfer_to_bank` / `test_transfer_to_card`）
 
 ## 关键方法 / 入口
-pricingPayFee
-
+**UAT Kibana 7d INFO 观测的主要业务类**(app_id=`pbs`,=实际在跑的业务操作 / 入口):
+- `DefaultPricingFeeFacade`×86,840 — 定价算费门面
+- `PriceStrategyManagerProxyImpl`×46,455 — 定价策略管理
+- `AbstractLadderPriceCalFormula`×16,191 — 阶梯计价公式
+- `AcsClientImpl`×93,987 — 调 ACS
+- (类名为 Dubbo/RPC 处理器/门面;次数为 7d 调用量级,反映主链路。)
 ## 涉及的 API / 数据库表
 - **暴露/相关 API**:待补
 - **读写的表**:待补

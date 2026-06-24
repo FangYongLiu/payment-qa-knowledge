@@ -35,8 +35,11 @@ related_tables: []
 - **读写的表**:待补
 
 ## 关键方法 / 入口
-- 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。
-
+**UAT Kibana 7d INFO 观测的主要业务类**(app_id=`mcs`,=实际在跑的业务操作 / 入口):
+- `PushTokenManageFacadeImpl`×9,047 — 推送 token 管理
+- `MemberPushTokenValidateService`×5,143 — 推送 token 校验
+- `FcmPushMsgServiceImpl`×919 — FCM 推送
+- (类名为 Dubbo/RPC 处理器/门面;次数为 7d 调用量级,反映主链路。)
 ## 测试要点 / 排障 / 常见问题
 
 **UAT Kibana 7d 错误观测**(自动回归 + UAT 流量,app_id=`mcs`):

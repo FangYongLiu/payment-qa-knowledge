@@ -35,8 +35,12 @@ related_scenarios: [scn_online_business_direct_pay]
 **暴露 / 相关 API:** [[api_sgs_place_mobile_order_prepaid]] 预付话费下单接口
 
 ## 关键方法 / 入口
-- 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。
-
+**UAT Kibana 7d INFO 观测的主要业务类**(app_id=`sgs`,=实际在跑的业务操作 / 入口):
+- `ReceiveOrderServiceImpl`×178,517 — 收单下单受理
+- `SignServiceImpl`×178,518 — 网关签名验签
+- `ServerResponseUtil`×178,545 — 网关响应
+- `AcsGatewayApiServiceImpl`×32,561 — ACS 风控网关
+- (类名为 Dubbo/RPC 处理器/门面;次数为 7d 调用量级,反映主链路。)
 ## 测试要点 / 排障 / 常见问题
 
 **UAT Kibana 7d 错误观测**(自动回归 + UAT 流量,app_id=`sgs`):

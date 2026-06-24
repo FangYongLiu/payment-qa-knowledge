@@ -56,8 +56,13 @@ acquireii, cashierii, cashdesk-api, remittance, merchant-fundout, deduct
 - §7. 跨境汇款（toC，`test_remittance`）
 
 ## 关键方法 / 入口
-queryTradeOrder, queryRefundOrder, createCashierTrade, refund
-
+**UAT Kibana 7d INFO 观测的主要业务类**(app_id=`tradeii`,=实际在跑的业务操作 / 入口):
+- `QueryTradeOrderProcessor`×527,735 — 交易订单查询
+- `RefundTradeProcessor`×71,604 — 退款交易
+- `VoucherClientImpl`×371,068 — 调 voucher(全局ID/幂等)
+- `RiskManagerClientImpl`×133,591 — 调风控
+- `MemberClientImpl`×70,467 — 调会员
+- (类名为 Dubbo/RPC 处理器/门面;次数为 7d 调用量级,反映主链路。)
 ## 涉及的 API / 数据库表
 - **暴露/相关 API**:待补
 - **读写的表**:待补

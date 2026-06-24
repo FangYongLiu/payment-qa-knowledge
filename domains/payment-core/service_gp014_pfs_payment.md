@@ -43,8 +43,13 @@ offline-payment, vis, payment, tradeii, fundout, reconciliation
 - §5. 银行/卡转账、出款（`test_transfer_to_bank` / `test_transfer_to_card`）
 
 ## 关键方法 / 入口
-enterMulti
-
+**UAT Kibana 7d INFO 观测的主要业务类**(app_id=`pfs-payment`,=实际在跑的业务操作 / 入口):
+- `PaymentProcessService`×4,515,862 — 支付履约处理(核心)
+- `DefaultNotifyTask`×3,993,818 — 支付通知任务
+- `DpmClientImpl`×3,817,564 — 调账务 dpm
+- `MaClientImpl`×3,192,663 — 调会员账户 ma
+- `DefaultBizOrderRepository`×3,020,648 — 业务单仓储
+- (类名为 Dubbo/RPC 处理器/门面;次数为 7d 调用量级,反映主链路。)
 ## 涉及的 API / 数据库表
 - **暴露/相关 API**:待补
 - **读写的表**:待补

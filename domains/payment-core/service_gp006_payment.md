@@ -49,8 +49,12 @@ pfs-payment
 - §5. 银行/卡转账、出款（`test_transfer_to_bank` / `test_transfer_to_card`）
 
 ## 关键方法 / 入口
-- 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。
-
+**UAT Kibana 7d INFO 观测的主要业务类**(app_id=`payment`,=实际在跑的业务操作 / 入口):
+- `PaymentFacadeImpl`×473,715 — 支付门面(对外入口)
+- `ServiceProcessTemplate`×848,169 — 服务处理模板
+- `SessionOutTask`×2,437,957 — 会话超时任务
+- `DpmClientImpl`×725,036 — 调账务 dpm
+- (类名为 Dubbo/RPC 处理器/门面;次数为 7d 调用量级,反映主链路。)
 ## 测试要点 / 排障 / 常见问题
 
 **UAT Kibana 7d 错误观测**(自动回归 + UAT 流量,app_id=`payment`):
