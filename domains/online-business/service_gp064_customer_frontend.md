@@ -39,3 +39,16 @@ C 端用户前端 BFF
 - [[svc_cc_deposit]] cc-deposit（加密货币充值） · 12 次 · high
 - [[svc_kyc]] kyc（实名认证） · 12 次 · high
 - [[svc_cc_transfer]] cc-transfer · 9 次 · high
+
+## 涉及的 API / 数据库表
+- **暴露/相关 API**:待补
+- **读写的表**:待补
+
+## 关键方法 / 入口
+- 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。
+
+## 测试要点 / 排障 / 常见问题
+- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
+
+## 来源与置信
+- UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp064` · domain=`online-business`。

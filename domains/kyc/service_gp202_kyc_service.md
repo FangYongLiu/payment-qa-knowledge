@@ -54,3 +54,6 @@ aml, basis
 ## 来源与置信
 - **下游调用 + 频次**:UAT Kibana 120d 宽窗口 trace(observed,候选待人审)。
 - **作用 / API / 表 / 方法**:大部分**待补**——本服务观测稀,需 owner(xinwei.cao)/ dev(Gangling.Shen)确认。
+
+## 测试要点 / 排障 / 常见问题
+- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。

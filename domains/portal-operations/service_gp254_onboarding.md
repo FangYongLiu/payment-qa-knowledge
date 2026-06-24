@@ -41,3 +41,12 @@ router, qpay-mpgs
 ## 参与的业务场景(cgs 回归)
 - §4. 卡渠道入金 3DS（`test_mpgs_fundIn` / `test_cko_fundIn`）
 - §9. 登录 / KYC / 绑卡（basic_cases：`test_login` / `test_*eid*` / `test_bankcards`）
+
+## 关键方法 / 入口
+- 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。
+
+## 测试要点 / 排障 / 常见问题
+- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
+
+## 来源与置信
+- UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp254` · domain=`portal-operations`。

@@ -43,5 +43,11 @@ wechat-channel, pbs, iso8583-gateway, fundout, tradeii, marketing-event
 - §6. 提现（toC，`test_withdraw`）
 - §7. 跨境汇款（toC，`test_remittance`）
 
-## 观测到的对外方法
+## 关键方法 / 入口
 queryPartnerKey
+
+## 测试要点 / 排障 / 常见问题
+- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
+
+## 来源与置信
+- UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp008` · domain=`risk`。

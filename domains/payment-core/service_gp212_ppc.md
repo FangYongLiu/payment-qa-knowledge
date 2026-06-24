@@ -49,3 +49,12 @@ ppc  **(据名推断 · 待核实:无作用文字证据,但下方有观测到的
 
 ## 参与的业务场景(cgs 回归)
 - §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）
+
+## 关键方法 / 入口
+- 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。
+
+## 测试要点 / 排障 / 常见问题
+- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
+
+## 来源与置信
+- UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp212` · domain=`payment-core`。
