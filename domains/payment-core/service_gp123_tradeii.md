@@ -63,7 +63,11 @@ queryTradeOrder, queryRefundOrder, createCashierTrade, refund
 - **读写的表**:待补
 
 ## 测试要点 / 排障 / 常见问题
-- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
 
+**UAT Kibana 7d 错误观测**(自动回归 + UAT 流量,app_id=`tradeii`):
+- ERROR 2187 次,主要:`FundInValidateProcessor`×1366、`CheckDccAvailabilityProcessor`×356
+- WARN 565 次,主要:`AutoSettlePayStrategy`×25
+- ⚠️ 频次可能含 UAT 测试数据噪声,**真坑 vs 噪声需人工确认**;高频项见域级排障对象。
+- 更多 QA 校验点(怎么测 / 已知坑 / 典型故障定位)待补。
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp123` · domain=`payment-core`。

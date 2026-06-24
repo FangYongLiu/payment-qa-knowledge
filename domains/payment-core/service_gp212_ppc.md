@@ -54,7 +54,11 @@ ppc  **(据名推断 · 待核实:无作用文字证据,但下方有观测到的
 - 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。
 
 ## 测试要点 / 排障 / 常见问题
-- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
 
+**UAT Kibana 7d 错误观测**(自动回归 + UAT 流量,app_id=`ppc`):
+- ERROR 96604 次,主要:`CompensationEventExecutorImpl`×91129、`InstResponderServiceImpl`×4045
+- WARN 88889 次,主要:`RegisterPayrollCardRequester`×59232、`GatewayForwardRequester`×25826
+- ⚠️ 频次可能含 UAT 测试数据噪声,**真坑 vs 噪声需人工确认**;高频项见域级排障对象。
+- 更多 QA 校验点(怎么测 / 已知坑 / 典型故障定位)待补。
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp212` · domain=`payment-core`。

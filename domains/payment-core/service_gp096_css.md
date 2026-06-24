@@ -46,7 +46,9 @@ fundout, tradeii
 - 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。
 
 ## 测试要点 / 排障 / 常见问题
-- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
 
+**UAT Kibana 7d 错误观测**(app_id=`css`):
+- ERROR 15 / WARN 16 次,均为基础设施健康检查噪声,无显著业务错误。
+- QA 校验点(怎么测/已知坑)待补。
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp096` · domain=`payment-core`。
