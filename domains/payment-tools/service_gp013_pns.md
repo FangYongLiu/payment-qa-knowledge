@@ -19,14 +19,14 @@ related_tables: []
 
 # pns
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp013` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp013` · domain=`payment-tools`。
 
 ## 作用
 支付通知服务（notifyMerchant）—— 支付结果异步回调商户
 
 ## 系统中的位置
 - 功能层:通知 / 消息 (Notification)
-- 业务域:`service-catalog`
+- 业务域:`payment-tools`
 
 ## 关联关系
 

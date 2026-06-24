@@ -19,14 +19,14 @@ related_tables: []
 
 # member
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp005` · domain=`wallet`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp005` · domain=`payment-core`。
 
 ## 作用
 会员 / 账户核心 —— 开户 / 查账户 / 校验支付密码 / 受益人（openAccount/checkPassword/queryAccountById），下游 dpm-accounting
 
 ## 系统中的位置
 - 功能层:会员 / 账户 / 卡 / 协议 (Member / Account / Card)
-- 业务域:`wallet`
+- 业务域:`payment-core`
 
 ## 关联关系
 **调用(下游)—— 本服务依赖:**

@@ -19,14 +19,14 @@ related_tables: []
 
 # voucher
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp009` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp009` · domain=`risk`。
 
 ## 作用
 全局 ID 与幂等凭证（getGlobalId / recordReqVoucher）—— 被交易 / 收单 / 出款广泛调用的基础设施
 
 ## 系统中的位置
 - 功能层:客服 / 内容 / 查询 / 其他 (CS / Content / Query / Misc)
-- 业务域:`service-catalog`
+- 业务域:`risk`
 
 ## 关联关系
 

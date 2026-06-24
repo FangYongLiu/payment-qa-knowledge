@@ -19,14 +19,14 @@ related_tables: []
 
 # vis
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp149` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp149` · domain=`payment-core`。
 
 ## 作用
 （推断：虚拟账户 / 收款，调 voucher/pfs/deposit）  **(待核实:仅凭调用关系推断)**
 
 ## 系统中的位置
 - 功能层:客服 / 内容 / 查询 / 其他 (CS / Content / Query / Misc)
-- 业务域:`service-catalog`
+- 业务域:`payment-core`
 
 ## 关联关系
 **调用(下游)—— 本服务依赖:**

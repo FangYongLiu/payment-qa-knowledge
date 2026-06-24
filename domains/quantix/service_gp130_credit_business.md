@@ -19,14 +19,14 @@ related_tables: []
 
 # credit-business
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp130` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp130` · domain=`quantix`。
 
 ## 作用
 信贷业务（调 member(Ma)）
 
 ## 系统中的位置
 - 功能层:会员 / 账户 / 卡 / 协议 (Member / Account / Card)
-- 业务域:`service-catalog`
+- 业务域:`quantix`
 
 ## 关联关系
 **调用(下游)—— 本服务依赖:**

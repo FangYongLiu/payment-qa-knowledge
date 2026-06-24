@@ -19,14 +19,14 @@ related_tables: []
 
 # reconciliation
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp043` · domain=`payment-tools`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp043` · domain=`payment-core`。
 
 ## 作用
 对账 —— 拉 dpm/member/router/cmf 数据核对
 
 ## 系统中的位置
 - 功能层:出款 / 账务 / 对账 (Fundout / Accounting / Recon)
-- 业务域:`payment-tools`
+- 业务域:`payment-core`
 
 ## 关联关系
 **调用(下游)—— 本服务依赖:**

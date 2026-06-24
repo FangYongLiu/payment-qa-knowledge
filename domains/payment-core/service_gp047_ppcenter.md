@@ -19,14 +19,14 @@ related_tables: []
 
 # ppcenter
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp047` · domain=`payment-tools`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp047` · domain=`payment-core`。
 
 ## 作用
 产品中心（商户开通产品状态 queryMerchantOpenedProductStatus，被 acquire/device/merchant-fundout 调用）
 
 ## 系统中的位置
 - 功能层:营销 / 产品 / 报价 (Marketing / Product / Quote)
-- 业务域:`payment-tools`
+- 业务域:`payment-core`
 
 ## 关联关系
 **调用(下游)—— 本服务依赖:**

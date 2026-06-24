@@ -19,14 +19,14 @@ related_tables: []
 
 # counter
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp031` · domain=`payment-tools`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp031` · domain=`payment-core`。
 
 ## 作用
 账务记账（入账 Counter，被 payment 调用）
 
 ## 系统中的位置
 - 功能层:出款 / 账务 / 对账 (Fundout / Accounting / Recon)
-- 业务域:`payment-tools`
+- 业务域:`payment-core`
 
 ## 关联关系
 **调用(下游)—— 本服务依赖:**

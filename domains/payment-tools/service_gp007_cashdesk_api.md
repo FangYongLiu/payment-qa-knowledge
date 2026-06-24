@@ -19,14 +19,14 @@ related_tables: []
 
 # cashdesk-api
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp007` · domain=`payment-core`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp007` · domain=`payment-tools`。
 
 ## 作用
 统一收银台（Cashdesk）—— 收银台初始化 / 确认支付 / 协议签约 / 匿名卡支付（cardPayForAnonymous）
 
 ## 系统中的位置
 - 功能层:收单 / 收银 (Acquiring / Cashier)
-- 业务域:`payment-core`
+- 业务域:`payment-tools`
 
 ## 关联关系
 **调用(下游)—— 本服务依赖:**

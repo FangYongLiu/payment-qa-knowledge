@@ -19,14 +19,14 @@ related_tables: []
 
 # marketing
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp068` · domain=`payment-tools`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp068` · domain=`payment-core`。
 
 ## 作用
 营销服务（优惠 / 活动，被 acquire/cashdesk 调用）
 
 ## 系统中的位置
 - 功能层:营销 / 产品 / 报价 (Marketing / Product / Quote)
-- 业务域:`payment-tools`
+- 业务域:`payment-core`
 
 ## 关联关系
 

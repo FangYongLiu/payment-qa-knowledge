@@ -19,14 +19,14 @@ related_tables: []
 
 # cashierii
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp193` · domain=`payment-core`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp193` · domain=`payment-tools`。
 
 ## 作用
 收银核心（Cashier II）—— 下单 / 确认支付 / 查支付结果（queryPosPayResult），编排 tradeii/member/grc/authpay/cards
 
 ## 系统中的位置
 - 功能层:收单 / 收银 (Acquiring / Cashier)
-- 业务域:`payment-core`
+- 业务域:`payment-tools`
 
 ## 关联关系
 **调用(下游)—— 本服务依赖:**

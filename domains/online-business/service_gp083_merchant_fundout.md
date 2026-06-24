@@ -19,14 +19,14 @@ related_tables: []
 
 # merchant-fundout
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp083` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp083` · domain=`online-business`。
 
 ## 作用
 商户出款 / 结算代付，调 merchant/fundout(Fos)/voucher/ppcenter
 
 ## 系统中的位置
 - 功能层:出款 / 账务 / 对账 (Fundout / Accounting / Recon)
-- 业务域:`service-catalog`
+- 业务域:`online-business`
 
 ## 关联关系
 **调用(下游)—— 本服务依赖:**

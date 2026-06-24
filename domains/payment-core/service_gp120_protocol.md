@@ -19,14 +19,14 @@ related_tables: []
 
 # protocol
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp120` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp120` · domain=`payment-core`。
 
 ## 作用
 代扣 / 签约协议管理（被 cashdesk/cashier/deduct 调用）
 
 ## 系统中的位置
 - 功能层:会员 / 账户 / 卡 / 协议 (Member / Account / Card)
-- 业务域:`service-catalog`
+- 业务域:`payment-core`
 
 ## 关联关系
 

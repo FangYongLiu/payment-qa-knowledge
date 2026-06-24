@@ -19,14 +19,14 @@ related_tables: []
 
 # customer-frontend
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp064` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp064` · domain=`online-business`。
 
 ## 作用
 C 端用户前端 BFF
 
 ## 系统中的位置
 - 功能层:接入网关 / 前端 BFF (Gateway / Frontend)
-- 业务域:`service-catalog`
+- 业务域:`online-business`
 
 ## 关联关系
 **调用(下游)—— 本服务依赖:**

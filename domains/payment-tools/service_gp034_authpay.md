@@ -19,14 +19,14 @@ related_tables: []
 
 # authpay
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp034` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp034` · domain=`payment-tools`。
 
 ## 作用
 授权支付 / 免密代扣执行（被 cashier/cashdesk/trade 调用）
 
 ## 系统中的位置
 - 功能层:收单 / 收银 (Acquiring / Cashier)
-- 业务域:`service-catalog`
+- 业务域:`payment-tools`
 
 ## 关联关系
 

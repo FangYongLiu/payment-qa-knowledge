@@ -19,13 +19,13 @@ related_tables: []
 
 # gadget
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp185` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp185` · domain=`payment-tools`。
 
 ## 作用
 gadget  **(据名推断 · 待核实:无作用文字证据,但下方有观测到的调用关系)**
 
 ## 系统中的位置
-- 业务域:`service-catalog`
+- 业务域:`payment-tools`
 
 ## 关联关系
 

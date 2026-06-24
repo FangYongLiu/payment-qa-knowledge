@@ -19,14 +19,14 @@ related_tables: []
 
 # quotation
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp142` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp142` · domain=`online-business`。
 
 ## 作用
 报价服务（加密货币 / 汇率，调 asset-info、Binance 行情）
 
 ## 系统中的位置
 - 功能层:营销 / 产品 / 报价 (Marketing / Product / Quote)
-- 业务域:`service-catalog`
+- 业务域:`online-business`
 
 ## 关联关系
 **调用(下游)—— 本服务依赖:**

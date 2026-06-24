@@ -19,14 +19,14 @@ related_tables: []
 
 # authorization-service
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp060` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp060` · domain=`payment-core`。
 
 ## 作用
 授权服务（授权 token / 权限，推断）  **(待核实:仅凭调用关系推断)**
 
 ## 系统中的位置
 - 功能层:收单 / 收银 (Acquiring / Cashier)
-- 业务域:`service-catalog`
+- 业务域:`payment-core`
 
 ## 关联关系
 

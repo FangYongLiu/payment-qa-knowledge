@@ -19,14 +19,14 @@ related_tables: []
 
 # merchant-console-frontend
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp045` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp045` · domain=`online-business`。
 
 ## 作用
 商户控制台前端 BFF（商户后台操作入口）
 
 ## 系统中的位置
 - 功能层:接入网关 / 前端 BFF (Gateway / Frontend)
-- 业务域:`service-catalog`
+- 业务域:`online-business`
 
 ## 关联关系
 (本窗口未观测到与其它服务的调用关系)

@@ -19,14 +19,14 @@ related_tables: []
 
 # npss
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp222` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp222` · domain=`payment-core`。
 
 ## 作用
 即时支付 / 账单（NPSS，被 rtp 调用）
 
 ## 系统中的位置
 - 功能层:即时支付 / 账单 (NPSS / Bill / RTP)
-- 业务域:`service-catalog`
+- 业务域:`payment-core`
 
 ## 关联关系
 **调用(下游)—— 本服务依赖:**

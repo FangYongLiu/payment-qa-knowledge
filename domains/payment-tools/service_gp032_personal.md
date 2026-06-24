@@ -19,14 +19,14 @@ related_tables: []
 
 # personal
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp032` · domain=`wallet`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp032` · domain=`payment-tools`。
 
 ## 作用
 个人（C 端）账户服务 —— 登录 / 绑卡 / 转账 / 提现入口，调 member(Ma)/pts/acs/cmf
 
 ## 系统中的位置
 - 功能层:会员 / 账户 / 卡 / 协议 (Member / Account / Card)
-- 业务域:`wallet`
+- 业务域:`payment-tools`
 
 ## 关联关系
 **调用(下游)—— 本服务依赖:**

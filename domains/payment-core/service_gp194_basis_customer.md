@@ -19,13 +19,13 @@ related_tables: []
 
 # basis-customer
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp194` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp194` · domain=`payment-core`。
 
 ## 作用
 基础数据(Basis)（customer）  **(据名推断 · 待核实:无作用文字证据,但下方有观测到的调用关系)**
 
 ## 系统中的位置
-- 业务域:`service-catalog`
+- 业务域:`payment-core`
 
 ## 关联关系
 **调用(下游)—— 本服务依赖:**
