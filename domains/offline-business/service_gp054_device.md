@@ -11,7 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp054
 name: device
-dev_owner: 王斌
+dev_owner: Shuo.Wang
 aliases: [gp054_device]
 related_services: [svc_ppcenter, svc_merchant]
 related_tables: []

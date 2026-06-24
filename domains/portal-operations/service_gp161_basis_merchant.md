@@ -11,7 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp161
 name: basis-merchant
-dev_owner: 黄林伟
+dev_owner: Chahid
 aliases: [gp161_basis-merchant]
 related_services: [svc_member, svc_merchant, svc_device, svc_statementii, svc_onboarding, svc_aml, svc_cashierii]
 related_tables: []

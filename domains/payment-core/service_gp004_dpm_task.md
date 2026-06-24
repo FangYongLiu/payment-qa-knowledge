@@ -11,7 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp004
 name: dpm-task
-dev_owner: 周聪
+dev_owner: Cong.Zhou
 aliases: [gp004_dpm-task]
 related_services: []
 related_tables: []

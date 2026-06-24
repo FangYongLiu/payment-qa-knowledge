@@ -11,7 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp124
 name: router
-dev_owner: 张鹤飞
+dev_owner: Hefei.Zhang
 aliases: [gp124_router]
 related_services: [svc_onboarding, svc_cmf]
 related_tables: []

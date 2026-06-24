@@ -11,7 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp087
 name: qpay-mcii
-dev_owner: 张鹤飞
+dev_owner: Hefei.Zhang
 aliases: [gp087_qpay-mcii]
 related_services: []
 related_tables: []

@@ -11,7 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp071
 name: merchant-frontend
-dev_owner: 王斌
+dev_owner: Chahid
 aliases: [gp071_merchant-frontend]
 related_services: [svc_acquireii, svc_merchant, svc_pns, svc_ues_ws, svc_cards, svc_member, svc_fundout, svc_cashdesk_api, svc_statementii]
 related_tables: []

@@ -11,7 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp123
 name: tradeii
-dev_owner: 唐宇
+dev_owner: Yu.Tang
 aliases: [gp123_tradeii]
 related_services: [svc_voucher, svc_member, svc_cmf, svc_pfs_payment, svc_cashierii, svc_pbs, svc_acs, svc_cards, svc_css, svc_authpay, svc_cms, svc_deduct, svc_ppcenter, svc_merchant]
 related_tables: []

@@ -97,6 +97,14 @@
   owner: dewen.li
   reviewer: dewen.li
 
+- id: domain_quantix
+  object_type: Domain
+  name: quantix
+  domain: quantix
+  status: active
+  owner: Xiaopei.Yan
+  reviewer: Xiaopei.Yan
+
 - id: domain_service_catalog
   object_type: Domain
   name: service-catalog

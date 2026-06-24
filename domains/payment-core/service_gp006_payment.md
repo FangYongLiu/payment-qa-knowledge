@@ -11,7 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp006
 name: payment
-dev_owner: 李德文
+dev_owner: Dewen.Li
 aliases: [gp006_payment]
 related_services: [svc_dpm_manager, svc_cmf, svc_counter, svc_pfs_payment, svc_member]
 related_tables: []

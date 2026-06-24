@@ -11,7 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp004
 name: dpm-accounting
-dev_owner: 周聪
+dev_owner: Cong.Zhou
 aliases: [gp004_dpm-accounting]
 related_services: []
 related_tables: []

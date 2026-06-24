@@ -11,7 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp004
 name: dpm-manager
-dev_owner: 周聪
+dev_owner: Cong.Zhou
 aliases: [gp004_dpm-manager]
 related_services: []
 related_tables: []

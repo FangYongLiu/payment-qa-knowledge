@@ -11,7 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp079
 name: grc-engine-provider
-dev_owner: 李德文
+dev_owner: Dewen.Li
 aliases: [gp079_grc-engine-provider]
 related_services: []
 related_tables: []

@@ -11,7 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp140
 name: ccdpm-manager
-dev_owner: 周聪
+dev_owner: Cong.Zhou
 aliases: [gp140_ccdpm-manager]
 related_services: []
 related_tables: []

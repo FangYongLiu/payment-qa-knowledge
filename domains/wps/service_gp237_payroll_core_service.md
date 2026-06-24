@@ -11,7 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp237
 name: payroll-core-service
-dev_owner: 毕有为
+dev_owner: Youwei.Bi
 aliases: [gp237_payroll-core-service]
 related_services: []
 related_tables: []

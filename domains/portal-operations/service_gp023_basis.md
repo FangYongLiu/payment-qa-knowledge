@@ -11,7 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp023
 name: basis
-dev_owner: 夏一冰
+dev_owner: Chahid
 aliases: [gp023_basis]
 related_services: [svc_kyc_service, svc_ufs2, svc_member, svc_merchant, svc_tradeii]
 related_tables: []

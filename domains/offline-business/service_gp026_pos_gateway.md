@@ -11,7 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp026
 name: pos-gateway
-dev_owner: 王斌
+dev_owner: Shuo.Wang
 aliases: [gp026_pos-gateway]
 related_services: [svc_ues_ws, svc_cashdesk_api]
 related_tables: []

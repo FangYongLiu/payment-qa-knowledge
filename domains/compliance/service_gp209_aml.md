@@ -11,7 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp209
 name: aml
-dev_owner: 许广
+dev_owner: Chao.Li
 aliases: [gp209_aml]
 related_services: [svc_grc_check_identity_provider, svc_member, svc_remittance, svc_vis, svc_deposit, svc_kyc_service]
 related_tables: []
