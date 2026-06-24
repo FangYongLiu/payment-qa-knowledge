@@ -15,6 +15,7 @@ dev_owner: Guoyou.Ma
 aliases: [gp034_authpay]
 related_services: []
 related_tables: []
+related_scenarios: [scn_online_business_auto_debit]
 ---
 
 # authpay

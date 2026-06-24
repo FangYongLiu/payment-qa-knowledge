@@ -16,6 +16,7 @@ dev_owner: Sijia.Zhang
 aliases: [gp083_merchant-fundout]
 related_services: [svc_fundout, svc_merchant, svc_voucher, svc_tradeii, svc_ppcenter, svc_member, svc_cmf, svc_ues_ws, svc_pbs]
 related_tables: []
+related_scenarios: [scn_online_business_merchant_payout]
 ---
 
 # merchant-fundout

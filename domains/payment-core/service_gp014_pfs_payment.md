@@ -15,6 +15,7 @@ dev_owner: Dewen.Li
 aliases: [gp014_pfs-payment]
 related_services: [svc_dpm_manager, svc_member, svc_payment]
 related_tables: []
+related_scenarios: [scn_online_business_direct_pay, scn_online_business_merchant_split, scn_wallet_withdraw]
 ---
 
 # pfs-payment

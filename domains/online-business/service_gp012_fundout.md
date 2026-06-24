@@ -15,6 +15,7 @@ subdomain: fundout
 aliases: [gp012_fundout]
 related_services: [svc_member, svc_pbs, svc_pfs_payment, svc_css, svc_acs, svc_vis, svc_merchant, svc_voucher, svc_cards, svc_exchange, svc_cashierii, svc_ues_ws, svc_cmf]
 related_tables: []
+related_scenarios: [scn_online_business_merchant_payout]
 ---
 
 # fundout

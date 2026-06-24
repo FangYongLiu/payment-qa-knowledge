@@ -14,6 +14,7 @@ name: merchant
 aliases: [gp044_merchant]
 related_services: [svc_aml, svc_authorization_service, svc_statementii]
 related_tables: []
+related_scenarios: [scn_online_business_merchant_split]
 ---
 
 # merchant
