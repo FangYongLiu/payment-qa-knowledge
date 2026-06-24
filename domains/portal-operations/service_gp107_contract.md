@@ -1,16 +1,17 @@
 ---
 id: svc_contract
 object_type: Service
-domain: service-catalog
+domain: portal-operations
 status: active
-owner: unassigned
-reviewer: unassigned
+owner: yijian.tan
+reviewer: yijian.tan
 last_reviewed_at: '2026-06-23'
 source_type: app_inventory
 source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp107
 name: contract
+dev_owner: Chahid
 aliases: [gp107_contract]
 related_services: [svc_ues_ws]
 related_tables: []
@@ -18,13 +19,13 @@ related_tables: []
 
 # contract
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp107` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp107` · domain=`portal-operations`。
 
 ## 作用
 contract  **(据名推断 · 待核实:无作用文字证据,但下方有观测到的调用关系)**
 
 ## 系统中的位置
-- 业务域:`service-catalog`
+- 业务域:`portal-operations`
 
 ## 关联关系
 **调用(下游)—— 本服务依赖:**

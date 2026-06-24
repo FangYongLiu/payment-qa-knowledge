@@ -1,16 +1,17 @@
 ---
 id: svc_visii
 object_type: Service
-domain: service-catalog
+domain: payment-core
 status: active
-owner: unassigned
-reviewer: unassigned
+owner: xiaoyan.zhou
+reviewer: xiaoyan.zhou
 last_reviewed_at: '2026-06-23'
 source_type: app_inventory
 source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp317
 name: visii
+dev_owner: Qian.Wang,Giorgi.Kinkladze
 aliases: [gp317_visii]
 related_services: [svc_member, svc_qpay_fts, svc_grc_check_identity_provider, svc_voucher, svc_pns, svc_deposit, svc_cards, svc_fundout, svc_reconciliation, svc_pfs_payment]
 related_tables: []
@@ -18,14 +19,14 @@ related_tables: []
 
 # visii
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp317` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp317` · domain=`payment-core`。
 
 ## 作用
 （推断：虚拟账户 / 收款 II，调 fts/member）  **(待核实:仅凭调用关系推断)**
 
 ## 系统中的位置
 - 功能层:客服 / 内容 / 查询 / 其他 (CS / Content / Query / Misc)
-- 业务域:`service-catalog`
+- 业务域:`payment-core`
 
 ## 关联关系
 **调用(下游)—— 本服务依赖:**

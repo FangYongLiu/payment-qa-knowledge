@@ -1,16 +1,17 @@
 ---
 id: svc_statementii
 object_type: Service
-domain: service-catalog
+domain: online-business
 status: active
-owner: unassigned
-reviewer: unassigned
+owner: fangyong.liu
+reviewer: fangyong.liu
 last_reviewed_at: '2026-06-23'
 source_type: app_inventory
 source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp134
 name: statementii
+dev_owner: Shuo.Wang
 aliases: [gp134_statementii]
 related_services: [svc_merchant_settlement]
 related_tables: []
@@ -18,14 +19,14 @@ related_tables: []
 
 # statementii
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp134` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp134` · domain=`online-business`。
 
 ## 作用
 账单 / 对账单（Statement II），调 fund-charge-query/settlement/withdraw
 
 ## 系统中的位置
 - 功能层:出款 / 账务 / 对账 (Fundout / Accounting / Recon)
-- 业务域:`service-catalog`
+- 业务域:`online-business`
 
 ## 关联关系
 **调用(下游)—— 本服务依赖:**

@@ -1,16 +1,17 @@
 ---
 id: svc_deposit
 object_type: Service
-domain: service-catalog
+domain: payment-core
 status: active
-owner: unassigned
-reviewer: unassigned
+owner: xiaoyan.zhou
+reviewer: xiaoyan.zhou
 last_reviewed_at: '2026-06-23'
 source_type: app_inventory
 source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp011
 name: deposit
+dev_owner: Qian.Wang,Yu.Tang
 aliases: [gp011_deposit]
 related_services: [svc_cashierii, svc_tradeii, svc_acs]
 related_tables: []
@@ -18,14 +19,14 @@ related_tables: []
 
 # deposit
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp011` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp011` · domain=`payment-core`。
 
 ## 作用
 充值 / 存款服务（被 escrow/vis 调用，推断）  **(待核实:仅凭调用关系推断)**
 
 ## 系统中的位置
 - 功能层:会员 / 账户 / 卡 / 协议 (Member / Account / Card)
-- 业务域:`service-catalog`
+- 业务域:`payment-core`
 
 ## 关联关系
 **调用(下游)—— 本服务依赖:**
