@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp220
 name: youstore-installment
+subdomain: marketing
 aliases: [gp220_youstore-installment]
 related_services: []
 related_tables: []

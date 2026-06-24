@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp304
 name: pns-merchant-mocker
+subdomain: mock
 aliases: [gp304_pns-merchant-mocker]
 related_services: []
 related_tables: []

@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: rt004
 name: palm-id
+subdomain: risk-compliance
 aliases: [rt004_palm-id]
 related_services: []
 related_tables: []

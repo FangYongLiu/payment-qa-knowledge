@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp291
 name: rtp
+subdomain: transaction
 aliases: [gp291_rtp]
 related_services: [svc_npss, svc_pns, svc_voucher]
 related_tables: []

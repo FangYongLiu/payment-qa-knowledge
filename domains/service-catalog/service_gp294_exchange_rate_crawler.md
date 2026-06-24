@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp294
 name: exchange-rate-crawler
+subdomain: misc
 aliases: [gp294_exchange-rate-crawler]
 related_services: []
 related_tables: []

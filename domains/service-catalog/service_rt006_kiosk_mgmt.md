@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: rt006
 name: kiosk-mgmt
+subdomain: misc
 aliases: [rt006_kiosk-mgmt]
 related_services: []
 related_tables: []

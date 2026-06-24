@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp225
 name: asite
+subdomain: misc
 aliases: [gp225_asite]
 related_services: []
 related_tables: []

@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp292
 name: tld-service
+subdomain: misc
 aliases: [gp292_tld-service]
 related_services: []
 related_tables: []

@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp223
 name: mock-datawire
+subdomain: mock
 aliases: [gp223_mock-datawire]
 related_services: []
 related_tables: []

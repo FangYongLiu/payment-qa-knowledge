@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp286
 name: adg
+subdomain: merchant-portal
 aliases: [gp286_adg]
 related_services: []
 related_tables: []

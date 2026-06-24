@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp278
 name: customer-service
+subdomain: member-account
 aliases: [gp278_customer-service]
 related_services: [svc_ues_ws]
 related_tables: []

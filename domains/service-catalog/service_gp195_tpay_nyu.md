@@ -11,6 +11,7 @@ source_ref: SYSTEM_APP_INVENTORY.md
 tags: []
 app_group: gp195
 name: tpay-nyu
+subdomain: misc
 aliases: [gp195_tpay-nyu]
 related_services: []
 related_tables: []
