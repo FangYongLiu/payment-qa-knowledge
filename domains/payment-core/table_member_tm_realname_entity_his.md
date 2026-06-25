@@ -14,7 +14,7 @@ tags:
 - tm_realname_entity_his
 subdomain: kyc-verify
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: Real name info history table(tm_realname_entity_his)
 aliases:
 - tm_realname_entity_his

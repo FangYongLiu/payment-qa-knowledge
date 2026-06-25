@@ -14,7 +14,7 @@ tags:
 - tr_beneficiary_info
 subdomain: beneficiary
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: 受益人卡信息表(tr_beneficiary_info)
 aliases:
 - tr_beneficiary_info

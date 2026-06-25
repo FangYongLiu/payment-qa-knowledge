@@ -14,7 +14,7 @@ tags:
 - t_face_blacklist_exception_record
 subdomain: risk
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: 比对异常记录(t_face_blacklist_exception_record)
 aliases:
 - t_face_blacklist_exception_record

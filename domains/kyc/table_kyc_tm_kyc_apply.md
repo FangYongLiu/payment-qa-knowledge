@@ -14,7 +14,7 @@ tags:
 - tm_kyc_apply
 subdomain: core
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: kyc流程记录表(tm_kyc_apply)
 aliases:
 - tm_kyc_apply

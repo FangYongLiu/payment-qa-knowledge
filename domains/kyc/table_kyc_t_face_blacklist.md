@@ -14,7 +14,7 @@ tags:
 - t_face_blacklist
 subdomain: risk
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: 人脸黑名单表(t_face_blacklist)
 aliases:
 - t_face_blacklist

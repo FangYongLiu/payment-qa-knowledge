@@ -1,6 +1,6 @@
 ---
 id: reference_chargeback_email_routing
-object_type: reference
+object_type: Reference
 name: ChargeBack 邮件通知收件人路由逻辑
 aliases: [chargeback email routing, 拒付邮件通知]
 domain: online-business

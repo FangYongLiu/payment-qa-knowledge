@@ -1,6 +1,6 @@
 ---
 id: reference_acquire_protocol_and_codes
-object_type: reference
+object_type: Reference
 name: 收单接入协议 / 支付场景码 / 渠道号 速查
 aliases: [PaySceneCode, PayChannelNo, paySceneParams, SGS协议规则]
 domain: online-business

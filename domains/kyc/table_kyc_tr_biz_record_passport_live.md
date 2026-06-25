@@ -14,7 +14,7 @@ tags:
 - tr_biz_record_passport_live
 subdomain: passport
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: 护照活体业务记录表(tr_biz_record_passport_live)
 aliases:
 - tr_biz_record_passport_live

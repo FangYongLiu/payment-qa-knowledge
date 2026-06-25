@@ -14,7 +14,7 @@ tags:
 - tr_biz_record_passport
 subdomain: passport
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: 护照业务记录表(tr_biz_record_passport)
 aliases:
 - tr_biz_record_passport

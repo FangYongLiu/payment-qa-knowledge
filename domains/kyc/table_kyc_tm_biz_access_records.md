@@ -14,7 +14,7 @@ tags:
 - tm_biz_access_records
 subdomain: biz-record
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: 业务接入记录表(tm_biz_access_records)
 aliases:
 - tm_biz_access_records

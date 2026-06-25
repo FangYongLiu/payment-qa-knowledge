@@ -14,7 +14,7 @@ tags:
 - t_face_blacklist_check_result
 subdomain: risk
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: 比对结果记录(t_face_blacklist_check_result)
 aliases:
 - t_face_blacklist_check_result

@@ -14,7 +14,7 @@ tags:
 - t_eid_fraudlist
 subdomain: risk
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: eid欺诈名单(t_eid_fraudlist)
 aliases:
 - t_eid_fraudlist

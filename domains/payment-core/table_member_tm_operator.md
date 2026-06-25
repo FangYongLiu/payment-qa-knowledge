@@ -14,7 +14,7 @@ tags:
 - tm_operator
 subdomain: operator-security
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: 操作员信息表(tm_operator)
 aliases:
 - tm_operator

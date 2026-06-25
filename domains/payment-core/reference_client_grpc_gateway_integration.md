@@ -1,6 +1,6 @@
 ---
 id: reference_client_grpc_gateway_integration
-object_type: reference
+object_type: Reference
 name: 客户端 gRPC 网关集成规范(Proto / Application Message / HTTP Header)
 aliases:
 - client-grpc-gateway-integration

@@ -1,6 +1,6 @@
 ---
 id: reference_prod_env_access
-object_type: reference
+object_type: Reference
 name: PROD 生产环境访问指南(基础设施 / 业务后台 / 门户)
 aliases:
 - prod-env-access-guide

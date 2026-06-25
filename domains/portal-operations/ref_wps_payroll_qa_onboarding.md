@@ -1,6 +1,6 @@
 ---
 id: ref_wps_payroll_qa_onboarding
-object_type: reference
+object_type: Reference
 name: WPS Payroll QA 三周入职计划
 aliases: [wps payroll qa onboarding, wps 入职, qa onboarding plan]
 domain: portal-operations

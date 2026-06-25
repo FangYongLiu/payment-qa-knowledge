@@ -14,7 +14,7 @@ tags:
 - tr_deduct_channel
 subdomain: card-binding
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: 扣款渠道表(tr_deduct_channel)
 aliases:
 - tr_deduct_channel

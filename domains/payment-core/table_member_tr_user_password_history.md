@@ -14,7 +14,7 @@ tags:
 - tr_user_password_history
 subdomain: password-security
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: User password history(tr_user_password_history)
 aliases:
 - tr_user_password_history

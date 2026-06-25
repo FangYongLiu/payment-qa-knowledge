@@ -14,7 +14,7 @@ tags:
 - tr_biz_record_customer_detail
 subdomain: biz-record
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: Customer detail(tr_biz_record_customer_detail)
 aliases:
 - tr_biz_record_customer_detail

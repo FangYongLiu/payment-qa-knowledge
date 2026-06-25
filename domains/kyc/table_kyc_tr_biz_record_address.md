@@ -14,7 +14,7 @@ tags:
 - tr_biz_record_address
 subdomain: eid
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: 会员eid地址表(tr_biz_record_address)
 aliases:
 - tr_biz_record_address

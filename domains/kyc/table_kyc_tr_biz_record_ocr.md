@@ -14,7 +14,7 @@ tags:
 - tr_biz_record_ocr
 subdomain: eid
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: OCR业务记录表(tr_biz_record_ocr)
 aliases:
 - tr_biz_record_ocr

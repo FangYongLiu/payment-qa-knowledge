@@ -14,7 +14,7 @@ tags:
 - tr_biz_record_ica
 subdomain: eid
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: ICA业务记录表(tr_biz_record_ica)
 aliases:
 - tr_biz_record_ica

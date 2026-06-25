@@ -1,6 +1,6 @@
 ---
 id: reference_scan_to_pay_channels
-object_type: reference
+object_type: Reference
 name: Scan to Pay 各渠道差异(AliPay / UnionPay / WeChat / Aani)+ UnionPay 场景
 aliases: [Scan to Pay, 扫码支付渠道差异, UnionPay 支付场景, PIX Scan to Pay]
 domain: online-business
