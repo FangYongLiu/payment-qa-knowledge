@@ -19,8 +19,8 @@ sensitivity: normal
 name: 商户申请新增接口
 aliases: []
 related_services:
-related_tables: [tbl_member_tm_member, tbl_member_tm_member_identity]
 - svc_merchant
+related_tables: [tbl_member_tm_member, tbl_member_tm_member_identity]
 ---
 
 ## 用途
