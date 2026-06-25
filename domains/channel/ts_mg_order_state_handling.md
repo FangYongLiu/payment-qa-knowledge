@@ -10,7 +10,7 @@ reviewer: unassigned
 last_reviewed_at: '2026-06-25'
 source_type: wiki
 source_ref: confluence:AQ/1268547712; wiki:fe1a186f-8431-44b0-a534-d392e3341e7b; wiki_image:1ae4c51b-d6d2-4e49-85b5-1a102c47ee69
-tags: [mg, moneygram, 状态映射, PRCSS, AFR, REFND, 707]
+tags: [mg, moneygram, 状态映射, PRCSS, AFR, REFND, '707']
 related_services: []
 related_tables: []
 related_logs: []
