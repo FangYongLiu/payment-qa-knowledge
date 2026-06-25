@@ -18,8 +18,8 @@ sensitivity: normal
 name: 商户开通WPS接口
 aliases: []
 related_services:
-related_tables: [tbl_member_tr_member_account]
 - svc_merchant
+related_tables: [tbl_member_tr_member_account]
 ---
 
 ## 用途
