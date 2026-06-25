@@ -14,7 +14,44 @@ name: ppcenter
 dev_owner: Yadong.Lu
 aliases: [gp047_ppcenter]
 related_services: [svc_member, svc_acs, svc_contract]
-related_tables: []
+related_tables:
+- tbl_ppcenter_t_advance_define
+- tbl_ppcenter_t_advance_value
+- tbl_ppcenter_t_biz_product
+- tbl_ppcenter_t_biz_product_group
+- tbl_ppcenter_t_biz_product_mapping
+- tbl_ppcenter_t_biz_product_tag
+- tbl_ppcenter_t_calculation_apply
+- tbl_ppcenter_t_calculation_attr
+- tbl_ppcenter_t_calculation_define
+- tbl_ppcenter_t_calculation_value
+- tbl_ppcenter_t_clearing_apply
+- tbl_ppcenter_t_clearing_attr
+- tbl_ppcenter_t_clearing_define
+- tbl_ppcenter_t_clearing_value
+- tbl_ppcenter_t_config_audit_log
+- tbl_ppcenter_t_config_data_log
+- tbl_ppcenter_t_data_apply
+- tbl_ppcenter_t_gateway_define
+- tbl_ppcenter_t_gateway_value
+- tbl_ppcenter_t_merchant_config_apply
+- tbl_ppcenter_t_merchant_config_relation
+- tbl_ppcenter_t_merchant_product_order
+- tbl_ppcenter_t_package_template
+- tbl_ppcenter_t_package_template_relation
+- tbl_ppcenter_t_pay_auth_define
+- tbl_ppcenter_t_pay_auth_value
+- tbl_ppcenter_t_price_cal
+- tbl_ppcenter_t_product_apply_info
+- tbl_ppcenter_t_product_apply_order
+- tbl_ppcenter_t_product_apply_relation
+- tbl_ppcenter_t_product_audit_log
+- tbl_ppcenter_t_product_package
+- tbl_ppcenter_t_product_package_relation
+- tbl_ppcenter_t_product_push_redo
+- tbl_ppcenter_t_sec_merchant_cal_info
+- tbl_ppcenter_t_statement_define
+- tbl_ppcenter_t_statement_value
 ---
 
 # ppcenter

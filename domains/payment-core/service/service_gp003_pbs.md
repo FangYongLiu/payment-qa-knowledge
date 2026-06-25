@@ -14,7 +14,33 @@ name: pbs
 dev_owner: Yadong.Lu
 aliases: [gp003_pbs]
 related_services: [svc_acs]
-related_tables: []
+related_tables:
+- tbl_pbsdb_leaf_alloc
+- tbl_pbsdb_tb_bill
+- tbl_pbsdb_tb_payment_order
+- tbl_pbsdb_tb_pbs_bill
+- tbl_pbsdb_tb_pbs_bill_detail
+- tbl_pbsdb_tb_pbs_bill_strategy
+- tbl_pbsdb_tb_pbs_bill_workorder
+- tbl_pbsdb_tb_pbs_cachae_log
+- tbl_pbsdb_tb_pbs_cal_vat_config
+- tbl_pbsdb_tb_pbs_err_log
+- tbl_pbsdb_tb_pbs_error_monitor
+- tbl_pbsdb_tb_pbs_fee_assign
+- tbl_pbsdb_tb_pbs_fee_assign_detail
+- tbl_pbsdb_tb_pbs_fee_shared_strategy
+- tbl_pbsdb_tb_pbs_machine_monitor
+- tbl_pbsdb_tb_pbs_price_cal
+- tbl_pbsdb_tb_pbs_price_cal_range
+- tbl_pbsdb_tb_pbs_price_strategy
+- tbl_pbsdb_tb_pbs_price_strategy_detail
+- tbl_pbsdb_tb_pbs_price_strategy_log
+- tbl_pbsdb_tb_pbs_price_strategy_param
+- tbl_pbsdb_tb_pbs_price_strategy_unit
+- tbl_pbsdb_tb_pbs_request_log
+- tbl_pbsdb_tb_pbs_strategy_log
+- tbl_pbsdb_tb_trade_info
+- tbl_pbsdb_tm_bill_config
 ---
 
 # pbs
