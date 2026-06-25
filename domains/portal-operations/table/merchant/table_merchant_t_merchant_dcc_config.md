@@ -1,0 +1,58 @@
+---
+id: tbl_merchant_t_merchant_dcc_config
+object_type: Table
+domain: portal-operations
+status: active
+owner: yijian.tan
+reviewer: yijian.tan
+last_reviewed_at: '2026-06-25'
+source_type: DB DDL
+source_ref: DataGrip DDL export (merchant schema) 2026-06-25
+tags:
+- merchant
+- merchant
+- t_merchant_dcc_config
+subdomain: merchant
+module: null
+sensitivity: normal
+name: Merchant DCC Configuration(t_merchant_dcc_config)
+aliases:
+- t_merchant_dcc_config
+related_services:
+- svc_merchant
+related_scenarios: []
+---
+# Merchant DCC Configuration(t_merchant_dcc_config)
+
+## 用途
+Merchant DCC Configuration。属 merchant 库,由 [[svc_merchant]] 读写。
+
+## 关联关系
+- **所属服务**:[[svc_merchant]](= `related_services`,tbl→service 边)
+- **谁读写它**:由相关 [[api_*]] / [[svc_*]] 的 `related_tables` 声明(impact 反向可达)。
+- **哪些场景校验它**:待补。
+
+## 关键列
+| 列 | 类型 | 约束 | 说明 |
+| --- | --- | --- | --- |
+| `id` | bigint | PK / AUTO_INC | Primary key |
+| `merchant_mid` | varchar(50) | NOT NULL | Merchant MID |
+| `merchant_name` | varchar(128) |  | Merchant name |
+| `config_type` | varchar(30) | NOT NULL | Configuration type (DCC_PROVIDER, DCC_CURRENCY_BLACKLIST, etc.) |
+| `config_value` | varchar(128) | NOT NULL | Configuration value |
+| `effective_from` | timestamp |  | Effective start time |
+| `effective_to` | timestamp |  | Effective end time |
+| `status` | varchar(20) | NOT NULL / 默认 'ACTIVE' | Configuration status (ACTIVE, INACTIVE, DELETED) |
+| `creator` | varchar(100) | NOT NULL | Creator username |
+| `last_updater` | varchar(100) |  | Last updater username |
+| `created_time` | timestamp | NOT NULL / 默认 CURRENT_TIMESTAMP | Creation timestamp |
+| `last_updated_time` | timestamp | NOT NULL / 默认 CURRENT_TIMESTAMP | Last Updated Time |
+| `data_version` | bigint | 默认 1 | Data version for concurrency control |
+
+## 主键 / 索引
+- 主键:(`id`)
+- 索引:无(或见 DDL)
+
+## 校验点(QA 关注)
+- 落库检查、状态流转、与上下游表/接口一致性。
+- 不确定的标「待补」,留人工补充。
