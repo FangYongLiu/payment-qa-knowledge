@@ -28,6 +28,12 @@
 
 **文件名带 `app_group`**(服务),其它对象文件名带所属域/服务,风格统一。
 
+**大域可用二级子目录**(文件多时):`domains/<域>/<类型>/`(`service/`、`api/`、`flow/`、`scenario/`、
+`troubleshooting/`、`automation/`、`reference/`),其中 `table/` 再按 schema 分三级 `table/<schema>/`;
+`domain_<域>.md` 留在域根作入口。**这纯属组织目录,不影响图谱**:loader 递归 glob `domains/**/*.md`、
+`domain` 取自 frontmatter(不是路径)、对象按 `id` 重建;移动文件对 reindex/图谱透明,但 `domain` 字段
+仍须==一级目录名。样板见 `domains/payment-core/`。小域可保持扁平。
+
 ---
 
 ## 2. Frontmatter(机器读:身份 + 图边 + 治理)
