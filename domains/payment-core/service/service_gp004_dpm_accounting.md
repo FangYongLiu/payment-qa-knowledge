@@ -14,7 +14,38 @@ name: dpm-accounting
 dev_owner: Cong.Zhou
 aliases: [gp004_dpm-accounting]
 related_services: []
-related_tables: []
+related_tables:
+- tbl_dpm_dbajobconf
+- tbl_dpm_dbajoblog
+- tbl_dpm_leaf_alloc
+- tbl_dpm_t_act_account_titile
+- tbl_dpm_t_compensation_event
+- tbl_dpm_t_dpm_account_crl_def
+- tbl_dpm_t_dpm_account_entry
+- tbl_dpm_t_dpm_buffer_detail
+- tbl_dpm_t_dpm_buffer_detail_log
+- tbl_dpm_t_dpm_buffer_rule
+- tbl_dpm_t_dpm_inner_account
+- tbl_dpm_t_dpm_inner_account_detail
+- tbl_dpm_t_dpm_inner_account_diary
+- tbl_dpm_t_dpm_inner_sub_account
+- tbl_dpm_t_dpm_inner_sub_account_his
+- tbl_dpm_t_dpm_management_log
+- tbl_dpm_t_dpm_outer_account
+- tbl_dpm_t_dpm_outer_account_ctrl
+- tbl_dpm_t_dpm_outer_account_detail
+- tbl_dpm_t_dpm_outer_account_diary
+- tbl_dpm_t_dpm_outer_account_status_his
+- tbl_dpm_t_dpm_outer_account_sub_detail
+- tbl_dpm_t_dpm_outer_account_subset
+- tbl_dpm_t_dpm_pay_package
+- tbl_dpm_t_dpm_pay_transaction
+- tbl_dpm_t_job_progress
+- tbl_dpm_tb_inner_account_daily
+- tbl_dpm_tb_title_daily
+- tbl_dpm_tb_title_daily_account
+- tbl_dpm_tb_title_stat
+- tbl_dpm_temp_trg_log
 ---
 
 # dpm-accounting
