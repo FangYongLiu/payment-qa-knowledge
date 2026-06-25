@@ -1,5 +1,5 @@
 ---
-id: tbl_aml_t_system_param
+id: tbl_aml_t_search_log
 object_type: Table
 domain: compliance
 status: active
@@ -11,21 +11,21 @@ source_ref: DataGrip DDL export (aml schema) 2026-06-25
 tags:
 - aml
 - aml
-- t_system_param
+- t_search_log
 subdomain: aml
 module: null
 sensitivity: normal
-name: 系统参数表(t_system_param)
+name: 搜索日志表(t_search_log)
 aliases:
-- t_system_param
+- t_search_log
 related_services:
 - svc_aml
 related_scenarios: []
 ---
-# 系统参数表(t_system_param)
+# 搜索日志表(t_search_log)
 
 ## 用途
-系统参数表。属 aml 库,由 [[svc_aml]] 读写。
+搜索日志表。属 aml 库,由 [[svc_aml]] 读写。
 
 ## 关联关系
 - **所属服务**:[[svc_aml]](= `related_services`,tbl→service 边)
@@ -35,13 +35,20 @@ related_scenarios: []
 ## 关键列
 | 列 | 类型 | 约束 | 说明 |
 | --- | --- | --- | --- |
-| `param_key` | varchar(64) | PK / NOT NULL | 系统业务自定义KEY |
-| `param_value` | varchar(512) | PK / NOT NULL | Custom business value |
-| `mark` | varchar(256) |  | mark |
+| `id` | bigint | PK / AUTO_INC | 主键 |
+| `search_type` | varchar(16) | 默认 '' | 扫描类型：kyc、payment |
+| `biz_id` | varchar(32) | 默认 '' | 业务ID |
+| `search_content` | json |  | 搜索内容 |
+| `search_time` | timestamp | NOT NULL / 默认 CURRENT_TIMESTAMP | 查询时间 |
+| `result_id` | bigint |  | resultId |
+| `status` | int | 默认 0 | 状态：0.默认，未扫描；1.已扫描； |
 
 ## 主键 / 索引
-- 主键:(`param_key`, `param_value`)
-- 索引:无(或见 DDL)
+- 主键:(`id`)
+- 索引:
+  - `idx_biz_id` (biz_id)
+  - `idx_result_id` (result_id)
+  - `idx_search_time` (search_time)
 
 ## 校验点(QA 关注)
 - 落库检查、状态流转、与上下游表/接口一致性。

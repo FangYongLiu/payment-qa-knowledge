@@ -1,5 +1,5 @@
 ---
-id: tbl_aml_t_system_param
+id: tbl_amlrisk_t_personal_ref
 object_type: Table
 domain: compliance
 status: active
@@ -7,25 +7,25 @@ owner: dewen.li
 reviewer: dewen.li
 last_reviewed_at: '2026-06-25'
 source_type: DB DDL
-source_ref: DataGrip DDL export (aml schema) 2026-06-25
+source_ref: DataGrip DDL export (amlrisk schema) 2026-06-25
 tags:
-- aml
-- aml
-- t_system_param
-subdomain: aml
+- amlrisk
+- amlrisk
+- t_personal_ref
+subdomain: amlrisk
 module: null
 sensitivity: normal
-name: 系统参数表(t_system_param)
+name: 个人信息关联表(t_personal_ref)
 aliases:
-- t_system_param
+- t_personal_ref
 related_services:
 - svc_aml
 related_scenarios: []
 ---
-# 系统参数表(t_system_param)
+# 个人信息关联表(t_personal_ref)
 
 ## 用途
-系统参数表。属 aml 库,由 [[svc_aml]] 读写。
+个人信息关联表。属 amlrisk 库,由 [[svc_aml]] 读写。
 
 ## 关联关系
 - **所属服务**:[[svc_aml]](= `related_services`,tbl→service 边)
@@ -35,13 +35,19 @@ related_scenarios: []
 ## 关键列
 | 列 | 类型 | 约束 | 说明 |
 | --- | --- | --- | --- |
-| `param_key` | varchar(64) | PK / NOT NULL | 系统业务自定义KEY |
-| `param_value` | varchar(512) | PK / NOT NULL | Custom business value |
-| `mark` | varchar(256) |  | mark |
+| `id` | bigint | PK / NOT NULL | 主键 |
+| `personal_id` | bigint |  | 个人信息表id |
+| `member_id` | varchar(20) |  | 会员id |
+| `mobile` | varchar(20) |  | 手机号 |
+| `screen_type` | varchar(16) |  | screen type |
+| `CREATED_TIME` | timestamp |  | 创建时间 |
+| `UPDATED_TIME` | timestamp |  | 更新时间 |
 
 ## 主键 / 索引
-- 主键:(`param_key`, `param_value`)
-- 索引:无(或见 DDL)
+- 主键:(`id`)
+- 索引:
+  - `idx_mid` (member_id)
+  - `idx_pid` (personal_id)
 
 ## 校验点(QA 关注)
 - 落库检查、状态流转、与上下游表/接口一致性。
