@@ -14,7 +14,7 @@ tags:
 - tr_user_password
 subdomain: password-security
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: User password(tr_user_password)
 aliases:
 - tr_user_password

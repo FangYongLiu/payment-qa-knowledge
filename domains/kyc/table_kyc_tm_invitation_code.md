@@ -14,7 +14,7 @@ tags:
 - tm_invitation_code
 subdomain: invitation
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: 用户kyc邀请码(tm_invitation_code)
 aliases:
 - tm_invitation_code

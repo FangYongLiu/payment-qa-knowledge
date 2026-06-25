@@ -14,7 +14,7 @@ tags:
 - tr_member_device
 subdomain: device
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: 用户设备信息(tr_member_device)
 aliases:
 - tr_member_device

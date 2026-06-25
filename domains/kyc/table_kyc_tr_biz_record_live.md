@@ -14,7 +14,7 @@ tags:
 - tr_biz_record_live
 subdomain: eid
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: 活体业务记录表(tr_biz_record_live)
 aliases:
 - tr_biz_record_live

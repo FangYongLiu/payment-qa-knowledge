@@ -14,7 +14,7 @@ tags:
 - tm_contact
 subdomain: member-profile
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: 联系人信息(tm_contact)
 aliases:
 - tm_contact

@@ -1,6 +1,6 @@
 ---
 id: reference_enbd_3ds_auth_screen
-object_type: reference
+object_type: Reference
 name: ENBD / Liv 3DS 认证页面与认证方式
 aliases: [ENBD 3DS, Liv 3DS, out-of-band 3DS, SMS OTP fallback]
 domain: online-business

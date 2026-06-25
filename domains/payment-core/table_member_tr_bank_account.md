@@ -14,7 +14,7 @@ tags:
 - tr_bank_account
 subdomain: account
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: 个人银行卡信息表(tr_bank_account)
 aliases:
 - tr_bank_account

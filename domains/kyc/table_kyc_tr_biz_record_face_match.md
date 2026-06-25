@@ -14,7 +14,7 @@ tags:
 - tr_biz_record_face_match
 subdomain: biz-record
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: Face match table(tr_biz_record_face_match)
 aliases:
 - tr_biz_record_face_match

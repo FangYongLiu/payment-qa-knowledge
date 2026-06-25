@@ -1,6 +1,6 @@
 ---
 id: reference_acquire_data_models
-object_type: reference
+object_type: Reference
 name: 收单交易接口数据模型(AcquireOrder / PaymentInfo / CardInfo 等)
 aliases: [AcquireOrder, PaymentInfo, CardInfo, SharingParam, AcquireOrderStatus]
 domain: online-business

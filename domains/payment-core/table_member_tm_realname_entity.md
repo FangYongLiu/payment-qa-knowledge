@@ -14,7 +14,7 @@ tags:
 - tm_realname_entity
 subdomain: kyc-verify
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: 会员用户真实姓名信息表(tm_realname_entity)
 aliases:
 - tm_realname_entity

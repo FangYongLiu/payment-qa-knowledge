@@ -1,6 +1,6 @@
 ---
 id: reference_jaywan_mbank_integration
-object_type: reference
+object_type: Reference
 name: Jaywan/mBank 卡集成参考(环境配置/密钥/对账结算/Chargeback/门户报表/产品矩阵)
 aliases: [Jaywan mBank integration, gppc-OP env config, dgpay key exchange, jaywan reconciliation settlement]
 domain: card

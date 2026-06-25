@@ -14,7 +14,7 @@ tags:
 - tm_biz_record
 subdomain: biz-record
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: KYC业务记录基础表(tm_biz_record)
 aliases:
 - tm_biz_record

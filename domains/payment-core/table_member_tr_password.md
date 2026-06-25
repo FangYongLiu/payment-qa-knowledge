@@ -14,7 +14,7 @@ tags:
 - tr_password
 subdomain: password-security
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: 会员支付密码信息表(tr_password)
 aliases:
 - tr_password

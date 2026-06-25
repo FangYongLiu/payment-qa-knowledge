@@ -14,7 +14,7 @@ tags:
 - tm_audit_task
 subdomain: audit
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: 审核任务表(tm_audit_task)
 aliases:
 - tm_audit_task

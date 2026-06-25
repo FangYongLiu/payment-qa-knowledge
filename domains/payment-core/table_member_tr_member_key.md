@@ -14,7 +14,7 @@ tags:
 - tr_member_key
 subdomain: operator-security
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: 会员密钥表(tr_member_key)
 aliases:
 - tr_member_key

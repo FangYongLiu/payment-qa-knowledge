@@ -14,7 +14,7 @@ tags:
 - tm_password_blacklist
 subdomain: password-security
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: Password blacklist(tm_password_blacklist)
 aliases:
 - tm_password_blacklist

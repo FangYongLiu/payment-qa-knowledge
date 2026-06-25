@@ -1,6 +1,6 @@
 ---
 id: ref_portal_env_access
-object_type: reference
+object_type: Reference
 name: 门户/运营环境访问指南(DB/Redis/Kibana/门户/k8s)
 aliases: [env access guide, 环境访问, qa infra access, uat access, prod access]
 domain: portal-operations

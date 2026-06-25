@@ -14,7 +14,7 @@ tags:
 - tr_personal_member
 subdomain: member-profile
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: 个人会员信息表(tr_personal_member)
 aliases:
 - tr_personal_member

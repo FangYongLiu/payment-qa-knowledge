@@ -1,6 +1,6 @@
 ---
 id: reference_ppc_card_apis
-object_type: reference
+object_type: Reference
 name: PPC 卡 API 清单 / 错误码 / 测试用例生成指引
 aliases: [PPC API inventory, ppc-api-card-management, ppc-api-transaction, ppc-api-error-codes]
 domain: card

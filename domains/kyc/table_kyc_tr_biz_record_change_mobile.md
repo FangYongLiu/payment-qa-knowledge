@@ -14,7 +14,7 @@ tags:
 - tr_biz_record_change_mobile
 subdomain: change-mobile
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: Change Mobile(tr_biz_record_change_mobile)
 aliases:
 - tr_biz_record_change_mobile

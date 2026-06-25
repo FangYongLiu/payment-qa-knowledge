@@ -1,6 +1,6 @@
 ---
 id: ref_merchant_portal_products
-object_type: reference
+object_type: Reference
 name: PayBy 商户控台收款产品与功能指南
 aliases: [merchant portal products, smart code, invoice, paylink, tax invoice, vam, statements]
 domain: portal-operations

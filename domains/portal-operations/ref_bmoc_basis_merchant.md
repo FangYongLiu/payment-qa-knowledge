@@ -1,6 +1,6 @@
 ---
 id: ref_bmoc_basis_merchant
-object_type: reference
+object_type: Reference
 name: BMOC / Basis Merchant 运营后台菜单与权限指南
 aliases: [bmoc, basis merchant menu, 运营后台, botim money operations center]
 domain: portal-operations

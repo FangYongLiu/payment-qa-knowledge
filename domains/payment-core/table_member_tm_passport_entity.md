@@ -14,7 +14,7 @@ tags:
 - tm_passport_entity
 subdomain: kyc-verify
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: 会员护照信息表(tm_passport_entity)
 aliases:
 - tm_passport_entity

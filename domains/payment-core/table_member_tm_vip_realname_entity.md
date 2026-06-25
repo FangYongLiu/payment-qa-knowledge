@@ -14,7 +14,7 @@ tags:
 - tm_vip_realname_entity
 subdomain: kyc-verify
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: VIP会员真实姓名信息表(tm_vip_realname_entity)
 aliases:
 - tm_vip_realname_entity

@@ -14,7 +14,7 @@ tags:
 - td_member_account_config
 subdomain: account
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: 会员账户配置表(td_member_account_config)
 aliases:
 - td_member_account_config

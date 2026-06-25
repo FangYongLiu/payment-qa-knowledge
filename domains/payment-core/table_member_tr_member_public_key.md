@@ -14,7 +14,7 @@ tags:
 - tr_member_public_key
 subdomain: operator-security
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: 会员公钥表(tr_member_public_key)
 aliases:
 - tr_member_public_key

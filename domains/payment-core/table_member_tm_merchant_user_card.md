@@ -14,7 +14,7 @@ tags:
 - tm_merchant_user_card
 subdomain: card-binding
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: 商户下用户绑卡信息表(tm_merchant_user_card)
 aliases:
 - tm_merchant_user_card

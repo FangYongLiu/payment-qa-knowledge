@@ -14,7 +14,7 @@ tags:
 - tr_biz_record_verify
 subdomain: eid
 module: null
-sensitivity: sensitive
+sensitivity: restricted
 name: 身份证验证表(tr_biz_record_verify)
 aliases:
 - tr_biz_record_verify

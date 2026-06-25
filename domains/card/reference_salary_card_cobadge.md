@@ -1,6 +1,6 @@
 ---
 id: reference_salary_card_cobadge
-object_type: reference
+object_type: Reference
 name: Salary Card Mono-badge & Co-badge 产品/路由/测试关注点
 aliases: [Salary Card Mono-badge, Salary Card Co-badge, SALCOB, SALMOB, salary card test watch points]
 domain: card
