@@ -12,7 +12,7 @@ source_type: repo
 source_ref: cgs-apitest/testcases/payment/basic_cases/test_KYC_eid_journey.py::test_kyc_eid_full_journey
 tags: [KYC, EID, 实名认证, journey]
 related_services: [svc_kyc]
-related_tables: []
+related_tables: [tbl_member_tr_member_kyc_level]
 related_logs: []
 ---
 

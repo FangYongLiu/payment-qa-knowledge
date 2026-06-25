@@ -12,7 +12,7 @@ source_type: wiki
 source_ref: wiki:d24969b4-625e-4ea0-b20d-669043b3a083 (+ confluence:AQ/1012367385)
 tags: [online-business, fundout, 出款, 提现, transfer-to-bank, transfer-to-account]
 related_services: [svc_merchant_fundout, svc_fundout]
-related_tables: [tbl_mhtfundout_t_fundout_bankcard_order, tbl_mhtfundout_t_fundout_order]
+related_tables: [tbl_member_tr_beneficiary_info, tbl_mhtfundout_t_fundout_bankcard_order, tbl_mhtfundout_t_fundout_order]
 related_scenarios: [scn_online_business_merchant_payout]
 ---
 

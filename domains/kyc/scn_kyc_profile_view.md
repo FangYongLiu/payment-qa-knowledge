@@ -12,7 +12,7 @@ source_type: repo
 source_ref: cgs-apitest/testcases/payment/basic_cases/test_KYC_xinwei.py
 tags: [KYC, profile, EID, Passport, VIP, 脱敏, 限额]
 related_services: [svc_kyc]
-related_tables: []
+related_tables: [tbl_member_tm_member, tbl_member_tm_passport_entity, tbl_member_tm_realname_entity, tbl_member_tr_bank_account, tbl_member_tr_member_kyc_level, tbl_member_tr_verify_ref]
 related_logs: []
 ---
 

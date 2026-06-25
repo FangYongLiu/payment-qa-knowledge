@@ -29,8 +29,7 @@ related_services:
 - svc_protocol
 - svc_deduct
 - svc_member
-related_tables:
-- tbl_deduct_t_deduct_protocol
+related_tables: [tbl_deduct_t_deduct_protocol, tbl_member_tr_bank_account, tbl_member_tr_bank_card_token]
 - tbl_member_tr_bank_card_token
 - tbl_acquireii_t_card_info
 related_logs: []

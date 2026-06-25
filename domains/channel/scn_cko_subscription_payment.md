@@ -12,7 +12,7 @@ source_type: wiki
 source_ref: confluence:AQ/2228977707; wiki:5b35d40b-b532-44de-b69e-abffc289be85; wiki_attachment:af0d55d4-10d6-454b-b0a9-8ff7e104cd04
 tags: [cko, subscription, 订阅支付, 路由矩阵, 测试用例, preferSign, 3DS]
 related_services: [svc_qpay_cko]
-related_tables: [tbl_cashdesk_t_filter_node]
+related_tables: [tbl_cashdesk_t_filter_node, tbl_member_tr_bank_account, tbl_member_tr_bank_card_token, tbl_member_tr_deduct_channel]
 related_logs: []
 ---
 

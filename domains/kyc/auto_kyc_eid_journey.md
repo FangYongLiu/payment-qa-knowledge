@@ -13,6 +13,7 @@ source_ref: cgs-apitest/testcases/payment/basic_cases/test_KYC_eid_journey.py
 tags: [KYC, EID, 实名认证, ZAND, IBAN, 自动化, cgs-apitest]
 related_scenarios: [scn_kyc_eid_full_journey, scn_kyc_eid_leave, scn_kyc_status_inquire, scn_kyc_zand_iban]
 related_services: [svc_kyc]
+related_tables: [tbl_member_tr_member_kyc_level]
 ---
 
 # KYC EID Journey 端到端自动化

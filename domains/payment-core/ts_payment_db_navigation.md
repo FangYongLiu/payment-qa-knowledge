@@ -22,7 +22,7 @@ related_services:
 - svc_tradeii
 - svc_deposit
 - svc_reconciliation
-related_tables: []
+related_tables: [tbl_member_td_config, tbl_member_tm_device, tbl_member_tm_member, tbl_member_tm_member_identity, tbl_member_tm_operator, tbl_member_tm_realname_entity, tbl_member_tr_bank_account, tbl_member_tr_member_account, tbl_member_tr_member_device, tbl_member_tr_password, tbl_member_tr_verify_entity, tbl_member_tr_verify_ref]
 related_logs: []
 related_failures: []
 ---
