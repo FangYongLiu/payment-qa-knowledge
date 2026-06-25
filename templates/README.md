@@ -102,29 +102,65 @@
 ---
 
 ## 5. 完整样板:kyc 域
-kyc 是第一个"有血肉 + 全连边"的样板域,结构可照搬:
+kyc 是第一个"有血肉 + 全连边 + 全数据源"的样板域,结构与做法可照搬:
 
 ```
-domain_kyc (1)
-  └─ service_gp078_kyc / service_gp202_kyc_service (2)
-       ├─ api_kyc_* (33)
-       ├─ scn_kyc_* (5)        ← 从 cgs-apitest 自动化用例整理
-       └─ auto_kyc_* (2)       ← cgs-apitest 测试套件
+domain_kyc (1)  ← 总览:概述/3渠道/覆盖范围/关联关系/QA关注点(含已知坑)/环境接入
+  ├─ service_gp078_kyc / service_gp202_kyc_service (2)
+  ├─ api_kyc_* (33)            ← API 文档(路径/入参/出参/错误码/校验点)
+  ├─ table_kyc_* (36)          ← member/kyc 库 DDL 解析建表 + 连边
+  ├─ scn_kyc_* (5)             ← cgs-apitest 用例按业务流归并
+  ├─ flow_kyc_* (3)            ← 端到端流程(护照/续期/换绑,nextStep 状态机/渲染规则)
+  ├─ auto_kyc_* (2)            ← cgs-apitest 测试套件
+  └─ ts_kyc_* (4)              ← Kibana 错误日志挖的"已知坑"
 ```
-连边:domain→service(`related_services`)、api→service、scn→service、auto→scn、api↔scn;
-正文交叉链接:service 列 API/自动化、api 标"被哪些场景/自动化测"、scn 列走过的接口、auto 列覆盖场景+调用接口。
+连边:domain→service/flow、api→service、scn/flow/ts/auto→service、api↔scn、tbl→service、api→tbl;
+正文交叉链接 + 反向小节让两头都能看见对方。
 
-**整理过程(可复用的步骤)**:
-1. 读源(如 `cgs-apitest/testcases/.../test_*.py`),理解每个用例做什么。
-2. 按业务场景归并成 Scenario(排除纯测试夹具),写 `scn_*.md`。
-3. 把测试套件写成 `auto_*.md`,`related_scenarios` 指向上一步的场景。
-4. **回写**:被覆盖的 `api_*` 补 `related_scenarios` + 正文;service / domain 正文补「自动化资产」。
-5. 不确定的(表结构、失败分支)标「待补」。
+### 整理一个域 / 一批文档的完整流程(可复用 playbook)
+按**数据源**分 pass,缺哪块补哪块。每个 pass 都遵守 §2–§4(模板 + 连边 + 回写)。
+
+1. **骨架与归域**:服务对象先建/归域(`import_services.py`);`dev_owner` 用英文 `Given.Surname`,
+   `owner`=域 lead(见 `index/domains.yaml`);**文件按 `domains/<域>/` 存放,`domain` 字段必须==目录**。
+   归域以 dev/团队为主、保护业务域(kyc/card/remittance/compliance/risk 不被搬出);拿不准留 `service-catalog`。
+2. **上下游边(callgraph)**:用 **PayBy-service-callgraph** skill 在 UAT Kibana 挖 `*ClientImpl` 聚合
+   (类名词干=被调方)→ 真实 `related_services` 边 + 频次。⚠️ `app_id` 是日志里的部署名(如 kyc,**不是 gp078**)。
+   下游=本服务发出的 `*ClientImpl`;上游=别人发出的 `*<本服务>ClientImpl`。
+3. **表结构(Table 层)**:拿该库 **schema DDL** → 脚本解析建 `tbl_<schema>_<table>`
+   (列/类型/PK/索引/注释来自 DDL=确定性;用途/校验点/subdomain/sensitivity 人工策展)→
+   **回填**引用方的 `related_tables`(把"待补"文字变真边)。**DDL 没给的表不臆造**。
+4. **已知坑(Troubleshooting)**:Kibana 按 `app_id` 聚合 `mLevel=ERROR/WARN` by `mClass.keyword` → 读高频原文 → 建 `ts_`。
+   **区分业务错误 vs 基础设施噪声**(PingConnectionHandler/ClusterConnectionManager/ConfigServerHealthIndicator);
+   诚实标"频次含 UAT 测试数据噪声,真坑 vs 噪声需人工确认";**预期行为不建坑**。
+5. **正向业务信息(关键方法)**:Kibana 按 `app_id` 聚合 `mLevel=INFO` by `mClass` → 业务 Processor/Handler/Facade 类
+   = 实际跑的业务操作 → 写进服务「关键方法/入口」;剔除 infra 类(SegmentIDGen/Compensation*/Zookeeper)。
+6. **场景/自动化(cgs-apitest)**:读 `cgs-apitest/testcases/**/test_*.py` → 按业务流**归并**成 Scenario(非 1:1,排除夹具)
+   + 每套件一个 AutomationAsset(TC 列表取自 `allure.title`/函数名);`related_services` 连穿过的服务(含跨域,反向边丰富核心域)。
+7. **端到端流程(Flow)**:把流程类知识(跨系统时序、状态机/`nextStep`、页面渲染规则)建成 `flow_`。
+8. **legacy/归档整合**:逐篇读懂→判定(已被现域覆盖=直接删 / 有新价值=建少数高质量对象,**合并非 1:1**)→删原文。
+   大规模用**多智能体 workflow 按主题簇并行**;agent **只「新建+删除」、禁改已有文件**(防并发冲突);
+   `related_*` 只连 grep 确认存在的对象;主循环事后统一做**反向链接回写**(给现有 service/domain 加 `[[新对象]]`)。
+9. **不确定的一律标「待补」**,不臆造(表/字段/失败分支/下游对象缺失等)。
+
+### ⚠️ enum / 格式硬约束(违反则 reindex **静默跳过**该对象,或整批中断)
+- `sensitivity` 只能 **`normal` / `restricted`**(不是 `sensitive`!)。
+- `object_type` 只能 **9 类**:Domain / Service / API / Table / Flow / Scenario / Troubleshooting / AutomationAsset / **Reference**(参考/字典页)。
+- `tags` 必须**全是字符串**:纯数字(如 `707`)要加引号 `'707'`,否则被 YAML 当 int → 校验失败。
+- `related_*` 用流式 `[a, b]` **或**块式 `- a` 之一,**不能混用**(混用 YAML 解析报错 → 整个 reindex 中断)。
+
+### 上线(reindex)
+- **改了 brain 代码**(如 enum):先重建镜像 `cd infra && docker compose --profile api --profile worker build api worker && docker compose --profile api --profile worker up -d api worker`(容器是烘焙镜像,非挂载);**纯数据(.md)改动不用重建**。
+- 触发 `POST /api/brain/reindex` body `{"scope":"all"}`(token 在 brain `.env` `BRAIN_SERVICE_TOKEN`);轮询 `GET /api/brain/reindex/status`。
+- 验证:运行时 DB 各域对象数、`errors=[]`、运行时 Table/对象数 ≈ 仓库数(差额说明有对象被跳过 → 查 enum/YAML/dup)。
 
 ---
 
 ## 6. 提交前自检
 - 每个新文档:frontmatter 字段齐全、正文小节齐全(对照 `templates/<类型>.md`)。
-- `related_*` 不指向不存在的对象(无悬空边)。
-- 回写清单(§4)都做了——新对象在相关文档里都能被看到。
-- 不确定的都标了「待补」,没有臆造。
+- `related_*` 不指向不存在的对象(**零悬空边**;grep 确认每个 id 存在)。
+- **零重复 id**(并行生成/多源易撞,`grep -rh '^id:' domains/ | sort | uniq -d`)。
+- **enum 合法**(§5 硬约束):`sensitivity` ∈ {normal,restricted};`object_type` ∈ 9 类;`tags` 全字符串;`related_*` 不混流式/块式。
+- **YAML 合法**:每个 frontmatter 能 `yaml.safe_load`(可用 brain `.venv/bin/python` 批量校验)。
+- 回写清单(§4)都做了——新对象在相关文档里都能被看到(含反向小节)。
+- 不确定的都标了「待补」,没有臆造(尤其 DDL 未提供的表、缺失的下游对象)。
+- reindex 后:`errors=[]` 且运行时对象数 ≈ 仓库对象数(差额=被静默跳过,回查上面各项)。
