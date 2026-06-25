@@ -1,5 +1,5 @@
 ---
-id: tbl_tradeii_db
+id: tbl_trade_db
 object_type: Table
 name: 交易核心库 trade 核心表(trade)
 aliases:

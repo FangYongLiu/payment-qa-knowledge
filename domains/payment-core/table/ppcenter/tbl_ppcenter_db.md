@@ -63,7 +63,7 @@ ppcenter(产品中心)存放业务产品、算费/清结算定义与配置、商
 ## 关联关系
 - **所属服务**:[[svc_ppcenter]](= `related_services`)。
 - **本库真实表**:见下表(= `related_tables`,共 37 张,均有独立表对象)。
-- **谁读写它**:费率/计费在交易计费及账单核算中取数,见 [[tbl_tradeii_db]]、[[tbl_statementii_db]]。
+- **谁读写它**:费率/计费在交易计费及账单核算中取数,见 [[tbl_trade_db]]、[[tbl_statementii_db]]。
 - 导航入口见 [[ts_payment_db_navigation]]。
 
 ## 本库表清单(37)
