@@ -53,7 +53,7 @@ related_tables:
 - tbl_dpm_tb_title_stat
 - tbl_dpm_temp_trg_log
 - tbl_member_db
-- tbl_tradeii_db
+- tbl_trade_db
 ---
 
 # 会员账户库 dpm 核心表(dpm)
@@ -65,7 +65,7 @@ related_tables:
 
 ## 关联关系
 - **所属服务**:[[svc_dpm_accounting]](= frontmatter `related_services`);相关还有 [[svc_dpm_manager]]、[[svc_dpm_task]](dpm 体系,本侧不重复连边)。
-- **谁读写它**:交易链路写入余额变动明细(见 [[tbl_tradeii_db]]);会员维度联查 [[tbl_member_db]]。
+- **谁读写它**:交易链路写入余额变动明细(见 [[tbl_trade_db]]);会员维度联查 [[tbl_member_db]]。
 - **哪些场景校验它**:待补(尚无 `related_scenarios`)。
 - 导航入口见 [[ts_payment_db_navigation]]。
 
@@ -86,4 +86,4 @@ related_tables:
 - 余额变动场景需核对 `t_dpm_outer_account_sub_detail`(外部账户分户账户明细)与 `t_dpm_inner_account_detail`(内部账户余额明细)是否同步生成对应明细。
 - 外部账户(`t_dpm_outer_account`)与其分户(`t_dpm_outer_account_subset`)的关联完整性。
 - 会员账户相关查询通常需结合 [[tbl_member_db]] 中的会员/账户信息进行联查校验。
-- 交易引发的账户变动应与 [[tbl_tradeii_db]] 中对应订单/支付记录可对账。
+- 交易引发的账户变动应与 [[tbl_trade_db]] 中对应订单/支付记录可对账。
