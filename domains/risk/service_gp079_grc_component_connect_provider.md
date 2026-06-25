@@ -40,5 +40,16 @@ related_tables: []
 ## 测试要点 / 排障 / 常见问题
 - 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
 
+## 相关流程 / 场景 / 排障(反向)
+本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):
+- [[auto_basis_visual_rule_admin]](自动化:Basis 风控可视化规则管理后台)
+- [[flow_botim_transfer]](流程:BOTIM/ToC 转账与加款端到端流程)
+- [[flow_verify_risk_request]](流程:verifyRisk请求处理端到端链路)
+- [[scn_grc_config_effectiveness]](场景:风控配置生效与回滚校验(双开关模型))
+- [[scn_grc_event_routing_by_type]](场景:事件按类型路由到对应集合校验)
+- [[scn_grc_geoip_log_not_reliable]](场景:GeoIP日志不可作为路径判定依据)
+- [[scn_grc_ip_path_engagement_signature]](场景:通过remoteIpInfo._id判定IP解析路径)
+- [[ts_risk_rule_not_firing]](排障:Visual Rule配置完成却不触发)
+
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp079` · domain=`risk`。

@@ -56,5 +56,12 @@ ppc  **(据名推断 · 待核实:无作用文字证据,但下方有观测到的
 ## 测试要点 / 排障 / 常见问题
 - 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
 
+## 相关流程 / 场景 / 排障(反向)
+本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):
+- [[flow_jaywan_prepaid_card]](流程:Jaywan 预付卡端到端流程(Dgpay 渠道))
+- [[flow_ppc_card_lifecycle]](流程:PPC 卡端到端业务流程(开卡→激活→交易→清算→关卡))
+- [[flow_wps_company_onboarding_to_payroll]](流程:WPS 企业入驻到发薪端到端流程)
+- [[scn_card_lifecycle_transitions]](场景:PPC 卡生命周期状态转换测试场景集)
+
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp212` · domain=`payment-core`。

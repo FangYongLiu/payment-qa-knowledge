@@ -48,5 +48,12 @@ related_tables: []
 ## 测试要点 / 排障 / 常见问题
 - 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
 
+## 相关流程 / 场景 / 排障(反向)
+本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):
+- [[auto_online_business_zand_mock_vs]](自动化:ZAND Mock VS 回调工具(Zand.java))
+- [[flow_zand_fundout]](流程:ZAND渠道出款端到端流程(SP/SQ/VS))
+- [[scn_online_business_zand_fundout]](场景:ZAND渠道出款测试场景(TC-001~010))
+- [[ts_zand_fundout]](排障:ZAND渠道出款常见故障排查)
+
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp039` · domain=`payment-tools`。

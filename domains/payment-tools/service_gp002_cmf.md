@@ -60,5 +60,17 @@ reconciliation, tradeii, payment, router, fcw, cashdesk-api
 ## 测试要点 / 排障 / 常见问题
 - 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
 
+## 相关流程 / 场景 / 排障(反向)
+本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):
+- [[auto_online_business_zand_mock_vs]](自动化:ZAND Mock VS 回调工具(Zand.java))
+- [[flow_cashier_payment]](流程:收银台 / 收单卡支付端到端流程（含退款）)
+- [[flow_payby_cash_out]](流程:现金提现端到端流程 (Cash Out / Withdraw Cash via POS))
+- [[flow_payby_withdraw_to_bank]](流程:提现到银行卡端到端流程 (Transfer to Bank Account / IBAN / Aani))
+- [[flow_zand_fundout]](流程:ZAND渠道出款端到端流程(SP/SQ/VS))
+- [[scn_cko_card_binding_subscription]](场景:CKO 订阅支付绑卡与签约（CKO121/CKO111）)
+- [[scn_online_business_mpgs_channel]](场景:MPGS 渠道卡支付(3DS2 / MOTO / 设备支付 / 卡组织拆分 / 退款Void))
+- [[scn_online_business_zand_fundout]](场景:ZAND渠道出款测试场景(TC-001~010))
+- [[ts_zand_fundout]](排障:ZAND渠道出款常见故障排查)
+
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp002` · domain=`payment-tools`。

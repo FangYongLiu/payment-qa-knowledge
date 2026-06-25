@@ -52,5 +52,18 @@ enterMulti
 ## 测试要点 / 排障 / 常见问题
 - 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
 
+## 相关流程 / 场景 / 排障(反向)
+本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):
+- [[auto_online_business_direct_pay]](自动化:直连支付自动化)
+- [[auto_online_business_merchant_split]](自动化:商户分账自动化)
+- [[auto_wallet_withdraw]](自动化:钱包提现自动化)
+- [[flow_botim_transfer]](流程:BOTIM/ToC 转账与加款端到端流程)
+- [[flow_cashier_payment]](流程:收银台 / 收单卡支付端到端流程（含退款）)
+- [[flow_payby_cash_out]](流程:现金提现端到端流程 (Cash Out / Withdraw Cash via POS))
+- [[flow_payby_withdraw_to_bank]](流程:提现到银行卡端到端流程 (Transfer to Bank Account / IBAN / Aani))
+- [[scn_online_business_direct_pay]](场景:直连支付 (Direct Pay))
+- [[scn_online_business_merchant_split]](场景:商户分账 (Merchant Split))
+- [[scn_wallet_withdraw]](场景:钱包提现 (Withdraw))
+
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp014` · domain=`payment-core`。

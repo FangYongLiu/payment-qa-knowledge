@@ -61,5 +61,20 @@ createInnerFundout, createInnerFundoutV2
 ## 测试要点 / 排障 / 常见问题
 - 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
 
+## 相关流程 / 场景 / 排障(反向)
+本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):
+- [[auto_online_business_transfer_order]](自动化:转账下单自动化)
+- [[auto_online_business_transfer_to_bank]](自动化:转账到银行自动化)
+- [[auto_online_business_transfer_to_card]](自动化:转账到卡自动化)
+- [[flow_botim_transfer]](流程:BOTIM/ToC 转账与加款端到端流程)
+- [[flow_merchant_fundout]](流程:商户出款端到端流程 (Merchant Fund-Out))
+- [[flow_payby_cash_out]](流程:现金提现端到端流程 (Cash Out / Withdraw Cash via POS))
+- [[flow_payby_withdraw_to_bank]](流程:提现到银行卡端到端流程 (Transfer to Bank Account / IBAN / Aani))
+- [[flow_zand_fundout]](流程:ZAND渠道出款端到端流程(SP/SQ/VS))
+- [[scn_online_business_merchant_payout]](场景:商户出款 / 转账 (Transfer / Payout))
+- [[scn_online_business_zand_fundout]](场景:ZAND渠道出款测试场景(TC-001~010))
+- [[scn_wallet_withdraw_to_bank]](场景:提现到银行卡场景 (Transfer to Bank Account 字段/状态/限额/测试))
+- [[ts_zand_fundout]](排障:ZAND渠道出款常见故障排查)
+
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp012` · domain=`online-business`。

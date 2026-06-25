@@ -61,3 +61,20 @@ KYC(Know Your Customer / 实名认证)业务域:对用户做身份核验,支撑
 - **KYC 入口**(`/kyc/home?pbw_show_title=N&partner=<方>`)、**活体入口**(`/biometric?...&partner=<方>`)、**回调**(`/broadcast.html`,即 `redirecturl`)按 partner(cashnow/botim/payby)区分;Botim MP 走小程序协议 `https://botim.me/mp/b/?app=me.botim.pay.kyc`。
 - 活体 v2(`/kyc/body-auth/v2/liveness/apply`)的 `videoUrl` 由配置 `applyUrlV2` 与 signzy url 拼接;Botim MP 活体的 `${signzy_url}` 占位由后端 URL-encode 后拼入。
 - **术语**:CGS = Client Gateway Service(客户端网关服务),KYC/支付各业务方接入的统一客户端网关。
+
+## 流程 / 场景 / 排障 索引
+本域 流程 / 场景 / 排障 / 自动化 对象索引:
+- [[auto_kyc_eid_journey]](自动化:KYC EID Journey 端到端自动化 (test_KYC_eid_journey))
+- [[auto_kyc_profile]](自动化:KYC 用户 Profile 查看自动化 (test_KYC_xinwei))
+- [[flow_kyc_change_mobile]](流程:KYC 换绑手机号端到端流程 (Change Mobile))
+- [[flow_kyc_eid_renew]](流程:EID 续期端到端流程 (EID Renew))
+- [[flow_kyc_passport]](流程:护照 KYC 认证端到端流程 (Passport KYC))
+- [[scn_kyc_eid_full_journey]](场景:EID 完整实名认证 journey (NON→FINISH))
+- [[scn_kyc_eid_leave]](场景:放弃 EID 认证 journey)
+- [[scn_kyc_profile_view]](场景:KYC 认证 Profile 查看(各用户类型))
+- [[scn_kyc_status_inquire]](场景:KYC 状态查询与提醒 (FINISH / NON / reminder))
+- [[scn_kyc_zand_iban]](场景:KYC 用户分配 ZAND IBAN)
+- [[ts_kyc_nationality_not_found]](排障:获取不到国籍信息(国籍别名表缺写法))
+- [[ts_kyc_no_exist_record]](排障:KYC 查询返回 NO_EXIST_RECORD(记录不存在))
+- [[ts_kyc_ocr_date_null_out_of_range]](排障:OCR 有效期/出生日期为空或越界(日期解析告警))
+- [[ts_kyc_outman_file_download_failed]](排障:outman 文件下载失败(outman.file_download_failed))

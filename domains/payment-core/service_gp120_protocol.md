@@ -47,5 +47,10 @@ cashdesk-api, cashierii, deduct
 ## 测试要点 / 排障 / 常见问题
 - 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
 
+## 相关流程 / 场景 / 排障(反向)
+本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):
+- [[scn_botim_vip_auto_sign_protocol]](场景:Botim VIP 会员协议自动签署)
+- [[ts_payby_auth_protocol_return_codes]](排障:PayBy 授权协议签约 / 转账接口返回码排错)
+
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp120` · domain=`payment-core`。

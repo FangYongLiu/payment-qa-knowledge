@@ -26,3 +26,8 @@ related_services: [svc_cmf, svc_cmf_task, svc_cashdesk_api, svc_pns, svc_persona
 
 ## QA 关注点
 - 待补。
+
+## 流程 / 场景 / 排障 索引
+本域 流程 / 场景 / 排障 / 自动化 对象索引:
+- [[flow_life_center_mobile_topup]](流程:Life Center 话费充值端到端流程(SGS))
+- [[scn_life_center_mobile_topup]](场景:Mobile Top-up 话费充值(SGS))

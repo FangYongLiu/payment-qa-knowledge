@@ -26,3 +26,10 @@ related_services: [svc_pos_gateway, svc_device, svc_iso8583_gateway, svc_offline
 
 ## QA 关注点
 - 待补。
+
+## 流程 / 场景 / 排障 索引
+本域 流程 / 场景 / 排障 / 自动化 对象索引:
+- [[flow_device_activation]](流程:设备激活端到端流程(Smart POS))
+- [[scn_offline_merchant_scan_payment_code]](场景:商户扫用户付款码线下收单(POS / 扫码枪))
+- [[scn_offline_pos_device_types]](场景:POS设备机型能力差异校验)
+- [[scn_pos_transaction_db_check]](场景:POS刷卡交易落库检查)

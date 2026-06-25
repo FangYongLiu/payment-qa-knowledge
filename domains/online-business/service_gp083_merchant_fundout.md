@@ -52,5 +52,15 @@ related_scenarios: [scn_online_business_merchant_payout]
 ## 测试要点 / 排障 / 常见问题
 - 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
 
+## 相关流程 / 场景 / 排障(反向)
+本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):
+- [[auto_online_business_transfer_order]](自动化:转账下单自动化)
+- [[auto_online_business_transfer_to_bank]](自动化:转账到银行自动化)
+- [[auto_online_business_transfer_to_card]](自动化:转账到卡自动化)
+- [[flow_merchant_fundout]](流程:商户出款端到端流程 (Merchant Fund-Out))
+- [[flow_zand_fundout]](流程:ZAND渠道出款端到端流程(SP/SQ/VS))
+- [[scn_online_business_merchant_payout]](场景:商户出款 / 转账 (Transfer / Payout))
+- [[scn_online_business_zand_fundout]](场景:ZAND渠道出款测试场景(TC-001~010))
+
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp083` · domain=`online-business`。
