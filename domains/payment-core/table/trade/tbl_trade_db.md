@@ -30,7 +30,7 @@ related_tables:
 - tbl_merchant_db
 - tbl_pbsdb_db
 - tbl_ppcenter_db
-- tbl_statement_db
+- tbl_statementii_db
 - tbl_trade_leaf_alloc
 - tbl_trade_t_acq_trade_order_ext
 - tbl_trade_t_compensation_event

@@ -6,7 +6,7 @@ aliases:
 - statementii
 - 账单库
 related_scenarios: []
-domain: payment-core
+domain: online-business
 status: active
 owner: xiaoyan.zhou
 reviewer: xiaoyan.zhou
