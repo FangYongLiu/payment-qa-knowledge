@@ -22,10 +22,73 @@ tags:
 related_services:
 - svc_ppcenter
 - svc_pbs
-related_tables:
-- tbl_trade_db
-- tbl_statement_db
 related_scenarios: []
+related_tables:
+- tbl_pbsdb_leaf_alloc
+- tbl_pbsdb_tb_bill
+- tbl_pbsdb_tb_payment_order
+- tbl_pbsdb_tb_pbs_bill
+- tbl_pbsdb_tb_pbs_bill_detail
+- tbl_pbsdb_tb_pbs_bill_strategy
+- tbl_pbsdb_tb_pbs_bill_workorder
+- tbl_pbsdb_tb_pbs_cachae_log
+- tbl_pbsdb_tb_pbs_cal_vat_config
+- tbl_pbsdb_tb_pbs_err_log
+- tbl_pbsdb_tb_pbs_error_monitor
+- tbl_pbsdb_tb_pbs_fee_assign
+- tbl_pbsdb_tb_pbs_fee_assign_detail
+- tbl_pbsdb_tb_pbs_fee_shared_strategy
+- tbl_pbsdb_tb_pbs_machine_monitor
+- tbl_pbsdb_tb_pbs_price_cal
+- tbl_pbsdb_tb_pbs_price_cal_range
+- tbl_pbsdb_tb_pbs_price_strategy
+- tbl_pbsdb_tb_pbs_price_strategy_detail
+- tbl_pbsdb_tb_pbs_price_strategy_log
+- tbl_pbsdb_tb_pbs_price_strategy_param
+- tbl_pbsdb_tb_pbs_price_strategy_unit
+- tbl_pbsdb_tb_pbs_request_log
+- tbl_pbsdb_tb_pbs_strategy_log
+- tbl_pbsdb_tb_trade_info
+- tbl_pbsdb_tm_bill_config
+- tbl_ppcenter_t_advance_define
+- tbl_ppcenter_t_advance_value
+- tbl_ppcenter_t_biz_product
+- tbl_ppcenter_t_biz_product_group
+- tbl_ppcenter_t_biz_product_mapping
+- tbl_ppcenter_t_biz_product_tag
+- tbl_ppcenter_t_calculation_apply
+- tbl_ppcenter_t_calculation_attr
+- tbl_ppcenter_t_calculation_define
+- tbl_ppcenter_t_calculation_value
+- tbl_ppcenter_t_clearing_apply
+- tbl_ppcenter_t_clearing_attr
+- tbl_ppcenter_t_clearing_define
+- tbl_ppcenter_t_clearing_value
+- tbl_ppcenter_t_config_audit_log
+- tbl_ppcenter_t_config_data_log
+- tbl_ppcenter_t_data_apply
+- tbl_ppcenter_t_gateway_define
+- tbl_ppcenter_t_gateway_value
+- tbl_ppcenter_t_merchant_config_apply
+- tbl_ppcenter_t_merchant_config_relation
+- tbl_ppcenter_t_merchant_product_order
+- tbl_ppcenter_t_package_template
+- tbl_ppcenter_t_package_template_relation
+- tbl_ppcenter_t_pay_auth_define
+- tbl_ppcenter_t_pay_auth_value
+- tbl_ppcenter_t_price_cal
+- tbl_ppcenter_t_product_apply_info
+- tbl_ppcenter_t_product_apply_order
+- tbl_ppcenter_t_product_apply_relation
+- tbl_ppcenter_t_product_audit_log
+- tbl_ppcenter_t_product_package
+- tbl_ppcenter_t_product_package_relation
+- tbl_ppcenter_t_product_push_redo
+- tbl_ppcenter_t_sec_merchant_cal_info
+- tbl_ppcenter_t_statement_define
+- tbl_ppcenter_t_statement_value
+- tbl_statement_db
+- tbl_trade_db
 ---
 
 # 费率配置相关表(ppcenter / pbsdb)
