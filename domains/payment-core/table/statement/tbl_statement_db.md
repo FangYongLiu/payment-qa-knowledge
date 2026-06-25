@@ -20,6 +20,22 @@ tags:
 related_services: []
 related_tables:
 - tbl_merchant_db
+- tbl_statementii_t_retry_task
+- tbl_statementii_t_sequence_table
+- tbl_statementii_t_settlement_config
+- tbl_statementii_t_settlement_config_bak
+- tbl_statementii_t_settlement_order
+- tbl_statementii_t_statement_balance
+- tbl_statementii_t_statement_config
+- tbl_statementii_t_statement_period
+- tbl_statementii_t_statement_rebate
+- tbl_statementii_t_statement_report
+- tbl_statementii_t_statement_settlement
+- tbl_statementii_t_statement_subscribe
+- tbl_statementii_t_statement_task
+- tbl_statementii_t_statement_task_lock
+- tbl_statementii_t_statement_transaction
+- tbl_statementii_t_template_version_change_log
 - tbl_trade_db
 ---
 
