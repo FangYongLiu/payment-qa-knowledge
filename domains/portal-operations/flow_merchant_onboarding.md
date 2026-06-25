@@ -12,7 +12,7 @@ source_type: wiki
 source_ref: 'confluence:AQ/997785804, AQ/997818451, tester/462749700, wiki:34ef57ae'
 tags: [merchant, onboarding, acquire, wps, kyb, aml]
 related_services: [svc_unified_merchant_portal, svc_merchant, svc_member, svc_basis_merchant, svc_aml, svc_vis, svc_ppcenter, svc_contract, svc_statementii]
-related_tables: [tbl_merchant_db]
+related_tables: [tbl_member_tm_member, tbl_member_tm_member_identity, tbl_member_tr_beneficiary_info, tbl_member_tr_member_account, tbl_merchant_db]
 related_scenarios: []
 ---
 

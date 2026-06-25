@@ -13,6 +13,7 @@ source_ref: cgs-apitest/testcases/payment/basic_cases/test_KYC_xinwei.py
 tags: [KYC, EID, Passport, VIP, profile, 脱敏, 自动化, cgs-apitest]
 related_scenarios: [scn_kyc_profile_view]
 related_services: [svc_kyc]
+related_tables: [tbl_member_tm_member, tbl_member_tm_passport_entity, tbl_member_tm_realname_entity, tbl_member_tr_bank_account, tbl_member_tr_member_kyc_level, tbl_member_tr_verify_ref]
 ---
 
 # KYC 用户 Profile 查看自动化
