@@ -14,8 +14,17 @@ name: fundout
 subdomain: fundout
 aliases: [gp012_fundout]
 related_services: [svc_member, svc_pbs, svc_pfs_payment, svc_css, svc_acs, svc_vis, svc_merchant, svc_voucher, svc_cards, svc_exchange, svc_cashierii, svc_ues_ws, svc_cmf]
-related_tables: []
 related_scenarios: [scn_online_business_merchant_payout]
+related_tables:
+- tbl_fundout_leaf_alloc
+- tbl_fundout_t_compensation_event
+- tbl_fundout_tt_daemon_task_trigger
+- tbl_fundout_tt_fund_prepare
+- tbl_fundout_tt_fundout_batch_order
+- tbl_fundout_tt_fundout_order
+- tbl_fundout_tt_fundout_order_ext
+- tbl_fundout_tt_payment_order
+- tbl_fundout_tt_resubmit_order
 ---
 
 # fundout
