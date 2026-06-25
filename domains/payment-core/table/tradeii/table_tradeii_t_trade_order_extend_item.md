@@ -15,20 +15,20 @@ tags:
 subdomain: trade
 module: null
 sensitivity: normal
-name: 交易订单扩展项(t_trade_order_extend_item)
+name: Trade Order Extend Item(t_trade_order_extend_item)
 aliases:
 - t_trade_order_extend_item
 related_services:
 - svc_tradeii
 related_scenarios: []
 ---
-# 交易订单扩展项(t_trade_order_extend_item)
+# Trade Order Extend Item(t_trade_order_extend_item)
 
 ## 用途
-Trade Order Extend Item。属 tradeii 库(交易/支付/退款核心),由 [[svc_tradeii]] 读写。
+Trade Order Extend Item。属 tradeii 库,由 [[svc_tradeii]] 读写。
 
 ## 关联关系
-- **所属服务**:[[svc_tradeii]](交易核心,= `related_services`,tbl→service 边)
+- **所属服务**:[[svc_tradeii]](= `related_services`,tbl→service 边)
 - **谁读写它**:由相关 [[api_*]] / [[svc_*]] 的 `related_tables` 声明(impact 反向可达)。
 - **哪些场景校验它**:待补。
 

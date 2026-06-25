@@ -1,5 +1,5 @@
 ---
-id: tbl_tradeii_t_compensation_event
+id: tbl_trade_t_compensation_event
 object_type: Table
 domain: payment-core
 status: active
@@ -7,9 +7,9 @@ owner: xiaoyan.zhou
 reviewer: xiaoyan.zhou
 last_reviewed_at: '2026-06-25'
 source_type: DB DDL
-source_ref: DataGrip DDL export (tradeii schema) 2026-06-25
+source_ref: DataGrip DDL export (trade schema) 2026-06-25
 tags:
-- tradeii
+- trade
 - trade
 - t_compensation_event
 subdomain: trade
@@ -25,7 +25,7 @@ related_scenarios: []
 # 补偿事件(t_compensation_event)
 
 ## 用途
-补偿事件。属 tradeii 库,由 [[svc_tradeii]] 读写。
+补偿事件。属 trade 库,由 [[svc_tradeii]] 读写。
 
 ## 关联关系
 - **所属服务**:[[svc_tradeii]](= `related_services`,tbl→service 边)
@@ -44,8 +44,8 @@ related_scenarios: []
 | `extension` | varchar(255) |  | 扩展信息 |
 | `error_message` | varchar(128) |  | 错误信息 |
 | `allow_time` | timestamp |  | 允许执行时间 |
-| `create_time` | timestamp | NOT NULL | 创建时间 |
-| `update_time` | timestamp | NOT NULL | 修改时间 |
+| `create_time` | timestamp | NOT NULL / 默认 CURRENT_TIMESTAMP | 创建时间 |
+| `update_time` | timestamp | NOT NULL / 默认 CURRENT_TIMESTAMP | 修改时间 |
 
 ## 主键 / 索引
 - 主键:(`event_id`)

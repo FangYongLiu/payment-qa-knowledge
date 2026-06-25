@@ -25,10 +25,10 @@ related_scenarios: []
 # 交易订单(t_trade_order)
 
 ## 用途
-交易订单。属 tradeii 库(交易/支付/退款核心),由 [[svc_tradeii]] 读写。
+交易订单。属 tradeii 库,由 [[svc_tradeii]] 读写。
 
 ## 关联关系
-- **所属服务**:[[svc_tradeii]](交易核心,= `related_services`,tbl→service 边)
+- **所属服务**:[[svc_tradeii]](= `related_services`,tbl→service 边)
 - **谁读写它**:由相关 [[api_*]] / [[svc_*]] 的 `related_tables` 声明(impact 反向可达)。
 - **哪些场景校验它**:待补。
 
@@ -53,8 +53,8 @@ related_scenarios: []
 | `exchange_voucher_no` | bigint |  | 换汇凭证号 |
 | `settle_voucher_no` | bigint |  | 结算凭证号 |
 | `unity_result_code` | varchar(50) |  | 统一返回码 |
-| `last_fail_unity_result_code` | —(DDL未定义) |  |  |
-| `last_fail_pay_voucher_no` | —(DDL未定义) |  |  |
+| `last_fail_unity_result_code` | varchar(64) |  | last fail unity result code |
+| `last_fail_pay_voucher_no` | bigint |  | last fail pay voucher no |
 | `extension` | varchar(255) |  | 扩展参数 |
 | `expire_time` | timestamp |  | 过期时间 |
 | `settle_book_time` | timestamp |  | 预计结算时间 |

@@ -1,5 +1,5 @@
 ---
-id: tbl_tradeii_leaf_alloc
+id: tbl_trade_t_trade_order_setting
 object_type: Table
 domain: payment-core
 status: active
@@ -7,25 +7,25 @@ owner: xiaoyan.zhou
 reviewer: xiaoyan.zhou
 last_reviewed_at: '2026-06-25'
 source_type: DB DDL
-source_ref: DataGrip DDL export (tradeii schema) 2026-06-25
+source_ref: DataGrip DDL export (trade schema) 2026-06-25
 tags:
-- tradeii
 - trade
-- leaf_alloc
+- trade
+- t_trade_order_setting
 subdomain: trade
 module: null
 sensitivity: normal
-name: 序列分配(leaf_alloc)
+name: 交易参数特殊配置(t_trade_order_setting)
 aliases:
-- leaf_alloc
+- t_trade_order_setting
 related_services:
 - svc_tradeii
 related_scenarios: []
 ---
-# 序列分配(leaf_alloc)
+# 交易参数特殊配置(t_trade_order_setting)
 
 ## 用途
-序列分配。属 tradeii 库,由 [[svc_tradeii]] 读写。
+交易参数特殊配置。属 trade 库,由 [[svc_tradeii]] 读写。
 
 ## 关联关系
 - **所属服务**:[[svc_tradeii]](= `related_services`,tbl→service 边)
@@ -35,14 +35,16 @@ related_scenarios: []
 ## 关键列
 | 列 | 类型 | 约束 | 说明 |
 | --- | --- | --- | --- |
-| `biz_tag` | varchar(128) | PK / NOT NULL / 默认 '' | sequence名称 |
-| `max_id` | bigint | NOT NULL / 默认 1 | 当前序列最大值 |
-| `step` | int | NOT NULL | 缓存的个数，一般配置表为10，订单表为200以上，看订单量 |
-| `description` | varchar(256) |  | 描述 |
-| `update_time` | timestamp | NOT NULL / 默认 CURRENT_TIMESTAMP | 更新时间 |
+| `SETTING_ID` | decimal(11) | PK / NOT NULL | 配置ID |
+| `TRADE_VOUCHER_NO` | varchar(32) | NOT NULL | 交易凭证号 |
+| `PARAM_TYPE` | varchar(16) | NOT NULL | 参数类型 |
+| `PARAM_KEY` | varchar(32) | NOT NULL | 参数KEY |
+| `PARAM_VALUE` | varchar(128) |  | 参数VALUE |
+| `GMT_CREATE` | timestamp | NOT NULL / 默认 CURRENT_TIMESTAMP | 创建时间 |
+| `GMT_MODIFIED` | timestamp |  | 修改时间 |
 
 ## 主键 / 索引
-- 主键:(`biz_tag`)
+- 主键:(`SETTING_ID`)
 - 索引:无(或见 DDL)
 
 ## 校验点(QA 关注)

@@ -14,8 +14,40 @@ name: tradeii
 dev_owner: Yu.Tang
 aliases: [gp123_tradeii]
 related_services: [svc_voucher, svc_member, svc_cmf, svc_pfs_payment, svc_cashierii, svc_pbs, svc_acs, svc_cards, svc_css, svc_authpay, svc_cms, svc_deduct, svc_ppcenter, svc_merchant]
-related_tables: []
 related_scenarios: [scn_online_business_auto_debit, scn_online_business_cashier_pay, scn_online_business_direct_pay, scn_online_business_merchant_payout, scn_online_business_merchant_split, scn_online_business_pre_auth, scn_remittance_cross_border, scn_wallet_consumer_pay, scn_wallet_deposit, scn_wallet_p2p, scn_wallet_withdraw]
+related_tables:
+- tbl_trade_leaf_alloc
+- tbl_trade_t_acq_trade_order_ext
+- tbl_trade_t_compensation_event
+- tbl_trade_t_control_order
+- tbl_trade_t_market_method
+- tbl_trade_t_order_ext
+- tbl_trade_t_other_party
+- tbl_trade_t_pay_method
+- tbl_trade_t_payment_order
+- tbl_trade_t_payment_party
+- tbl_trade_t_rfd_trade_order_ext
+- tbl_trade_t_split_party
+- tbl_trade_t_task_config
+- tbl_trade_t_trade_batch_order
+- tbl_trade_t_trade_order
+- tbl_trade_t_trade_order_setting
+- tbl_trade_t_trade_status_his
+- tbl_tradeii_leaf_alloc
+- tbl_tradeii_t_compensation_event
+- tbl_tradeii_t_pay_order
+- tbl_tradeii_t_payment_relate_order
+- tbl_tradeii_t_product_account_config
+- tbl_tradeii_t_product_config
+- tbl_tradeii_t_refund_control
+- tbl_tradeii_t_refund_order
+- tbl_tradeii_t_refund_party
+- tbl_tradeii_t_refund_pay_order
+- tbl_tradeii_t_trade_marketing
+- tbl_tradeii_t_trade_order
+- tbl_tradeii_t_trade_order_extend
+- tbl_tradeii_t_trade_order_extend_item
+- tbl_tradeii_t_trade_party
 ---
 
 # tradeii
