@@ -1,7 +1,5 @@
 .DS_Store
 .idea/
 
-# 本地演示 materialize 的 wiki 页(curation v2 reindex 验证用,非正式发布)。
-# 正式 wiki 知识应经 brain 上传→curation→人审→publish PR→合并 入库;届时移除此忽略。
-# 只忽略仓库根的 wiki/(活动 materialize 目录);legacy/wiki/(归档原料)要入库保留。
-/wiki/
+# wiki/ 现已正式作为 LLM-Wiki 底座层入库(业务/流程/总览类文档保全文,status=active,
+# 经 reindex 进 WikiPage)。不再忽略——否则 brain worker git pull 拉不到底座层。
