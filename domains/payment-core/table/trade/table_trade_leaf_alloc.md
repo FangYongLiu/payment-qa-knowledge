@@ -1,5 +1,5 @@
 ---
-id: tbl_tradeii_leaf_alloc
+id: tbl_trade_leaf_alloc
 object_type: Table
 domain: payment-core
 status: active
@@ -7,9 +7,9 @@ owner: xiaoyan.zhou
 reviewer: xiaoyan.zhou
 last_reviewed_at: '2026-06-25'
 source_type: DB DDL
-source_ref: DataGrip DDL export (tradeii schema) 2026-06-25
+source_ref: DataGrip DDL export (trade schema) 2026-06-25
 tags:
-- tradeii
+- trade
 - trade
 - leaf_alloc
 subdomain: trade
@@ -25,7 +25,7 @@ related_scenarios: []
 # 序列分配(leaf_alloc)
 
 ## 用途
-序列分配。属 tradeii 库,由 [[svc_tradeii]] 读写。
+序列分配。属 trade 库,由 [[svc_tradeii]] 读写。
 
 ## 关联关系
 - **所属服务**:[[svc_tradeii]](= `related_services`,tbl→service 边)
@@ -36,8 +36,8 @@ related_scenarios: []
 | 列 | 类型 | 约束 | 说明 |
 | --- | --- | --- | --- |
 | `biz_tag` | varchar(128) | PK / NOT NULL / 默认 '' | sequence名称 |
-| `max_id` | bigint | NOT NULL / 默认 1 | 当前序列最大值 |
-| `step` | int | NOT NULL | 缓存的个数，一般配置表为10，订单表为200以上，看订单量 |
+| `max_id` | bigint | NOT NULL / 默认 1 | 当前序列最大值，亦即下次取值的初始值 |
+| `step` | int | NOT NULL | 初始情况下在内存中缓冲的序列号个数，一般配置表为10，订单表为200以上，看订单量 |
 | `description` | varchar(256) |  | 描述 |
 | `update_time` | timestamp | NOT NULL / 默认 CURRENT_TIMESTAMP | 更新时间 |
 

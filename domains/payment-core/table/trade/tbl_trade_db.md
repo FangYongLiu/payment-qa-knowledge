@@ -1,7 +1,7 @@
 ---
-id: tbl_trade_db
+id: tbl_tradeii_db
 object_type: Table
-name: 交易类核心表(acquireii / mhtfundout / transfer / deposit / tradeii / fundout)
+name: 交易核心库 trade 核心表(trade)
 aliases:
 - 交易类核心表
 - trade db
@@ -23,29 +23,31 @@ tags:
 related_services:
 - svc_tradeii
 - svc_deposit
-related_tables:
-- tbl_member_db
-- tbl_dpm_db
-- tbl_merchant_db
-- tbl_statement_db
-- tbl_ppcenter_db
-- tbl_pbsdb_db
-- tbl_tradeii_leaf_alloc
-- tbl_tradeii_t_compensation_event
-- tbl_tradeii_t_pay_order
-- tbl_tradeii_t_payment_relate_order
-- tbl_tradeii_t_product_account_config
-- tbl_tradeii_t_product_config
-- tbl_tradeii_t_refund_control
-- tbl_tradeii_t_refund_order
-- tbl_tradeii_t_refund_party
-- tbl_tradeii_t_refund_pay_order
-- tbl_tradeii_t_trade_marketing
-- tbl_tradeii_t_trade_order
-- tbl_tradeii_t_trade_order_extend
-- tbl_tradeii_t_trade_order_extend_item
-- tbl_tradeii_t_trade_party
 related_scenarios: []
+related_tables:
+- tbl_dpm_db
+- tbl_member_db
+- tbl_merchant_db
+- tbl_pbsdb_db
+- tbl_ppcenter_db
+- tbl_statement_db
+- tbl_trade_leaf_alloc
+- tbl_trade_t_acq_trade_order_ext
+- tbl_trade_t_compensation_event
+- tbl_trade_t_control_order
+- tbl_trade_t_market_method
+- tbl_trade_t_order_ext
+- tbl_trade_t_other_party
+- tbl_trade_t_pay_method
+- tbl_trade_t_payment_order
+- tbl_trade_t_payment_party
+- tbl_trade_t_rfd_trade_order_ext
+- tbl_trade_t_split_party
+- tbl_trade_t_task_config
+- tbl_trade_t_trade_batch_order
+- tbl_trade_t_trade_order
+- tbl_trade_t_trade_order_setting
+- tbl_trade_t_trade_status_his
 ---
 
 # 交易类核心表(acquireii / mhtfundout / transfer / deposit / tradeii / fundout)
@@ -57,7 +59,7 @@ related_scenarios: []
 
 ## 关联关系
 - **所属服务**:中台交易 [[svc_tradeii]]、充值 [[svc_deposit]](= frontmatter `related_services`)。收单(acquireii)、出款(mhtfundout)、转账(transfer)、提现(fundout)对应服务落在其它业务域,待补,本侧不硬连。
-- **谁读写它**:账户余额变动落 [[tbl_dpm_db]];会员维度联查 [[tbl_member_db]];商户维度联查 [[tbl_merchant_db]];对账统计见 [[tbl_statement_db]];计费取数见 [[tbl_ppcenter_db]]、[[tbl_pbsdb_db]]。
+- **谁读写它**:账户余额变动落 [[tbl_dpm_db]];会员维度联查 [[tbl_member_db]];商户维度联查 [[tbl_merchant_db]];对账统计见 [[tbl_statementii_db]];计费取数见 [[tbl_ppcenter_db]]、[[tbl_pbsdb_db]]。
 - **哪些场景校验它**:待补(尚无 `related_scenarios`)。
 - 导航入口见 [[ts_payment_db_navigation]]。
 

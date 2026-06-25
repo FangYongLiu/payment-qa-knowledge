@@ -1,5 +1,5 @@
 ---
-id: tbl_statement_db
+id: tbl_statementii_db
 object_type: Table
 name: 账单库 statementii 核心表(statementii)
 aliases:
@@ -36,7 +36,7 @@ related_tables:
 - tbl_statementii_t_statement_task_lock
 - tbl_statementii_t_statement_transaction
 - tbl_statementii_t_template_version_change_log
-- tbl_trade_db
+- tbl_tradeii_db
 ---
 
 # 账单库 statementii 核心表(statementii)
@@ -48,7 +48,7 @@ related_tables:
 
 ## 关联关系
 - **所属服务**:待补(payment-core 域内暂无对账单/账单服务对象,不硬连)。
-- **谁读写它**:收单对账统计来源于交易数据 [[tbl_trade_db]];商户维度联查 [[tbl_merchant_db]]。
+- **谁读写它**:收单对账统计来源于交易数据 [[tbl_tradeii_db]];商户维度联查 [[tbl_merchant_db]]。
 - **哪些场景校验它**:待补(尚无 `related_scenarios`)。
 - 导航入口见 [[ts_payment_db_navigation]]。
 
@@ -71,5 +71,5 @@ related_tables:
 - 账期 `t_statement_period` 与登记 `t_statement_registration`、任务 `t_statement_task` 之间的关联是否一致。
 - 对账单模板 `t_statement_template` 与任务、文件的对应关系是否正确生成。
 - `t_statement_file` 文件记录与实际生成文件是否匹配;任务状态是否正确流转。
-- `t_statement_pruchase_statistics` 收单统计数据与 [[tbl_trade_db]] 收单交易数据是否一致。
+- `t_statement_pruchase_statistics` 收单统计数据与 [[tbl_tradeii_db]] 收单交易数据是否一致。
 - 注意表名 `t_statement_pruchase_statistics` 的拼写(原文如此),SQL 编写时不要误改为 `purchase`。
