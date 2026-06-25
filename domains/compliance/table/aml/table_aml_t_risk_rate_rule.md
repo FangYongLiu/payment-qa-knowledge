@@ -1,5 +1,5 @@
 ---
-id: tbl_aml_t_system_param
+id: tbl_aml_t_risk_rate_rule
 object_type: Table
 domain: compliance
 status: active
@@ -11,21 +11,21 @@ source_ref: DataGrip DDL export (aml schema) 2026-06-25
 tags:
 - aml
 - aml
-- t_system_param
+- t_risk_rate_rule
 subdomain: aml
 module: null
 sensitivity: normal
-name: 系统参数表(t_system_param)
+name: 风险评级规则(t_risk_rate_rule)
 aliases:
-- t_system_param
+- t_risk_rate_rule
 related_services:
 - svc_aml
 related_scenarios: []
 ---
-# 系统参数表(t_system_param)
+# 风险评级规则(t_risk_rate_rule)
 
 ## 用途
-系统参数表。属 aml 库,由 [[svc_aml]] 读写。
+风险评级规则。属 aml 库,由 [[svc_aml]] 读写。
 
 ## 关联关系
 - **所属服务**:[[svc_aml]](= `related_services`,tbl→service 边)
@@ -35,12 +35,17 @@ related_scenarios: []
 ## 关键列
 | 列 | 类型 | 约束 | 说明 |
 | --- | --- | --- | --- |
-| `param_key` | varchar(64) | PK / NOT NULL | 系统业务自定义KEY |
-| `param_value` | varchar(512) | PK / NOT NULL | Custom business value |
-| `mark` | varchar(256) |  | mark |
+| `id` | bigint | PK / NOT NULL | 主键 |
+| `rule_type` | varchar(20) | NOT NULL | 规则类型（PERSONAL/MERCHANT） |
+| `rule_title` | varchar(100) | NOT NULL | 规则标题 |
+| `max_risk_point` | int | NOT NULL | 最大风险分数 |
+| `rule_desc` | varchar(2000) | NOT NULL | 规则描述 |
+| `weight` | decimal(19,4) | NOT NULL | 比重 |
+| `create_time` | timestamp(3) | NOT NULL | 创建时间 |
+| `update_time` | timestamp(3) | NOT NULL | 修改时间 |
 
 ## 主键 / 索引
-- 主键:(`param_key`, `param_value`)
+- 主键:(`id`)
 - 索引:无(或见 DDL)
 
 ## 校验点(QA 关注)

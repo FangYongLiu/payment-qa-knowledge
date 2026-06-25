@@ -1,5 +1,5 @@
 ---
-id: tbl_aml_t_system_param
+id: tbl_aml_t_wps_control
 object_type: Table
 domain: compliance
 status: active
@@ -11,21 +11,21 @@ source_ref: DataGrip DDL export (aml schema) 2026-06-25
 tags:
 - aml
 - aml
-- t_system_param
+- t_wps_control
 subdomain: aml
 module: null
 sensitivity: normal
-name: 系统参数表(t_system_param)
+name: wps控制请求(t_wps_control)
 aliases:
-- t_system_param
+- t_wps_control
 related_services:
 - svc_aml
 related_scenarios: []
 ---
-# 系统参数表(t_system_param)
+# wps控制请求(t_wps_control)
 
 ## 用途
-系统参数表。属 aml 库,由 [[svc_aml]] 读写。
+wps控制请求。属 aml 库,由 [[svc_aml]] 读写。
 
 ## 关联关系
 - **所属服务**:[[svc_aml]](= `related_services`,tbl→service 边)
@@ -35,13 +35,18 @@ related_scenarios: []
 ## 关键列
 | 列 | 类型 | 约束 | 说明 |
 | --- | --- | --- | --- |
-| `param_key` | varchar(64) | PK / NOT NULL | 系统业务自定义KEY |
-| `param_value` | varchar(512) | PK / NOT NULL | Custom business value |
-| `mark` | varchar(256) |  | mark |
+| `id` | int | PK / AUTO_INC | 主键 |
+| `member_id` | varchar(20) |  | 会员id |
+| `salary` | decimal(15,4) |  | 工资 |
+| `currency` | char(3) |  | 币种 |
+| `operate_type` | varchar(20) |  | 操作类型 |
+| `extension` | varchar(255) |  | 扩展字段 |
+| `create_time` | timestamp(3) |  | 创建时间 |
 
 ## 主键 / 索引
-- 主键:(`param_key`, `param_value`)
-- 索引:无(或见 DDL)
+- 主键:(`id`)
+- 索引:
+  - `idx_member_id` (member_id)
 
 ## 校验点(QA 关注)
 - 落库检查、状态流转、与上下游表/接口一致性。

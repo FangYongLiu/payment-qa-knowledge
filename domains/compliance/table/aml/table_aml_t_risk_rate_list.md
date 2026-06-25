@@ -1,5 +1,5 @@
 ---
-id: tbl_aml_t_system_param
+id: tbl_aml_t_risk_rate_list
 object_type: Table
 domain: compliance
 status: active
@@ -11,21 +11,21 @@ source_ref: DataGrip DDL export (aml schema) 2026-06-25
 tags:
 - aml
 - aml
-- t_system_param
+- t_risk_rate_list
 subdomain: aml
 module: null
 sensitivity: normal
-name: 系统参数表(t_system_param)
+name: 风险评级名单库(t_risk_rate_list)
 aliases:
-- t_system_param
+- t_risk_rate_list
 related_services:
 - svc_aml
 related_scenarios: []
 ---
-# 系统参数表(t_system_param)
+# 风险评级名单库(t_risk_rate_list)
 
 ## 用途
-系统参数表。属 aml 库,由 [[svc_aml]] 读写。
+风险评级名单库。属 aml 库,由 [[svc_aml]] 读写。
 
 ## 关联关系
 - **所属服务**:[[svc_aml]](= `related_services`,tbl→service 边)
@@ -35,13 +35,17 @@ related_scenarios: []
 ## 关键列
 | 列 | 类型 | 约束 | 说明 |
 | --- | --- | --- | --- |
-| `param_key` | varchar(64) | PK / NOT NULL | 系统业务自定义KEY |
-| `param_value` | varchar(512) | PK / NOT NULL | Custom business value |
-| `mark` | varchar(256) |  | mark |
+| `id` | bigint | PK / AUTO_INC | 主键 |
+| `list_library` | varchar(50) | NOT NULL | 名单库 |
+| `list_value` | varchar(200) | NOT NULL | 名单值 |
+| `status` | char | NOT NULL | 状态 1有效 0无效 |
+| `create_time` | timestamp(3) | NOT NULL | 创建时间 |
+| `update_time` | timestamp(3) | NOT NULL | 修改时间 |
 
 ## 主键 / 索引
-- 主键:(`param_key`, `param_value`)
-- 索引:无(或见 DDL)
+- 主键:(`id`)
+- 索引:
+  - `idx_list_library` (list_library)
 
 ## 校验点(QA 关注)
 - 落库检查、状态流转、与上下游表/接口一致性。

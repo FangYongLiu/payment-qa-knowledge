@@ -1,5 +1,5 @@
 ---
-id: tbl_aml_t_system_param
+id: tbl_aml_leaf_alloc
 object_type: Table
 domain: compliance
 status: active
@@ -11,21 +11,21 @@ source_ref: DataGrip DDL export (aml schema) 2026-06-25
 tags:
 - aml
 - aml
-- t_system_param
+- leaf_alloc
 subdomain: aml
 module: null
 sensitivity: normal
-name: 系统参数表(t_system_param)
+name: 序列分配(leaf_alloc)
 aliases:
-- t_system_param
+- leaf_alloc
 related_services:
 - svc_aml
 related_scenarios: []
 ---
-# 系统参数表(t_system_param)
+# 序列分配(leaf_alloc)
 
 ## 用途
-系统参数表。属 aml 库,由 [[svc_aml]] 读写。
+序列分配。属 aml 库,由 [[svc_aml]] 读写。
 
 ## 关联关系
 - **所属服务**:[[svc_aml]](= `related_services`,tbl→service 边)
@@ -35,12 +35,14 @@ related_scenarios: []
 ## 关键列
 | 列 | 类型 | 约束 | 说明 |
 | --- | --- | --- | --- |
-| `param_key` | varchar(64) | PK / NOT NULL | 系统业务自定义KEY |
-| `param_value` | varchar(512) | PK / NOT NULL | Custom business value |
-| `mark` | varchar(256) |  | mark |
+| `biz_tag` | varchar(128) | PK / NOT NULL / 默认 '' | sequence名称 |
+| `max_id` | bigint | NOT NULL / 默认 1 | 当前序列最大值，亦即下次取值的初始值 |
+| `step` | int | NOT NULL | 初始情况下在内存中缓冲的序列号个数，一般配置表为10，订单表为200以上，看订单量 |
+| `description` | varchar(256) |  | 描述 |
+| `update_time` | timestamp | NOT NULL / 默认 CURRENT_TIMESTAMP | 更新时间 |
 
 ## 主键 / 索引
-- 主键:(`param_key`, `param_value`)
+- 主键:(`biz_tag`)
 - 索引:无(或见 DDL)
 
 ## 校验点(QA 关注)

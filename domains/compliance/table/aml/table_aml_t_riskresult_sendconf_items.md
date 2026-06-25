@@ -1,5 +1,5 @@
 ---
-id: tbl_aml_t_system_param
+id: tbl_aml_t_riskresult_sendconf_items
 object_type: Table
 domain: compliance
 status: active
@@ -11,21 +11,21 @@ source_ref: DataGrip DDL export (aml schema) 2026-06-25
 tags:
 - aml
 - aml
-- t_system_param
+- t_riskresult_sendconf_items
 subdomain: aml
 module: null
 sensitivity: normal
-name: 系统参数表(t_system_param)
+name: 风控事件最终结果通知配置明细表(t_riskresult_sendconf_items)
 aliases:
-- t_system_param
+- t_riskresult_sendconf_items
 related_services:
 - svc_aml
 related_scenarios: []
 ---
-# 系统参数表(t_system_param)
+# 风控事件最终结果通知配置明细表(t_riskresult_sendconf_items)
 
 ## 用途
-系统参数表。属 aml 库,由 [[svc_aml]] 读写。
+风控事件最终结果通知配置明细表。属 aml 库,由 [[svc_aml]] 读写。
 
 ## 关联关系
 - **所属服务**:[[svc_aml]](= `related_services`,tbl→service 边)
@@ -35,13 +35,17 @@ related_scenarios: []
 ## 关键列
 | 列 | 类型 | 约束 | 说明 |
 | --- | --- | --- | --- |
-| `param_key` | varchar(64) | PK / NOT NULL | 系统业务自定义KEY |
-| `param_value` | varchar(512) | PK / NOT NULL | Custom business value |
-| `mark` | varchar(256) |  | mark |
+| `id` | bigint | PK / NOT NULL |  |
+| `platform_event_type` | varchar(64) | NOT NULL | 事件类型 |
+| `values` | varchar(1024) |  | value1,value2,value3,value..n |
+| `desc` | varchar(64) |  | value说明 |
+| `ops_type` | tinyint | NOT NULL | 类型，1：email，2：手机 |
+| `status` | varchar(32) | NOT NULL | valid 有效，invalid 无效 |
 
 ## 主键 / 索引
-- 主键:(`param_key`, `param_value`)
-- 索引:无(或见 DDL)
+- 主键:(`id`)
+- 索引:
+  - `idx1` (platform_event_type)
 
 ## 校验点(QA 关注)
 - 落库检查、状态流转、与上下游表/接口一致性。

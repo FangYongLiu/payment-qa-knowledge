@@ -1,5 +1,5 @@
 ---
-id: tbl_aml_t_system_param
+id: tbl_aml_t_status_score_testrun_result
 object_type: Table
 domain: compliance
 status: active
@@ -11,21 +11,21 @@ source_ref: DataGrip DDL export (aml schema) 2026-06-25
 tags:
 - aml
 - aml
-- t_system_param
+- t_status_score_testrun_result
 subdomain: aml
 module: null
 sensitivity: normal
-name: 系统参数表(t_system_param)
+name: 状态分数试运行结果(t_status_score_testrun_result)
 aliases:
-- t_system_param
+- t_status_score_testrun_result
 related_services:
 - svc_aml
 related_scenarios: []
 ---
-# 系统参数表(t_system_param)
+# 状态分数试运行结果(t_status_score_testrun_result)
 
 ## 用途
-系统参数表。属 aml 库,由 [[svc_aml]] 读写。
+状态分数试运行结果。属 aml 库,由 [[svc_aml]] 读写。
 
 ## 关联关系
 - **所属服务**:[[svc_aml]](= `related_services`,tbl→service 边)
@@ -35,13 +35,19 @@ related_scenarios: []
 ## 关键列
 | 列 | 类型 | 约束 | 说明 |
 | --- | --- | --- | --- |
-| `param_key` | varchar(64) | PK / NOT NULL | 系统业务自定义KEY |
-| `param_value` | varchar(512) | PK / NOT NULL | Custom business value |
-| `mark` | varchar(256) |  | mark |
+| `id` | bigint | PK / NOT NULL | 主键ID |
+| `tid` | varchar(32) | 默认 '' | 业务跟踪ID |
+| `status_score_id` | bigint | 默认 0 | 状态分数配置ID |
+| `event_type` | varchar(50) |  | 事件类型 |
+| `risk_score` | int |  | 风险分值 |
+| `risk_result` | varchar(10) |  | 风控结果 |
+| `create_time` | timestamp | NOT NULL / 默认 CURRENT_TIMESTAMP | 创建时间 |
 
 ## 主键 / 索引
-- 主键:(`param_key`, `param_value`)
-- 索引:无(或见 DDL)
+- 主键:(`id`)
+- 索引:
+  - `create_time_index` (create_time)
+  - `tid_index` (tid)
 
 ## 校验点(QA 关注)
 - 落库检查、状态流转、与上下游表/接口一致性。

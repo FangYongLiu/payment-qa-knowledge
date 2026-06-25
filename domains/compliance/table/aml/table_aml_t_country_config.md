@@ -1,5 +1,5 @@
 ---
-id: tbl_aml_t_system_param
+id: tbl_aml_t_country_config
 object_type: Table
 domain: compliance
 status: active
@@ -11,21 +11,21 @@ source_ref: DataGrip DDL export (aml schema) 2026-06-25
 tags:
 - aml
 - aml
-- t_system_param
+- t_country_config
 subdomain: aml
 module: null
 sensitivity: normal
-name: 系统参数表(t_system_param)
+name: 国家配置表(t_country_config)
 aliases:
-- t_system_param
+- t_country_config
 related_services:
 - svc_aml
 related_scenarios: []
 ---
-# 系统参数表(t_system_param)
+# 国家配置表(t_country_config)
 
 ## 用途
-系统参数表。属 aml 库,由 [[svc_aml]] 读写。
+国家配置表。属 aml 库,由 [[svc_aml]] 读写。
 
 ## 关联关系
 - **所属服务**:[[svc_aml]](= `related_services`,tbl→service 边)
@@ -35,12 +35,15 @@ related_scenarios: []
 ## 关键列
 | 列 | 类型 | 约束 | 说明 |
 | --- | --- | --- | --- |
-| `param_key` | varchar(64) | PK / NOT NULL | 系统业务自定义KEY |
-| `param_value` | varchar(512) | PK / NOT NULL | Custom business value |
-| `mark` | varchar(256) |  | mark |
+| `id` | int | PK / AUTO_INC | 主键id |
+| `code_alpha2` | char(2) | NOT NULL | 国家code |
+| `area_code` | varchar(8) | NOT NULL | 国际编号 |
+| `memo` | varchar(64) |  | 备注 |
+| `created_time` | timestamp | NOT NULL | 创建时间 |
+| `updated_time` | timestamp | NOT NULL | 更新时间 |
 
 ## 主键 / 索引
-- 主键:(`param_key`, `param_value`)
+- 主键:(`id`)
 - 索引:无(或见 DDL)
 
 ## 校验点(QA 关注)
