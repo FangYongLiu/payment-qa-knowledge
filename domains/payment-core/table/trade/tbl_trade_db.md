@@ -28,7 +28,8 @@ related_tables:
 - tbl_dpm_db
 - tbl_merchant_db
 - tbl_statement_db
-- tbl_pricing_db
+- tbl_ppcenter_db
+- tbl_pbsdb_db
 - tbl_tradeii_leaf_alloc
 - tbl_tradeii_t_compensation_event
 - tbl_tradeii_t_pay_order
@@ -56,7 +57,7 @@ related_scenarios: []
 
 ## 关联关系
 - **所属服务**:中台交易 [[svc_tradeii]]、充值 [[svc_deposit]](= frontmatter `related_services`)。收单(acquireii)、出款(mhtfundout)、转账(transfer)、提现(fundout)对应服务落在其它业务域,待补,本侧不硬连。
-- **谁读写它**:账户余额变动落 [[tbl_dpm_db]];会员维度联查 [[tbl_member_db]];商户维度联查 [[tbl_merchant_db]];对账统计见 [[tbl_statement_db]];计费取数见 [[tbl_pricing_db]]。
+- **谁读写它**:账户余额变动落 [[tbl_dpm_db]];会员维度联查 [[tbl_member_db]];商户维度联查 [[tbl_merchant_db]];对账统计见 [[tbl_statement_db]];计费取数见 [[tbl_ppcenter_db]]、[[tbl_pbsdb_db]]。
 - **哪些场景校验它**:待补(尚无 `related_scenarios`)。
 - 导航入口见 [[ts_payment_db_navigation]]。
 
@@ -92,4 +93,4 @@ related_scenarios: []
 - 中台交易:`tradeii.t_trade_order`、`t_order_ext`、`t_payment_order` 三表的订单/扩展/支付订单关联。
 - 充值与提现分别落库 `deposit.t_deposit_order` 与 `fundout.tt_fundout_order`。
 - 个人转账落库 `transfer.t_transfer_order`,与收单/中台交易表区分使用。
-- 交易引发的账户余额变动应与 [[tbl_dpm_db]] 明细可对账;计费取数应与 [[tbl_pricing_db]] 费率配置一致。
+- 交易引发的账户余额变动应与 [[tbl_dpm_db]] 明细可对账;计费取数应与 [[tbl_ppcenter_db]]、[[tbl_pbsdb_db]] 费率配置一致。
