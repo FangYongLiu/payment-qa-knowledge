@@ -29,6 +29,21 @@ related_tables:
 - tbl_merchant_db
 - tbl_statement_db
 - tbl_pricing_db
+- tbl_tradeii_leaf_alloc
+- tbl_tradeii_t_compensation_event
+- tbl_tradeii_t_pay_order
+- tbl_tradeii_t_payment_relate_order
+- tbl_tradeii_t_product_account_config
+- tbl_tradeii_t_product_config
+- tbl_tradeii_t_refund_control
+- tbl_tradeii_t_refund_order
+- tbl_tradeii_t_refund_party
+- tbl_tradeii_t_refund_pay_order
+- tbl_tradeii_t_trade_marketing
+- tbl_tradeii_t_trade_order
+- tbl_tradeii_t_trade_order_extend
+- tbl_tradeii_t_trade_order_extend_item
+- tbl_tradeii_t_trade_party
 related_scenarios: []
 ---
 
