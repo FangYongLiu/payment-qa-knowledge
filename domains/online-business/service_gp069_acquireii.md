@@ -59,5 +59,28 @@ merchant-frontend
 ## 测试要点 / 排障 / 常见问题
 - 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
 
+## 相关流程 / 场景 / 排障(反向)
+本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):
+- [[auto_online_business_bpg_paypage]](自动化:收银台 BPG PayPage 自动化)
+- [[auto_online_business_direct_pay]](自动化:直连支付自动化)
+- [[auto_online_business_dynqr]](自动化:动态二维码收银自动化)
+- [[auto_online_business_pre_auth_capture]](自动化:预授权/请款自动化)
+- [[auto_online_business_qr_pay]](自动化:二维码/付款码开关自动化)
+- [[auto_online_business_send_pay_link]](自动化:发送支付链接自动化)
+- [[auto_online_business_smart_code]](自动化:智慧码支付自动化)
+- [[auto_online_business_smart_pos]](自动化:智能 POS 自动化)
+- [[auto_online_business_taxi]](自动化:出租车支付自动化)
+- [[flow_cashier_payment]](流程:收银台 / 收单卡支付端到端流程（含退款）)
+- [[flow_pos_scan_payment_code]](流程:付款码被 POS 机扫(线下被扫收单)端到端流程)
+- [[scn_online_business_cashier_pay]](场景:收银台支付 (Cashier / PayPage))
+- [[scn_online_business_direct_pay]](场景:直连支付 (Direct Pay))
+- [[scn_online_business_mpgs_channel]](场景:MPGS 渠道卡支付(3DS2 / MOTO / 设备支付 / 卡组织拆分 / 退款Void))
+- [[scn_online_business_openapi_protocol_signing]](场景:商户 Open API 接入协议与签名/加密规则)
+- [[scn_online_business_payment_code_scan]](场景:付款码被扫线下收单 (POS / 扫码枪))
+- [[scn_online_business_pre_auth]](场景:预授权 / 请款 (PreAuth-Capture))
+- [[scn_online_business_transaction_db_check]](场景:商户交易落库检查 (Transaction DB Check))
+- [[scn_pos_transaction_db_check]](场景:POS刷卡交易落库检查)
+- [[ts_acquire_order_slow_sql]](排障:收单订单查询慢SQL(t_acquire_order 大商户时间范围查询))
+
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp069` · domain=`online-business`。

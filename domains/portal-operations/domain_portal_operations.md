@@ -26,3 +26,12 @@ related_services: [svc_basis, svc_merchant, svc_hive_activities, svc_hive_bank_c
 
 ## QA 关注点
 - 待补。
+
+## 流程 / 场景 / 排障 索引
+本域 流程 / 场景 / 排障 / 自动化 对象索引:
+- [[flow_acquire_product_application]](流程:收单商户控台产品申请与开通流程)
+- [[flow_merchant_onboarding]](流程:商户注册与入驻端到端流程(Acquire + WPS))
+- [[flow_mpgs_manual_onboarding]](流程:MPGS 手动报备(人工录入)入驻流程)
+- [[scn_merchant_fee_bearer_separation]](场景:收支分离商户配置(独立 MID 扣手续费))
+- [[scn_merchant_settlement_withdraw_auth]](场景:商户控台结算/提现/退款的双人授权)
+- [[scn_onboarding_manual_register]](场景:MPGS 供应商人工录入报备)

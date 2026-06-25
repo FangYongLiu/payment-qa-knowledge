@@ -46,5 +46,13 @@ notifyMerchant
 ## 测试要点 / 排障 / 常见问题
 - 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
 
+## 相关流程 / 场景 / 排障(反向)
+本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):
+- [[flow_cashier_payment]](流程:收银台 / 收单卡支付端到端流程（含退款）)
+- [[flow_remittance_send_money]](流程:Send Money 端到端转账流程)
+- [[flow_wallet_send_money]](流程:Wallet Send Money 转账(KYC结算 / 过期退款))
+- [[scn_online_business_merchant_async_notify]](场景:商户异步通知接收与重试 (Open API))
+- [[scn_remittance_send_money]](场景:Send Money 转账(KYC 分支 / 退款 / 通知))
+
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp013` · domain=`payment-tools`。

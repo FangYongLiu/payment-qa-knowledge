@@ -43,5 +43,11 @@ related_tables: []
 ## 测试要点 / 排障 / 常见问题
 - 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
 
+## 相关流程 / 场景 / 排障(反向)
+本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):
+- [[flow_life_center_mobile_topup]](流程:Life Center 话费充值端到端流程(SGS))
+- [[flow_remittance_life_center_sgs_query]](流程:Life-Center SGS 预付国际商品 / 后付费账单查询调用链)
+- [[scn_life_center_mobile_topup]](场景:Mobile Top-up 话费充值(SGS))
+
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp074` · domain=`payment-tools`。

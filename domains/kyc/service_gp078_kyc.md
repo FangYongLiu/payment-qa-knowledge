@@ -74,6 +74,24 @@ related_scenarios: []
 - §9. 登录 / KYC / 绑卡(`test_login` / `test_*eid*` / `test_bankcards`)
 - **自动化资产**:[[auto_kyc_eid_journey]](EID 认证 journey 端到端)、[[auto_kyc_profile]](各状态用户 Profile 查看)
 
+## 相关流程 / 场景 / 排障(反向)
+本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):
+- [[auto_kyc_eid_journey]](自动化:KYC EID Journey 端到端自动化 (test_KYC_eid_journey))
+- [[auto_kyc_profile]](自动化:KYC 用户 Profile 查看自动化 (test_KYC_xinwei))
+- [[flow_kyc_change_mobile]](流程:KYC 换绑手机号端到端流程 (Change Mobile))
+- [[flow_kyc_eid_renew]](流程:EID 续期端到端流程 (EID Renew))
+- [[flow_kyc_passport]](流程:护照 KYC 认证端到端流程 (Passport KYC))
+- [[flow_wallet_send_money]](流程:Wallet Send Money 转账(KYC结算 / 过期退款))
+- [[scn_kyc_eid_full_journey]](场景:EID 完整实名认证 journey (NON→FINISH))
+- [[scn_kyc_eid_leave]](场景:放弃 EID 认证 journey)
+- [[scn_kyc_profile_view]](场景:KYC 认证 Profile 查看(各用户类型))
+- [[scn_kyc_status_inquire]](场景:KYC 状态查询与提醒 (FINISH / NON / reminder))
+- [[scn_kyc_zand_iban]](场景:KYC 用户分配 ZAND IBAN)
+- [[ts_kyc_nationality_not_found]](排障:获取不到国籍信息(国籍别名表缺写法))
+- [[ts_kyc_no_exist_record]](排障:KYC 查询返回 NO_EXIST_RECORD(记录不存在))
+- [[ts_kyc_ocr_date_null_out_of_range]](排障:OCR 有效期/出生日期为空或越界(日期解析告警))
+- [[ts_kyc_outman_file_download_failed]](排障:outman 文件下载失败(outman.file_download_failed))
+
 ## 来源与置信
 - **下游调用 + 频次**:UAT Kibana 宽窗口 trace(observed,高置信)。
 - **接口清单(33)**:接口文档整合(高置信),含已暂停项(passport signzy v2)。

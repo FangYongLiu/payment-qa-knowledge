@@ -26,3 +26,17 @@ related_services: [svc_acs, svc_voucher, svc_pfs_basis, svc_pfs_manager, svc_big
 
 ## QA 关注点
 - 待补。
+
+## 流程 / 场景 / 排障 索引
+本域 流程 / 场景 / 排障 / 自动化 对象索引:
+- [[auto_basis_visual_rule_admin]](自动化:Basis 风控可视化规则管理后台)
+- [[auto_dataeden_admin]](自动化:DataEden风控管理后台)
+- [[flow_chargeback_processing]](流程:ChargeBack文件上传处理端到端流程)
+- [[flow_verify_risk_request]](流程:verifyRisk请求处理端到端链路)
+- [[scn_chargeback_mail_send_cases]](场景:ChargeBack邮件发送测试场景集)
+- [[scn_grc_config_effectiveness]](场景:风控配置生效与回滚校验(双开关模型))
+- [[scn_grc_event_routing_by_type]](场景:事件按类型路由到对应集合校验)
+- [[scn_grc_geoip_log_not_reliable]](场景:GeoIP日志不可作为路径判定依据)
+- [[scn_grc_identity_3ds_rule]](场景:风控核身规则配置控制3DS触发)
+- [[scn_grc_ip_path_engagement_signature]](场景:通过remoteIpInfo._id判定IP解析路径)
+- [[ts_risk_rule_not_firing]](排障:Visual Rule配置完成却不触发)

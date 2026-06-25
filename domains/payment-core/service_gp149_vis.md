@@ -56,5 +56,11 @@ fundout
 ## 测试要点 / 排障 / 常见问题
 - 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
 
+## 相关流程 / 场景 / 排障(反向)
+本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):
+- [[auto_wallet_vis_iban_retry_job]](自动化:vis_ibanAccountRetryJob 批次处理任务 (VAM IBAN 申请重试 Job))
+- [[flow_merchant_onboarding]](流程:商户注册与入驻端到端流程(Acquire + WPS))
+- [[scn_wallet_vam_iban_apply_activate]](场景:VAM IBAN 虚拟账户申请激活与交易通知 (VAM IBAN Apply / Activate / Notify))
+
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp149` · domain=`payment-core`。

@@ -26,3 +26,21 @@ related_services: [svc_ues_ws, svc_pbs, svc_dpm_accounting, svc_dpm_manager, svc
 
 ## QA 关注点
 - 待补。
+
+## 流程 / 场景 / 排障 索引
+本域 流程 / 场景 / 排障 / 自动化 对象索引:
+- [[flow_add_funds_via_bank_card]](流程:银行卡充值(Add Funds via Bank Card)端到端流程)
+- [[flow_botim_wallet_binding_auth]](流程:BOTIM 钱包绑定/登录/Token 刷新认证流程)
+- [[flow_cko_subscription_payment]](流程:CKO 渠道订阅支付（签约 + 支付）时序流程)
+- [[flow_h5_jsbridge_auth]](流程:H5 客户端 jsBridge 鉴权流程(Verifier Token + Session))
+- [[flow_manual_fund_settlement]](流程:人工资金调拨端到端流程)
+- [[flow_unionpay_card_activation]](流程:UnionPay 银联卡激活端到端流程)
+- [[flow_unionpay_card_issuance]](流程:UnionPay 银联卡开卡端到端流程)
+- [[scn_botim_vip_auto_sign_protocol]](场景:Botim VIP 会员协议自动签署)
+- [[scn_cko_card_binding_subscription]](场景:CKO 订阅支付绑卡与签约（CKO121/CKO111）)
+- [[scn_payment_core_manual_fund_settlement]](场景:人工资金调拨-产品码映射与资金流校验)
+- [[scn_payment_core_mit_cit_mpgs]](场景:MIT/CIT MPGS 循环（tokenized）支付测试)
+- [[scn_unionpay_usage]](场景:UnionPay 三入口使用场景(Money / 付款码 / 扫商户码 + 外币))
+- [[ts_directpay_3ds_downgrade_token_invalid]](排障:DirectPay 3DS 降级导致 CardToken 代扣失败)
+- [[ts_payby_auth_protocol_return_codes]](排障:PayBy 授权协议签约 / 转账接口返回码排错)
+- [[ts_payment_db_navigation]](排障:支付链路数据库库表速查与排查导航)

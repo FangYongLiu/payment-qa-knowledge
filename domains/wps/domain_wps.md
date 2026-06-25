@@ -26,3 +26,8 @@ related_services: [svc_payroll_core_service]
 
 ## QA 关注点
 - 待补。
+
+## 流程 / 场景 / 排障 索引
+本域 流程 / 场景 / 排障 / 自动化 对象索引:
+- [[flow_wps_company_onboarding_to_payroll]](流程:WPS 企业入驻到发薪端到端流程)
+- [[scn_wps_sif_vs_paf]](场景:WPS SIF 与 PAF 公司类型差异化发薪)

@@ -26,3 +26,9 @@ related_services: [svc_cards]
 
 ## QA 关注点
 - 待补。
+
+## 流程 / 场景 / 排障 索引
+本域 流程 / 场景 / 排障 / 自动化 对象索引:
+- [[flow_jaywan_prepaid_card]](流程:Jaywan 预付卡端到端流程(Dgpay 渠道))
+- [[flow_ppc_card_lifecycle]](流程:PPC 卡端到端业务流程(开卡→激活→交易→清算→关卡))
+- [[scn_card_lifecycle_transitions]](场景:PPC 卡生命周期状态转换测试场景集)
