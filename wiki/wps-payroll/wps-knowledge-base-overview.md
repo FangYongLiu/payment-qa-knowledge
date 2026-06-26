@@ -9,6 +9,12 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: confluence:AQ/2272428082
 tags: []
+related_services:
+  - svc_onboarding
+  - svc_payroll_core_service
+  - svc_tradeii
+related_tables:
+  - tbl_bps_t_corporate
 ---
 
 # WPS知识库总览

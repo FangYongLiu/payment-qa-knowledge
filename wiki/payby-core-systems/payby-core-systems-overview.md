@@ -9,6 +9,22 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: wiki:c52f726d-c7dc-42a2-bc1a-0226402bc422
 tags: []
+related_services:
+  - svc_aml
+  - svc_cashierii
+  - svc_cgs
+  - svc_cmf
+  - svc_deposit
+  - svc_dpm_accounting
+  - svc_dpm_manager
+  - svc_fundout
+  - svc_member
+  - svc_payment
+  - svc_pfs_payment
+  - svc_ppcenter
+  - svc_sgs
+  - svc_tradeii
+  - svc_vis
 ---
 
 # PayBy核心系统简介

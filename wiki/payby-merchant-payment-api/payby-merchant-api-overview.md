@@ -9,6 +9,25 @@ reviewer: UNREVIEWED
 source_type: wiki_attachment
 source_ref: wiki_attachment:cc03b2a8-87d2-4334-bf2e-f10ac46eed2d
 tags: []
+related_services:
+  - svc_acquireii
+  - svc_fundout
+  - svc_merchant_fundout
+  - svc_preauth
+  - svc_statementii
+related_tables:
+  - tbl_acquireii_t_acquire_order
+  - tbl_acquireii_t_card_info
+  - tbl_acquireii_t_payment_info
+  - tbl_acquireii_t_preauth_control
+  - tbl_acquireii_t_preauth_relation
+  - tbl_acquireii_t_promotion_info
+  - tbl_acquireii_t_refund_order
+  - tbl_acquireii_t_revoke_order
+  - tbl_acquireii_t_sharing_info
+  - tbl_mhtfundout_t_fundout_bankcard_order
+  - tbl_mhtfundout_t_fundout_order
+  - tbl_statementii_t_statement_report
 ---
 
 # PayBy商户支付接口总览

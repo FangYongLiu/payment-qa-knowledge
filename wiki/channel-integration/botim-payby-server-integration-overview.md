@@ -9,6 +9,11 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: confluence:PMDPayment/1072791687
 tags: []
+related_services:
+  - svc_member
+  - svc_onboarding
+  - svc_personal
+  - svc_sgs
 ---
 
 # Botim-PayBy服务端集成方案总览

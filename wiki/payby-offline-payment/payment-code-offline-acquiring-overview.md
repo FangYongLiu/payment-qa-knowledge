@@ -9,6 +9,8 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: wiki:10a58f75-8c75-415a-9468-14c295644f8e
 tags: []
+related_services:
+  - svc_sgs
 ---
 
 # 付款码线下收单总览

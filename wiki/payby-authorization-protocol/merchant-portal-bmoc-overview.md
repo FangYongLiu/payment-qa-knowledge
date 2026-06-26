@@ -9,6 +9,10 @@ reviewer: UNREVIEWED
 source_type: wiki_image
 source_ref: wiki_image:43417768-3cf2-4181-b239-d39e16058007
 tags: []
+related_services:
+  - svc_basis_merchant
+  - svc_merchant
+  - svc_ppcenter
 ---
 
 # Merchant Portal(BMOC商户控台)概览

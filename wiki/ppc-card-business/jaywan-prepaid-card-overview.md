@@ -9,6 +9,8 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: confluence:PMDPayment/877428845
 tags: []
+related_services:
+  - svc_gppc_jaywan
 ---
 
 # Jaywan预付卡项目总览

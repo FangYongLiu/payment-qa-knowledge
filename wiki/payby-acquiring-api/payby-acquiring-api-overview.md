@@ -9,6 +9,12 @@ reviewer: UNREVIEWED
 source_type: upload
 source_ref: api-docs/payby-api-v2.25-p12
 tags: []
+related_services:
+  - svc_acquireii
+  - svc_sgs
+related_tables:
+  - tbl_acquireii_t_acquire_order
+  - tbl_acquireii_t_refund_order
 ---
 
 # PayBy收单API总览

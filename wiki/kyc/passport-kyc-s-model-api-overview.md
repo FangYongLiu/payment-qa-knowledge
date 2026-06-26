@@ -9,6 +9,13 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: wiki:e75788c0-8dcd-4b0c-95e3-8c08067ad9e7
 tags: []
+related_services:
+  - svc_kyc
+related_tables:
+  - tbl_kyc_tm_kyc_apply
+  - tbl_kyc_tr_biz_record_passport
+  - tbl_kyc_tr_biz_record_passport_live
+  - tbl_kyc_tr_leave_record
 ---
 
 # Passport KYC S-Model API 总览

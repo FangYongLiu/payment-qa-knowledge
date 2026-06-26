@@ -9,6 +9,14 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: wiki:de4113f2-55a3-48f8-b592-6714684acf4c
 tags: []
+related_services:
+  - svc_basis_merchant
+  - svc_device
+related_tables:
+  - tbl_active_code
+  - tbl_device_apply_order
+  - tbl_hardware_info
+  - tbl_merchant_device
 ---
 
 # 设备激活流程总览（Smart POS）

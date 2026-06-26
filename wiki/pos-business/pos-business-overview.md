@@ -9,6 +9,15 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: confluence:AQ/1135378560
 tags: []
+related_services:
+  - svc_acquireii
+  - svc_adtaxi
+  - svc_device
+related_tables:
+  - tbl_active_code
+  - tbl_device_apply_order
+  - tbl_device_db
+  - tbl_hardware_info
 ---
 
 # POS业务总览

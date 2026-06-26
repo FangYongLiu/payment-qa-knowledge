@@ -9,6 +9,8 @@ reviewer: UNREVIEWED
 source_type: upload
 source_ref: api-docs/payby-transfer-tobank-v2.4-p3
 tags: []
+related_services:
+  - svc_sgs
 ---
 
 # PayBy 转账到银行账户接口总览

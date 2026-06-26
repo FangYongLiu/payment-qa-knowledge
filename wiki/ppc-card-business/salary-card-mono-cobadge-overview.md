@@ -9,6 +9,11 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: confluence:AQ/2167636024
 tags: []
+related_services:
+  - svc_cards
+  - svc_ppc
+related_tables:
+  - tbl_ppc_t_virtual_card
 ---
 
 # Salary Card Mono-badge & Co-badge 业务总览

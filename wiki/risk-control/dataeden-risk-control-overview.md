@@ -9,6 +9,8 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: confluence:tester/124289212
 tags: []
+related_services:
+  - svc_bigdata_admin
 ---
 
 # DataEden风控管理平台使用指南

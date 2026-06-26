@@ -9,6 +9,12 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: wiki:b45ef58e-e6ac-4d48-9837-7307c6d42c4e
 tags: []
+related_services:
+  - svc_aml
+related_tables:
+  - tbl_aml_t_chargeback_pool
+  - tbl_aml_t_risk_case
+  - tbl_grc_t_payment_event
 ---
 
 # ChargeBack业务总览

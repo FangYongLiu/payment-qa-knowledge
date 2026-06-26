@@ -9,6 +9,13 @@ reviewer: UNREVIEWED
 source_type: wiki_image
 source_ref: wiki_image:bde8cda5-9ae7-4415-89c6-dfbad27a7343
 tags: []
+related_services:
+  - svc_aml
+  - svc_basis_merchant
+  - svc_basis_portal
+  - svc_kyc
+  - svc_merchant
+  - svc_onboarding
 ---
 
 # BMOC商户控台(Merchant Portal)概览

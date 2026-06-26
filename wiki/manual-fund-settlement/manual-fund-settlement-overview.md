@@ -9,6 +9,13 @@ reviewer: UNREVIEWED
 source_type: wiki_image
 source_ref: wiki_image:b50bca5c-c1e2-439d-bb3e-778735718363
 tags: []
+related_services:
+  - svc_counter
+  - svc_h2h
+  - svc_reconciliation
+related_tables:
+  - tbl_reconciliation_t_settlement_detail
+  - tbl_reconciliation_t_settlement_template
 ---
 
 # 人工资金调拨总览

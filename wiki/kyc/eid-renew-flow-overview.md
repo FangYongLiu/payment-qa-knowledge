@@ -9,6 +9,18 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: confluence:PMDPayment/1201700977
 tags: []
+related_services:
+  - svc_kyc
+  - svc_kyc_service
+related_tables:
+  - tbl_kyc_tm_audit_task
+  - tbl_kyc_tm_biz_record
+  - tbl_kyc_tm_eid_expiry_notify_event
+  - tbl_kyc_tm_kyc_apply
+  - tbl_kyc_tr_biz_record_live
+  - tbl_kyc_tr_biz_record_ocr
+  - tbl_kyc_tr_biz_record_verify
+  - tbl_kyc_tr_leave_record
 ---
 
 # EID续期(EID Renew)端到端流程总览

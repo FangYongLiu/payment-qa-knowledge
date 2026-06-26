@@ -9,6 +9,13 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: confluence:tester/1064206364
 tags: []
+related_services:
+  - svc_cmf
+  - svc_counter
+  - svc_fundout
+  - svc_qpay_enbd
+  - svc_reconciliation
+  - svc_router
 ---
 
 # ENBD渠道总览

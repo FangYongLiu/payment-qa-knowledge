@@ -9,6 +9,8 @@ reviewer: UNREVIEWED
 source_type: wiki_image
 source_ref: wiki_image:5ee9e161-4776-4355-a881-8ba94d4d9171
 tags: []
+related_services:
+  - svc_remittance
 ---
 
 # MoneyGram(MG)渠道说明
