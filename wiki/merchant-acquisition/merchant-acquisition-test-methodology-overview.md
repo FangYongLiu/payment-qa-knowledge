@@ -9,6 +9,16 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: wiki:4ef3640b-38b5-4756-81d5-d729c241dc79
 tags: []
+related_services:
+  - svc_acquireii
+  - svc_cmf
+  - svc_preauth
+  - svc_qpay_mpgs
+  - svc_statementii
+  - svc_tradeii
+related_tables:
+  - tbl_acquireii_t_acquire_order
+  - tbl_statementii_t_statement_transaction
 ---
 
 # 商户收单测试方法论总览

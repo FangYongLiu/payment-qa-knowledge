@@ -9,6 +9,12 @@ reviewer: UNREVIEWED
 source_type: wiki_image
 source_ref: wiki_image:4ad39c53-fb2e-43b6-bfb5-310fd4ae19d7
 tags: []
+related_services:
+  - svc_cmf
+  - svc_reconciliation
+related_tables:
+  - tbl_cmf_tt_inst_order
+  - tbl_grc_t_payment_event
 ---
 
 # Chargeback 端到端处理流程总览

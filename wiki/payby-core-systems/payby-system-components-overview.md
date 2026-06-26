@@ -9,6 +9,25 @@ reviewer: UNREVIEWED
 source_type: wiki_image
 source_ref: wiki_image:01fbd2ca-cbb4-473c-b223-7a5c516a9122
 tags: []
+related_services:
+  - svc_acs
+  - svc_basis
+  - svc_basis_cms
+  - svc_cmsii
+  - svc_csc
+  - svc_css
+  - svc_custom
+  - svc_kyc
+  - svc_marketing
+  - svc_outman
+  - svc_pbs
+  - svc_pcm
+  - svc_pcs
+  - svc_pns
+  - svc_protocol
+  - svc_shortlink
+  - svc_supplier
+  - svc_voucher
 ---
 
 # PayBy系统组件架构总览

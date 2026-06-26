@@ -9,6 +9,13 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: confluence:PMDPayment/433881954
 tags: []
+related_services:
+  - svc_basis_customer
+  - svc_payment
+  - svc_pix
+  - svc_reconciliation
+  - svc_remittance
+  - svc_tradeii
 ---
 
 # 微信MPC渠道接入总览(pix-RA-2405)

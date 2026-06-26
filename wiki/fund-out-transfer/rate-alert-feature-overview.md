@@ -9,6 +9,13 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: wiki:7374f315-8e43-4820-84b6-2977d1fb0287
 tags: []
+related_services:
+  - svc_remittance
+related_tables:
+  - tbl_remittance_t_exchange_rate_history
+  - tbl_remittance_t_exchange_rate_record
+  - tbl_remittance_t_rate_alert
+  - tbl_remittance_t_rate_alert_history
 ---
 
 # Rate Alert 汇率提醒功能说明

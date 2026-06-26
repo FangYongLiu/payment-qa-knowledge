@@ -9,6 +9,9 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: confluence:PMDPayment/1089405294
 tags: []
+related_services:
+  - svc_cgs
+  - svc_kyc
 ---
 
 # EID KYC CGS API 总览

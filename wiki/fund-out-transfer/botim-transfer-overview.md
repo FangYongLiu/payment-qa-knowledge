@@ -9,6 +9,16 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: confluence:PCW/1971847185
 tags: []
+related_services:
+  - svc_cashierii
+  - svc_cgs
+  - svc_dpm_accounting
+  - svc_grc_component_connect_provider
+  - svc_payment
+  - svc_personal
+  - svc_pfs_payment
+  - svc_tradeii
+  - svc_transfer
 ---
 
 # BOTIM Transfer 转账流程总览

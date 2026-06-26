@@ -9,6 +9,15 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: wiki:af2b7970-1661-4d20-90f7-3b86b8f72d58
 tags: []
+related_services:
+  - svc_kyc
+related_tables:
+  - tbl_kyc_tm_audit_task
+  - tbl_kyc_tm_biz_record
+  - tbl_kyc_tm_kyc_apply
+  - tbl_kyc_tr_biz_record_live
+  - tbl_kyc_tr_biz_record_ocr
+  - tbl_kyc_tr_leave_record
 ---
 
 # EID Renew CGS API v2 总览

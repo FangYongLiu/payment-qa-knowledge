@@ -9,6 +9,17 @@ reviewer: UNREVIEWED
 source_type: wiki_image
 source_ref: wiki_image:49c5a737-48df-4836-9baa-414f1de4f810
 tags: []
+related_services:
+  - svc_pix
+related_tables:
+  - tbl_pix_refund_transaction
+  - tbl_pix_t_refund_transaction
+  - tbl_pix_t_trade_relate_order
+  - tbl_pix_t_trade_transaction
+  - tbl_pix_t_trade_transaction_extend
+  - tbl_pix_trade_relate_order
+  - tbl_pix_trade_transaction
+  - tbl_pix_trade_transaction_extend
 ---
 
 # pix SD-Transaction 数据库ER概览

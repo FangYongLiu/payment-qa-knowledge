@@ -9,6 +9,22 @@ reviewer: UNREVIEWED
 source_type: code_repo
 source_ref: code_repo:caa31aee-5510-525f-9def-2ec2ccce0d9a
 tags: []
+related_services:
+  - svc_3ds2
+  - svc_acquireii
+  - svc_cgs
+  - svc_cgs_apitest
+  - svc_cmf
+  - svc_dpm_manager
+  - svc_kyc
+  - svc_member
+  - svc_pbs
+  - svc_pns
+  - svc_protocol
+  - svc_qpay_mpgs
+  - svc_qpay_zand
+  - svc_sgs
+  - svc_tradeii
 ---
 
 # cgs-apitest payment 自动化测试模块总览

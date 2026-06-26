@@ -9,6 +9,19 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: wiki:8d7a8617-1740-4670-8898-b035d5fdf23c
 tags: []
+related_services:
+  - svc_3ds2
+  - svc_acquireii
+  - svc_acs
+  - svc_deduct
+  - svc_member
+  - svc_qpay_cko
+  - svc_qpay_mpgs
+related_tables:
+  - tbl_acquireii_t_card_info
+  - tbl_deduct_t_deduct_protocol
+  - tbl_member_tr_bank_account
+  - tbl_member_tr_bank_card_token
 ---
 
 # MIT/CIT 循环支付（MPGS）功能概览

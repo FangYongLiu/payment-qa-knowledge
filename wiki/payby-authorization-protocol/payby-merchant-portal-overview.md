@@ -9,6 +9,9 @@ reviewer: UNREVIEWED
 source_type: wiki_image
 source_ref: wiki_image:22afbc40-24fe-4c96-b4d7-d33acacdeb9c
 tags: []
+related_services:
+  - svc_onboarding
+  - svc_unified_merchant_portal
 ---
 
 # PayBy Merchant Portal(商户控台)概览

@@ -9,6 +9,8 @@ reviewer: UNREVIEWED
 source_type: wiki_image
 source_ref: wiki_image:1f0c4dd5-fb28-4849-a781-bf1b964697d2
 tags: []
+related_services:
+  - svc_vis
 ---
 
 # VAM IBAN 虚拟账户总览

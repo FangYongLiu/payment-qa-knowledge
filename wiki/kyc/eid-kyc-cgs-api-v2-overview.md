@@ -9,6 +9,18 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: wiki:c77c6bdf-23d4-4c31-b325-128a8f8a6d3e
 tags: []
+related_services:
+  - svc_cgs
+  - svc_kyc
+related_tables:
+  - tbl_kyc_tm_biz_record
+  - tbl_kyc_tm_kyc_apply
+  - tbl_kyc_tr_biz_record_live
+  - tbl_kyc_tr_biz_record_ocr
+  - tbl_kyc_tr_biz_record_passport
+  - tbl_kyc_tr_biz_record_passport_live
+  - tbl_kyc_tr_biz_record_verify
+  - tbl_kyc_tr_leave_record
 ---
 
 # EID KYC CGS API V2 总览

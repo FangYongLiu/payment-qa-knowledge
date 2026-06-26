@@ -9,6 +9,9 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: confluence:PMDPayment/843841543
 tags: []
+related_services:
+  - svc_life_center
+  - svc_sgs
 ---
 
 # Life Center SGS API 流程总览

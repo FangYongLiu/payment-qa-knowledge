@@ -9,6 +9,9 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: wiki:70f3c536-29f9-4b13-84f9-fdd88653b2d6
 tags: []
+related_services:
+  - svc_3ds2
+  - svc_cards
 ---
 
 # PayBy支付场景现状梳理(DirectPay/PayAndSign/AutoDebit)

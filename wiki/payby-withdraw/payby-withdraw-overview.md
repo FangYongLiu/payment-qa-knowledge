@@ -9,6 +9,8 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: confluence:tester/124289192
 tags: []
+related_services:
+  - svc_cc_withdraw
 ---
 
 # PayBy 提现功能总览

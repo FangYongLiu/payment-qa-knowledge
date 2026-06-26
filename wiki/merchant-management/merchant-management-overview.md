@@ -9,6 +9,27 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: confluence:tester/462749700
 tags: []
+related_services:
+  - svc_basis
+  - svc_botim_credit
+  - svc_contract
+  - svc_dpm_manager
+  - svc_member
+  - svc_merchant
+  - svc_ppcenter
+  - svc_statementii
+  - svc_unified_merchant_portal
+  - svc_vis
+related_tables:
+  - tbl_member_tm_member
+  - tbl_member_tm_member_identity
+  - tbl_merchant_t_common_audit_order
+  - tbl_merchant_t_merchant
+  - tbl_merchant_t_merchant_biz_open
+  - tbl_merchant_t_merchant_creation_order
+  - tbl_merchant_t_merchant_wps_info
+  - tbl_statementii_db
+  - tbl_vis_t_virtual_account
 ---
 
 # 商户管理总览

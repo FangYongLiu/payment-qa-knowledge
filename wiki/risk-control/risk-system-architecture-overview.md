@@ -9,6 +9,15 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: confluence:AQ/2161541121
 tags: []
+related_services:
+  - svc_aml
+  - svc_bigdata_admin
+  - svc_grc_component_connect_provider
+related_tables:
+  - tbl_aml_t_system_param
+  - tbl_amlrisk_t_system_param
+  - tbl_grc_t_other_event
+  - tbl_grc_t_payment_event
 ---
 
 # GRC风控系统架构总览

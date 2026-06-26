@@ -9,6 +9,10 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: wiki:d0566748-c0ac-4c63-8c99-c948348f3481
 tags: []
+related_services:
+  - svc_kyc
+  - svc_kyc_service
+  - svc_remittance
 ---
 
 # KYC 渠道总览

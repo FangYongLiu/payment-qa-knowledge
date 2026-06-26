@@ -9,6 +9,15 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: wiki:a68e3cf4-694f-4d32-9a67-4b4aaeee8675
 tags: []
+related_services:
+  - svc_basis_customer
+  - svc_cmf
+  - svc_payment
+  - svc_pfs_payment
+  - svc_pix
+  - svc_reconciliation
+  - svc_remittance
+  - svc_tradeii
 ---
 
 # PIX微信MPC(Merchant Presented Code)渠道接入总览

@@ -9,6 +9,17 @@ reviewer: UNREVIEWED
 source_type: wiki_image
 source_ref: wiki_image:445d5644-ba36-4274-8ef4-edef945a9a6e
 tags: []
+related_services:
+  - svc_aml
+  - svc_basis
+  - svc_basis_cas
+  - svc_basis_merchant
+  - svc_contract
+  - svc_member
+  - svc_merchant
+  - svc_onboarding
+  - svc_unified_merchant_portal
+  - svc_vis
 ---
 
 # Merchant Portal 商户控台总览

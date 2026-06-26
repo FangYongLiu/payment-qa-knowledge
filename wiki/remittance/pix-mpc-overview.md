@@ -9,6 +9,9 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: confluence:PMDPayment/517832723
 tags: []
+related_services:
+  - svc_pix
+  - svc_reconciliation
 ---
 
 # PIX MPC 商户呈现码支付总览

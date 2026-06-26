@@ -9,6 +9,16 @@ reviewer: UNREVIEWED
 source_type: wiki_image
 source_ref: wiki_image:bd547fc3-fbc0-4472-b7b5-54175ab1e278
 tags: []
+related_services:
+  - svc_cmf
+  - svc_exchange
+  - svc_fundout
+  - svc_member
+  - svc_merchant_fundout
+  - svc_router
+  - svc_transfer
+related_tables:
+  - tbl_member_tr_beneficiary_info
 ---
 
 # 商户出款业务总览

@@ -9,6 +9,9 @@ reviewer: UNREVIEWED
 source_type: upload
 source_ref: api-docs/payby-auth-agreement-v1.0.2-p1
 tags: []
+related_services:
+  - svc_authorization_service
+  - svc_authorization_token
 ---
 
 # PayBy授权协议签约总览

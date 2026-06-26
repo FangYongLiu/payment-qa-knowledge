@@ -9,6 +9,10 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: confluence:AQ/2133098640
 tags: []
+related_services:
+  - svc_cgs
+  - svc_ppc
+  - svc_sgs
 ---
 
 # PPC核心API清单总览

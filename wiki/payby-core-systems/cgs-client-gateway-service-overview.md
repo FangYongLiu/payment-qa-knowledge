@@ -9,6 +9,8 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: wiki:4688ca4d-f35b-4e48-a9e1-4c4bd1364a14
 tags: []
+related_services:
+  - svc_cgs
 ---
 
 # CGS 客户端网关服务总览

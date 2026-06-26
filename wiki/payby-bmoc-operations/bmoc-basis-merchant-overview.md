@@ -9,6 +9,16 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: confluence:AQ/1310621839
 tags: []
+related_services:
+  - svc_basis_merchant
+  - svc_onboarding
+related_tables:
+  - tbl_merchant_t_merchant
+  - tbl_merchant_t_operation_log
+  - tbl_merchant_t_role
+  - tbl_merchant_t_staff
+  - tbl_merchant_t_store
+  - tbl_onboarding_t_fund_provider
 ---
 
 # BMOC Basis Merchant 模块总览

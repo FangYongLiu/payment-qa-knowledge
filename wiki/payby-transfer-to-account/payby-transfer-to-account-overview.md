@@ -9,6 +9,8 @@ reviewer: UNREVIEWED
 source_type: upload
 source_ref: api-docs/payby-transfer-v1.1-p1
 tags: []
+related_services:
+  - svc_transfer
 ---
 
 # PayBy转账到电子账户接口总览

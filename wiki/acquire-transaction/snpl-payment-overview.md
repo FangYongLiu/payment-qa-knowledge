@@ -9,6 +9,14 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: wiki:3fdb580e-54e6-410d-95ef-e2b28e622760
 tags: []
+related_services:
+  - svc_3ds2
+  - svc_botim_snpl
+  - svc_cashierii
+  - svc_payment
+  - svc_remittance
+related_tables:
+  - tbl_remittance_t_popup_control
 ---
 
 # SNPL（Send Now Pay Later）支付总览

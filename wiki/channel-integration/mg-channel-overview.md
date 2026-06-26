@@ -9,6 +9,12 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: confluence:AQ/1268547712
 tags: []
+related_services:
+  - svc_basis_customer
+  - svc_bigdata_router
+  - svc_remittance
+related_tables:
+  - tbl_remittance_t_channel_param_mapping
 ---
 
 # MG (MoneyGram) 渠道总览

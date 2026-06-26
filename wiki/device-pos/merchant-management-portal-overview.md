@@ -9,6 +9,16 @@ reviewer: UNREVIEWED
 source_type: wiki
 source_ref: confluence:AQ/1135345829
 tags: []
+related_services:
+  - svc_basis_merchant
+  - svc_device
+  - svc_onboarding
+related_tables:
+  - tbl_active_code
+  - tbl_device_apply_order
+  - tbl_device_db
+  - tbl_hardware_info
+  - tbl_merchant_device
 ---
 
 # 商户管理与控台模块总览(占位)
