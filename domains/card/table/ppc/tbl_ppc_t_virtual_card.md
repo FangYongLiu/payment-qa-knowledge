@@ -21,7 +21,7 @@ related_scenarios: [scn_card_lifecycle_transitions]
 存储 PPC 预付卡(虚拟卡)的主记录与生命周期状态。卡的申请、激活、锁/解锁、关闭等所有状态流转都落在本表的 `status` 字段;PPC(svc_ppc)读写,卡管理 API(申请/激活/锁/解锁/关闭)在本表上完成状态机驱动。物理卡配送子状态与本表的虚拟卡状态**正交**(物理卡共用同一卡主体)。
 
 ## 关联关系
-- **所属服务**:[[svc_ppc]](= frontmatter `related_services`,tbl→service 边)。卡核心 [[svc_cards]] 亦相关(绑卡/卡 token),具体读写边界待补。
+- **所属服务**:[[svc_ppc]](= frontmatter `related_services`)。卡核心 [[svc_cards]] 亦相关(绑卡/卡 token),具体读写边界待补。
 - **谁读写它**:PPC 卡管理 API(申请/激活/锁/解锁/关闭/替换)、关卡静默批量任务(dormant cleanup)。
 - **哪些场景校验它**:[[scn_card_lifecycle_transitions]](= `related_scenarios`)。
 

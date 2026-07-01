@@ -29,8 +29,8 @@ related_scenarios: []
 **国籍别名参考表**:国籍编号↔名称↔别名↔alpha3↔国际区号 映射,按通道(channel)。用于把通道返回的国籍归一。参考数据。
 
 ## 关联关系
-- **所属服务**:[[svc_kyc]](gp078_kyc,= frontmatter `related_services`,tbl→service 边)
-- **谁读写它**:由相关 [[api_*]] / [[svc_*]] 的 `related_tables` 声明(impact 分析反向可达,本侧不重复列)。
+- **所属服务**:[[svc_kyc]](gp078_kyc,= frontmatter `related_services`)
+- **谁读写它**:读写本表的服务 / 接口,在各自文档的 `related_tables` 中列出(本表侧不重复)。
 - **哪些场景校验它**:待补(暂无直接关联场景对象)。
 
 ## 关键列

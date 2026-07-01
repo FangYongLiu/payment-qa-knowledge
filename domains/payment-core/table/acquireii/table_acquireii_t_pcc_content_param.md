@@ -29,7 +29,7 @@ related_scenarios: []
 
 ## 关联关系
 
-- **所属服务**：[[svc_acquireii]]（= frontmatter `related_services`，tbl→service 边）
+- **所属服务**：[[svc_acquireii]]（= frontmatter `related_services`）
 - **关联表**：`t_pcc_content`（主表，N:1，通过 `global_id` 关联；该主表尚无 typed 对象，待补）
 
 ## 关键列

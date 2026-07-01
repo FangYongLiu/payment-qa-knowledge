@@ -28,7 +28,7 @@ related_scenarios: []
 库表:`device.t_active_code`
 
 ## 关联关系
-- **所属服务**:[[svc_device]](= frontmatter `related_services`,tbl→service 边)
+- **所属服务**:[[svc_device]](= frontmatter `related_services`)
 - **谁读写它**:device 服务在激活链路中写入/更新(由 [[svc_device]] 声明)。
 - **上游驱动表**:[[tbl_device_apply_order]](审核通过流转到 `ACTIVE_CODE_CREATED` 后生成激活码)。
 - **下游联动表**:[[tbl_hardware_info]](扫码激活成功后登记设备硬件信息)、[[tbl_merchant_device]](激活完成后建立商户-门店-设备绑定)。

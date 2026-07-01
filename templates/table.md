@@ -1,5 +1,5 @@
 ---
-# Table 对象规范(与 curation 引擎 _SKELETONS[Table] 对齐,人/引擎共用)。
+# Table 对象规范。
 id: tbl_<schema>_<table>
 object_type: Table
 name: <人类可读表名>(<物理表名>)
@@ -12,7 +12,7 @@ last_reviewed_at: 'YYYY-MM-DD'
 source_type: <DB 文档|wiki|...>
 source_ref: <来源>
 tags: []
-related_services: [svc_<owning_service>]   # ★ 反指所属服务(tbl→service 边)
+related_services: [svc_<owning_service>]   # ★ 反指所属服务
 related_scenarios: [scn_x]                  # 校验这张表的场景(可选)
 ---
 
@@ -22,8 +22,8 @@ related_scenarios: [scn_x]                  # 校验这张表的场景(可选)
 这张表存什么、属于哪个服务/业务、在什么流程里读写。
 
 ## 关联关系
-- **所属服务**:[[svc_<owning>]](= frontmatter `related_services`,tbl→service 边)
-- **谁读写它**:服务 [[svc_*]] / 接口 [[api_*]](由对方的 `related_tables` 声明,impact 分析反向可达,本侧不重复列)。
+- **所属服务**:[[svc_<owning>]](= frontmatter `related_services`)
+- **谁读写它**:读写本表的服务 / 接口,在各自文档的 `related_tables` 中列出(本表侧不重复)。
 - **哪些场景校验它**:[[scn_x]](= `related_scenarios`,或由 scenario 的 `related_tables` 声明)。
 
 ## 关键列

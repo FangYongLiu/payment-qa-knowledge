@@ -54,7 +54,7 @@ related_services: [svc_acquireii]
 | TrxAmount | ✅ | ✅ | ✅ |
 | PaymentAmount 来源 | By PayBy | By UPI(Create Trade Order) | By PayBy |
 
-> PIX SD-Transaction 库表(`pix.t_trade_transaction` 等)的 ER 与字段已在 service-catalog 域的 `tbl_pix_*` 与 payment-core 的 [[svc_pix]] 维护,本页不重复。
+> PIX SD-Transaction 库表(`pix.t_trade_transaction` 等)的 ER 与字段已在 payment-core 域的 `tbl_pix_*` 与 payment-core 的 [[svc_pix]] 维护,本页不重复。
 
 ## UnionPay 四种支付场景
 

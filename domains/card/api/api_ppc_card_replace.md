@@ -41,7 +41,7 @@ related_services:
 原文未明确列出出参字段，参考 API 文档（Smart-doc 自动生成）。
 
 ## 错误码
-参考 [[ppc-common-error-codes]]，本接口可能涉及：
+参考 `ppc-common-error-codes`，本接口可能涉及：
 - `INVALID_CARD_STATUS` — 卡状态不允许替换（如已销卡 / 申请中 / Closing 中）
 - `VIRTUAL_CARD_NOT_EXIST` — 虚拟卡不存在
 - `IDENTITY_VERIFY_FAILED` — 核身失败

@@ -45,7 +45,7 @@ related_services:
 > 详细字段以 Smart-doc 实时文档为准：https://sim-admin.corp.test2pay.com/api-doc/
 
 ## 错误码
-通用错误码（参见 [[ppc-common-error-codes]]）：
+通用错误码（参见 `ppc-common-error-codes`）：
 - `VIRTUAL_CARD_NOT_EXIST` — 错误 ID / 异步消息延迟
 - `PROCESSING_EXCEPTION` — 上下游异常
 - `SYSTEM_EXCEPTION` — 兜底

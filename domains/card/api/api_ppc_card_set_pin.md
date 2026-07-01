@@ -43,7 +43,7 @@ related_services:
 原文未声明具体返回字段。返回结果遵循通用 API 返回结构（参见 API 文档：https://sim-admin.corp.test2pay.com/api-doc/）。
 
 ## 错误码
-本 API 可能命中的通用错误码（详见 [[ppc-common-error-codes]]）：
+本 API 可能命中的通用错误码（详见 `ppc-common-error-codes`）：
 - `INVALID_CARD_STATUS` — 卡状态不允许该操作
 - `VIRTUAL_CARD_NOT_EXIST` — 虚拟卡不存在
 - `IDENTITY_VERIFY_FAILED` — 核身失败

@@ -30,8 +30,8 @@ related_scenarios:
 **护照 OCR 业务记录**:护照信息页识别出的护照号/类型/国籍/姓名/有效期/MRZ/行业等。`record_id`/`req_token` 关联主流程。对应 passport submit/submit-ocr 类接口。
 
 ## 关联关系
-- **所属服务**:[[svc_kyc]](gp078_kyc,= frontmatter `related_services`,tbl→service 边)
-- **谁读写它**:由相关 [[api_*]] / [[svc_*]] 的 `related_tables` 声明(impact 分析反向可达,本侧不重复列)。
+- **所属服务**:[[svc_kyc]](gp078_kyc,= frontmatter `related_services`)
+- **谁读写它**:读写本表的服务 / 接口,在各自文档的 `related_tables` 中列出(本表侧不重复)。
 - **哪些场景校验它**:[[scn_kyc_zand_iban]](= `related_scenarios`)。
 
 ## 关键列

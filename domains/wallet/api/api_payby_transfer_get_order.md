@@ -23,7 +23,7 @@ related_services:
 ---
 
 ## 用途
-用于单笔付款到账户的结果查询，返回付款的详细结果。配合 [[api_payby_transfer_place_order]] 单笔付款到账户下单接口使用，业务背景见 [[payby-transfer-to-account]]。
+用于单笔付款到账户的结果查询，返回付款的详细结果。配合 `api_payby_transfer_place_order` 单笔付款到账户下单接口使用，业务背景见 `payby-transfer-to-account`。
 
 ## 路径/方法
 - 联调URL: https://uat.test2pay.com/sgs/api/transfer/getTransferOrder
@@ -97,7 +97,7 @@ related_services:
 - requestTime 边界：过早/过晚分别返回 REQUESTTIME_TOO_EARLY / REQUESTTIME_TOO_LATER。
 - merchantOrderNo 必填：缺失返回 INVALID_PARAMETER；不存在的订单号返回 62004 MERCHANT_ORDER_NO_NOT_EXIST。
 - 仅在 applyStatus=SUCCESS 且 code=0 时返回 body.transferOrder，其他情况 body 不返回。
-- 响应 transferOrder.status 应为状态机三态之一：CREATED / SUCCESS / FAILURE，与下单接口 [[api_payby_transfer_place_order]] 创建后的实际状态一致。
+- 响应 transferOrder.status 应为状态机三态之一：CREATED / SUCCESS / FAILURE，与下单接口 `api_payby_transfer_place_order` 创建后的实际状态一致。
 - 响应中 beneficiaryFullName、beneficiaryIdentity 应为加密字段，保持与下单时一致。
 - product 固定为 "Transfer"；orderNo 与下单返回值一致；paymentInfo.arrivalTime、payerFeeAmount 应正确返回。
 - 限流场景：高频查询触发 402 RATE_LIMIT_REJECT。

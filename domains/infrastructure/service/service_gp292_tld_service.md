@@ -19,13 +19,13 @@ related_tables: []
 
 # tld-service
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp292` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp292` · domain=`infrastructure`。
 
 ## 作用
 (本窗口未观测到该服务的运行时活动,作用待业务补充。)
 
 ## 系统中的位置
-- 业务域:`service-catalog`
+- 业务域:`infrastructure`
 
 ## 关联关系
 (本窗口未观测到与其它服务的调用关系)
@@ -41,4 +41,4 @@ related_tables: []
 - 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
 
 ## 来源与置信
-- UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp292` · domain=`service-catalog`。
+- UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp292` · domain=`infrastructure`。

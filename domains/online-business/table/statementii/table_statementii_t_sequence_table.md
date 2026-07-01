@@ -28,8 +28,8 @@ related_scenarios: []
 序号生成表。属 statementii 库,由 [[svc_statementii]] 读写。
 
 ## 关联关系
-- **所属服务**:[[svc_statementii]](= `related_services`,tbl→service 边)
-- **谁读写它**:由相关 [[api_*]] / [[svc_*]] 的 `related_tables` 声明(impact 反向可达)。
+- **所属服务**:[[svc_statementii]](= `related_services`)
+- **谁读写它**:读写本表的服务 / 接口,在各自文档的 `related_tables` 中列出(本表侧不重复)。
 - **哪些场景校验它**:待补。
 
 ## 关键列

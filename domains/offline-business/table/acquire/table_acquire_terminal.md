@@ -27,7 +27,7 @@ related_scenarios: []
 库表:`acquireii.t_acquire_terminal`。
 
 ## 关联关系
-- **所属服务**:[[svc_acquireii]](= frontmatter `related_services`,tbl→service 边)。
+- **所属服务**:[[svc_acquireii]](= frontmatter `related_services`)。
 - **关键表**:[[tbl_acquireii_t_acquire_order]](`global_id` 1:1，本表为订单的终端维度扩展)、[[tbl_acquireii_t_terminal_detail]](字段更全，按业务渠道区分写入)、[[tbl_acquireii_t_payment_info]] / [[tbl_pcc_content]](`global_id` 平级关联)、[[tbl_acquireii_t_fiserv_channel_param]](Fiserv 场景 `terminal_id` 可与 Fiserv TID 配置打通)。
 - **哪些场景校验它**:POS 刷卡交易落库检查([[scn_pos_transaction_db_check]]);另涉及商户交易落库检查、产品申请、付款码扫码等场景(对象待补)。
 

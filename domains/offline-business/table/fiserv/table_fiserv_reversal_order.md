@@ -28,7 +28,7 @@ Fiserv 渠道的 reversal(反向冲账)订单表。当 Fiserv 接口通信异常
 库表:`acquireii.t_fiserv_reversal_order`。通过 `origin_global_id` 关联原单([[tbl_fiserv_sale_order]] / [[tbl_fiserv_sale_void_ops_order]] / [[tbl_fiserv_refund_order]])。
 
 ## 关联关系
-- **所属服务**:[[svc_acquireii]](= frontmatter `related_services`,tbl→service 边)。
+- **所属服务**:[[svc_acquireii]](= frontmatter `related_services`)。
 - **关键表**:[[tbl_fiserv_sale_order]] / [[tbl_fiserv_sale_void_ops_order]] / [[tbl_fiserv_refund_order]](`origin_global_id → global_id` 原单)、[[tbl_fiserv_batch]](结算时需排除 reversal 失败的原单)。
 - **哪些场景校验它**:POS 刷卡交易落库检查([[scn_pos_transaction_db_check]])。
 

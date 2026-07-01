@@ -28,7 +28,7 @@ related_scenarios: []
 库表:`acquireii.t_pos_settlement`。链路:刷卡交易(Fiserv 各订单表) → 按 `device_id` + `created_time` 归集 → 本表(收银员触发日终结算) → 对账成功 → [[tbl_pos_settlement_history]] → Settlement Report / Fiserv 批次([[tbl_fiserv_batch]])落地。
 
 ## 关联关系
-- **所属服务**:[[svc_acquireii]](= frontmatter `related_services`,tbl→service 边)。
+- **所属服务**:[[svc_acquireii]](= frontmatter `related_services`)。
 - **关键表**:[[tbl_pos_settlement_history]](结算完成后迁移)、[[tbl_merchant_device]](`device_id + partner_id` 校验设备-商户归属)、[[tbl_hardware_info]](`device_id` 设备基础信息)、[[tbl_fiserv_sale_order]] / [[tbl_fiserv_sale_void_ops_order]] / [[tbl_fiserv_refund_order]] / [[tbl_fiserv_reversal_order]](结算窗内交易)、[[tbl_fiserv_batch]](结算触发批次)、[[tbl_acquireii_t_acquire_order]](收单订单按结算窗归集)。
 - **哪些场景校验它**:POS 刷卡交易落库检查([[scn_pos_transaction_db_check]])。
 
