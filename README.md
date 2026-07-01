@@ -17,5 +17,4 @@ it. Knowledge only — no code, no secrets.
 - `index/domains.yaml` — domain registry. `templates/` — authoring templates.
 
 ## Contributing
-Every change is made through a pull request and merged only by an admin, removals included.
-Direct pushes to `main` are not permitted. Rules: `docs/KB_ARCHITECTURE.md`.
+All changes go through a pull request, merged only by an admin. See `CONTRIBUTING.md`.
