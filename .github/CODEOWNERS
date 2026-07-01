@@ -1,0 +1,15 @@
+# Code owners = the admins who must approve every change (add / edit / remove) before merge.
+# Works with branch protection on `main`:
+#   Settings → Branches → protect `main` → Require a pull request →
+#   Require review from Code Owners →  disallow direct pushes.
+# Then any PR (new knowledge, edits, or deletions) needs a Code Owner's approval to merge.
+#
+# Add / adjust admin GitHub usernames below. Everything (*) is owned by the admins so that
+# ALL knowledge changes are gated. (Optionally route per-domain to that domain's owner too.)
+
+* @FangYongLiu
+# @add-more-admins-here
+
+# Example per-domain review routing (uncomment + set GitHub usernames when ready):
+# /domains/kyc/          @FangYongLiu @kyc-owner
+# /domains/payment-core/ @FangYongLiu @payment-core-owner
