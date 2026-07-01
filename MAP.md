@@ -1,13 +1,20 @@
-# MAP — Payment System Landscape & Navigation
+# MAP — QA Knowledge Base: Landscape & Navigation
 
 The entry point to this knowledge base. It gives the whole picture and points to the right domain;
 detail lives under each domain.
 
-## The payment system
+Knowledge is grouped by **product line** (`product` in `index/domains.yaml`), and within each
+product line by **business domain**. **Payment** is the first fully populated product line; other
+product lines are added by their teams under the same framework.
+
+---
+
+# Payment
+
 PayBy is AstraTech's payment platform. It covers online and offline acquiring, wallet and accounts,
 remittance / transfer / fund-out, card business, and payroll (WPS). A payment core (transaction,
-clearing, reconciliation, accounting) drives it; KYC, risk, and compliance apply throughout; banks
-and card schemes are reached through channels.
+clearing, reconciliation, accounting) drives it; identity/KYC, risk, and compliance apply throughout;
+banks and card schemes are reached through channels.
 
 ## Transaction flow (high level)
 ```
@@ -25,8 +32,8 @@ User / merchant initiates
 ```
 Authoritative service names and DB checkpoints per step live in each domain's `flow/`.
 
-## Business domains
-19 business domains, aligned to owning teams (`index/domains.yaml` holds owner + dev_owner).
+## Payment domains
+19 business domains, aligned to owning teams (`index/domains.yaml` holds product + owner + dev_owner).
 
 | Domain | Scope | Owner (QA) | Dev team |
 |---|---|---|---|
@@ -50,12 +57,27 @@ Authoritative service names and DB checkpoints per step live in each domain's `f
 | **risk** | Risk control: GRC, AML, device fingerprint | xinwei.cao, dewen.li | Risk Control |
 | **compliance** | Compliance: AML, Edit42, regulatory reporting | dewen.li | Risk Control |
 
-Meta: `bimo-confirmed` (confirmed conversation knowledge). Planned: `atlas` (new platform).
+---
+
+# Other product lines
+
+Added by their teams under the same framework: register the domain in `index/domains.yaml` with its
+`product`, create `domains/<domain>/` with a `domain_<domain>.md` entry, then fill it per
+`templates/README.md`. On the roadmap:
+
+| Product | Domains | Status |
+|---|---|---|
+| **botim-app** | botim-chat, botim-voip, … | 待补 (to be added by the owning team) |
+
+---
+
+## Meta
+`bimo-confirmed` (`product: meta`) — confirmed conversation knowledge, not a business domain.
 
 ## Where to find things
 | Question | Location |
 |---|---|
-| The businesses / the big picture | this page |
+| The product lines / the big picture | this page |
 | How a transaction flows / how to verify it | the domain's `flow/` and `scenario/` |
 | What a term means | `docs/GLOSSARY.md` |
 | A specific service / API / table | the domain's `service/ api/ table/` |

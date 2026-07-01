@@ -4,6 +4,7 @@ object_type: Domain
 name: compliance
 aliases: [合规]
 domain: compliance
+product: payment
 status: active
 owner: dewen.li
 reviewer: dewen.li

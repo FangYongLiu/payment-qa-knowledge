@@ -4,6 +4,7 @@ object_type: Domain
 name: lending
 aliases: [quantix, SME Lending, BNPL, Pay Later, 信贷, 先买后付]
 domain: lending
+product: payment
 status: active
 owner: Xiaopei.Yan
 reviewer: Xiaopei.Yan

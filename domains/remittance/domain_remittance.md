@@ -4,6 +4,7 @@ object_type: Domain
 name: remittance
 aliases: [汇款]
 domain: remittance
+product: payment
 status: active
 owner: lei.pan
 reviewer: lei.pan

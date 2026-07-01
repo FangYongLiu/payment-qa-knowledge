@@ -4,6 +4,7 @@ object_type: Domain
 name: crypto
 aliases: [数字货币, 加密货币, CC, digital-asset]
 domain: crypto
+product: payment
 status: active
 owner: unassigned
 reviewer: unassigned

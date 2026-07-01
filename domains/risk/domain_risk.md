@@ -4,6 +4,7 @@ object_type: Domain
 name: risk
 aliases: [风控/合规]
 domain: risk
+product: payment
 status: active
 owner: xinwei.cao,dewen.li
 reviewer: xinwei.cao,dewen.li

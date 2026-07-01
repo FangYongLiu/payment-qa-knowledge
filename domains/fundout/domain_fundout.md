@@ -4,6 +4,7 @@ object_type: Domain
 name: fundout
 aliases: [出款, 提现出款]
 domain: fundout
+product: payment
 status: active
 owner: xiaoyan.zhou
 reviewer: xiaoyan.zhou

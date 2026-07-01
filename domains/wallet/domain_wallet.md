@@ -4,6 +4,7 @@ object_type: Domain
 name: wallet
 aliases: [钱包]
 domain: wallet
+product: payment
 status: active
 owner: qianlong.wang
 reviewer: qianlong.wang

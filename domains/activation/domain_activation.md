@@ -4,6 +4,7 @@ object_type: Domain
 name: activation
 aliases: [member, 会员, 身份, identity, KYC, 实名认证, EID, Passport]
 domain: activation
+product: payment
 status: active
 owner: xinwei.cao
 reviewer: xinwei.cao

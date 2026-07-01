@@ -4,6 +4,7 @@ object_type: Domain
 name: offline-business
 aliases: [线下业务]
 domain: offline-business
+product: payment
 status: active
 owner: xiaoqian.wei,wanmei.ding
 reviewer: xiaoqian.wei,wanmei.ding

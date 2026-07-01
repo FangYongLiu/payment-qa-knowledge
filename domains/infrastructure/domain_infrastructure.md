@@ -4,6 +4,7 @@ object_type: Domain
 name: infrastructure
 aliases: [基础设施, 运维, 大数据, ops, bigdata]
 domain: infrastructure
+product: payment
 status: active
 owner: unassigned
 reviewer: unassigned

@@ -4,6 +4,7 @@ object_type: Domain
 name: wps
 aliases: [工资单]
 domain: wps
+product: payment
 status: active
 owner: xinwei.cao
 reviewer: xinwei.cao
