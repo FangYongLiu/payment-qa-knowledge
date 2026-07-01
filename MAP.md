@@ -1,7 +1,7 @@
 # MAP — Payment System Landscape & Navigation
 
 The entry point to this knowledge base. It gives the whole picture and points to the right domain;
-detail lives under each domain. Entries marked `待补` await confirmation by the domain owner.
+detail lives under each domain.
 
 ## The payment system
 PayBy is AstraTech's payment platform. It covers online and offline acquiring, wallet and accounts,
@@ -17,38 +17,40 @@ User / merchant initiates
    ↓  core
 [payment-core: transaction (tradeii) → accounting (dpm)]
    ↓  crosscutting checks
-[kyc] · [risk] · [compliance / AML]
+[activation: identity/KYC] · [risk] · [compliance / AML]
    ↓  outbound
-[channel → banks / card schemes]
+[payment-tool: channels → banks / card schemes]
    ↓  money movement
-[payment-core: clearing / reconciliation]   fund-out → [remittance]   wallet → [wallet]
+[settlement: clearing / reconciliation]   fund-out → [fundout / remittance]   wallet → [wallet]
 ```
 Authoritative service names and DB checkpoints per step live in each domain's `flow/`.
 
 ## Business domains
-The current working set is below and in `index/domains.yaml`. It is under review and may be revised
-through governance.
+19 business domains, aligned to owning teams (`index/domains.yaml` holds owner + dev_owner).
 
-| Domain | Scope | Entry | Owner |
+| Domain | Scope | Owner (QA) | Dev team |
 |---|---|---|---|
-| **online-business** | Online acquiring: DirectPay (直连支付), cashier, open/acquiring API | `domains/online-business/` | fangyong.liu |
-| **offline-business** | Offline acquiring: POS, scan-to-pay, in-store | `domains/offline-business/` | xiaoqian.wei, wanmei.ding |
-| **payment-core** | Core engine: transaction (tradeii), accounting (dpm), clearing/reconciliation, member, GRC | `domains/payment-core/` | xiaoyan.zhou |
-| **payment-tools** | Shared payment capabilities: FX/exchange, common services | `domains/payment-tools/` | xiaoyan.zhou |
-| **portal-operations** | Merchant portal & ops: onboarding, management, console | `domains/portal-operations/` | yijian.tan |
-| **remittance** | Remittance & transfer / fund-out | `domains/remittance/` | lei.pan |
-| **wallet** | Wallet & accounts: balance, cash-in, cash-out / withdraw | `domains/wallet/` | qianlong.wang |
-| **card** | Card business: prepaid card, issuing / card management | `domains/card/` | jianfei.wang |
-| **kyc** | Identity verification: EID / Passport, OCR → liveness → manual review | `domains/kyc/` | xinwei.cao |
-| **risk** | Risk control: acs decisioning, risk cases | `domains/risk/` | xinwei.cao, dewen.li |
-| **wps** | Payroll — Wage Protection System | `domains/wps/` | xinwei.cao |
-| **compliance** | Compliance: AML, chargeback | `domains/compliance/` | dewen.li |
-| **channel** | Channel integration: bank / card-scheme channels | `domains/channel/` | 待补 |
-| **crypto** | 待补 | `domains/crypto/` | 待补 |
-| **marketing** | Marketing: promotions / campaigns | `domains/marketing/` | 待补 |
-| **infrastructure** | Infrastructure: gateway, routing, shared components | `domains/infrastructure/` | 待补 |
-| **quantix** | 待补 | `domains/quantix/` | Xiaopei.Yan |
-| **service-catalog** | Full service/app catalog + call relations | `domains/service-catalog/` | 待补 |
+| **online-business** | Online acquiring: ECOM/DirectPay, JSAPI, cashier, open API | fangyong.liu | Merchant Acquiring |
+| **offline-business** | Offline acquiring: POS, scan-to-pay, kiosk | xiaoqian.wei, wanmei.ding | Merchant Acquiring |
+| **merchant-management** | Merchant onboarding / portal / contract / basis ops / merchant-fundout | yijian.tan | Merchant Portal & Ops |
+| **wps** | Payroll (Wage Protection System): company reg, invoice, employees, payroll | xinwei.cao | Merchant Portal & Ops |
+| **payment-core** | Core engine: trade, payment, cashier, authpay | xiaoyan.zhou | Payment Core |
+| **fundout** | Fund-out | xiaoyan.zhou | Payment Core |
+| **deposit-vam** | Fund inflow & virtual accounts: deposit, vis, visii (IBAN), escrow | xiaoyan.zhou | Payment Core |
+| **settlement** | Clearing & reconciliation: statementii, settlementii, reconciliation, counter | xiaoyan.zhou | Payment Core (ops: Clearing & Settlement) |
+| **infrastructure** | Shared platform: notification, gateway, config, FX rate, ops back-office | xiaoyan.zhou | Payment Core / Dev Ops |
+| **crypto** | Crypto-currency: cc-trade/deposit/withdraw/channel, ccdpm, holding | can.wang | Payment Core |
+| **payment-tool** | Channel management: CMF, router, adapters, 3DS/DCC, card-BIN | kingo.liang | Payment Tool |
+| **wallet** | Wallet & accounts: personal, transfer, deduct, card-binding | qianlong.wang | Wallet |
+| **remittance** | Remittance | lei.pan | Remittance |
+| **card** | Card issuing (prepaid focus); shared PPC/YSE | jianfei.wang | multi (prepaid → Wallet) |
+| **lending** | Lending / BNPL: SNPL, paylater, credit, TTS | Xiaopei.Yan | Quantix |
+| **marketing** | Loyalty: promotions, coupons, points | wujiang.ding | Loyalty |
+| **activation** | Identity: member + KYC (EID/Passport/OCR/liveness) | xinwei.cao | Activation |
+| **risk** | Risk control: GRC, AML, device fingerprint | xinwei.cao, dewen.li | Risk Control |
+| **compliance** | Compliance: AML, Edit42, regulatory reporting | dewen.li | Risk Control |
+
+Meta: `bimo-confirmed` (confirmed conversation knowledge). Planned: `atlas` (new platform).
 
 ## Where to find things
 | Question | Location |
