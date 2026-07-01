@@ -44,10 +44,7 @@ related_scenarios: [scn_online_business_direct_pay]
 本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):
 - [[auto_online_business_direct_pay]](自动化:直连支付自动化)
 - [[flow_botim_wallet_binding_auth]](流程:BOTIM 钱包绑定/登录/Token 刷新认证流程)
-- [[flow_life_center_mobile_topup]](流程:Life Center 话费充值端到端流程(SGS))
-- [[flow_remittance_life_center_sgs_query]](流程:Life-Center SGS 预付国际商品 / 后付费账单查询调用链)
 - [[flow_zand_fundout]](流程:ZAND渠道出款端到端流程(SP/SQ/VS))
-- [[scn_life_center_mobile_topup]](场景:Mobile Top-up 话费充值(SGS))
 - [[scn_offline_merchant_scan_payment_code]](场景:商户扫用户付款码线下收单(POS / 扫码枪))
 - [[scn_online_business_direct_pay]](场景:直连支付 (Direct Pay))
 - [[scn_online_business_merchant_async_notify]](场景:商户异步通知接收与重试 (Open API))

@@ -31,7 +31,6 @@ related_services: [svc_remittance, svc_remittance_swiftx, svc_remittance_bdo, sv
 本域 流程 / 场景 / 排障 / 自动化 对象索引:
 - [[auto_remittance_remittance]](自动化:跨境汇款自动化)
 - [[auto_remittance_vam]](自动化:VAM 虚拟账户自动化)
-- [[flow_remittance_life_center_sgs_query]](流程:Life-Center SGS 预付国际商品 / 后付费账单查询调用链)
 - [[flow_remittance_pix_mpc]](流程:PIX MPC 商户呈现码扫码支付端到端流程)
 - [[flow_remittance_send_money]](流程:Send Money 端到端转账流程)
 - [[scn_remittance_cross_border]](场景:跨境汇款 (Remittance))
