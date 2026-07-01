@@ -25,7 +25,7 @@ toB 直连支付(DirectPay):商户直接提交卡信息下单,含绑卡/卡token
 
 ## 关联关系
 - **涉及服务**:[[svc_acquireii]]、[[svc_sgs]]、[[svc_tradeii]]、[[svc_payment]]、[[svc_acs]]、[[svc_cards]]、[[svc_pfs_payment]](= `related_services`,穿过的服务链)
-- **覆盖的自动化**:见各 [[auto_*]](由 auto 的 `related_scenarios` 指向本场景)
+- **覆盖的自动化**:由覆盖本场景的 AutomationAsset 在其 `related_scenarios` 中声明。
 - **读写的表**:待补
 
 ## 校验点(QA)

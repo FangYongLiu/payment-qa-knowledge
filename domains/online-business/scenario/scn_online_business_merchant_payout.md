@@ -25,7 +25,7 @@ toB 出款/转账:转账下单(到手机号/TOTOK UID/公司MID/个人MID)、转
 
 ## 关联关系
 - **涉及服务**:[[svc_fundout]]、[[svc_merchant_fundout]]、[[svc_remittance]]、[[svc_tradeii]]、[[svc_payment]]、[[svc_cards]](= `related_services`,穿过的服务链)
-- **覆盖的自动化**:见各 [[auto_*]](由 auto 的 `related_scenarios` 指向本场景)
+- **覆盖的自动化**:由覆盖本场景的 AutomationAsset 在其 `related_scenarios` 中声明。
 - **读写的表**:待补
 
 ## 校验点(QA)

@@ -25,7 +25,7 @@ toB 预授权-请款:绑卡/卡token(MOTO 带/不带CVV)预授权 → 撤销(Voi
 
 ## 关联关系
 - **涉及服务**:[[svc_acquireii]]、[[svc_tradeii]]、[[svc_payment]]、[[svc_cards]]、[[svc_acs]](= `related_services`,穿过的服务链)
-- **覆盖的自动化**:见各 [[auto_*]](由 auto 的 `related_scenarios` 指向本场景)
+- **覆盖的自动化**:由覆盖本场景的 AutomationAsset 在其 `related_scenarios` 中声明。
 - **读写的表**:待补
 
 ## 校验点(QA)

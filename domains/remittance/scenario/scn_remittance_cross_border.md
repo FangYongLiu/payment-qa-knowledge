@@ -25,7 +25,7 @@ toC 跨境汇款:收款人管理(增改删/共享)、发起人信息、报价(qu
 
 ## 关联关系
 - **涉及服务**:[[svc_remittance]]、[[svc_cashierii]]、[[svc_tradeii]]、[[svc_payment]]、[[svc_member]](= `related_services`,穿过的服务链)
-- **覆盖的自动化**:见各 [[auto_*]](由 auto 的 `related_scenarios` 指向本场景)
+- **覆盖的自动化**:由覆盖本场景的 AutomationAsset 在其 `related_scenarios` 中声明。
 - **读写的表**:待补
 
 ## 校验点(QA)
