@@ -25,7 +25,7 @@ toC 个人间转账:手机号转账、好友转账(余额/银行卡支付)、AA 
 
 ## 关联关系
 - **涉及服务**:[[svc_member]]、[[svc_tradeii]]、[[svc_payment]]、[[svc_cashierii]](= `related_services`,穿过的服务链)
-- **覆盖的自动化**:见各 [[auto_*]](由 auto 的 `related_scenarios` 指向本场景)
+- **覆盖的自动化**:由覆盖本场景的 AutomationAsset 在其 `related_scenarios` 中声明。
 - **读写的表**:待补
 
 ## 校验点(QA)

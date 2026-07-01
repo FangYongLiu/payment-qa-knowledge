@@ -25,7 +25,7 @@ toB 商户分账:一笔交易按规则分账到多个商户,含分账退款(refu
 
 ## 关联关系
 - **涉及服务**:[[svc_tradeii]]、[[svc_payment]]、[[svc_pfs_payment]]、[[svc_merchant]](= `related_services`,穿过的服务链)
-- **覆盖的自动化**:见各 [[auto_*]](由 auto 的 `related_scenarios` 指向本场景)
+- **覆盖的自动化**:由覆盖本场景的 AutomationAsset 在其 `related_scenarios` 中声明。
 - **读写的表**:待补
 
 ## 校验点(QA)
