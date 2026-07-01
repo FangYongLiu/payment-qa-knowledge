@@ -1,10 +1,8 @@
 # 系统 APP 清单（权威源 · 282 个）
 
-> 这是 PayBy 交易系统**全部 APP/服务模块的权威清单**（按管理后台页面顺序，282 个）。
-> `scripts/import_services.py`（brain 仓）解析本文件，按 `gpXXX_/rtXXX_/bdXXX_/...` 前缀编号
-> 分 `app_group`，为每个生成一个 Service 骨架对象到 `domains/_unassigned/`（待认领）。
-> 架构图（`docs/system service map/SYSTEM_SERVICE_MAP.md` 的 ~40 个）只是其中一小部分，
-> 已降级为「核心交易链路的边参考」，**不再当全集**。
+> PayBy 支付系统**全部 APP/服务模块的权威清单**（按管理后台页面顺序，282 个），
+> 按 `gpXXX_/rtXXX_/bdXXX_/...` 前缀编号分组。每个服务归属的业务域见
+> `index/domains.yaml` 与各 `domains/<域>/service/`。
 
 ## 第 1 页（1-20）
 1. gp186_3ds2

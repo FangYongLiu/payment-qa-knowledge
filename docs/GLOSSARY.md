@@ -6,7 +6,7 @@ must not be guessed. Entry format: `Term (full name) — definition. → used in
 
 ## A. Industry terms
 - **MPGS** (Mastercard Payment Gateway Services) — Mastercard's payment gateway; a processing
-  channel for card authorization and acquiring. → used in: online-business, channel.
+  channel for card authorization and acquiring. → used in: online-business, payment-tool.
 - **3DS / 3DS2** (3-D Secure 2.0) — cardholder authentication in which the issuer verifies the
   cardholder during payment; may be a challenge or frictionless. → used in: online-business, payment-core.
 - **DCC** (Dynamic Currency Conversion) — a foreign cardholder may pay in their home currency.
