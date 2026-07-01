@@ -29,7 +29,7 @@ related_scenarios: []
 库表:`acquireii.t_pos_settlement_history`。
 
 ## 关联关系
-- **所属服务**:[[svc_acquireii]](= frontmatter `related_services`,tbl→service 边)。
+- **所属服务**:[[svc_acquireii]](= frontmatter `related_services`)。
 - **关键表**:[[tbl_pos_settlement]](`device_id` 归档来源主表)、[[tbl_merchant_device]](`device_id + partner_id` 校验设备-商户绑定)、[[tbl_hardware_info]](`device_id` 硬件维度回溯)、[[tbl_fiserv_batch]] / [[tbl_fiserv_sale_order]] 等(时间窗 + `device_id` 金额明细对账)。
 - **哪些场景校验它**:POS 刷卡交易落库检查([[scn_pos_transaction_db_check]])。
 

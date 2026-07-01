@@ -29,8 +29,8 @@ related_scenarios: []
 **人脸黑名单表**:黑名单人脸(face_tag/特征 feature_id)与来源(member/idn 密文),`status` 失效/生效。活体/比对时拦截。
 
 ## 关联关系
-- **所属服务**:[[svc_kyc]](gp078_kyc,= frontmatter `related_services`,tbl→service 边)
-- **谁读写它**:由相关 [[api_*]] / [[svc_*]] 的 `related_tables` 声明(impact 分析反向可达,本侧不重复列)。
+- **所属服务**:[[svc_kyc]](gp078_kyc,= frontmatter `related_services`)
+- **谁读写它**:读写本表的服务 / 接口,在各自文档的 `related_tables` 中列出(本表侧不重复)。
 - **哪些场景校验它**:待补(暂无直接关联场景对象)。
 
 ## 关键列

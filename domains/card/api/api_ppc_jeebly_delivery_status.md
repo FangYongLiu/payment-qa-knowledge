@@ -42,7 +42,7 @@ Jeebly 配送服务回调 PPC，通知实体卡的配送状态变更（入向回
 原文未提供。
 
 ## 错误码
-原文未为本接口列出专属错误码。可参考 [[ppc-common-error-codes]] 中通用错误码：
+原文未为本接口列出专属错误码。可参考 `ppc-common-error-codes` 中通用错误码：
 - `PROCESSING_EXCEPTION`（上下游异常）
 - `SYSTEM_EXCEPTION`（兜底）
 

@@ -23,7 +23,7 @@ related_scenarios: [scn_wps_sif_vs_paf]
 关联子表(同属公司维度,Table 对象待补):`bps.t_corporate_profile` / `_account` / `_address` / `_mohre`;IBAN 落 `vis.t_virtual_account`。
 
 ## 关联关系
-- **所属服务**:[[svc_payroll_core_service]](= frontmatter `related_services`,tbl→service 边)。
+- **所属服务**:[[svc_payroll_core_service]](= frontmatter `related_services`)。
 - **谁读写它**:WPS 发薪/入驻链路服务(待补精确映射)。
 - **哪些场景校验它**:[[scn_wps_sif_vs_paf]](= `related_scenarios`,按 `process_type` 分支)。
 

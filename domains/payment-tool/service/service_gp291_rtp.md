@@ -19,14 +19,14 @@ related_tables: []
 
 # rtp
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp291` · domain=`service-catalog`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp291` · domain=`payment-tool`。
 
 ## 作用
 实时支付请求（Request To Pay，调 npss）
 
 ## 系统中的位置
 - 功能层:即时支付 / 账单 (NPSS / Bill / RTP)
-- 业务域:`service-catalog`
+- 业务域:`payment-tool`
 
 ## 关联关系
 **调用(下游)—— 本服务依赖:**
@@ -48,4 +48,4 @@ related_tables: []
 - 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
 
 ## 来源与置信
-- UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp291` · domain=`service-catalog`。
+- UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp291` · domain=`payment-tool`。

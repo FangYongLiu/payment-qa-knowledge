@@ -30,7 +30,7 @@ related_scenarios: []
 - **Void vs Reversal**:Reversal([[tbl_fiserv_reversal_order]])多用于通讯异常/超时的协议层冲正;Void 是业务层撤销已成功销售。
 
 ## 关联关系
-- **所属服务**:[[svc_acquireii]](= frontmatter `related_services`,tbl→service 边)。
+- **所属服务**:[[svc_acquireii]](= frontmatter `related_services`)。
 - **关键表**:[[tbl_fiserv_sale_order]](`origin_global_id → global_id` 必须存在的原销售单)、[[tbl_fiserv_batch]](撤销必须在批次关闭前发起)、[[tbl_fiserv_refund_order]] / [[tbl_fiserv_reversal_order]](互斥)、[[tbl_merchant_device]](`device_id` 设备维度溯源)。
 - **哪些场景校验它**:POS 刷卡交易落库检查([[scn_pos_transaction_db_check]])。
 

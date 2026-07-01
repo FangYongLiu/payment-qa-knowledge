@@ -28,7 +28,7 @@ related_scenarios: [scn_online_business_transaction_db_check]
 - 退款失败:refunding → refundable 回退
 
 ## 关联关系
-- **所属服务**:[[svc_acquireii]](= `related_services`,tbl→service 边)。
+- **所属服务**:[[svc_acquireii]](= `related_services`)。
 - **谁读写它**:收单/退款链路服务与接口(由对方 `related_tables` 声明)。退款主单 [[tbl_acquireii_t_refund_order]] 与本桶按 origin global_id 关联;Fiserv 销售主单 `t_fiserv_sale_order`(对象待补)1:1 关联 global_id。
 - **哪些场景校验它**:[[scn_online_business_transaction_db_check]](= `related_scenarios`,商户交易落库检查)。
 

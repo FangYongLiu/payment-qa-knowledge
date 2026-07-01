@@ -102,7 +102,7 @@ FundoutInfo
 ```
 
 ## 错误码
-原文未在本接口章节单独列出返回码（响应被截断）。通用返回码可参考 [[payby-transfer-to-bank-return-codes]]，常见包括：
+原文未在本接口章节单独列出返回码（响应被截断）。通用返回码可参考 `payby-transfer-to-bank-return-codes`，常见包括：
 - 0 SUCCESS
 - 400 INVALID_PARAMETER / REQUESTTIME_TOO_EARLY / REQUESTTIME_TOO_LATER
 - 402 RATE_LIMIT_REJECT

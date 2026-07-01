@@ -30,8 +30,8 @@ related_scenarios:
 **Signzy 渠道客户详情**:signzy full journey 返回的完整客户画像(护照/签证/移民/居住/担保人/出行等原始分段),`apply_id` 关联 tm_kyc_apply。EID/护照 full journey 的 raw 落库。
 
 ## 关联关系
-- **所属服务**:[[svc_kyc]](gp078_kyc,= frontmatter `related_services`,tbl→service 边)
-- **谁读写它**:由相关 [[api_*]] / [[svc_*]] 的 `related_tables` 声明(impact 分析反向可达,本侧不重复列)。
+- **所属服务**:[[svc_kyc]](gp078_kyc,= frontmatter `related_services`)
+- **谁读写它**:读写本表的服务 / 接口,在各自文档的 `related_tables` 中列出(本表侧不重复)。
 - **哪些场景校验它**:[[scn_kyc_zand_iban]](= `related_scenarios`)。
 
 ## 关键列

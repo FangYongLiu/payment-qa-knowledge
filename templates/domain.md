@@ -1,12 +1,12 @@
 ---
-# Domain 对象规范(与 _SKELETONS[Domain] 对齐)。
+# Domain 对象规范。
 id: domain_<slug>
 object_type: Domain
 name: <业务域名称>
 aliases: []
 domain: <slug 自身>
 status: active
-owner: <域 owner(12 域映射)>
+owner: <域 owner(见 index/domains.yaml)>
 reviewer: <评审人>
 last_reviewed_at: 'YYYY-MM-DD'
 source_type: <manual|wiki|...>

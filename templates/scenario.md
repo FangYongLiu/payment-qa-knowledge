@@ -1,19 +1,19 @@
 ---
-# Scenario 对象规范(与 curation 引擎 _SKELETONS[Scenario] 对齐;人/引擎共用)。
+# Scenario 对象规范。
 id: scn_<name>
 object_type: Scenario
 name: <场景名>
 aliases: []
 domain: <业务域>
 status: active
-owner: <知识负责人=域 owner(12 域映射)>
+owner: <知识负责人=域 owner(见 index/domains.yaml)>
 reviewer: <评审人>
 last_reviewed_at: 'YYYY-MM-DD'
 source_type: <manual|wiki|cgs-apitest|...>
 source_ref: <来源>
 tags: []
-related_services: [svc_x]            # 涉及的服务(边)
-related_tables: [tbl_x]              # 落库校验的表(边)
+related_services: [svc_x]            # 涉及的服务
+related_tables: [tbl_x]              # 落库校验的表
 related_logs: []
 ---
 
@@ -26,7 +26,7 @@ related_logs: []
 - **涉及服务**:[[svc_x]](= `related_services`)
 - **校验的表**:[[tbl_x]](= `related_tables`)
 - **相关日志**:`service:xxx`(= `related_logs`,排障定位用)
-- **测它的接口**:[[api_x]](由 API 的 `related_scenarios` 声明,impact 反向可达,本侧不重复)
+- **测它的接口**:[[api_x]](由 API 的 `related_scenarios` 声明,本侧不重复)
 - **覆盖它的自动化**:[[auto_x]](由 AutomationAsset 的 `related_scenarios` 声明)
 
 ## 前置条件

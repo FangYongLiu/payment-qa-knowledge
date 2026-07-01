@@ -29,8 +29,8 @@ related_scenarios: []
 **KYC 换绑手机记录**:实名态下换绑手机,记录新旧 member_id/手机号(密文)与原 hash id。`record_id`/`req_token` 关联主流程。对应 confirm-change-mobile 接口。⚠ 当前无独立换绑场景对象(知识缺口)。
 
 ## 关联关系
-- **所属服务**:[[svc_kyc]](gp078_kyc,= frontmatter `related_services`,tbl→service 边)
-- **谁读写它**:由相关 [[api_*]] / [[svc_*]] 的 `related_tables` 声明(impact 分析反向可达,本侧不重复列)。
+- **所属服务**:[[svc_kyc]](gp078_kyc,= frontmatter `related_services`)
+- **谁读写它**:读写本表的服务 / 接口,在各自文档的 `related_tables` 中列出(本表侧不重复)。
 - **哪些场景校验它**:待补(暂无直接关联场景对象)。
 
 ## 关键列

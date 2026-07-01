@@ -29,8 +29,8 @@ related_scenarios: []
 **护照活体业务记录**:护照 journey 的活体视频包解析与比对分数(`live_face_score`)。`record_id` 关联 tm_biz_record。对应 passport liveness/retake-selfie。
 
 ## 关联关系
-- **所属服务**:[[svc_kyc]](gp078_kyc,= frontmatter `related_services`,tbl→service 边)
-- **谁读写它**:由相关 [[api_*]] / [[svc_*]] 的 `related_tables` 声明(impact 分析反向可达,本侧不重复列)。
+- **所属服务**:[[svc_kyc]](gp078_kyc,= frontmatter `related_services`)
+- **谁读写它**:读写本表的服务 / 接口,在各自文档的 `related_tables` 中列出(本表侧不重复)。
 - **哪些场景校验它**:待补(暂无直接关联场景对象)。
 
 ## 关键列

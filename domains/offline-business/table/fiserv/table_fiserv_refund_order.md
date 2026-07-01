@@ -28,7 +28,7 @@ related_scenarios: []
 库表:`acquireii.t_fiserv_refund_order`。退款发起后通过 `current_cmd_id` 关联指令推进状态机;成功后进入 Fiserv 批次([[tbl_fiserv_batch]])并最终影响 POS 结算([[tbl_pos_settlement]] / [[tbl_pos_settlement_history]])。
 
 ## 关联关系
-- **所属服务**:[[svc_acquireii]](= frontmatter `related_services`,tbl→service 边)。
+- **所属服务**:[[svc_acquireii]](= frontmatter `related_services`)。
 - **关键表**:[[tbl_fiserv_sale_order]](`origin_global_id → global_id` 原销售单)、`t_fiserv_refund_bucket`(退款额度桶/余额校验，对象待补)、[[tbl_acquireii_t_fiserv_channel_param]](渠道参数含金额)、[[tbl_fiserv_batch]] / [[tbl_pos_settlement]] / [[tbl_pos_settlement_history]](入批/结算)。
 - **哪些场景校验它**:POS 刷卡交易落库检查([[scn_pos_transaction_db_check]])。
 

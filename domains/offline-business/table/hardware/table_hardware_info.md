@@ -28,7 +28,7 @@ related_scenarios: []
 库表:`device.t_hardware_info`
 
 ## 关联关系
-- **所属服务**:[[svc_device]](= frontmatter `related_services`,tbl→service 边)
+- **所属服务**:[[svc_device]](= frontmatter `related_services`)
 - **上游联动**:[[tbl_active_code]](激活码 `USED` 时本表新增记录)、[[tbl_device_apply_order]](申请单决定 `type` 取值)。
 - **下游引用**:[[tbl_merchant_device]](`t_merchant_device.hardware_id = t_hardware_info.id`，绑定商户与硬件);`device.t_device_key`(`t_device_key.id = t_hardware_info.id`，登记设备公钥，待补对象)。
 

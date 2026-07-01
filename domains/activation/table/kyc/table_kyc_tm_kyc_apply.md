@@ -31,8 +31,8 @@ related_scenarios:
 KYC 流程**主单**表:一条记录 = 一次实名申请(journey)。`token` 串起整条 journey,`apply_type` 区分 EID/Passport/续期/换绑,`status`+`current_status`(PROCESS→FINISH) 表征流程状态,`flow_type`(OLD/SIGNZY_FULL) 决定走哪条通道。各业务子记录经 `tm_biz_record` 以 `apply_id` 回挂本表。是 start-journey/get-result 等接口的核心读写表。
 
 ## 关联关系
-- **所属服务**:[[svc_kyc]](gp078_kyc,= frontmatter `related_services`,tbl→service 边)
-- **谁读写它**:由相关 [[api_*]] / [[svc_*]] 的 `related_tables` 声明(impact 分析反向可达,本侧不重复列)。
+- **所属服务**:[[svc_kyc]](gp078_kyc,= frontmatter `related_services`)
+- **谁读写它**:读写本表的服务 / 接口,在各自文档的 `related_tables` 中列出(本表侧不重复)。
 - **哪些场景校验它**:[[scn_kyc_eid_full_journey]]、[[scn_kyc_status_inquire]](= `related_scenarios`)。
 
 ## 关键列

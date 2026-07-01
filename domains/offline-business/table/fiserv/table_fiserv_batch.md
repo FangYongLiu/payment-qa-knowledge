@@ -28,7 +28,7 @@ related_scenarios: []
 库表:`acquireii.t_fiserv_batch`。链路:设备激活 → 打开批次(本表) → 销售/退款/撤销/冲正各订单表 → 关闭批次(end_time 落地) → 上送 Fiserv 清算 → POS 结算。
 
 ## 关联关系
-- **所属服务**:[[svc_acquireii]](= frontmatter `related_services`,tbl→service 边)。
+- **所属服务**:[[svc_acquireii]](= frontmatter `related_services`)。
 - **关键表**:[[tbl_fiserv_sale_order]] / [[tbl_fiserv_refund_order]] / [[tbl_fiserv_sale_void_ops_order]] / [[tbl_fiserv_reversal_order]](`device_id` + 时间区间归集批内交易)、[[tbl_merchant_device]](`device_id` 设备所属商户)、[[tbl_hardware_info]](`device_id` 设备硬件)、[[tbl_pos_settlement]] / [[tbl_pos_settlement_history]](批次关闭后驱动结算)。
 - **哪些场景校验它**:POS 刷卡交易落库检查([[scn_pos_transaction_db_check]])。
 

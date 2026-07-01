@@ -30,8 +30,8 @@ related_scenarios:
 EID **ICA 政府核验结果**:向 ICA 通道核验证件真实性,落 unified_no/姓名(中英阿)/国籍/婚姻/护照等权威字段。`record_id` 关联 tm_biz_record。是 EID 实名的权威数据来源。
 
 ## 关联关系
-- **所属服务**:[[svc_kyc]](gp078_kyc,= frontmatter `related_services`,tbl→service 边)
-- **谁读写它**:由相关 [[api_*]] / [[svc_*]] 的 `related_tables` 声明(impact 分析反向可达,本侧不重复列)。
+- **所属服务**:[[svc_kyc]](gp078_kyc,= frontmatter `related_services`)
+- **谁读写它**:读写本表的服务 / 接口,在各自文档的 `related_tables` 中列出(本表侧不重复)。
 - **哪些场景校验它**:[[scn_kyc_eid_full_journey]](= `related_scenarios`)。
 
 ## 关键列

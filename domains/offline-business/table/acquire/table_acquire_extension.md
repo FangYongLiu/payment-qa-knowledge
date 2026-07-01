@@ -27,7 +27,7 @@ related_scenarios: []
 库表:`acquireii.t_acquire_extension`。补充场景:[[tbl_acquireii_t_acquire_order]] 的业务扩展属性、[[tbl_acquireii_t_payment_info]] 的渠道返回额外明细/风控字段、指令执行的透传上下文、金额明细的补充说明。
 
 ## 关联关系
-- **所属服务**:[[svc_acquireii]](= frontmatter `related_services`,tbl→service 边)。
+- **所属服务**:[[svc_acquireii]](= frontmatter `related_services`)。
 - **关键表**:[[tbl_acquireii_t_acquire_order]](通过 extension_id 关联，存放订单层扩展属性)、[[tbl_acquireii_t_payment_info]](支付信息扩展字段下沉);指令 `t_command`、金额明细 `t_amount_detail` 的扩展(对象待补)。关联方向是**主表 → 扩展表**，本表无反向外键。
 - **哪些场景校验它**:商户交易落库检查等(对象待补)。
 

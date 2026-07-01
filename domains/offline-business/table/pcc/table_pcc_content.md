@@ -30,7 +30,7 @@ related_scenarios: []
 库表:`acquireii.t_pcc_content`。典型场景:用户在 PayBy APP 生成付款码(写入本表) → 商户扫码(POS 机/扫码枪)识别付款码(读取本表) → 风控基于 `risk_level` 检查付款码风险 → 进入收单交易(如 [[tbl_fiserv_sale_order]])。
 
 ## 关联关系
-- **所属服务**:[[svc_acquireii]](= frontmatter `related_services`,tbl→service 边)。
+- **所属服务**:[[svc_acquireii]](= frontmatter `related_services`)。
 - **关键表**:`t_pcc_content_param`(1:N，授权凭证扩展参数，对象待补)、[[tbl_fiserv_sale_order]](付款码受理后的实际收单交易落库)。
 - **哪些场景校验它**:POS 刷卡交易落库检查([[scn_pos_transaction_db_check]]);另涉及商户交易落库检查、付款码被 POS/扫码枪扫等场景(对象待补)。
 

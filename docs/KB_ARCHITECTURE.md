@@ -41,11 +41,11 @@ A file that fits none of these purposes is not added.
 
 ## Naming
 - Domain folders: `kebab-case`, matching the registry.
-- File prefixes: `domain_ svc_ api_ tbl_ flow_ scn_ ts_ reference_`.
+- File prefixes: `domain_ svc_ api_ tbl_ flow_ scn_ ts_ auto_ reference_`.
 - `id` is unique and stable — renaming a file does not change it. `name` is human-readable; put
   code names / acronyms (e.g. `MPGS`) in `aliases`.
 - `related_*` point to **existing** ids only; back-fill the other side when you add an object.
-- Full rules: `templates/README.md`. Sample: `domains/kyc/`.
+- Full rules: `templates/README.md`. Sample: `domains/activation/`.
 
 ## PM requirement docs
 Don't import raw — they go stale and conflict. **Distill** durable knowledge (new rules / flows /
