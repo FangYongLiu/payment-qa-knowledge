@@ -2,36 +2,30 @@
 id: domain_merchant_management
 object_type: Domain
 name: merchant-management
-aliases: [门户/运营]
+aliases: [portal-operations, 商户管理, 门户/运营, merchant-portal, cs-portal]
 domain: merchant-management
 status: active
 owner: yijian.tan
 reviewer: yijian.tan
-last_reviewed_at: '2026-06-24'
+dev_owner: chahid.arid
+last_reviewed_at: '2026-06-26'
 source_type: app_inventory
 source_ref: SYSTEM_APP_INVENTORY.md
-tags: [portal-operations, 门户/运营]
-related_services: [svc_basis, svc_merchant, svc_hive_activities, svc_hive_bank_console, svc_hive_cashier, svc_hive_checkout, svc_hive_developers, svc_hive_m_topay, svc_hive_mcashier, svc_hive_merchant_console, svc_hive_portal, svc_hive_utilities, svc_merchant_frontend, svc_contract, svc_invoice, svc_basis_merchant, svc_corporate_portal, svc_unified_merchant_portal, svc_onboarding, svc_cregister, svc_basis_portal, svc_basis_cas]
+tags: [merchant-management, 商户管理, 门户, 运营后台]
+related_services: [svc_merchant, svc_basis_merchant, svc_contract, svc_onboarding, svc_cregister, svc_invoice, svc_unified_merchant_portal, svc_merchant_frontend, svc_merchant_fundout, svc_agreements_static, svc_basis, svc_basis_portal, svc_hive_merchant_console, svc_hive_mcashier]
 ---
 
-# portal-operations(门户/运营)
+# merchant-management(商户管理与运营)
 
-> 业务域总览(入口节点)。owner yijian.tan。细节见各服务对象。
+> 域入口。商户侧的入驻、门户、配置与运营后台。owner yijian.tan / 研发 Merchant Portal & Operations 团队(Chahid Arid)。
 
 ## 概述
-门户与运营域:Hive 门户系列、商户门户(merchant/unified-merchant-portal)、基础门户(basis/basis-portal/basis-cas)、合同发票、商户入驻(onboarding)等运营侧能力。
+商户从注册入驻到日常经营的管理平台,以及公司运营人员的审批后台。覆盖商户入驻(onboarding/客户注册/NI 入网)、商户门户与控台、合同/发票/费率配置、商户转账(merchant-fundout),以及 basis 运营后台(商户审批、产品配置、结算/WPS 企业运营)。收单交易本身在 online-business / offline-business。
 
-## 覆盖范围
-共 22 个服务:basis、merchant、hive-activities、hive-bank-console、hive-cashier、hive-checkout、hive-developers、hive-m-topay、hive-mcashier、hive-merchant-console、hive-portal、hive-utilities、merchant-frontend、contract、invoice、basis-merchant、corporate-portal、unified-merchant-portal、onboarding、cregister、basis-portal、basis-cas。
+## 本域内容
+- **service/** — 商户核心 merchant、运营后台 basis/basis-merchant/basis-portal、门户 unified-merchant-portal/merchant-frontend/hive-*、合同 contract、发票 invoice、入驻 onboarding/cregister、商户出款 merchant-fundout、协议 agreements-static。
+- **table/** — merchant、mhtfundout(商户出款)、onboarding。
+- **api/**(4)· **flow/**(3)· **scenario/**(3)。
 
-## QA 关注点
-- 待补。
-
-## 流程 / 场景 / 排障 索引
-本域 流程 / 场景 / 排障 / 自动化 对象索引:
-- [[flow_acquire_product_application]](流程:收单商户控台产品申请与开通流程)
-- [[flow_merchant_onboarding]](流程:商户注册与入驻端到端流程(Acquire + WPS))
-- [[flow_mpgs_manual_onboarding]](流程:MPGS 手动报备(人工录入)入驻流程)
-- [[scn_merchant_fee_bearer_separation]](场景:收支分离商户配置(独立 MID 扣手续费))
-- [[scn_merchant_settlement_withdraw_auth]](场景:商户控台结算/提现/退款的双人授权)
-- [[scn_onboarding_manual_register]](场景:MPGS 供应商人工录入报备)
+## 相邻域
+收单交易 → [[domain_online_business]] / [[domain_offline_business]];出款(平台侧)→ [[domain_fundout]];工资代发 → [[domain_wps]](同为 Chahid 团队)。

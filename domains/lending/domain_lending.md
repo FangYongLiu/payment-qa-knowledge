@@ -2,32 +2,28 @@
 id: domain_lending
 object_type: Domain
 name: lending
-aliases: [Quantix]
+aliases: [quantix, SME Lending, BNPL, Pay Later, 信贷, 先买后付]
 domain: lending
 status: active
 owner: Xiaopei.Yan
 reviewer: Xiaopei.Yan
-last_reviewed_at: '2026-06-24'
+dev_owner: xiaopei.yan
+last_reviewed_at: '2026-06-26'
 source_type: app_inventory
 source_ref: SYSTEM_APP_INVENTORY.md
-tags: [quantix, 信贷, paylater, 先买后付]
-related_services: [svc_paylater, svc_credit_business, svc_cqm, svc_cbm, svc_botim_credit, svc_botim_snpl]
+tags: [lending, 信贷, BNPL, paylater]
+related_services: [svc_botim_snpl, svc_paylater, svc_botim_credit, svc_credit_business, svc_cbm, svc_cqm, svc_youstore_installment]
 ---
 
-# quantix(信贷业务)
+# lending(借贷 / 先买后付)
 
-> 业务域总览。owner Xiaopei.Yan。本页是 quantix 域的入口节点,细节见各服务对象。
+> 域入口。SME Lending / BNPL 业务。owner / 研发 Quantix 团队(Xiaopei Yan)。("quantix" 是团队名,业务是 lending。)
 
 ## 概述
-Quantix 信贷 / 先买后付(BNPL)业务域:承载先买后付、信贷业务等借贷相关能力。
+面向用户与商户的信贷能力:先买后付(SNPL / paylater)、信用分期、商户信用退款(credit-business)、Visa 交易转分期(TTS)、youstore 分期等。
 
-## 覆盖范围 / 部署 APP
-- [[svc_paylater]](gp095,先买后付)、[[svc_credit_business]](gp130,信贷业务,调 member)、
-  [[svc_cqm]](gp080)、[[svc_cbm]](gp081)。
+## 本域内容
+- **service/** — botim-snpl、paylater、botim-credit、credit-business、cbm、cqm、youstore-installment。
 
-## 关联关系
-- **关键服务**:见上(4 个,dev_owner=Xiaopei.Yan)
-- **下游依赖 / 关键流程 / 自动化资产**:待补(本窗口观测稀,待业务补充)。
-
-## QA 关注点
-- 待补(信贷额度 / 还款 / 风控联动等关注点留待补充)。
+## 相邻域
+分期卡发卡 → [[domain_card]];交易核心 → [[domain_payment_core]];风控 → [[domain_risk]]。
