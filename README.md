@@ -5,13 +5,13 @@ It is standalone and read-shareable: read or clone it to understand the payment 
 it. Knowledge only — no code, no secrets.
 
 ## Start here
-- `MAP.md` — landscape: the businesses, the 18 domains, transaction flow, and where to find things.
+- `MAP.md` — landscape: the businesses, the domains, transaction flow, and where to find things.
 - `domains/<domain>/domain_<domain>.md` — a domain's entry point.
 - `docs/GLOSSARY.md` — terminology.
 - `docs/KB_ARCHITECTURE.md` — structure, naming, and contribution rules.
 
 ## Layout
-- `domains/<domain>/` — the 18 business domains; each contains `service/ api/ table/<db>/ flow/
+- `domains/<domain>/` — the business domains (current set in `MAP.md`); each contains `service/ api/ table/<db>/ flow/
   scenario/ troubleshooting/ reference/` and a `domain_<domain>.md` entry.
 - `MAP.md`, `docs/` — navigation, framework, glossary, coverage.
 - `index/domains.yaml` — domain registry. `templates/` — authoring templates.

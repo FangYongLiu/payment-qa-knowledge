@@ -9,7 +9,9 @@ by reading the files directly.
 ## Principles
 - **Structure is the index.** No vector search — directories, names, and navigation files ARE how
   knowledge is found. Keep them self-describing, predictable, greppable.
-- **One taxonomy: 18 business domains.** All content lives under it. No second parallel tree.
+- **One taxonomy of business domains.** All content lives under a single set of business domains.
+  The current set is listed in `MAP.md` and `index/domains.yaml` and may be revised through
+  governance; there is never a second parallel tree.
 - **Navigate first, read few.** `MAP.md` → `domains/<domain>/domain_<domain>.md` → the specific
   file → follow `related_*` / `[[links]]`.
 - **Facts, not inputs.** This repo is "how the system is now". Time-bound docs (PM requirements)
@@ -19,10 +21,11 @@ by reading the files directly.
 ## Directory layout — each folder has one job
 | Path | Purpose |
 |---|---|
-| `MAP.md` | Landscape + 18 domains + how they connect + where to find what. Read first. |
+| `MAP.md` | Landscape + domains + how they connect + where to find what. Read first. |
 | `docs/KB_ARCHITECTURE.md` | This contract. |
 | `docs/GLOSSARY.md` | Term → definition + where used. |
 | `docs/COVERAGE.md` | Covered vs missing. *(planned)* |
+| `domains/<domain>/` | One folder per business domain (current set in `MAP.md`). |
 | `domains/<domain>/domain_<domain>.md` | Domain START HERE: plain scope + index of its files. |
 | `domains/<domain>/service/` | Service objects (the anchor). |
 | `domains/<domain>/api/` | API objects (path / params / errors / test points). |

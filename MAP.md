@@ -25,7 +25,10 @@ User / merchant initiates
 ```
 Authoritative service names and DB checkpoints per step live in each domain's `flow/`.
 
-## The 18 business domains
+## Business domains
+The current working set is below and in `index/domains.yaml`. It is under review and may be revised
+through governance.
+
 | Domain | Scope | Entry | Owner |
 |---|---|---|---|
 | **online-business** | Online acquiring: DirectPay (直连支付), cashier, open/acquiring API | `domains/online-business/` | fangyong.liu |
