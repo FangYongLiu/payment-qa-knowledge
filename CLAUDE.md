@@ -1,16 +1,23 @@
-# CLAUDE.md — payment-qa-knowledge(知识内容仓)
+# CLAUDE.md
 
-> 本仓只放**经评审的知识内容 —— 无代码**,是知识引擎(`payment-qa-brain`)的唯一可信源。
+Guidance for AI agents reading and contributing to this repository.
 
-## 规则
-- 只增改 markdown 知识(wiki 页 + 类型对象)+ `index/domains.yaml` 路由 —— **绝不放应用代码**。
-- **双层模型**:每篇源 → 一篇 `wiki/` 页;**技术内容额外**在 `domains/` 下抽类型对象。
-  别把每篇文档都硬塞进 8 类。
-- 每个类型对象 = 一个 markdown + frontmatter;**编写规范见 [`templates/README.md`](templates/README.md)**
-  (命名、frontmatter、关联关系段、全连边回写)。`name` 人类可读,代码名进 `aliases`。
-- `related_*` 必须指向**真实存在**的对象 id —— **无悬空**。**新增对象时,回写所有相关对象的关联**
-  (`templates/README.md` §4 的回写清单)。
-- `status`:服务骨架默认 `active`;评审流程新建内容 `draft`,人审通过才 `active`。只有 `active` 进生产检索。
-- 改文件名**不改 id**(reindex 按 id 重建,改名透明)。
-- 所有改动走 PR。评审 UI 的批准是人审门;引擎自动开并合并自己的 PR(方案 B),合并即 reindex。
-- 提交前跑 `scripts/check_knowledge.py`(引擎仓)确认无悬空 id。
+## Navigation
+Read `MAP.md` to select a domain, open `domains/<domain>/domain_<domain>.md` for its index, then
+open only the relevant files. Follow `related_*` and `[[links]]`. Resolve terms via
+`docs/GLOSSARY.md`. Grep by the stable prefixes (`svc_ api_ tbl_ flow_ scn_ ts_`) and `aliases`.
+Do not load the entire repository.
+
+## Authoring
+- One taxonomy of business domains under `domains/<domain>/` (current set in `MAP.md`). New content lands in an existing domain.
+- Each typed object is one markdown file with frontmatter, per `templates/README.md`.
+- `name` is human-readable; code names and acronyms go in `aliases`.
+- `related_*` reference existing ids only; back-fill the other side when adding an object.
+- New content is `draft`; an admin sets it `active` at merge.
+- Renaming a file does not change its `id`.
+- Unknown values are marked `待补`; nothing is invented.
+- PM requirement documents are distilled into domains, not imported raw.
+
+## Governance
+Never push to `main`. Every change — additions, edits, and removals — is a pull request approved by
+an admin. No code, no secrets.
