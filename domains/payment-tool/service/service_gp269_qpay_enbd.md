@@ -1,0 +1,48 @@
+---
+id: svc_qpay_enbd
+object_type: Service
+domain: payment-tool
+status: active
+owner: unassigned
+reviewer: unassigned
+last_reviewed_at: '2026-06-23'
+source_type: app_inventory
+source_ref: SYSTEM_APP_INVENTORY.md
+tags: []
+app_group: gp269
+name: qpay-enbd
+aliases: [gp269_qpay-enbd]
+related_services: []
+related_tables: []
+---
+
+# qpay-enbd
+
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp269` · domain=`channel`。
+
+## 作用
+(本窗口未观测到该服务的运行时活动,作用待业务补充。)
+
+## 系统中的位置
+- 业务域:`channel`
+
+## 关联关系
+(本窗口未观测到与其它服务的调用关系)
+
+## 涉及的 API / 数据库表
+- **暴露/相关 API**:待补
+- **读写的表**:待补
+
+## 关键方法 / 入口
+- 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。
+
+## 测试要点 / 排障 / 常见问题
+- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
+
+## 相关流程 / 场景 / 排障(反向)
+本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):
+- [[flow_enbd_fundout]](流程:ENBD 渠道出款流程(含账户映射 / 余额监控))
+- [[ts_enbd_channel_balance_not_enough]](排障:ENBD 出款报 channel account balance is not enough)
+
+## 来源与置信
+- UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp269` · domain=`channel`。

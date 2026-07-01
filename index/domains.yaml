@@ -1,6 +1,10 @@
-# 业务域注册表(团队分工权威源)。reindex 据此建路由 index_entries;
-# owner/reviewer 为该域负责人(多人逗号分隔)。对象 frontmatter 的 owner/reviewer 据此填。
+# 业务域注册表 · 草案 v3（三方交叉 + dev-lead 全部确认,拟定稿)
+# owner/reviewer = 知识/QA 负责人;dev_owner = 研发团队负责人(能力归域、团队归 dev_owner)。
+# 变更:portal-operations→merchant-management;quantix→lending;channel→payment-tool;
+# member→activation(含 KYC);新增 fundout/deposit-vam/settlement;删除 service-catalog;
+# payment-tools 拆解。19 业务域 + bimo-confirmed(元);atlas 等上线再建。
 
+# ── 收单 · Merchant Acquiring 团队(Bhavin Joshi) ──
 - id: domain_online_business
   object_type: Domain
   name: online-business
@@ -8,6 +12,8 @@
   status: active
   owner: fangyong.liu
   reviewer: fangyong.liu
+  dev_owner: bhavin.joshi
+  # ECOM/DirectPay/JSAPI/收银台/开放API、sgs 网关(ToB)
 
 - id: domain_offline_business
   object_type: Domain
@@ -16,7 +22,23 @@
   status: active
   owner: xiaoqian.wei,wanmei.ding
   reviewer: xiaoqian.wei,wanmei.ding
+  dev_owner: bhavin.joshi
+  # POS/QR/付款码/kiosk
 
+- id: domain_merchant_management
+  object_type: Domain
+  name: merchant-management
+  aliases: [portal-operations, 商户管理, merchant-portal, cs-portal]
+  domain: merchant-management
+  status: active
+  owner: yijian.tan
+  reviewer: yijian.tan
+  dev_owner: chahid.arid
+  # Merchant Portal & Operations 团队(Chahid):merchant(gp044 商户核心)、basis-merchant(gp161
+  # 运营后台,商户+WPS 运营)、contract(gp107)、onboarding(gp254)、cregister(gp259 客户注册)、
+  # qpay-niboarding(gp262 NI 入网)、CS Portal、merchant-fundout。收单(online/offline)另属 Bhavin。
+
+# ── PayCore · Payment Core 团队(Cong Zhou / Neo) ──
 - id: domain_payment_core
   object_type: Domain
   name: payment-core
@@ -24,22 +46,88 @@
   status: active
   owner: xiaoyan.zhou
   reviewer: xiaoyan.zhou
+  dev_owner: cong.zhou
+  # Trade/Payment/Cashier/authpay/pfs/pbs/query、cgs 网关(ToC,Botim APP)
 
-- id: domain_payment_tools
+- id: domain_fundout
   object_type: Domain
-  name: payment-tools
-  domain: payment-tools
+  name: fundout
+  domain: fundout
   status: active
   owner: xiaoyan.zhou
   reviewer: xiaoyan.zhou
+  dev_owner: cong.zhou
+  # 出款(payment-core);merchant-fundout 归 merchant-management
 
-- id: domain_portal_operations
+- id: domain_deposit_vam
   object_type: Domain
-  name: portal-operations
-  domain: portal-operations
+  name: deposit-vam
+  aliases: [fund-inflow, VAM, 资金入款, 虚拟账户]
+  domain: deposit-vam
   status: active
-  owner: yijian.tan
-  reviewer: yijian.tan
+  owner: xiaoyan.zhou
+  reviewer: xiaoyan.zhou
+  dev_owner: cong.zhou
+  # deposit/vis(FAB)/visii(Zand,含 IBAN)/vcs/escrow(ii)
+
+- id: domain_settlement
+  object_type: Domain
+  name: settlement
+  aliases: [清结算, reconciliation, 对账, counter]
+  domain: settlement
+  status: active
+  owner: xiaoyan.zhou
+  reviewer: xiaoyan.zhou
+  dev_owner: yibing.xia
+  # statementii/settlementii/reconciliation/counter/pcbs/commission/dpm;
+  # 运营团队 Clearing & Settlement(ops_owner: zhaohui.liu)
+
+- id: domain_infrastructure
+  object_type: Domain
+  name: infrastructure
+  aliases: [inf-basic, 基础支撑]
+  domain: infrastructure
+  status: active
+  owner: xiaoyan.zhou
+  reviewer: xiaoyan.zhou
+  dev_owner: cong.zhou
+  # pns/gadget/cms(ii)/basis-*/exchange 汇率/config;运维 Dev Operations(Xiaoxu Lv)
+
+- id: domain_crypto
+  object_type: Domain
+  name: crypto
+  aliases: [加密货币, cc]
+  domain: crypto
+  status: active
+  owner: can.wang
+  reviewer: can.wang
+  dev_owner: cong.zhou
+  # 独立加密货币域(业务归 Neo):cc-trade/deposit/withdraw/channel-*、ccdpm-*、holding、quotation
+
+# ── Payment Tool 团队(Kingo Liang) ──
+- id: domain_payment_tool
+  object_type: Domain
+  name: payment-tool
+  aliases: [channel, 渠道, Payment Tool, PT, CMF, Funds Channel]
+  domain: payment-tool
+  status: active
+  owner: kingo.liang
+  reviewer: kingo.liang
+  dev_owner: kingo.liang
+  # 渠道:cmf/cmf-task/fcw/router/qpay-cko/nipos/nisocket/fsii/fts/h2h/host-gateway/channel-*、
+  # 3DS/DCC/Fallback、cards(gp093 卡BIN基础库)、虚拟卡发卡
+
+# ── 独立团队 ──
+- id: domain_wallet
+  object_type: Domain
+  name: wallet
+  aliases: [Botim-wallet, Botim Money]
+  domain: wallet
+  status: active
+  owner: qianlong.wang
+  reviewer: qianlong.wang
+  dev_owner: xiaoqiang.wang
+  # personal/transfer/deduct/card-binding/余额
 
 - id: domain_remittance
   object_type: Domain
@@ -48,109 +136,100 @@
   status: active
   owner: lei.pan
   reviewer: lei.pan
-
-- id: domain_wallet
-  object_type: Domain
-  name: wallet
-  domain: wallet
-  status: active
-  owner: qianlong.wang
-  reviewer: qianlong.wang
-
-- id: domain_card
-  object_type: Domain
-  name: card
-  domain: card
-  status: active
-  owner: jianfei.wang
-  reviewer: jianfei.wang
-
-- id: domain_kyc
-  object_type: Domain
-  name: kyc
-  domain: kyc
-  status: active
-  owner: xinwei.cao
-  reviewer: xinwei.cao
-
-- id: domain_risk
-  object_type: Domain
-  name: risk
-  domain: risk
-  status: active
-  owner: xinwei.cao,dewen.li
-  reviewer: xinwei.cao,dewen.li
+  dev_owner: kingo.liang
+  # 汇款;含 Remittance Operations
 
 - id: domain_wps
   object_type: Domain
   name: wps
+  aliases: [Payroll, 工资保护]
   domain: wps
   status: active
   owner: xinwei.cao
   reviewer: xinwei.cao
+  dev_owner: chahid.arid
+  # WPS 团队(Chahid):payroll-core-service(gp237)、corporate-portal(gp242 企业门户)。
+  # 流程:企业入驻(SIF/PAF/LRA/PDC)→ 计费配置 → 加员工(EID/Passport,YSE)→ 发薪(WPS SIF/PIF
+  # 或 Direct Transfer)。集成 CBUAE/MOHRE/YSE。含工资卡管理、EWA 预支、万级批量发薪。
 
-- id: domain_compliance
+- id: domain_risk
   object_type: Domain
-  name: compliance
-  domain: compliance
+  name: risk
+  aliases: [Risk Control, GRC]
+  domain: risk
   status: active
-  owner: dewen.li
-  reviewer: dewen.li
+  owner: xinwei.cao,dewen.li
+  reviewer: xinwei.cao,dewen.li
+  dev_owner: dewen.li
+  # GRC/aml/设备指纹(afis)/行为评分
 
-- id: domain_crypto
+- id: domain_lending
   object_type: Domain
-  name: crypto
-  domain: crypto
+  name: lending
+  aliases: [quantix, SME Lending, BNPL, Pay Later]
+  domain: lending
   status: active
-  owner: unassigned
-  reviewer: unassigned
+  owner: Xiaopei.Yan
+  reviewer: Xiaopei.Yan
+  dev_owner: xiaopei.yan
+  # botim-snpl/paylater/botim-credit/credit-business/cbm/cqm、TTS、分期卡设计
 
 - id: domain_marketing
   object_type: Domain
   name: marketing
+  aliases: [营销, coupon, promo, Loyalty]
   domain: marketing
   status: active
-  owner: unassigned
-  reviewer: unassigned
+  owner: wujiang.ding
+  reviewer: wujiang.ding
+  dev_owner: junfei.wang
+  # AUID & 促销/营销:coupon/promo/green-points/gpoint/marketing-*
 
-- id: domain_channel
+- id: domain_card
   object_type: Domain
-  name: channel
-  domain: channel
+  name: card
+  aliases: [发卡, Prepaid Card, issuing]
+  domain: card
   status: active
-  owner: unassigned
-  reviewer: unassigned
+  owner: jianfei.wang
+  reviewer: jianfei.wang
+  dev_owner: xiaoqiang.wang
+  # 发卡业务(Prepaid Card 为主):ppc/gppc/upic/csimple/设备支付。发卡跨团队:预付卡→Wallet、
+  # 工资卡→WPS、分期卡→Quantix、虚拟卡→Payment Tool;共享 PPC/YSE。卡BIN基础库 cards→payment-tool
 
-- id: domain_infrastructure
+# ── Activation 团队(Yadong Lu):身份/会员/KYC ──
+- id: domain_activation
   object_type: Domain
-  name: infrastructure
-  domain: infrastructure
+  name: activation
+  aliases: [member, 会员, 身份, identity, KYC, 实名认证]
+  domain: activation
   status: active
-  owner: unassigned
-  reviewer: unassigned
+  owner: xinwei.cao
+  reviewer: xinwei.cao
+  dev_owner: yadong.lu
+  # 全系统唯一身份实体 + KYC:member/ppcenter/user-profile/pts + KYC 核验(EID/Passport/OCR/
+  # liveness/palm-id)
 
-- id: domain_quantix
+# ── 跨切 · Risk Control 团队(Dewen Li) ──
+- id: domain_compliance
   object_type: Domain
-  name: quantix
-  domain: quantix
+  name: compliance
+  aliases: [合规, AML, Edit42]
+  domain: compliance
   status: active
-  owner: Xiaopei.Yan
-  reviewer: Xiaopei.Yan
+  owner: dewen.li
+  reviewer: dewen.li
+  dev_owner: dewen.li
+  # 合规:AML 反洗钱、Edit42 卡组织合规、监管报送(KYC 核验已移至 activation)
 
-- id: domain_service_catalog
-  object_type: Domain
-  name: service-catalog
-  domain: service-catalog
-  status: active
-  owner: unassigned
-  reviewer: unassigned
-
-# 来源型分桶(非业务域):BimoQA 对话中确认、经 publish 发布到库的权威知识。
-# 目录 wiki/bimo-confirmed/。详见 CONTRIBUTING.md。
+# ── 元(非业务域) ──
 - id: domain_bimo_confirmed
   object_type: Domain
   name: bimo-confirmed
   domain: bimo-confirmed
   status: active
-  owner: unassigned
-  reviewer: unassigned
+  owner: 待补
+  reviewer: 待补
+  # 对话确认、经发布的权威知识
+
+# service-catalog 已删除(服务全部归类)。atlas 等上线再建。
