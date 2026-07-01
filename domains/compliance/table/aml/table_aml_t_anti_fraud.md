@@ -1,0 +1,57 @@
+---
+id: tbl_aml_t_anti_fraud
+object_type: Table
+domain: compliance
+status: active
+owner: dewen.li
+reviewer: dewen.li
+last_reviewed_at: '2026-06-25'
+source_type: DB DDL
+source_ref: DataGrip DDL export (aml schema) 2026-06-25
+tags:
+- aml
+- aml
+- t_anti_fraud
+subdomain: aml
+module: null
+sensitivity: normal
+name: tmx扫描信息表(t_anti_fraud)
+aliases:
+- t_anti_fraud
+related_services:
+- svc_aml
+related_scenarios: []
+---
+# tmx扫描信息表(t_anti_fraud)
+
+## 用途
+tmx扫描信息表。属 aml 库,由 [[svc_aml]] 读写。
+
+## 关联关系
+- **所属服务**:[[svc_aml]](= `related_services`)
+- **谁读写它**:读写本表的服务 / 接口,在各自文档的 `related_tables` 中列出(本表侧不重复)。
+- **哪些场景校验它**:待补。
+
+## 关键列
+| 列 | 类型 | 约束 | 说明 |
+| --- | --- | --- | --- |
+| `id` | bigint | PK / NOT NULL | 主键 |
+| `create_time` | timestamp |  | tmx查询时间 |
+| `content` | json |  | 业务系统查询内容 |
+| `reason_code` | text |  | tmx扫描触发的规则 |
+| `score` | smallint |  | tmx扫描得分 |
+| `result` | varchar(20) | NOT NULL | tmx扫描结果 |
+| `risk_rating` | varchar(20) |  | tmx扫描风险级别 |
+| `event_type` | varchar(50) |  | 业务系统事件类型 |
+| `platform` | varchar(50) |  | 事件来源平台类型 |
+| `session_id` | varchar(512) | NOT NULL | tmx唯一事件ID |
+| `request_id` | varchar(64) |  | tmx接收请求的ID |
+
+## 主键 / 索引
+- 主键:(`id`)
+- 索引:
+  - `session_id_index` (session_id)
+
+## 校验点(QA 关注)
+- 落库检查、状态流转、与上下游表/接口一致性。
+- 不确定的标「待补」,留人工补充。
