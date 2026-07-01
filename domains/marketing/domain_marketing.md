@@ -4,6 +4,7 @@ object_type: Domain
 name: marketing
 aliases: [营销, 增长, 积分, 优惠券, promo]
 domain: marketing
+product: payment
 status: active
 owner: unassigned
 reviewer: unassigned

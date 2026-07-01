@@ -4,6 +4,7 @@ object_type: Domain
 name: payment-tool
 aliases: [channel, 渠道, Payment Tool, PT, CMF, Funds Channel, qpay]
 domain: payment-tool
+product: payment
 status: active
 owner: kingo.liang
 reviewer: kingo.liang

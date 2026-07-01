@@ -4,6 +4,7 @@ object_type: Domain
 name: online-business
 aliases: [线上业务]
 domain: online-business
+product: payment
 status: active
 owner: fangyong.liu
 reviewer: fangyong.liu

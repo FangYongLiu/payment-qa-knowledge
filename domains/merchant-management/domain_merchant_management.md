@@ -4,6 +4,7 @@ object_type: Domain
 name: merchant-management
 aliases: [portal-operations, 商户管理, 门户/运营, merchant-portal, cs-portal]
 domain: merchant-management
+product: payment
 status: active
 owner: yijian.tan
 reviewer: yijian.tan

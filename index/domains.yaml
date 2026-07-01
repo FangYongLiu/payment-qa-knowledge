@@ -1,4 +1,4 @@
-# 业务域注册表 · 草案 v3（三方交叉 + dev-lead 全部确认,拟定稿)
+# 业务域注册表。product = 产品线(payment 为首个已填充产品线;botim-app 等其它产品线的域在此登记)。
 # owner/reviewer = 知识/QA 负责人;dev_owner = 研发团队负责人(能力归域、团队归 dev_owner)。
 # 变更:portal-operations→merchant-management;quantix→lending;channel→payment-tool;
 # member→activation(含 KYC);新增 fundout/deposit-vam/settlement;删除 service-catalog;
@@ -8,6 +8,7 @@
 - id: domain_online_business
   object_type: Domain
   name: online-business
+  product: payment
   domain: online-business
   status: active
   owner: fangyong.liu
@@ -18,6 +19,7 @@
 - id: domain_offline_business
   object_type: Domain
   name: offline-business
+  product: payment
   domain: offline-business
   status: active
   owner: xiaoqian.wei,wanmei.ding
@@ -28,6 +30,7 @@
 - id: domain_merchant_management
   object_type: Domain
   name: merchant-management
+  product: payment
   aliases: [portal-operations, 商户管理, merchant-portal, cs-portal]
   domain: merchant-management
   status: active
@@ -42,6 +45,7 @@
 - id: domain_payment_core
   object_type: Domain
   name: payment-core
+  product: payment
   domain: payment-core
   status: active
   owner: xiaoyan.zhou
@@ -52,6 +56,7 @@
 - id: domain_fundout
   object_type: Domain
   name: fundout
+  product: payment
   domain: fundout
   status: active
   owner: xiaoyan.zhou
@@ -62,6 +67,7 @@
 - id: domain_deposit_vam
   object_type: Domain
   name: deposit-vam
+  product: payment
   aliases: [fund-inflow, VAM, 资金入款, 虚拟账户]
   domain: deposit-vam
   status: active
@@ -73,6 +79,7 @@
 - id: domain_settlement
   object_type: Domain
   name: settlement
+  product: payment
   aliases: [清结算, reconciliation, 对账, counter]
   domain: settlement
   status: active
@@ -85,6 +92,7 @@
 - id: domain_infrastructure
   object_type: Domain
   name: infrastructure
+  product: payment
   aliases: [inf-basic, 基础支撑]
   domain: infrastructure
   status: active
@@ -96,6 +104,7 @@
 - id: domain_crypto
   object_type: Domain
   name: crypto
+  product: payment
   aliases: [加密货币, cc]
   domain: crypto
   status: active
@@ -108,6 +117,7 @@
 - id: domain_payment_tool
   object_type: Domain
   name: payment-tool
+  product: payment
   aliases: [channel, 渠道, Payment Tool, PT, CMF, Funds Channel]
   domain: payment-tool
   status: active
@@ -121,6 +131,7 @@
 - id: domain_wallet
   object_type: Domain
   name: wallet
+  product: payment
   aliases: [Botim-wallet, Botim Money]
   domain: wallet
   status: active
@@ -132,6 +143,7 @@
 - id: domain_remittance
   object_type: Domain
   name: remittance
+  product: payment
   domain: remittance
   status: active
   owner: lei.pan
@@ -142,6 +154,7 @@
 - id: domain_wps
   object_type: Domain
   name: wps
+  product: payment
   aliases: [Payroll, 工资保护]
   domain: wps
   status: active
@@ -155,6 +168,7 @@
 - id: domain_risk
   object_type: Domain
   name: risk
+  product: payment
   aliases: [Risk Control, GRC]
   domain: risk
   status: active
@@ -166,6 +180,7 @@
 - id: domain_lending
   object_type: Domain
   name: lending
+  product: payment
   aliases: [quantix, SME Lending, BNPL, Pay Later]
   domain: lending
   status: active
@@ -177,6 +192,7 @@
 - id: domain_marketing
   object_type: Domain
   name: marketing
+  product: payment
   aliases: [营销, coupon, promo, Loyalty]
   domain: marketing
   status: active
@@ -188,6 +204,7 @@
 - id: domain_card
   object_type: Domain
   name: card
+  product: payment
   aliases: [发卡, Prepaid Card, issuing]
   domain: card
   status: active
@@ -201,6 +218,7 @@
 - id: domain_activation
   object_type: Domain
   name: activation
+  product: payment
   aliases: [member, 会员, 身份, identity, KYC, 实名认证]
   domain: activation
   status: active
@@ -214,6 +232,7 @@
 - id: domain_compliance
   object_type: Domain
   name: compliance
+  product: payment
   aliases: [合规, AML, Edit42]
   domain: compliance
   status: active
@@ -226,6 +245,7 @@
 - id: domain_bimo_confirmed
   object_type: Domain
   name: bimo-confirmed
+  product: meta
   domain: bimo-confirmed
   status: active
   owner: 待补

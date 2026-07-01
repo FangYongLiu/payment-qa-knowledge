@@ -4,6 +4,7 @@ object_type: Domain
 name: settlement
 aliases: [清结算, reconciliation, 对账, counter, 结算]
 domain: settlement
+product: payment
 status: active
 owner: xiaoyan.zhou
 reviewer: xiaoyan.zhou

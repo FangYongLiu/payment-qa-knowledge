@@ -1,7 +1,7 @@
 # Glossary
 
-Terminology for the payment system. Section A covers industry-standard terms; Section B covers
-internal systems. Entries marked `待补` await an authoritative definition from the domain owner and
+Terminology for the systems the QA team covers. Section A covers industry-standard terms; Section B
+covers internal systems. Entries marked `待补` await an authoritative definition from the domain owner and
 must not be guessed. Entry format: `Term (full name) — definition. → used in: domain/service`.
 
 ## A. Industry terms

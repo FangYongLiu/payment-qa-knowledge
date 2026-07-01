@@ -5,6 +5,7 @@ object_type: Domain
 name: <业务域名称>
 aliases: []
 domain: <slug 自身>
+product: <产品线,如 payment / botim-app(见 index/domains.yaml)>
 status: active
 owner: <域 owner(见 index/domains.yaml)>
 reviewer: <评审人>

@@ -11,5 +11,5 @@
 # @add-more-admins-here
 
 # Example per-domain review routing (uncomment + set GitHub usernames when ready):
-# /domains/kyc/          @FangYongLiu @kyc-owner
+# /domains/activation/   @FangYongLiu @activation-owner
 # /domains/payment-core/ @FangYongLiu @payment-core-owner

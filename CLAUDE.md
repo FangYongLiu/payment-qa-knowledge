@@ -9,7 +9,7 @@ open only the relevant files. Follow `related_*` and `[[links]]`. Resolve terms 
 Do not load the entire repository.
 
 ## Authoring
-- One taxonomy of business domains under `domains/<domain>/` (current set in `MAP.md`). New content lands in an existing domain.
+- One taxonomy: product line → business domain, under `domains/<domain>/` (current set in `MAP.md`; each domain declares a `product`). New content lands in an existing domain; a new domain is registered in `index/domains.yaml` with its `product` first.
 - Each typed object is one markdown file with frontmatter, per `templates/README.md`.
 - `name` is human-readable; code names and acronyms go in `aliases`.
 - `related_*` reference existing ids only; back-fill the other side when adding an object.

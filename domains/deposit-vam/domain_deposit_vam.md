@@ -4,6 +4,7 @@ object_type: Domain
 name: deposit-vam
 aliases: [fund-inflow, VAM, 资金入款, 虚拟账户, IBAN]
 domain: deposit-vam
+product: payment
 status: active
 owner: xiaoyan.zhou
 reviewer: xiaoyan.zhou

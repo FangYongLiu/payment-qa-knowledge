@@ -4,6 +4,7 @@ object_type: Domain
 name: payment-core
 aliases: [支付核心]
 domain: payment-core
+product: payment
 status: active
 owner: xiaoyan.zhou
 reviewer: xiaoyan.zhou

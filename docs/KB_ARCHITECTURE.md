@@ -3,18 +3,19 @@
 The framework contract for this repository, binding on all contributions.
 
 ## Purpose
-Cover the entire payment system so that both AI agents and people can understand it and build on it
-by reading the files directly.
+Cover the systems the Astra QA team tests so that both AI agents and people can understand them and
+build on them by reading the files directly.
 
 ## Principles
 - **Structure is the index.** No vector search — directories, names, and navigation files ARE how
   knowledge is found. Keep them self-describing, predictable, greppable.
-- **One taxonomy of business domains.** All content lives under a single set of business domains.
+- **One taxonomy: product line → business domain.** Every domain declares a `product` (the product
+  line it belongs to, e.g. `payment`, `botim-app`) and lives under a single set of business domains.
   The current set is listed in `MAP.md` and `index/domains.yaml` and may be revised through
   governance; there is never a second parallel tree.
 - **Navigate first, read few.** `MAP.md` → `domains/<domain>/domain_<domain>.md` → the specific
   file → follow `related_*` / `[[links]]`.
-- **Facts, not inputs.** This repo is "how the system is now". Time-bound docs (PM requirements)
+- **Facts, not inputs.** This repo is "how the systems are now". Time-bound docs (PM requirements)
   are distilled into domains, not dumped in (see below).
 - **Never fabricate.** Unknowns are marked `待补 (TODO)` and filled by the owner.
 
@@ -34,13 +35,14 @@ by reading the files directly.
 | `domains/<domain>/scenario/` | Test scenarios (trigger → steps → DB checks → expected). |
 | `domains/<domain>/troubleshooting/` | Playbooks (symptom → root cause → steps → fix). |
 | `domains/<domain>/reference/` | Reference tables / dictionaries. |
-| `index/domains.yaml` | Domain registry (owner / reviewer). |
+| `index/domains.yaml` | Domain registry (product / owner / reviewer / dev_owner). |
 | `templates/` | Object templates + authoring rules. |
 
 A file that fits none of these purposes is not added.
 
 ## Naming
-- Domain folders: `kebab-case`, matching the registry.
+- Domain folders: `kebab-case`, matching the registry. A new domain is registered in
+  `index/domains.yaml` with its `product` before its folder is added.
 - File prefixes: `domain_ svc_ api_ tbl_ flow_ scn_ ts_ auto_ reference_`.
 - `id` is unique and stable — renaming a file does not change it. `name` is human-readable; put
   code names / acronyms (e.g. `MPGS`) in `aliases`.

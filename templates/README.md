@@ -34,6 +34,10 @@ gets filled later by the owner. This is the single most important rule.
   `domains/<domain>/table/<db>/`. `domain_<domain>.md` stays at the domain root as the entry point.
 - **The folder is organisational only.** What binds an object to a domain is its `domain:`
   frontmatter field, which **must equal its top-level folder name**.
+- **Product line.** Each domain belongs to a product line, declared once as `product` on the domain
+  in `index/domains.yaml` (e.g. `payment`, `botim-app`); `MAP.md` groups domains by it. Objects
+  inherit the product line from their domain — do not repeat `product` on every object. A new domain
+  is registered in `index/domains.yaml` (with its `product`) before its folder is created.
 
 ---
 

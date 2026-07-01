@@ -4,6 +4,7 @@ object_type: Domain
 name: card
 aliases: [卡]
 domain: card
+product: payment
 status: active
 owner: jianfei.wang
 reviewer: jianfei.wang
