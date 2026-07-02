@@ -1,7 +1,7 @@
 ---
 id: svc_sgs
 object_type: Service
-domain: payment-core
+domain: online-business
 status: active
 owner: xiaoyan.zhou
 reviewer: xiaoyan.zhou
