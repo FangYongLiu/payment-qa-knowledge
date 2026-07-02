@@ -3,7 +3,7 @@
 # owner/reviewer = 知识/QA 负责人;dev_owner = 研发团队负责人(能力归域、团队归 dev_owner)。
 # 变更:portal-operations→merchant-management;quantix→lending;channel→payment-tool;
 # member→activation(含 KYC);新增 fundout/deposit-vam/settlement;删除 service-catalog;
-# payment-tools 拆解。19 业务域 + bimo-confirmed(元);atlas 等上线再建。
+# payment-tools 拆解。业务域见下(botim-money 19 + botim-core);atlas 等上线再建。
 
 # ── 收单 · Merchant Acquiring 团队(Bhavin Joshi) ──
 - id: domain_online_business
@@ -241,17 +241,6 @@
   reviewer: dewen.li
   dev_owner: dewen.li
   # 合规:AML 反洗钱、Edit42 卡组织合规、监管报送(KYC 核验已移至 activation)
-
-# ── 元(非业务域) ──
-- id: domain_bimo_confirmed
-  object_type: Domain
-  name: bimo-confirmed
-  business_line: meta
-  domain: bimo-confirmed
-  status: active
-  owner: 待补
-  reviewer: 待补
-  # 对话确认、经发布的权威知识
 
 # service-catalog 已删除(服务全部归类)。atlas 等上线再建。
 

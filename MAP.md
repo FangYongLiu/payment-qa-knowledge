@@ -86,9 +86,6 @@ The **wallet ↔ Botim Money** seam (the app wallet is the PayBy SDK) is documen
 
 ---
 
-## Meta
-`bimo-confirmed` (`business_line: meta`) — confirmed conversation knowledge, not a business domain.
-
 ## Where to find things
 | Question | Location |
 |---|---|
