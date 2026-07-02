@@ -114,9 +114,9 @@ related_failures: []
 ## 处理 / 规避
 - 详细字段与样例查询见对应域已建的 Table 对象(见下);本页缺失字段处统一标「待补」,人工补充更新。
 - 相关 Table 对象(跨域,字段明细在各自对象):
-  - 会员:[[table_member_db]]、[[table_member_tr_bank_card_token]]、[[table_member_tr_deduct_channel]](wallet 域)
+  - 会员:[[table_member_tr_bank_card_token]]、[[table_member_tr_deduct_channel]](wallet 域;会员各表见 activation/wallet 域 table/member/)
   - 收单:[[table_acquireii_t_acquire_order]]、[[table_acquireii_t_payment_info]]、[[table_acquireii_t_refund_order]]、[[table_mhtfundout_t_fundout_order]](online-business 域)
-  - 商户 / 设备:[[table_merchant_db]]、[[table_merchant_device]](portal-operations 域)、[[table_device_db]]、[[table_active_code]]、[[table_device_apply_order]](offline-business 域)
-  - 网关:[[table_acs_db]](risk 域)
+  - 商户 / 设备:[[table_merchant_device]](merchant-management 域)、[[table_active_code]]、[[table_device_apply_order]](offline-business 域;商户/设备各表见对应域 table/)
+  - 网关:acs 库各表(risk 域,见 risk/table/acs/)
   - 结算 / 对账:[[tbl_reconciliation_t_settlement_template]]、[[tbl_reconciliation_t_settlement_detail]](payment-core)
 - dpm 账户明细表、tradeii / deposit / statementii / ppcenter / pbsdb 各表尚无独立 Table 对象:待补。

@@ -12,7 +12,7 @@ source_type: wiki
 source_ref: 'confluence:AQ/997785804, AQ/997818451, tester/462749700, wiki:34ef57ae'
 tags: [merchant, onboarding, acquire, wps, kyb, aml]
 related_services: [svc_unified_merchant_portal, svc_merchant, svc_member, svc_basis_merchant, svc_aml, svc_vis, svc_ppcenter, svc_contract, svc_statementii]
-related_tables: [tbl_member_tm_member, tbl_member_tm_member_identity, tbl_member_tr_beneficiary_info, tbl_member_tr_member_account, tbl_merchant_db]
+related_tables: [tbl_member_tm_member, tbl_member_tm_member_identity, tbl_member_tr_beneficiary_info, tbl_member_tr_member_account]
 related_scenarios: []
 ---
 
@@ -32,7 +32,7 @@ related_scenarios: []
 
 ## 关联关系
 - **经过的服务(有序)**:[[svc_unified_merchant_portal]] → [[svc_merchant]] → [[svc_member]] → [[svc_basis_merchant]] → [[svc_aml]] → [[svc_ppcenter]] → [[svc_vis]] → [[svc_contract]] → [[svc_statementii]](= `related_services`)
-- **关键表**:[[tbl_merchant_db]](商户主库，含 t_merchant / t_merchant_creation_order 等;= `related_tables`)
+- **关键表**:商户主库 `merchant`(含 t_merchant / t_merchant_creation_order 等,见 `merchant-management/table/merchant/`)
 - **入驻涉及接口**:[[api_merchant_apply_add]]、[[api_merchant_bizopen_wps]]
 - **环境与后台入口**:见 [[reference_portal_env_access]]、[[reference_bmoc_basis_merchant]]
 
