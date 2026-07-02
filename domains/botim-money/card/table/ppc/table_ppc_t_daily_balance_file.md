@@ -1,0 +1,46 @@
+---
+id: tbl_ppc_t_daily_balance_file
+object_type: Table
+name: Daily Balance File (t_daily_balance_file)
+aliases: [t_daily_balance_file, ppc.t_daily_balance_file]
+domain: card
+status: active
+owner: jianfei.wang
+reviewer: jianfei.wang
+last_reviewed_at: '2026-07-02'
+source_type: DB DDL
+source_ref: ppc schema DDL
+tags: [card, ppc]
+sensitivity: normal
+related_services: []
+---
+
+# Daily Balance File (t_daily_balance_file)
+
+## 用途
+物理表 `ppc.t_daily_balance_file`,主键 `file_id`。Daily Balance File。业务语义细节**待补**(表结构来自 DDL)。
+
+## 关联关系
+- **所属服务**:待补。
+- **谁读写它**:相关服务 / 接口(由对方文档 `related_tables` 声明)。
+- **哪些场景校验它**:待补。
+
+## 关键列
+| 列 | 类型 | 说明 |
+| --- | --- | --- |
+| `file_id` | bigint | File id · 可空 |
+| `file_type` | char | File Type: P=Personal, C=Corporation · 可空 |
+| `account_date` | char(8) | Account date |
+| `file_path` | varchar(255) | File path |
+| `file_status` | char(2) | Status: PP=Parse Processing, PF=Parse Fail, CP=Check Processing, CC=Check Complete |
+| `memo` | varchar(100) | Memo · 可空 |
+| `create_time` | timestamp | Create time |
+| `update_time` | timestamp | Update time |
+
+## 主键 / 索引
+- 主键:`file_id`
+- `uk_file_type_account_date`:account_date, file_type (UNIQUE)
+
+## 校验点(QA 关注)
+- **时间字段**:创建/更新时间;按时间过滤走对应索引。
+- 业务语义、状态枚举、跨表关联**待补**(需结合代码或业务文档)。
