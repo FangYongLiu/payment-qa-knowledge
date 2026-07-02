@@ -40,6 +40,7 @@ related_scenarios: []
 | `API_CODE` | varchar(100) | NOT NULL | API编码 |
 | `API_NAME` | varchar(100) | NOT NULL | API名称 |
 | `APP_CODE` | varchar(50) | NOT NULL | APP编码 |
+| `PROTOCOL` | varchar(16) | default 'DUBBO' | Downstream protocol: DUBBO (default) \| HTTP |
 | `RATE_LIMIT_GROUP` | bigint | NOT NULL | 限流分组ID |
 | `ENABLE_FLAG` | char | NOT NULL | 状态：Y=启用，N=停用 |
 | `EXTENSION` | varchar(500) |  | extension param |
