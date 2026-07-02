@@ -1,5 +1,2 @@
 .DS_Store
 .idea/
-
-# wiki/ 现已正式作为 LLM-Wiki 底座层入库(业务/流程/总览类文档保全文,status=active,
-# 经 reindex 进 WikiPage)。不再忽略——否则 brain worker git pull 拉不到底座层。
