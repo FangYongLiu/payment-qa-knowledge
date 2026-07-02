@@ -11,9 +11,8 @@
 # botim-money (payment / fintech) — owned by the payment QA lead
 /domains/botim-money/      @Fangyong-Liu_astg
 
-# botim-core (Botim app: IM / VoIP / Ads / MiniProgram) — owned by the Botim QA lead
-# TODO: replace with the botim-core QA lead's GitHub username
-/domains/botim-core/       @Fangyong-Liu_astg
+# botim-core (Botim app: IM / VoIP / Ads / MiniProgram) — Botim QA lead
+/domains/botim-core/       @kejun-liu_astg
 
 # Optional finer routing to a specific domain's owner (uncomment + set usernames):
 # /domains/botim-money/activation/    @Fangyong-Liu_astg @activation-owner

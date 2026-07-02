@@ -5,8 +5,8 @@ name: miniprogram
 business_line: botim-core
 domain: miniprogram
 status: active
-owner: 待补
-reviewer: 待补
+owner: kejun.liu
+reviewer: kejun.liu
 dev_owner: 待补
 tags: [botim-core, miniprogram]
 related_services: []
@@ -14,7 +14,7 @@ related_services: []
 
 # miniprogram(小程序 (Mini Program))
 
-> 域入口。Botim Core 业务线 · 小程序 (Mini Program)。owner 待补(由 Botim Core miniprogram QA 团队认领)。
+> 域入口。Botim Core 业务线 · 小程序 (Mini Program)。owner kejun.liu(Botim QA lead;可再分派给 miniprogram QA 团队认领)。
 
 ## 概述
 待补 —— 本域范围、核心能力、边界由 Botim Core miniprogram 团队按 `templates/README.md` 填充。
