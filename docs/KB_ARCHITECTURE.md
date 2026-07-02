@@ -26,6 +26,7 @@ build on them by reading the files directly.
 | `docs/KB_ARCHITECTURE.md` | This contract. |
 | `docs/GLOSSARY.md` | Term → definition + where used. |
 | `docs/COVERAGE.md` | Covered vs missing. *(planned)* |
+| `docs/CONTRIBUTING_BOTIM.md` | Botim team (`botim-core`) onboarding. |
 | `domains/<business-line>/` | One folder per business line (`botim-core`, `botim-money`). |
 | `domains/<business-line>/<domain>/` | One folder per business domain (current set in `MAP.md`). |
 | `domains/<business-line>/<domain>/domain_<domain>.md` | Domain START HERE: plain scope + index of its files. |
