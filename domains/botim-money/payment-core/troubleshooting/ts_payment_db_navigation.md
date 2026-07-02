@@ -48,7 +48,7 @@ related_failures: []
 1. **接入鉴权 `acs`** —— 验签 / 接口权限 / IP 白名单(`t_key_config`、`t_gateway_merchant_api_auth`、`t_gateway_api_group`、`t_gateway_api_group_relation`、`t_reffer_list`)。
 2. **订单与支付 `tradeii` / `acquireii`** —— 交易主单与支付订单。
 3. **账户变动 `dpm`** —— 外部 / 内部账户余额明细。
-4. **对账 `statementii`** —— 账期、对账单登记 / 模板 / 任务 / 文件、收单对账统计。
+4. **对账 `statementii`** —— 对账单配置 / 账期 / 任务、各类对账单(余额 / 交易 / 结算 / 返点)、结算配置与结算订单。
 
 ### 维度定位约定
 - **会员维度**:优先用 `member.tm_member_identity` 的 `IDENTITY` 唯一标识贯穿其它会员相关表。
@@ -87,14 +87,11 @@ related_failures: []
 - `fundout.tt_fundout_order` 提现订单。
 
 **账单 / 对账(statementii)**
-- `t_statement_period` 账期;`t_statement_registration` 对账单登记;`t_statement_template` 对账单模板;`t_statement_task` 对账单任务;`t_statement_file` 对账单文件;`t_statement_pruchase_statistics` 收单对账统计。
+- `t_statement_config` 对账单配置;`t_statement_period` 账期;`t_statement_task`(+`t_statement_task_lock`)对账单任务与锁;`t_statement_balance` / `t_statement_transaction` / `t_statement_settlement` / `t_statement_rebate` 余额 / 交易 / 结算 / 返点对账单;`t_statement_report` 报表;`t_statement_subscribe` 账单订阅;`t_settlement_config` / `t_settlement_order` 结算配置 / 结算订单;`t_template_version_change_log` 模板版本变更。字段明细见 `online-business/table/statementii/` 各表对象。
 
 **费率与定价(ppcenter / pbsdb)**
 - `ppcenter`:`t_product_template` 产品模板 → `t_calculation_define` 费率定义 → `t_price_cal` 费率配置 → `t_product_apply_order` 产品申请 / `t_product_apply_info` 审核资料 → `t_package_define` 产品包 / `t_package_template_relation` 产品包与模板关联。
 - `pbsdb`:`tb_pbs_price_strategy_unit` 费率策略;`tb_pbs_price_strategy_param` 策略详情;`tb_pbs_price_cal` 价格计算策略。
-
-**生活中心**
-- `marketorder.t_order` 订单;`marketgoods.t_goods_sku` 商品 SKU;`supplier.t_supplier_channel` 供应商渠道。
 
 ### 环境与连接(MySQL 实例)
 不同测试环境的 MySQL 实例连接地址(账号密码见安全凭据管理,本页不落明文):
@@ -119,4 +116,4 @@ related_failures: []
   - 商户 / 设备:[[table_merchant_device]](merchant-management 域)、[[table_active_code]]、[[table_device_apply_order]](offline-business 域;商户/设备各表见对应域 table/)
   - 网关:acs 库各表(risk 域,见 risk/table/acs/)
   - 结算 / 对账:[[tbl_reconciliation_t_settlement_template]]、[[tbl_reconciliation_t_settlement_detail]](payment-core)
-- dpm 账户明细表、tradeii / deposit / statementii / ppcenter / pbsdb 各表尚无独立 Table 对象:待补。
+- statementii 各表已建独立 Table 对象(见 `online-business/table/statementii/`);dpm 账户明细表、tradeii / deposit / ppcenter / pbsdb 各表尚无独立 Table 对象:待补。
