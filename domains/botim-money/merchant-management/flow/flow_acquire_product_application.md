@@ -45,7 +45,7 @@ related_scenarios: []
 ## 关联关系
 - **经过的服务(有序)**:[[svc_hive_merchant_console]] → [[svc_basis_merchant]] → [[svc_ppcenter]] → [[svc_merchant]](= `related_services`)
 - **关键场景**:结算/提现/退款的授权操作见 [[scn_merchant_settlement_withdraw_auth]]
-- **环境/控台入口**:[[ref_portal_env_access]]、[[ref_bmoc_basis_merchant]]、[[ref_merchant_portal_products]]
+- **环境/控台入口**:[[reference_portal_env_access]]、[[reference_bmoc_basis_merchant]]、[[reference_merchant_portal_products]]
 
 ## 控台模块与库表校验点
 

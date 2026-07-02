@@ -1,5 +1,5 @@
 ---
-id: ref_portal_env_access
+id: reference_portal_env_access
 object_type: Reference
 name: 门户/运营环境访问指南(DB/Redis/Kibana/门户/k8s)
 aliases: [env access guide, 环境访问, qa infra access, uat access, prod access]
@@ -110,4 +110,4 @@ kubectl --kubeconfig /root/.kube/uat-config -n uat cp <pod>:/tmp/<file> <file>
 ## 其它入口
 - Vendor Portal fidoMgmt:UAT `https://uat-admin.corp.test2pay.com/FidoMgmt/...`(admin/admin123);Prod `https://admin.corp.payby.com/FidoMgmt/`。
 - 支付通知 pns:`http://intra.g42pay.com/pns/services`。
-- 关联流程:入驻 [[flow_merchant_onboarding]]、产品申请 [[flow_acquire_product_application]];后台菜单 [[ref_bmoc_basis_merchant]]。
+- 关联流程:入驻 [[flow_merchant_onboarding]]、产品申请 [[flow_acquire_product_application]];后台菜单 [[reference_bmoc_basis_merchant]]。

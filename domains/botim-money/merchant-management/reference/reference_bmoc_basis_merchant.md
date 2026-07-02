@@ -1,5 +1,5 @@
 ---
-id: ref_bmoc_basis_merchant
+id: reference_bmoc_basis_merchant
 object_type: Reference
 name: BMOC / Basis Merchant 运营后台菜单与权限指南
 aliases: [bmoc, basis merchant menu, 运营后台, botim money operations center]
@@ -19,7 +19,7 @@ related_services: [svc_basis_merchant]
 > **BMOC**(Botim Money Operation Console)是 PayBy 内部运营管理后台;**Basis Merchant** 是其中聚焦商户运营的系统，覆盖商户全生命周期审批与配置。控台标识 `PAYBY BASIS`(顶部 "WELCOME TO PAYBY")。后台由 [[svc_basis_merchant]] 承载。适用人群:测试、产品、开发、运营。
 
 ## 控台入口与登录
-- 地址见 [[ref_portal_env_access]](Sim/UAT/Prod basis-merchant、BMOC)。
+- 地址见 [[reference_portal_env_access]](Sim/UAT/Prod basis-merchant、BMOC)。
 - 登录需**员工域账号**(示例 `fangyong.liu` / `Can Wang`);账号问题找 OPS: wei.li，角色权限由 QA 在 `Permissions` 添加。
 - 左侧主导航分 GENERAL / BUSINESS / TMS;Basis Merchant 相关菜单位于 `BUSINESS > Merchant`。
 
@@ -66,4 +66,4 @@ related_services: [svc_basis_merchant]
 
 ## 关联
 - 内部运营后台另有常用 Portal(VIP/缓存/用户解绑/短信/收银台鉴权/系统管理-用户/角色/部门/字典/菜单/登录与操作日志等)的导航布局，作为后台通用模块速查。
-- 环境与登录入口见 [[ref_portal_env_access]];入驻流程见 [[flow_merchant_onboarding]]。
+- 环境与登录入口见 [[reference_portal_env_access]];入驻流程见 [[flow_merchant_onboarding]]。

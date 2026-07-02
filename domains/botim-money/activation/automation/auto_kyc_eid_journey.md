@@ -42,7 +42,7 @@ related_tables: [tbl_member_tr_member_kyc_level]
 ## 关联关系
 - **覆盖的场景**:[[scn_kyc_eid_full_journey]]、[[scn_kyc_eid_leave]]、[[scn_kyc_status_inquire]]、[[scn_kyc_zand_iban]]
 - **针对/跑在的服务**:[[svc_kyc]](实名认证核心);延伸触达 member(账户)、personal/钱包、ZAND(visii VA)。
-- **调用的接口**:见上表 [[api_kyc_*]] 链接;ZAND 段用 `vam_auth_init/query_info`、钱包用 `personal_sva_queryStatusInfo`(非 kyc 服务接口)。
+- **调用的接口**:见上表各 `api_kyc_*` 接口链接;ZAND 段用 `vam_auth_init/query_info`、钱包用 `personal_sva_queryStatusInfo`(非 kyc 服务接口)。
 
 ## 使用方式
 - 框架:pytest + allure;入口 `pytest testcases/payment/basic_cases/test_KYC_eid_journey.py`。

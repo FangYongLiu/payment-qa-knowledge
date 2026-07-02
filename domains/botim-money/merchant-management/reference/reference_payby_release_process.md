@@ -1,5 +1,5 @@
 ---
-id: ref_payby_release_process
+id: reference_payby_release_process
 object_type: Reference
 name: PayBy 发布流程与排期
 aliases: [payby release process, 发布流程, release schedule, definition of done]

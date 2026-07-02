@@ -34,7 +34,7 @@ related_scenarios: []
 - **经过的服务(有序)**:[[svc_unified_merchant_portal]] → [[svc_merchant]] → [[svc_member]] → [[svc_basis_merchant]] → [[svc_aml]] → [[svc_ppcenter]] → [[svc_vis]] → [[svc_contract]] → [[svc_statementii]](= `related_services`)
 - **关键表**:[[tbl_merchant_db]](商户主库，含 t_merchant / t_merchant_creation_order 等;= `related_tables`)
 - **入驻涉及接口**:[[api_merchant_apply_add]]、[[api_merchant_bizopen_wps]]
-- **环境与后台入口**:见 [[ref_portal_env_access]]、[[ref_bmoc_basis_merchant]]
+- **环境与后台入口**:见 [[reference_portal_env_access]]、[[reference_bmoc_basis_merchant]]
 
 ## 入驻库表影响范围(QA 校验)
 跨库流程，按入驻链路顺序校验:Merchant → Member → Ppcenter → Dpm → Statementii → Contract → Vis。QA 库账号默认开通 SELECT/INSERT/UPDATE/DELETE，连接需指定库名(如 `merchantuser`)。
@@ -78,4 +78,4 @@ Unified Portal / Agent / Basis / Botim / 统一控台。BMOC `Merchant Approval`
 - 注册:OTP 登录后强制设密码;管理员手机号具备 administrator role。
 - Acquire 激活:`t_merchant.Status=MERCHANT_ENABLED` 且 `tm_member` 状态=1。
 - WPS 激活:`t_common_audit_order.audit_result=PASS`、`WPS_SALARY` 账户落地、`vis.t_virtual_account` 创建。
-- 服务 Owner 对照、MPGS 组件依赖等开发侧信息(basis→onboarding→ppcenter/cmf→qpay-ni)见 [[svc_onboarding]] 与 [[ref_portal_env_access]];部分历史明细标「待补」。
+- 服务 Owner 对照、MPGS 组件依赖等开发侧信息(basis→onboarding→ppcenter/cmf→qpay-ni)见 [[svc_onboarding]] 与 [[reference_portal_env_access]];部分历史明细标「待补」。

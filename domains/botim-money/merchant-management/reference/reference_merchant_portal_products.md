@@ -1,5 +1,5 @@
 ---
-id: ref_merchant_portal_products
+id: reference_merchant_portal_products
 object_type: Reference
 name: PayBy 商户控台收款产品与功能指南
 aliases: [merchant portal products, smart code, invoice, paylink, tax invoice, vam, statements]
@@ -65,4 +65,4 @@ PayBy App ToC 用户 Add funds 页:确认金额(如 AED 1.00)→ 选可用支付
 
 ## 联系方式
 - 商户支持:`merchant@payby.com`;银行账户变更走邮件流程(见 [[scn_merchant_settlement_withdraw_auth]])。
-- 控台对应后端:[[svc_merchant]]、[[svc_invoice]]、[[svc_hive_merchant_console]];开放接口字段见 [[ref_payby_open_api]]。
+- 控台对应后端:[[svc_merchant]]、[[svc_invoice]]、[[svc_hive_merchant_console]];开放接口字段见 [[reference_payby_open_api]]。

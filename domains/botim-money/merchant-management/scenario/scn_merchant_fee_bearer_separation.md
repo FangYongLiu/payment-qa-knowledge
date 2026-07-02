@@ -25,7 +25,7 @@ related_requirements: [PAYM-1068]
 ## 关联关系
 - **涉及服务**:[[svc_basis]](= `related_services`)
 - **关联需求**:PAYM-1068(= `related_requirements`)
-- **配置审核入口**:Basis General Audit，见 [[ref_bmoc_basis_merchant]]
+- **配置审核入口**:Basis General Audit，见 [[reference_bmoc_basis_merchant]]
 
 ## 前置条件
 - 已确定交易发起方 MID 与实际扣手续费的商户 MID。

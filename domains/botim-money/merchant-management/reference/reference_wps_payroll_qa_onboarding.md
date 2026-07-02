@@ -1,5 +1,5 @@
 ---
-id: ref_wps_payroll_qa_onboarding
+id: reference_wps_payroll_qa_onboarding
 object_type: Reference
 name: WPS Payroll QA 三周入职计划
 aliases: [wps payroll qa onboarding, wps 入职, qa onboarding plan]
@@ -44,4 +44,4 @@ WPS Payroll QA 主要参与:Company registration & approval flows、Employee reg
 - 完全 own 一个 ticket:requirement → test cases → execution → bug reporting → sign-off → release/go-live;主动与 Dev/PM/stakeholder 对齐;自管进度与 issue 闭环;判断何时 sign-off / 何时拉 review。团队只在发布前 final review/sign-off。发布后 debrief(做得好/待改进/下一步如 PAF-type companies、CBUAE file flows、partner integration testing)。
 - **预期**:独立交付并上线一个 ticket，达团队标准，测试结论清晰可靠、文档完备。
 
-> 发布流程见 [[ref_payby_release_process]];WPS 业务开通链路见 [[flow_merchant_onboarding]]。
+> 发布流程见 [[reference_payby_release_process]];WPS 业务开通链路见 [[flow_merchant_onboarding]]。

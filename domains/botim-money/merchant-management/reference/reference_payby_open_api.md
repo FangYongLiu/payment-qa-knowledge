@@ -1,5 +1,5 @@
 ---
-id: ref_payby_open_api
+id: reference_payby_open_api
 object_type: Reference
 name: PayBy 对外开放接口参考(场景码/返回码/数据结构)
 aliases: [payby open api, pay scene code, return codes, api data structures, product catalog]
