@@ -4,6 +4,23 @@ Onboarding for the Botim app QA team. For the full rules see `templates/README.m
 `docs/KB_ARCHITECTURE.md` (framework + governance); this page only adds what is specific to the
 `botim-core` business line.
 
+## Using this knowledge base with AI (Claude Code)
+The knowledge base is plain markdown read **directly** — an AI agent reads it from your local files,
+not from a remote server. To use it:
+
+1. **Clone it locally**: `git clone https://github.com/Astra-QA/qa-knowledge-base.git`
+2. **Run Claude Code CLI inside the clone.** The root `CLAUDE.md` loads automatically and tells the
+   agent how to navigate (read `MAP.md` → pick a domain → read its `domain_<domain>.md` → follow
+   `related_*` / `[[links]]`; grep by id prefixes `svc_ api_ tbl_ …`). No index or setup needed —
+   the structure is the index.
+3. **Using it from another project** (e.g. your test-automation repo): clone this repo alongside and
+   point the agent at it (a line in your project's own `CLAUDE.md` such as "Payment / Botim domain
+   knowledge lives in `../qa-knowledge-base` — consult it first" works well). The agent does not read
+   remote repos on its own.
+
+The repo is internal-visibility; reading a **local clone** needs no extra auth. Keep your clone up to
+date with `git pull` before you rely on it.
+
 ## Where your knowledge goes
 The repo is a two-level tree: `domains/<business-line>/<domain>/`. Your business line is
 **`botim-core`** (the Botim app: IM, VoIP, Ads, Mini Program). It currently holds four skeleton
