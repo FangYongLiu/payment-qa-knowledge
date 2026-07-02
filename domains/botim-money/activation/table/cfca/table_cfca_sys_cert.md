@@ -1,0 +1,59 @@
+---
+id: tbl_cfca_sys_cert
+object_type: Table
+name: sys_cert (sys_cert)
+aliases: [sys_cert, cfca.sys_cert]
+domain: activation
+status: active
+owner: xinwei.cao
+reviewer: xinwei.cao
+last_reviewed_at: '2026-07-02'
+source_type: DB DDL
+source_ref: cfca schema DDL
+tags: [activation, cfca]
+sensitivity: normal
+related_services: []
+---
+
+# sys_cert (sys_cert)
+
+## 用途
+物理表 `cfca.sys_cert`,主键 `id`。(DDL 未提供表注释)。业务语义细节**待补**(表结构来自 DDL)。
+
+## 关联关系
+- **所属服务**:待补。
+- **谁读写它**:相关服务 / 接口(由对方文档 `related_tables` 声明)。
+- **哪些场景校验它**:待补。
+
+## 关键列
+| 列 | 类型 | 说明 |
+| --- | --- | --- |
+| `id` | bigint(10) | 待补 · 可空 |
+| `cert_dn` | varchar(255) | 待补 · 可空 |
+| `cert_entity` | longblob | 待补 · 可空 |
+| `cert_sn` | varchar(255) | 待补 |
+| `common_name` | varchar(255) | 待补 · 可空 |
+| `create_time` | datetime | 待补 · 可空 |
+| `device_id` | varchar(255) | 待补 · 可空 |
+| `key_alg` | varchar(255) | 待补 · 可空 |
+| `key_id` | bigint(11) | 待补 · 可空 |
+| `key_len` | bigint(11) | 待补 · 可空 |
+| `not_after` | datetime | 待补 · 可空 |
+| `not_before` | datetime | 待补 · 可空 |
+| `remark` | varchar(255) | 待补 · 可空 |
+| `revoke_desc` | varchar(255) | 待补 · 可空 |
+| `revoke_reason` | bigint(11) | 待补 · 可空 |
+| `revoke_time` | datetime | 待补 · 可空 |
+| `sign` | varchar(255) | 待补 · 可空 |
+| `status` | bigint(11) | 待补 · 可空 |
+| `type` | bigint(11) | 待补 · 可空 |
+| `validity` | bigint(11) | 待补 · 可空 |
+
+## 主键 / 索引
+- 主键:`id`
+- 无(仅主键)
+
+## 校验点(QA 关注)
+- **时间字段**:创建/更新时间;按时间过滤走对应索引。
+- **状态字段**:`status` 合法枚举与流转规则需结合代码/业务文档核对(**待补**)。
+- 业务语义、状态枚举、跨表关联**待补**(需结合代码或业务文档)。
