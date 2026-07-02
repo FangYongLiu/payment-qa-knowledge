@@ -1,7 +1,7 @@
 ---
 id: tbl_cmf_tb_card_token
 object_type: Table
-name: card token inst order id唯一索引 (tb_card_token)
+name: 卡token表 (tb_card_token)
 aliases: [tb_card_token, cmf.tb_card_token]
 domain: payment-tool
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# card token inst order id唯一索引 (tb_card_token)
+# 卡token表 (tb_card_token)
 
 ## 用途
-物理表 `cmf.tb_card_token`,主键 `card_token_id`。card token inst order id唯一索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `cmf.tb_card_token`,主键 `card_token_id`。卡token表。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -61,7 +61,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`card_token_id`
-- 无(仅主键)
+- `uk_card_token_order_id`:inst_order_id (UNIQUE)
 
 ## 校验点(QA 关注)
 - 业务语义、状态枚举、跨表关联**待补**(需结合代码或业务文档)。

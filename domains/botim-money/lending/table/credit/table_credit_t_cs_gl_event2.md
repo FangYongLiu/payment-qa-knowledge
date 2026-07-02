@@ -1,7 +1,7 @@
 ---
 id: tbl_credit_t_cs_gl_event2
 object_type: Table
-name: unique (t_cs_gl_event2)
+name: gl event record (t_cs_gl_event2)
 aliases: [t_cs_gl_event2, credit.t_cs_gl_event2]
 domain: lending
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# unique (t_cs_gl_event2)
+# gl event record (t_cs_gl_event2)
 
 ## 用途
-物理表 `credit.t_cs_gl_event2`,主键 `id`。unique。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `credit.t_cs_gl_event2`,主键 `id`。gl event record。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -41,6 +41,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`id`
+- `idx_unique_order_no`:order_no, bus_no, scenario (UNIQUE)
 - `idx_bus_no`:bus_no
 - `idx_bus_time`:bus_time, status
 - `idx_created_time`:created_time

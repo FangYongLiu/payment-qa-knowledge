@@ -1,7 +1,7 @@
 ---
 id: tbl_cms_cms_project
 object_type: Table
-name: 项目编码索引 (cms_project)
+name: 项目表 (cms_project)
 aliases: [cms_project, cms.cms_project]
 domain: merchant-management
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 项目编码索引 (cms_project)
+# 项目表 (cms_project)
 
 ## 用途
-物理表 `cms.cms_project`,主键 `id`。项目编码索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `cms.cms_project`,主键 `id`。项目表。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -42,7 +42,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`id`
-- 无(仅主键)
+- `uk_project_code`:project_code (UNIQUE)
 
 ## 校验点(QA 关注)
 - **时间字段**:创建/更新时间;按时间过滤走对应索引。

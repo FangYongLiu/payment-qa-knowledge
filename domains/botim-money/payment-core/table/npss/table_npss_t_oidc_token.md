@@ -1,7 +1,7 @@
 ---
 id: tbl_npss_t_oidc_token
 object_type: Table
-name: refresh_token唯一索引 (t_oidc_token)
+name: 授权token表 (t_oidc_token)
 aliases: [t_oidc_token, npss.t_oidc_token]
 domain: payment-core
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# refresh_token唯一索引 (t_oidc_token)
+# 授权token表 (t_oidc_token)
 
 ## 用途
-物理表 `npss.t_oidc_token`,主键 `id`。refresh_token唯一索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `npss.t_oidc_token`,主键 `id`。授权token表。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -44,6 +44,8 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`id`
+- `uk_oidc_refresh_token`:refresh_token (UNIQUE)
+- `uk_oidc_token`:token (UNIQUE)
 - `idx_user_id_gmt_create`:user_id, gmt_create
 
 ## 校验点(QA 关注)

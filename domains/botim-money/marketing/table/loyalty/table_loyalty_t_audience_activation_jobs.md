@@ -52,6 +52,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`id`
+- `uk_activation_chunk`:audience_id, campaign_id, batch_id, batch_seq (UNIQUE)
 - `idx_activation_created`:created_at
 - `idx_status_created_at`:status, created_at
 

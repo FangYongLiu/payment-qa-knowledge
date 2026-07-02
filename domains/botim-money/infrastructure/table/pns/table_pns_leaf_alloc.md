@@ -1,7 +1,7 @@
 ---
 id: tbl_pns_leaf_alloc
 object_type: Table
-name: 当前序列最大值，亦即下次取值的初始值 (leaf_alloc)
+name: leaf_alloc (leaf_alloc)
 aliases: [leaf_alloc, pns.leaf_alloc]
 domain: infrastructure
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 当前序列最大值，亦即下次取值的初始值 (leaf_alloc)
+# leaf_alloc (leaf_alloc)
 
 ## 用途
-物理表 `pns.leaf_alloc`,主键 `None`。当前序列最大值，亦即下次取值的初始值。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `pns.leaf_alloc`,主键 `biz_tag`。(DDL 未提供表注释)。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -28,11 +28,16 @@ related_services: []
 ## 关键列
 | 列 | 类型 | 说明 |
 | --- | --- | --- |
-| `biz_tag` | varchar | 待补 · 可空 |
+| `biz_tag` | varchar(128) | 待补 |
+| `max_id` | bigint | 当前序列最大值，亦即下次取值的初始值 |
+| `step` | int | 初始情况下在内存中缓冲的序列号个数，一般配置表为10，订单表为200以上，看订单量 |
+| `description` | varchar(256) | 待补 · 可空 |
+| `update_time` | timestamp | 待补 |
 
 ## 主键 / 索引
-- 主键:`None`
+- 主键:`biz_tag`
 - 无(仅主键)
 
 ## 校验点(QA 关注)
+- **时间字段**:创建/更新时间;按时间过滤走对应索引。
 - 业务语义、状态枚举、跨表关联**待补**(需结合代码或业务文档)。

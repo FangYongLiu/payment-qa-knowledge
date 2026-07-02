@@ -1,7 +1,7 @@
 ---
 id: tbl_npss_t_user_account
 object_type: Table
-name: 用户账户iban唯一索引 (t_user_account)
+name: 用户账户表 (t_user_account)
 aliases: [t_user_account, npss.t_user_account]
 domain: payment-core
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 用户账户iban唯一索引 (t_user_account)
+# 用户账户表 (t_user_account)
 
 ## 用途
-物理表 `npss.t_user_account`,主键 `account_id`。用户账户iban唯一索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `npss.t_user_account`,主键 `account_id`。用户账户表。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -41,6 +41,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`account_id`
+- `uk_user_account_iban`:iban (UNIQUE)
 - `idx_user_acct_mid`:member_id
 
 ## 校验点(QA 关注)

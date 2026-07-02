@@ -1,7 +1,7 @@
 ---
 id: tbl_installmentcard_t_ic_am_account
 object_type: Table
-name: Row updated time (t_ic_am_account)
+name: Installment Card account master (t_ic_am_account)
 aliases: [t_ic_am_account, installmentcard.t_ic_am_account]
 domain: lending
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# Row updated time (t_ic_am_account)
+# Installment Card account master (t_ic_am_account)
 
 ## 用途
-物理表 `installmentcard.t_ic_am_account`,主键 `id`。Row updated time。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `installmentcard.t_ic_am_account`,主键 `id`。Installment Card account master。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -51,10 +51,11 @@ related_services: []
 | `timezone` | varchar(64) | IANA timezone for statement/due date calculations |
 | `version` | int | Optimistic lock version |
 | `created_at` | datetime(3) | Row created time |
-| `updated_at` | datetime(3) | 待补 |
+| `updated_at` | datetime(3) | Row updated time |
 
 ## 主键 / 索引
 - 主键:`id`
+- `uk_account_no`:account_no (UNIQUE)
 - `idx_member_id`:member_id
 
 ## 校验点(QA 关注)

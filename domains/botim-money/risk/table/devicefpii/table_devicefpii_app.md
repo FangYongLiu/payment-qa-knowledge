@@ -1,7 +1,7 @@
 ---
 id: tbl_devicefpii_app
 object_type: Table
-name: 应用表 (app)
+name: app (app)
 aliases: [app, devicefpii.app]
 domain: risk
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 应用表 (app)
+# app (app)
 
 ## 用途
-物理表 `devicefpii.app`,主键 `Id`。应用表。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `devicefpii.app`,主键 `id`。(DDL 未提供表注释)。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -36,24 +36,10 @@ related_services: []
 | `create_time` | timestamp | 待补 |
 | `modify_time` | timestamp | 待补 |
 | `package_name` | varchar(512) | 待补 · 可空 |
-| `Id` | int unsigned | 主键 · 可空 |
-| `AppId` | varchar(64) | AppID |
-| `Name` | varchar(500) | 应用名 |
-| `OrgId` | varchar(32) | 部门Id |
-| `OrgName` | varchar(64) | 部门名字 |
-| `OwnerName` | varchar(500) | ownerName |
-| `OwnerEmail` | varchar(500) | ownerEmail |
-| `IsDeleted` | bit | 1: deleted, 0: normal |
-| `DeletedAt` | bigint | Delete timestamp based on milliseconds |
-| `DataChange_CreatedBy` | varchar(64) | 创建人邮箱前缀 |
-| `DataChange_CreatedTime` | timestamp | 创建时间 |
-| `DataChange_LastModifiedBy` | varchar(64) | 最后修改人邮箱前缀 · 可空 |
-| `DataChange_LastTime` | timestamp | 最后修改时间 · 可空 |
 
 ## 主键 / 索引
-- 主键:`Id`
+- 主键:`id`
 - `un_app_key`:app_key (UNIQUE)
-- `UK_AppId_DeletedAt`:AppId, DeletedAt (UNIQUE)
 
 ## 校验点(QA 关注)
 - **时间字段**:创建/更新时间;按时间过滤走对应索引。

@@ -1,7 +1,7 @@
 ---
 id: tbl_cmf_tb_notify_3ds_result
 object_type: Table
-name: 机构订单唯一 (tb_notify_3ds_result)
+name: tb_notify_3ds_result (tb_notify_3ds_result)
 aliases: [tb_notify_3ds_result, cmf.tb_notify_3ds_result]
 domain: payment-tool
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 机构订单唯一 (tb_notify_3ds_result)
+# tb_notify_3ds_result (tb_notify_3ds_result)
 
 ## 用途
-物理表 `cmf.tb_notify_3ds_result`,主键 `result_id`。机构订单唯一。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `cmf.tb_notify_3ds_result`,主键 `result_id`。(DDL 未提供表注释)。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -44,7 +44,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`result_id`
-- 无(仅主键)
+- `uk_3ds_order_no`:inst_order_no (UNIQUE)
 
 ## 校验点(QA 关注)
 - 业务语义、状态枚举、跨表关联**待补**(需结合代码或业务文档)。

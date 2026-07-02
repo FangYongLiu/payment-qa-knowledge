@@ -1,7 +1,7 @@
 ---
 id: tbl_fiserv_t_registration
 object_type: Table
-name: TID,MID唯一约束 (t_registration)
+name: 注册表 (t_registration)
 aliases: [t_registration, fiserv.t_registration]
 domain: offline-business
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# TID,MID唯一约束 (t_registration)
+# 注册表 (t_registration)
 
 ## 用途
-物理表 `fiserv.t_registration`,主键 `id`。TID,MID唯一约束。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `fiserv.t_registration`,主键 `id`。注册表。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -40,7 +40,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`id`
-- 无(仅主键)
+- `uk_reg_tid_mid`:tid, STORE_ID (UNIQUE)
 
 ## 校验点(QA 关注)
 - **时间字段**:创建/更新时间;按时间过滤走对应索引。

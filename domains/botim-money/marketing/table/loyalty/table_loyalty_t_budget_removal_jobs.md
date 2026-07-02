@@ -1,7 +1,7 @@
 ---
 id: tbl_loyalty_t_budget_removal_jobs
 object_type: Table
-name: t_budget_removal_jobs (t_budget_removal_jobs)
+name: Async job queue for budget-exhaustion-triggered Not-Started-user removal. Mirrors t_audience_activation_jobs worker pattern. (t_budget_removal_jobs)
 aliases: [t_budget_removal_jobs, loyalty.t_budget_removal_jobs]
 domain: marketing
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# t_budget_removal_jobs (t_budget_removal_jobs)
+# Async job queue for budget-exhaustion-triggered Not-Started-user removal. Mirrors t_audience_activation_jobs worker pattern. (t_budget_removal_jobs)
 
 ## 用途
-物理表 `loyalty.t_budget_removal_jobs`,主键 `id`。(DDL 未提供表注释)。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `loyalty.t_budget_removal_jobs`,主键 `id`。Async job queue for budget-exhaustion-triggered Not-Started-user removal. Mirrors t_audience_activation_jobs worker pattern.。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -44,6 +44,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`id`
+- `uk_campaign_active`:campaign_id, active_marker (UNIQUE)
 - `idx_status`:status
 
 ## 校验点(QA 关注)

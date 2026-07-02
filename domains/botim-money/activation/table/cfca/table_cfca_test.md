@@ -1,24 +1,24 @@
 ---
-id: tbl_mchtsettle_t_black_list
+id: tbl_cfca_test
 object_type: Table
-name: merchant black list (t_black_list)
-aliases: [t_black_list, mchtsettle.t_black_list]
-domain: online-business
+name: test (test)
+aliases: [test, cfca.test]
+domain: activation
 status: active
-owner: fangyong.liu
-reviewer: fangyong.liu
+owner: xinwei.cao
+reviewer: xinwei.cao
 last_reviewed_at: '2026-07-02'
 source_type: DB DDL
-source_ref: mchtsettle schema DDL
-tags: [online-business, mchtsettle]
+source_ref: cfca schema DDL
+tags: [activation, cfca]
 sensitivity: normal
 related_services: []
 ---
 
-# merchant black list (t_black_list)
+# test (test)
 
 ## 用途
-物理表 `mchtsettle.t_black_list`,主键 `merchant_mid`。merchant black list。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `cfca.test`,主键 `None`。(DDL 未提供表注释)。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -28,10 +28,10 @@ related_services: []
 ## 关键列
 | 列 | 类型 | 说明 |
 | --- | --- | --- |
-| `merchant_mid` | varchar(50) | merchant_mid |
+| `a` | char | 待补 · 可空 |
 
 ## 主键 / 索引
-- 主键:`merchant_mid`
+- 主键:`None`
 - 无(仅主键)
 
 ## 校验点(QA 关注)

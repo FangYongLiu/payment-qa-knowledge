@@ -1,7 +1,7 @@
 ---
 id: tbl_adtaxi_t_trip_info
 object_type: Table
-name: 行程信息表 (t_trip_info)
+name: 行程信息 (t_trip_info)
 aliases: [t_trip_info, adtaxi.t_trip_info]
 domain: online-business
 status: active
@@ -10,19 +10,19 @@ reviewer: fangyong.liu
 last_reviewed_at: '2026-07-02'
 source_type: DB DDL
 source_ref: adtaxi schema DDL
-tags: [online-business, 出租车支付, adtaxi]
+tags: [online-business, adtaxi]
 sensitivity: normal
-related_services: [svc_adtaxi]
+related_services: []
 ---
 
-# 行程信息表 (t_trip_info)
+# 行程信息 (t_trip_info)
 
 ## 用途
-物理表 `adtaxi.t_trip_info`,主键 `id`。行程信息。属出租车支付服务 [[svc_adtaxi]]。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `adtaxi.t_trip_info`,主键 `id`。行程信息。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
-- **所属服务**:[[svc_adtaxi]](= `related_services`)。
-- **谁读写它**:出租车支付链路的服务 / 接口(由对方文档 `related_tables` 声明)。
+- **所属服务**:待补。
+- **谁读写它**:相关服务 / 接口(由对方文档 `related_tables` 声明)。
 - **哪些场景校验它**:待补。
 
 ## 关键列
@@ -42,4 +42,4 @@ related_services: [svc_adtaxi]
 - `i_td_t`:driver_name
 
 ## 校验点(QA 关注)
-- 更细的状态枚举、跨表关联与业务规则**待补**(需结合代码或业务文档)。
+- 业务语义、状态枚举、跨表关联**待补**(需结合代码或业务文档)。

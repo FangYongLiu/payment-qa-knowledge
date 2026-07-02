@@ -1,7 +1,7 @@
 ---
 id: tbl_exchange_t_exchange_rate
 object_type: Table
-name: 汇率唯一索引 (t_exchange_rate)
+name: t_exchange_rate (t_exchange_rate)
 aliases: [t_exchange_rate, exchange.t_exchange_rate]
 domain: payment-core
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 汇率唯一索引 (t_exchange_rate)
+# t_exchange_rate (t_exchange_rate)
 
 ## 用途
-物理表 `exchange.t_exchange_rate`,主键 `exchange_rate_id`。汇率唯一索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `exchange.t_exchange_rate`,主键 `exchange_rate_id`。(DDL 未提供表注释)。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -40,7 +40,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`exchange_rate_id`
-- 无(仅主键)
+- `uk_exchange_rate_day`:source_currency, target_currency, supplier, exchange_date (UNIQUE)
 
 ## 校验点(QA 关注)
 - **状态字段**:`status` 合法枚举与流转规则需结合代码/业务文档核对(**待补**)。

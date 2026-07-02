@@ -1,7 +1,7 @@
 ---
 id: tbl_campaign_t_merchant_store
 object_type: Table
-name: 店铺id索引 (t_merchant_store)
+name: t_merchant_store (t_merchant_store)
 aliases: [t_merchant_store, campaign.t_merchant_store]
 domain: marketing
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 店铺id索引 (t_merchant_store)
+# t_merchant_store (t_merchant_store)
 
 ## 用途
-物理表 `campaign.t_merchant_store`,主键 `id`。店铺id索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `campaign.t_merchant_store`,主键 `id`。(DDL 未提供表注释)。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -44,6 +44,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`id`
+- `uk_store_id`:store_id (UNIQUE)
 - `idx_geo_hash`:geo_hash
 
 ## 校验点(QA 关注)

@@ -32,7 +32,6 @@ related_services: []
 | `audience_id` | bigint unsigned | 待补 |
 | `integration_id` | varchar(105) | 待补 |
 | `created_at` | timestamp | 待补 |
-| `on` | loyalty | 待补 · 可空 |
 
 ## 主键 / 索引
 - 主键:`id`

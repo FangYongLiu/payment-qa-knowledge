@@ -1,7 +1,7 @@
 ---
 id: tbl_botimsnpl_t_sl_transfer_info
 object_type: Table
-name: application_id (t_sl_transfer_info)
+name: SNPL Transaction & Beneficiary Combined Information Table (t_sl_transfer_info)
 aliases: [t_sl_transfer_info, botimsnpl.t_sl_transfer_info]
 domain: lending
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# application_id (t_sl_transfer_info)
+# SNPL Transaction & Beneficiary Combined Information Table (t_sl_transfer_info)
 
 ## 用途
-物理表 `botimsnpl.t_sl_transfer_info`,主键 `id`。application_id。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `botimsnpl.t_sl_transfer_info`,主键 `id`。SNPL Transaction & Beneficiary Combined Information Table。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -49,6 +49,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`id`
+- `uk_uid`:uid (UNIQUE)
 - `idx_beneficiary_full_Name`:beneficiary_full_name
 - `idx_beneficiary_id`:beneficiary_id
 - `idx_beneficiary_mobile`:beneficiary_mobile_number

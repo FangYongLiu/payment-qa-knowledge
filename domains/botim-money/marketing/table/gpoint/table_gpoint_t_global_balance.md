@@ -1,7 +1,7 @@
 ---
 id: tbl_gpoint_t_global_balance
 object_type: Table
-name: 修改时间 (t_global_balance)
+name: 全局余额 (t_global_balance)
 aliases: [t_global_balance, gpoint.t_global_balance]
 domain: marketing
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 修改时间 (t_global_balance)
+# 全局余额 (t_global_balance)
 
 ## 用途
-物理表 `gpoint.t_global_balance`,主键 `point_type`。修改时间。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `gpoint.t_global_balance`,主键 `point_type`。全局余额。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -32,7 +32,7 @@ related_services: []
 | `amount` | decimal(19, 2) | 数量 |
 | `accounting_version` | bigint | 记账版本 |
 | `create_time` | timestamp(3) | 创建时间 |
-| `update_time` | timestamp(3) | 待补 |
+| `update_time` | timestamp(3) | 修改时间 |
 
 ## 主键 / 索引
 - 主键:`point_type`

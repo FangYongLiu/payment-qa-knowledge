@@ -1,7 +1,7 @@
 ---
 id: tbl_npss_t_qr_order
 object_type: Table
-name: qr reference no unique (t_qr_order)
+name: qr order (t_qr_order)
 aliases: [t_qr_order, npss.t_qr_order]
 domain: payment-core
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# qr reference no unique (t_qr_order)
+# qr order (t_qr_order)
 
 ## 用途
-物理表 `npss.t_qr_order`,主键 `qr_order_id`。qr reference no unique。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `npss.t_qr_order`,主键 `qr_order_id`。qr order。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -50,6 +50,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`qr_order_id`
+- `uk_qr_reference_no`:reference_no (UNIQUE)
 - `idx_qr_id_sct`:id_sct
 
 ## 校验点(QA 关注)

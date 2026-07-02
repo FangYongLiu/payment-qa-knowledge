@@ -1,7 +1,7 @@
 ---
 id: tbl_tts_t_installment_terms
 object_type: Table
-name: Unique terms key (t_installment_terms)
+name: Installment terms (t_installment_terms)
 aliases: [t_installment_terms, tts.t_installment_terms]
 domain: lending
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# Unique terms key (t_installment_terms)
+# Installment terms (t_installment_terms)
 
 ## 用途
-物理表 `tts.t_installment_terms`,主键 `terms_id`。Unique terms key。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `tts.t_installment_terms`,主键 `terms_id`。Installment terms。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -37,7 +37,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`terms_id`
-- 无(仅主键)
+- `uk_installment_terms`:supplier_code, terms_version, seq_no (UNIQUE)
 
 ## 校验点(QA 关注)
 - 业务语义、状态枚举、跨表关联**待补**(需结合代码或业务文档)。

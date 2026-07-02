@@ -1,7 +1,7 @@
 ---
 id: tbl_cards_tb_bank_branch
 object_type: Table
-name: swift_code唯一索引 (tb_bank_branch)
+name: 分支行 (tb_bank_branch)
 aliases: [tb_bank_branch, cards.tb_bank_branch]
 domain: card
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# swift_code唯一索引 (tb_bank_branch)
+# 分支行 (tb_bank_branch)
 
 ## 用途
-物理表 `cards.tb_bank_branch`,主键 `BRANCH_ID`。swift_code唯一索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `cards.tb_bank_branch`,主键 `BRANCH_ID`。分支行。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -42,7 +42,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`BRANCH_ID`
-- 无(仅主键)
+- `uk_swift_code`:SWIFT_CODE (UNIQUE)
 
 ## 校验点(QA 关注)
 - 业务语义、状态枚举、跨表关联**待补**(需结合代码或业务文档)。

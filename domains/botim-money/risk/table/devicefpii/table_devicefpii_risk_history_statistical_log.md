@@ -33,11 +33,6 @@ related_services: []
 | `record_time` | varchar(255) | :"2017-09-11 09:11" |
 | `create_time` | timestamp | 待补 |
 | `modify_time` | timestamp | 待补 |
-| `id` | bigint(10) | 待补 · 可空 |
-| `create_time` | bigint | 待补 · 可空 |
-| `name` | varchar(255) | 待补 · 可空 |
-| `remark` | varchar(255) | 待补 · 可空 |
-| `status` | bigint(1) | 待补 · 可空 |
 
 ## 主键 / 索引
 - 主键:`id`
@@ -45,5 +40,4 @@ related_services: []
 
 ## 校验点(QA 关注)
 - **时间字段**:创建/更新时间;按时间过滤走对应索引。
-- **状态字段**:`status` 合法枚举与流转规则需结合代码/业务文档核对(**待补**)。
 - 业务语义、状态枚举、跨表关联**待补**(需结合代码或业务文档)。

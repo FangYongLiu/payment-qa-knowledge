@@ -1,7 +1,7 @@
 ---
 id: tbl_visii_t_vam_order
 object_type: Table
-name: Unique Index for Bank and Bank Order No (t_vam_order)
+name: Vam order (t_vam_order)
 aliases: [t_vam_order, visii.t_vam_order]
 domain: deposit-vam
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# Unique Index for Bank and Bank Order No (t_vam_order)
+# Vam order (t_vam_order)
 
 ## 用途
-物理表 `visii.t_vam_order`,主键 `order_id`。Unique Index for Bank and Bank Order No。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `visii.t_vam_order`,主键 `order_id`。Vam order。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -54,6 +54,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`order_id`
+- `uk_va_order_bank_order_no`:bank_order_no, bank_code (UNIQUE)
 - `idx_va_order_dep_voucher_no`:deposit_voucher_no
 - `idx_va_order_modify_time_mid`:member_id, gmt_modified
 

@@ -37,40 +37,10 @@ related_services: []
 | `active_user_num` | int(8) | 新增活跃 |
 | `create_time` | timestamp | 待补 |
 | `modify_time` | timestamp | 待补 |
-| `id` | bigint | 待补 · 可空 |
-| `app_id` | varchar(40) | id |
-| `device_type` | int(4) | 1web 2ios 3android |
-| `new_user_num` | int(8) | 待补 |
-| `risk_user_num` | int(8) | 待补 |
-| `active_user_num` | int(8) | 待补 |
-| `create_time` | timestamp | 待补 |
-| `modify_time` | timestamp | 待补 |
-| `id` | bigint | 待补 · 可空 |
-| `user_id` | bigint | 待补 |
-| `auth_module` | varchar(190) | 待补 |
-| `auth_id` | varchar(190) | 待补 · 可空 |
-| `created` | datetime | 待补 |
-| `o_auth_access_token` | text | 待补 · 可空 |
-| `o_auth_refresh_token` | text | 待补 · 可空 |
-| `o_auth_token_type` | text | 待补 · 可空 |
-| `o_auth_expiry` | datetime | 待补 · 可空 |
-| `o_auth_id_token` | text | 待补 · 可空 |
-| `id` | bigint | 待补 · 可空 |
-| `user_id` | bigint | 待补 |
-| `auth_module` | varchar(190) | 待补 |
-| `auth_id` | varchar(190) | 待补 · 可空 |
-| `created` | datetime | 待补 |
-| `o_auth_access_token` | text | 待补 · 可空 |
-| `o_auth_refresh_token` | text | 待补 · 可空 |
-| `o_auth_token_type` | text | 待补 · 可空 |
-| `o_auth_expiry` | datetime | 待补 · 可空 |
-| `o_auth_id_token` | text | 待补 · 可空 |
-| `on` | grafana | 待补 · 可空 |
 
 ## 主键 / 索引
 - 主键:`id`
 - `un_record_time_app_id_device_type`:record_time, app_id, device_type (UNIQUE)
-- `un_create_time_app_id_device_type`:create_time, app_id, device_type (UNIQUE)
 
 ## 校验点(QA 关注)
 - **时间字段**:创建/更新时间;按时间过滤走对应索引。

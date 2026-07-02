@@ -1,7 +1,7 @@
 ---
 id: tbl_npss_t_oidc_auth
 object_type: Table
-name: 授权码唯一索引 (t_oidc_auth)
+name: 授权认证记录表 (t_oidc_auth)
 aliases: [t_oidc_auth, npss.t_oidc_auth]
 domain: payment-core
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 授权码唯一索引 (t_oidc_auth)
+# 授权认证记录表 (t_oidc_auth)
 
 ## 用途
-物理表 `npss.t_oidc_auth`,主键 `id`。授权码唯一索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `npss.t_oidc_auth`,主键 `id`。授权认证记录表。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -46,6 +46,8 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`id`
+- `uk_oidc_auth_code`:auth_code (UNIQUE)
+- `uk_oidc_nonce_state`:auth_nonce, auth_state (UNIQUE)
 - `idx_auth_state`:auth_state
 - `idx_oidc_auth_gmt`:gmt_create
 - `idx_oidc_auth_user_id`:user_id

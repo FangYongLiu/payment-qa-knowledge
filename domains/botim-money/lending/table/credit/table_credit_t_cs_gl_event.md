@@ -1,7 +1,7 @@
 ---
 id: tbl_credit_t_cs_gl_event
 object_type: Table
-name: 每条业务事件去重 (t_cs_gl_event)
+name: 给GL财务系统发交易事件消息记录表，用于记录事件发送情况及失败补偿 (t_cs_gl_event)
 aliases: [t_cs_gl_event, credit.t_cs_gl_event]
 domain: lending
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 每条业务事件去重 (t_cs_gl_event)
+# 给GL财务系统发交易事件消息记录表，用于记录事件发送情况及失败补偿 (t_cs_gl_event)
 
 ## 用途
-物理表 `credit.t_cs_gl_event`,主键 `id`。每条业务事件去重。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `credit.t_cs_gl_event`,主键 `id`。给GL财务系统发交易事件消息记录表，用于记录事件发送情况及失败补偿。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -41,6 +41,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`id`
+- `idx_unique_order_no`:order_no, bus_no, scenario (UNIQUE)
 - `idx_bus_no`:bus_no
 - `idx_bus_time`:bus_time, status
 - `idx_created_time`:created_time

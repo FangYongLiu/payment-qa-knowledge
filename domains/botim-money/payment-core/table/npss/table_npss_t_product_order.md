@@ -1,7 +1,7 @@
 ---
 id: tbl_npss_t_product_order
 object_type: Table
-name: Unique Trx Voucher No Key (t_product_order)
+name: 产品订单表 (t_product_order)
 aliases: [t_product_order, npss.t_product_order]
 domain: payment-core
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# Unique Trx Voucher No Key (t_product_order)
+# 产品订单表 (t_product_order)
 
 ## 用途
-物理表 `npss.t_product_order`,主键 `product_order_no`。Unique Trx Voucher No Key。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `npss.t_product_order`,主键 `product_order_no`。产品订单表。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -58,6 +58,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`product_order_no`
+- `uk_product_trx_no`:trx_voucher_no (UNIQUE)
 - `idx_update_time_member_id`:gmt_modified, member_id
 - `uk_product_id_sct`:id_sct
 

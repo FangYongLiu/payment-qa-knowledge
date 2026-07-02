@@ -1,7 +1,7 @@
 ---
 id: tbl_cards_tb_card_bin
 object_type: Table
-name: 银行卡bin唯一索引 (tb_card_bin)
+name: 卡bin (tb_card_bin)
 aliases: [tb_card_bin, cards.tb_card_bin]
 domain: card
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 银行卡bin唯一索引 (tb_card_bin)
+# 卡bin (tb_card_bin)
 
 ## 用途
-物理表 `cards.tb_card_bin`,主键 `BIN_ID`。银行卡bin唯一索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `cards.tb_card_bin`,主键 `BIN_ID`。卡bin。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -46,7 +46,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`BIN_ID`
-- 无(仅主键)
+- `uk_card_bin_len`:CARD_BIN, CARD_LEN (UNIQUE)
 
 ## 校验点(QA 关注)
 - 业务语义、状态枚举、跨表关联**待补**(需结合代码或业务文档)。

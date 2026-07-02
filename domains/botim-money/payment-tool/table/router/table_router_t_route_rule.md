@@ -1,7 +1,7 @@
 ---
 id: tbl_router_t_route_rule
 object_type: Table
-name: 路由规则唯一索引 (t_route_rule)
+name: 路由规则表 (t_route_rule)
 aliases: [t_route_rule, router.t_route_rule]
 domain: payment-tool
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 路由规则唯一索引 (t_route_rule)
+# 路由规则表 (t_route_rule)
 
 ## 用途
-物理表 `router.t_route_rule`,主键 `rule_id`。路由规则唯一索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `router.t_route_rule`,主键 `rule_id`。路由规则表。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -39,7 +39,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`rule_id`
-- 无(仅主键)
+- `uk_route_rule`:channel_code, inst_code (UNIQUE)
 
 ## 校验点(QA 关注)
 - 业务语义、状态枚举、跨表关联**待补**(需结合代码或业务文档)。

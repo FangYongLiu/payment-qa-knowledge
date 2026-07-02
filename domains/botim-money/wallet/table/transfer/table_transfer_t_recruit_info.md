@@ -1,7 +1,7 @@
 ---
 id: tbl_transfer_t_recruit_info
 object_type: Table
-name: 主题 (t_recruit_info)
+name: 待招领 (t_recruit_info)
 aliases: [t_recruit_info, transfer.t_recruit_info]
 domain: wallet
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 主题 (t_recruit_info)
+# 待招领 (t_recruit_info)
 
 ## 用途
-物理表 `transfer.t_recruit_info`,主键 `id`。主题。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `transfer.t_recruit_info`,主键 `id`。待招领。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -35,7 +35,7 @@ related_services: []
 | `partner_id` | varchar(32) | 商户号 · 可空 |
 | `member_id` | varchar(30) | 会员ID · 可空 |
 | `notify_partner_id` | varchar(32) | 默认通知平台 · 可空 |
-| `nickname` | varchar | 待补 · 可空 |
+| `nickname` | varchar(32) | 主题 · 可空 |
 
 ## 主键 / 索引
 - 主键:`id`

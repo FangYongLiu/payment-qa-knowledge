@@ -1,7 +1,7 @@
 ---
 id: tbl_installmentcard_t_ic_collection_mq_outbox
 object_type: Table
-name: t_ic_collection_mq_outbox (t_ic_collection_mq_outbox)
+name: Collection (CRM) MQ outbox (t_ic_collection_mq_outbox)
 aliases: [t_ic_collection_mq_outbox, installmentcard.t_ic_collection_mq_outbox]
 domain: lending
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# t_ic_collection_mq_outbox (t_ic_collection_mq_outbox)
+# Collection (CRM) MQ outbox (t_ic_collection_mq_outbox)
 
 ## 用途
-物理表 `installmentcard.t_ic_collection_mq_outbox`,主键 `id`。(DDL 未提供表注释)。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `installmentcard.t_ic_collection_mq_outbox`,主键 `id`。Collection (CRM) MQ outbox。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -42,10 +42,11 @@ related_services: []
 | `last_error` | varchar(512) | Last publish failure message (exception summary, truncated to 500 chars). NULL while PENDING or SENT. · 可空 |
 | `created_at` | datetime(3) | Row insertion time = business event time (millisecond precision). Set by DB default; never modified by app. |
 | `sent_at` | datetime(3) | Wall-clock time the row was successfully published to RabbitMQ. NULL until status flips to SENT. · 可空 |
-| `updated_at` | datetime(3) | 待补 |
+| `updated_at` | datetime(3) | Auto-maintained on every UPDATE; useful for "rows that have not moved recently" diagnostics. |
 
 ## 主键 / 索引
 - 主键:`id`
+- `uk_collection_mq_idempotency`:idempotency_key (UNIQUE)
 - `idx_statement_event`:statement_id, event_type
 - `idx_status_id`:status, updated_at
 

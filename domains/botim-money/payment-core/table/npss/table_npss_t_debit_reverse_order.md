@@ -1,7 +1,7 @@
 ---
 id: tbl_npss_t_debit_reverse_order
 object_type: Table
-name: Unique index for idSct (t_debit_reverse_order)
+name: Debit reverse order table (t_debit_reverse_order)
 aliases: [t_debit_reverse_order, npss.t_debit_reverse_order]
 domain: payment-core
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# Unique index for idSct (t_debit_reverse_order)
+# Debit reverse order table (t_debit_reverse_order)
 
 ## 用途
-物理表 `npss.t_debit_reverse_order`,主键 `reverse_voucher_no`。Unique index for idSct。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `npss.t_debit_reverse_order`,主键 `reverse_voucher_no`。Debit reverse order table。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -51,6 +51,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`reverse_voucher_no`
+- `uk_reverse_idsct`:id_sct (UNIQUE)
 - `idx_reverse_merchant_id`:merchant_id, gmt_modified
 
 ## 校验点(QA 关注)

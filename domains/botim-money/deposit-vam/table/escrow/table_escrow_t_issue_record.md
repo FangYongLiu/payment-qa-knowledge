@@ -1,7 +1,7 @@
 ---
 id: tbl_escrow_t_issue_record
 object_type: Table
-name: 会员编号证件类型唯一索引 (t_issue_record)
+name: kyc报备信息表 (t_issue_record)
 aliases: [t_issue_record, escrow.t_issue_record]
 domain: deposit-vam
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 会员编号证件类型唯一索引 (t_issue_record)
+# kyc报备信息表 (t_issue_record)
 
 ## 用途
-物理表 `escrow.t_issue_record`,主键 `id`。会员编号证件类型唯一索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `escrow.t_issue_record`,主键 `id`。kyc报备信息表。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -62,6 +62,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`id`
+- `uk_memberId_idType`:member_id, id_type (UNIQUE)
 - `idx_cardNo`:card_no
 - `idx_gmt_create`:gmt_create
 - `idx_gmt_modify`:gmt_modify, photo_report_status

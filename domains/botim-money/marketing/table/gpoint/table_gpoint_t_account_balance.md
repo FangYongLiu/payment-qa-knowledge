@@ -1,7 +1,7 @@
 ---
 id: tbl_gpoint_t_account_balance
 object_type: Table
-name: 修改时间 (t_account_balance)
+name: 账户余额 (t_account_balance)
 aliases: [t_account_balance, gpoint.t_account_balance]
 domain: marketing
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 修改时间 (t_account_balance)
+# 账户余额 (t_account_balance)
 
 ## 用途
-物理表 `gpoint.t_account_balance`,主键 `account_no`。修改时间。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `gpoint.t_account_balance`,主键 `account_no`。账户余额。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -38,10 +38,11 @@ related_services: []
 | `extension` | varchar(255) | 扩展参数 · 可空 |
 | `memo` | varchar(255) | 备注 · 可空 |
 | `create_time` | timestamp(3) | 创建时间 |
-| `update_time` | timestamp(3) | 待补 |
+| `update_time` | timestamp(3) | 修改时间 |
 
 ## 主键 / 索引
 - 主键:`account_no`
+- `uk_account_type_identity`:account_identity, account_type (UNIQUE)
 - `idx_create_time`:create_time
 - `idx_update_time`:update_time
 

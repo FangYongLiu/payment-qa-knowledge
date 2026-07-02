@@ -40,7 +40,6 @@ related_services: []
 | `CREATED_TIME` | timestamp(3) | 待补 |
 | `last_updated_time` | timestamp(3) | 最后更新时间 |
 | `data_version` | bigint | 数据版本 |
-| `on` | cccbtc | 待补 · 可空 |
 
 ## 主键 / 索引
 - 主键:`ID`

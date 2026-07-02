@@ -1,7 +1,7 @@
 ---
 id: tbl_vis_t_iban_account
 object_type: Table
-name: iban唯一索引 (t_iban_account)
+name: iban库存账户 (t_iban_account)
 aliases: [t_iban_account, vis.t_iban_account]
 domain: deposit-vam
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# iban唯一索引 (t_iban_account)
+# iban库存账户 (t_iban_account)
 
 ## 用途
-物理表 `vis.t_iban_account`,主键 `account_id`。iban唯一索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `vis.t_iban_account`,主键 `account_id`。iban库存账户。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -40,6 +40,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`account_id`
+- `uk_iban_no`:iban_no (UNIQUE)
 - `idx_iban_request_batch_no`:request_batch_no
 
 ## 校验点(QA 关注)

@@ -38,9 +38,6 @@ related_services: []
 | `is_read` | tinyint(1) | (0:,1:) |
 | `create_time` | timestamp | 待补 |
 | `modify_time` | timestamp | 待补 |
-| `NAME` | varchar(128) | 待补 |
-| `OBJECT_INSTANCE_BEGIN` | bigint unsigned | 待补 |
-| `LOCKED_BY_THREAD_ID` | bigint unsigned | 待补 · 可空 |
 
 ## 主键 / 索引
 - 主键:`id`

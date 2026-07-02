@@ -1,7 +1,7 @@
 ---
 id: tbl_npss_t_recent_contact
 object_type: Table
-name: 最近联系人唯一索引 (t_recent_contact)
+name: 最近联系人表 (t_recent_contact)
 aliases: [t_recent_contact, npss.t_recent_contact]
 domain: payment-core
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 最近联系人唯一索引 (t_recent_contact)
+# 最近联系人表 (t_recent_contact)
 
 ## 用途
-物理表 `npss.t_recent_contact`,主键 `contact_id`。最近联系人唯一索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `npss.t_recent_contact`,主键 `contact_id`。最近联系人表。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -43,7 +43,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`contact_id`
-- 无(仅主键)
+- `uk_recent_contact_id_tp`:sender_id, business_type, recipient_account_val (UNIQUE)
 
 ## 校验点(QA 关注)
 - **金额精度**:decimal 比较用容差(< 0.01);amount 与 currency 需一致。

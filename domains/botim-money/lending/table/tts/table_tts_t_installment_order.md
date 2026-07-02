@@ -1,7 +1,7 @@
 ---
 id: tbl_tts_t_installment_order
 object_type: Table
-name: Unique install order cancel no (t_installment_order)
+name: Installment order (t_installment_order)
 aliases: [t_installment_order, tts.t_installment_order]
 domain: lending
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# Unique install order cancel no (t_installment_order)
+# Installment order (t_installment_order)
 
 ## 用途
-物理表 `tts.t_installment_order`,主键 `pay_voucher_no`。Unique install order cancel no。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `tts.t_installment_order`,主键 `pay_voucher_no`。Installment order。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -50,7 +50,8 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`pay_voucher_no`
-- 无(仅主键)
+- `uk_install_order_cancel_no`:cancel_voucher_no (UNIQUE)
+- `uk_install_order_ref_no`:supplier_code, external_reference_no (UNIQUE)
 
 ## 校验点(QA 关注)
 - **状态字段**:`status` 合法枚举与流转规则需结合代码/业务文档核对(**待补**)。

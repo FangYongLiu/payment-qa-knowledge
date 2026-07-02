@@ -1,7 +1,7 @@
 ---
 id: tbl_escrow_t_wps_transaction_flow
 object_type: Table
-name: 工资流水号唯一索引 (t_wps_transaction_flow)
+name: wps交易流水表 (t_wps_transaction_flow)
 aliases: [t_wps_transaction_flow, escrow.t_wps_transaction_flow]
 domain: deposit-vam
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 工资流水号唯一索引 (t_wps_transaction_flow)
+# wps交易流水表 (t_wps_transaction_flow)
 
 ## 用途
-物理表 `escrow.t_wps_transaction_flow`,主键 `wps_transaction_id`。工资流水号唯一索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `escrow.t_wps_transaction_flow`,主键 `wps_transaction_id`。wps交易流水表。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -50,7 +50,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`wps_transaction_id`
-- 无(仅主键)
+- `uk_wps_reference_no`:reference_no (UNIQUE)
 
 ## 校验点(QA 关注)
 - **金额精度**:decimal 比较用容差(< 0.01);amount 与 currency 需一致。

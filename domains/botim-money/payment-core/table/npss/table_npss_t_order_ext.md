@@ -1,7 +1,7 @@
 ---
 id: tbl_npss_t_order_ext
 object_type: Table
-name: ext唯一索引 (t_order_ext)
+name: 订单扩展表 (t_order_ext)
 aliases: [t_order_ext, npss.t_order_ext]
 domain: payment-core
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# ext唯一索引 (t_order_ext)
+# 订单扩展表 (t_order_ext)
 
 ## 用途
-物理表 `npss.t_order_ext`,主键 `ext_id`。ext唯一索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `npss.t_order_ext`,主键 `ext_id`。订单扩展表。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -41,6 +41,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`ext_id`
+- `uk_ext_id`:related_id, ext_type (UNIQUE)
 - `idx_order_ext_payment_id`:payment_id
 
 ## 校验点(QA 关注)

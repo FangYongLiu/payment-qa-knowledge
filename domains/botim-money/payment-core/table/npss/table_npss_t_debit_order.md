@@ -1,7 +1,7 @@
 ---
 id: tbl_npss_t_debit_order
 object_type: Table
-name: idsct唯一索引 (t_debit_order)
+name: 借记订单表 (t_debit_order)
 aliases: [t_debit_order, npss.t_debit_order]
 domain: payment-core
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# idsct唯一索引 (t_debit_order)
+# 借记订单表 (t_debit_order)
 
 ## 用途
-物理表 `npss.t_debit_order`,主键 `trx_voucher_no`。idsct唯一索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `npss.t_debit_order`,主键 `trx_voucher_no`。借记订单表。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -59,6 +59,9 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`trx_voucher_no`
+- `uk_co_idsct`:id_sct (UNIQUE)
+- `uk_co_instructed_id`:instruct_id (UNIQUE)
+- `uk_debit_inner_order_no`:inner_order_no (UNIQUE)
 - `idx_do_member_modified`:member_id, gmt_modified
 
 ## 校验点(QA 关注)

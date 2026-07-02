@@ -1,7 +1,7 @@
 ---
 id: tbl_botimcredit_t_cb_contact_template
 object_type: Table
-name: Unique index composed of name and version (t_cb_contact_template)
+name: Contract template table (t_cb_contact_template)
 aliases: [t_cb_contact_template, botimcredit.t_cb_contact_template]
 domain: lending
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# Unique index composed of name and version (t_cb_contact_template)
+# Contract template table (t_cb_contact_template)
 
 ## 用途
-物理表 `botimcredit.t_cb_contact_template`,主键 `id`。Unique index composed of name and version。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `botimcredit.t_cb_contact_template`,主键 `id`。Contract template table。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -38,7 +38,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`id`
-- 无(仅主键)
+- `name_version_idx`:name, version (UNIQUE)
 
 ## 校验点(QA 关注)
 - **时间字段**:创建/更新时间;按时间过滤走对应索引。

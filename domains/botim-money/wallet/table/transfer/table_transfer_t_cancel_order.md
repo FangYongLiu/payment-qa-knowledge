@@ -1,7 +1,7 @@
 ---
 id: tbl_transfer_t_cancel_order
 object_type: Table
-name: 备注 (t_cancel_order)
+name: 撤销订单 (t_cancel_order)
 aliases: [t_cancel_order, transfer.t_cancel_order]
 domain: wallet
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 备注 (t_cancel_order)
+# 撤销订单 (t_cancel_order)
 
 ## 用途
-物理表 `transfer.t_cancel_order`,主键 `cancel_no`。备注。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `transfer.t_cancel_order`,主键 `cancel_no`。撤销订单。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -37,10 +37,14 @@ related_services: []
 | `currency` | varchar(10) | 币种 |
 | `status` | varchar(20) | 状态 |
 | `cancel_type` | varchar(15) | 撤销类型：SINGLE-单笔撤销,ALL - 多笔撤销 |
-| `memo` | varchar | 待补 · 可空 |
+| `memo` | varchar(100) | 备注 · 可空 |
+| `cancel_flag` | varchar(20) | 退款标识 手动：MANUAL、自动：AUTO · 可空 |
+| `gmt_created` | timestamp | 创建时间 |
+| `gmt_modified` | timestamp | 修改时间 |
 
 ## 主键 / 索引
 - 主键:`cancel_no`
+- `uk_can_out_cancel_no`:out_cancel_no (UNIQUE)
 - `idx_gmt_modified`:gmt_modified
 - `idx_payment_no`:payment_no
 
