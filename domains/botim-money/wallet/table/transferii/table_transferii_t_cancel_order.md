@@ -3,7 +3,7 @@ id: tbl_transferii_t_cancel_order
 object_type: Table
 name: 取消订单表 (t_cancel_order)
 aliases: [t_cancel_order, Cancel Order]
-domain: online-business
+domain: wallet
 status: active
 owner: fangyong.liu
 reviewer: fangyong.liu
@@ -11,7 +11,7 @@ last_reviewed_at: '2026-06-25'
 source_type: wiki
 source_ref: wiki_image:654d5bef-1e1a-485d-a44b-c83918b7165b
 tags: [transferii, send-money, cancel-order]
-related_services: []
+related_services: [svc_transfer]
 related_scenarios: []
 ---
 
