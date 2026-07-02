@@ -1,0 +1,46 @@
+---
+id: tbl_collection_t_cs_feedback_category
+object_type: Table
+name: feedback_category (t_cs_feedback_category)
+aliases: [t_cs_feedback_category, collection.t_cs_feedback_category]
+domain: risk
+status: active
+owner: xinwei.cao,dewen.li
+reviewer: xinwei.cao,dewen.li
+last_reviewed_at: '2026-07-02'
+source_type: DB DDL
+source_ref: collection schema DDL
+tags: [risk, collection]
+sensitivity: normal
+related_services: []
+---
+
+# feedback_category (t_cs_feedback_category)
+
+## 用途
+物理表 `collection.t_cs_feedback_category`,主键 `id`。feedback_category。业务语义细节**待补**(表结构来自 DDL)。
+
+## 关联关系
+- **所属服务**:待补。
+- **谁读写它**:相关服务 / 接口(由对方文档 `related_tables` 声明)。
+- **哪些场景校验它**:待补。
+
+## 关键列
+| 列 | 类型 | 说明 |
+| --- | --- | --- |
+| `id` | bigint | prime key · 可空 |
+| `create_by` | varchar(50) | create by · 可空 |
+| `create_time` | timestamp | create time · 可空 |
+| `update_by` | varchar(50) | update by · 可空 |
+| `update_time` | timestamp | update time · 可空 |
+| `category_name` | varchar(100) | category name |
+| `user_uid` | varchar(50) | user uid |
+
+## 主键 / 索引
+- 主键:`id`
+- `idx_category_name`:category_name
+- `idx_user_uid`:user_uid
+
+## 校验点(QA 关注)
+- **时间字段**:创建/更新时间;按时间过滤走对应索引。
+- 业务语义、状态枚举、跨表关联**待补**(需结合代码或业务文档)。

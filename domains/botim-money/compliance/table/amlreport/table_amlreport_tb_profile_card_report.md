@@ -1,0 +1,47 @@
+---
+id: tbl_amlreport_tb_profile_card_report
+object_type: Table
+name: 卡画像数据统计 (tb_profile_card_report)
+aliases: [tb_profile_card_report, amlreport.tb_profile_card_report]
+domain: compliance
+status: active
+owner: dewen.li
+reviewer: dewen.li
+last_reviewed_at: '2026-07-02'
+source_type: DB DDL
+source_ref: amlreport schema DDL
+tags: [compliance, amlreport]
+sensitivity: normal
+related_services: []
+---
+
+# 卡画像数据统计 (tb_profile_card_report)
+
+## 用途
+物理表 `amlreport.tb_profile_card_report`,主键 `id`。卡画像数据统计。业务语义细节**待补**(表结构来自 DDL)。
+
+## 关联关系
+- **所属服务**:待补。
+- **谁读写它**:相关服务 / 接口(由对方文档 `related_tables` 声明)。
+- **哪些场景校验它**:待补。
+
+## 关键列
+| 列 | 类型 | 说明 |
+| --- | --- | --- |
+| `id` | bigint | 主键 · 可空 |
+| `card_no` | varchar(20) | 卡号 · 可空 |
+| `min_request_time` | timestamp | 第一次使用时间 · 可空 |
+| `max_request_time` | timestamp | 最后一次使用时间 · 可空 |
+| `max_time_interval` | decimal(15, 2) | 时间间隔（最后一次时间-第一次时间 单位天） · 可空 |
+| `variance_of_time_interval` | decimal(15, 2) | 时间间隔方差 · 可空 |
+| `stddev_of_time_interval` | decimal(15, 2) | 时间间隔标准差 · 可空 |
+| `variance_of_amount_interval` | decimal(15, 2) | 金额方差 · 可空 |
+| `stddev_of_amount_interval` | decimal(15, 2) | 金额标准差 · 可空 |
+
+## 主键 / 索引
+- 主键:`id`
+- `idx_card_no`:card_no
+
+## 校验点(QA 关注)
+- **金额精度**:decimal 比较用容差(< 0.01);amount 与 currency 需一致。
+- 业务语义、状态枚举、跨表关联**待补**(需结合代码或业务文档)。
