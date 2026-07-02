@@ -1,10 +1,10 @@
 ---
 id: tbl_pix_trade_relate_order
 object_type: Table
-domain: card
+domain: payment-core
 status: active
-owner: unassigned
-reviewer: unassigned
+owner: xiaoyan.zhou
+reviewer: xiaoyan.zhou
 last_reviewed_at: '2026-06-20'
 source_type: wiki_image
 source_ref: wiki_image:4538bf84-a043-4d3d-a9fd-d0fcbb9bc671
