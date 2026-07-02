@@ -1,7 +1,7 @@
 ---
 id: tbl_escrow_t_issue_logoff_record
 object_type: Table
-name: 注销信息 唯一索引 (t_issue_logoff_record)
+name: 虚拟卡解绑记录表 (t_issue_logoff_record)
 aliases: [t_issue_logoff_record, escrow.t_issue_logoff_record]
 domain: deposit-vam
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 注销信息 唯一索引 (t_issue_logoff_record)
+# 虚拟卡解绑记录表 (t_issue_logoff_record)
 
 ## 用途
-物理表 `escrow.t_issue_logoff_record`,主键 `id`。注销信息 唯一索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `escrow.t_issue_logoff_record`,主键 `id`。虚拟卡解绑记录表。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -44,7 +44,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`id`
-- 无(仅主键)
+- `uk_memberId_cardNo`:card_no, member_id, bank_code (UNIQUE)
 
 ## 校验点(QA 关注)
 - **状态字段**:`status` 合法枚举与流转规则需结合代码/业务文档核对(**待补**)。

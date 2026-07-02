@@ -1,7 +1,7 @@
 ---
 id: tbl_npss_t_refund_order
 object_type: Table
-name: idsct唯一索引 (t_refund_order)
+name: 退款订单表 (t_refund_order)
 aliases: [t_refund_order, npss.t_refund_order]
 domain: payment-core
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# idsct唯一索引 (t_refund_order)
+# 退款订单表 (t_refund_order)
 
 ## 用途
-物理表 `npss.t_refund_order`,主键 `trx_voucher_no`。idsct唯一索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `npss.t_refund_order`,主键 `trx_voucher_no`。退款订单表。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -54,6 +54,8 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`trx_voucher_no`
+- `uk_ro_idsct`:id_sct (UNIQUE)
+- `uk_ro_instructed_id`:instruct_id (UNIQUE)
 - `idx_ro_member_modified`:member_id, gmt_modified
 
 ## 校验点(QA 关注)

@@ -1,7 +1,7 @@
 ---
 id: tbl_payment_tb_party_payment_04
 object_type: Table
-name: tb_party_payment_04 (tb_party_payment_04)
+name: 参与方支付信息 (tb_party_payment_04)
 aliases: [tb_party_payment_04, payment.tb_party_payment_04]
 domain: payment-core
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# tb_party_payment_04 (tb_party_payment_04)
+# 参与方支付信息 (tb_party_payment_04)
 
 ## 用途
-物理表 `payment.tb_party_payment_04`,主键 `PAYMENT_PARTY_ID`。(DDL 未提供表注释)。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `payment.tb_party_payment_04`,主键 `PAYMENT_PARTY_ID`。参与方支付信息。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -34,6 +34,16 @@ related_services: []
 | `PARTY_ID` | varchar(64) | 会员标识，来源于帐户体系 |
 | `ACCOUNT_NO` | varchar(32) | 账号 · 可空 |
 | `FUND_PROP_TYPE` | char(2) | 待补 · 可空 |
+| `ROLE_CODE` | varchar(50) | 角色: PAYER,PAYEE,INST |
+| `AMOUNT` | decimal(15, 4) | 支付金额 |
+| `CURRENCY` | char(3) | 币种 · 可空 |
+| `FREEZE_AMOUNT` | decimal(15, 4) | 冻结金额 |
+| `UNFREEZE_AMOUNT` | decimal(15, 4) | 解冻金额 |
+| `CHARGE_FEE` | decimal(15, 4) | 收费金额 |
+| `RETURN_FEE` | decimal(15, 4) | 退费金额 |
+| `EXTENSION` | varchar(4000) | 扩展信息 · 可空 |
+| `GMT_CREATE` | timestamp | 创建时间 |
+| `GMT_MODIFIED` | timestamp | 最后修改时间 |
 
 ## 主键 / 索引
 - 主键:`PAYMENT_PARTY_ID`

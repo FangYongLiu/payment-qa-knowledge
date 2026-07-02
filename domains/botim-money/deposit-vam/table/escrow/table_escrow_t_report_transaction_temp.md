@@ -1,7 +1,7 @@
 ---
 id: tbl_escrow_t_report_transaction_temp
 object_type: Table
-name: fundId唯一索引 (t_report_transaction_temp)
+name: 报告订单列表 (t_report_transaction_temp)
 aliases: [t_report_transaction_temp, escrow.t_report_transaction_temp]
 domain: deposit-vam
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# fundId唯一索引 (t_report_transaction_temp)
+# 报告订单列表 (t_report_transaction_temp)
 
 ## 用途
-物理表 `escrow.t_report_transaction_temp`,主键 `transaction_id`。fundId唯一索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `escrow.t_report_transaction_temp`,主键 `transaction_id`。报告订单列表。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -55,7 +55,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`transaction_id`
-- 无(仅主键)
+- `uk_report_tranaction_temp_fund_id`:fund_id (UNIQUE)
 
 ## 校验点(QA 关注)
 - **金额精度**:decimal 比较用容差(< 0.01);amount 与 currency 需一致。

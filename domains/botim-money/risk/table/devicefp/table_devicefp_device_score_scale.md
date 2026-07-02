@@ -35,23 +35,10 @@ related_services: []
 | `num` | int(8) | 待补 |
 | `create_time` | timestamp | 待补 |
 | `modify_time` | timestamp | 待补 |
-| `id` | bigint | 待补 · 可空 |
-| `app_id` | varchar(40) | id |
-| `device_type` | int(4) | 1web 2ios 3android |
-| `record_time` | varchar(255) | :"2017-09-11 09:11" |
-| `score_slot` | int(4) | 0-9 |
-| `num` | int(8) | 待补 |
-| `create_time` | timestamp | 待补 |
-| `modify_time` | timestamp | 待补 |
-| `id` | int | 待补 · 可空 |
-| `app_label` | varchar(100) | 待补 |
-| `model` | varchar(100) | 待补 |
 
 ## 主键 / 索引
 - 主键:`id`
 - `un_create_time_app_id_device_type_score_slot`:create_time, app_id, device_type, score_slot (UNIQUE)
-- `un_record_time_app_id_device_type_score_slot`:record_time, app_id, device_type, score_slot (UNIQUE)
-- `django_content_type_app_label_model_76bd3d3b_uniq`:app_label, model (UNIQUE)
 
 ## 校验点(QA 关注)
 - **时间字段**:创建/更新时间;按时间过滤走对应索引。

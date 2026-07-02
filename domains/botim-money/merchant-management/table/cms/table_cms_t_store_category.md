@@ -1,7 +1,7 @@
 ---
 id: tbl_cms_t_store_category
 object_type: Table
-name: 类别唯一 (t_store_category)
+name: t_store_category (t_store_category)
 aliases: [t_store_category, cms.t_store_category]
 domain: merchant-management
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 类别唯一 (t_store_category)
+# t_store_category (t_store_category)
 
 ## 用途
-物理表 `cms.t_store_category`,主键 `id`。类别唯一。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `cms.t_store_category`,主键 `id`。(DDL 未提供表注释)。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -43,7 +43,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`id`
-- 无(仅主键)
+- `uk_store_category`:category (UNIQUE)
 
 ## 校验点(QA 关注)
 - **状态字段**:`status` 合法枚举与流转规则需结合代码/业务文档核对(**待补**)。

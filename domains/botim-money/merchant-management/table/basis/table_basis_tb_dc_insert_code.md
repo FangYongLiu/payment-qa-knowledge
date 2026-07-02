@@ -1,7 +1,7 @@
 ---
 id: tbl_basis_tb_dc_insert_code
 object_type: Table
-name: Velocity生成的insert语句代码 (tb_dc_insert_code)
+name: 自动生成insert代码配置 (tb_dc_insert_code)
 aliases: [tb_dc_insert_code, basis.tb_dc_insert_code]
 domain: merchant-management
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# Velocity生成的insert语句代码 (tb_dc_insert_code)
+# 自动生成insert代码配置 (tb_dc_insert_code)
 
 ## 用途
-物理表 `basis.tb_dc_insert_code`,主键 `code_id`。Velocity生成的insert语句代码。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `basis.tb_dc_insert_code`,主键 `code_id`。自动生成insert代码配置。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -29,7 +29,7 @@ related_services: []
 | 列 | 类型 | 说明 |
 | --- | --- | --- |
 | `code_id` | varchar(128) | 代码标识符，一般设为类名 |
-| `code` | varchar | 待补 · 可空 |
+| `code` | varchar(10000) | Velocity生成的insert语句代码 |
 
 ## 主键 / 索引
 - 主键:`code_id`

@@ -1,7 +1,7 @@
 ---
 id: tbl_escrow_t_card_detail
 object_type: Table
-name: cardId唯一索引 (t_card_detail)
+name: 卡信息详细表 (t_card_detail)
 aliases: [t_card_detail, escrow.t_card_detail]
 domain: deposit-vam
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# cardId唯一索引 (t_card_detail)
+# 卡信息详细表 (t_card_detail)
 
 ## 用途
-物理表 `escrow.t_card_detail`,主键 `id`。cardId唯一索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `escrow.t_card_detail`,主键 `id`。卡信息详细表。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -41,6 +41,8 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`id`
+- `uk_cardId`:card_id (UNIQUE)
+- `uk_cardNo_bankCode`:card_no, bank_code (UNIQUE)
 - `idx_card_type_status_gmtcreate`:card_type, status, gmt_create
 - `idx_gmt_create`:gmt_create
 

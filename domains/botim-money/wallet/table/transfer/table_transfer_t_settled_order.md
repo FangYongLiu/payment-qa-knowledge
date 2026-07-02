@@ -1,7 +1,7 @@
 ---
 id: tbl_transfer_t_settled_order
 object_type: Table
-name: 扩展参数 (t_settled_order)
+name: 结算订单 (t_settled_order)
 aliases: [t_settled_order, transfer.t_settled_order]
 domain: wallet
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 扩展参数 (t_settled_order)
+# 结算订单 (t_settled_order)
 
 ## 用途
-物理表 `transfer.t_settled_order`,主键 `settle_no`。扩展参数。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `transfer.t_settled_order`,主键 `settle_no`。结算订单。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -43,10 +43,15 @@ related_services: []
 | `currency` | varchar(10) | 币种 |
 | `settle_info` | varchar(100) | 结算信息，收款方式Json |
 | `settle_type` | varchar(10) | 结算类型，ACCOUNT,CARD |
-| `extend_info` | varchar | 待补 · 可空 |
+| `extend_info` | varchar(500) | 扩展参数 · 可空 |
+| `exchange_id` | bigint(17) | 币种交换ID · 可空 |
+| `gmt_created` | timestamp(3) | 创建时间 |
+| `gmt_modified` | timestamp | 修改时间 |
+| `payer_fee` | decimal(15, 4) | 付款方费用 |
 
 ## 主键 / 索引
 - 主键:`settle_no`
+- `uk_set_partner_id_out_trade_no`:partner_id, out_settle_no (UNIQUE)
 - `idx_gmt_modified`:gmt_modified
 - `idx_payment_no`:payment_no
 - `idx_settle_trade_no`:settle_trade_no

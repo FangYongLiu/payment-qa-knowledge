@@ -1,7 +1,7 @@
 ---
 id: tbl_vis_t_iban_apply_config
 object_type: Table
-name: Unique for iban apply config (t_iban_apply_config)
+name: Iban Apply Config (t_iban_apply_config)
 aliases: [t_iban_apply_config, vis.t_iban_apply_config]
 domain: deposit-vam
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# Unique for iban apply config (t_iban_apply_config)
+# Iban Apply Config (t_iban_apply_config)
 
 ## 用途
-物理表 `vis.t_iban_apply_config`,主键 `config_id`。Unique for iban apply config。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `vis.t_iban_apply_config`,主键 `config_id`。Iban Apply Config。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -42,7 +42,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`config_id`
-- 无(仅主键)
+- `uk_iban_apply_config`:bank_code, business_code, currency, account_type (UNIQUE)
 
 ## 校验点(QA 关注)
 - **状态字段**:`status` 合法枚举与流转规则需结合代码/业务文档核对(**待补**)。

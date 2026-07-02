@@ -1,7 +1,7 @@
 ---
 id: tbl_visii_t_iban_storage
 object_type: Table
-name: unique iban (t_iban_storage)
+name: Iban storage (t_iban_storage)
 aliases: [t_iban_storage, visii.t_iban_storage]
 domain: deposit-vam
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# unique iban (t_iban_storage)
+# Iban storage (t_iban_storage)
 
 ## 用途
-物理表 `visii.t_iban_storage`,主键 `storage_id`。unique iban。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `visii.t_iban_storage`,主键 `storage_id`。Iban storage。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -41,6 +41,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`storage_id`
+- `uk_iban_no`:iban (UNIQUE)
 - `idx_iban_request_batch_no`:request_no
 
 ## 校验点(QA 关注)

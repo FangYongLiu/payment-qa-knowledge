@@ -1,7 +1,7 @@
 ---
 id: tbl_cards_t_bin_country
 object_type: Table
-name: 银行卡bin唯一索引 (t_bin_country)
+name: 卡bin国家 (t_bin_country)
 aliases: [t_bin_country, cards.t_bin_country]
 domain: card
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 银行卡bin唯一索引 (t_bin_country)
+# 卡bin国家 (t_bin_country)
 
 ## 用途
-物理表 `cards.t_bin_country`,主键 `BIN_COUNTRY_ID`。银行卡bin唯一索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `cards.t_bin_country`,主键 `BIN_COUNTRY_ID`。卡bin国家。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -45,7 +45,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`BIN_COUNTRY_ID`
-- 无(仅主键)
+- `uk_bin_country_len`:CARD_BIN, CARD_LEN (UNIQUE)
 
 ## 校验点(QA 关注)
 - 业务语义、状态枚举、跨表关联**待补**(需结合代码或业务文档)。

@@ -1,7 +1,7 @@
 ---
 id: tbl_creditinvoice_t_template
 object_type: Table
-name: name与version组成唯一索引 (t_template)
+name: 模板表 (t_template)
 aliases: [t_template, creditinvoice.t_template]
 domain: lending
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# name与version组成唯一索引 (t_template)
+# 模板表 (t_template)
 
 ## 用途
-物理表 `creditinvoice.t_template`,主键 `id`。name与version组成唯一索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `creditinvoice.t_template`,主键 `id`。模板表。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -38,7 +38,8 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`id`
-- 无(仅主键)
+- `name_version_idx`:name, version (UNIQUE)
+- `p_t_v_idx`:product_code, type, version (UNIQUE)
 
 ## 校验点(QA 关注)
 - **时间字段**:创建/更新时间;按时间过滤走对应索引。

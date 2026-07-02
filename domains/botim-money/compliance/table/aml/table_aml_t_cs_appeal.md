@@ -1,6 +1,8 @@
 ---
 id: tbl_aml_t_cs_appeal
 object_type: Table
+name: CS Appeal Table (t_cs_appeal)
+aliases: [t_cs_appeal, aml.t_cs_appeal]
 domain: compliance
 status: active
 owner: dewen.li
@@ -8,27 +10,19 @@ reviewer: dewen.li
 last_reviewed_at: '2026-07-02'
 source_type: DB DDL
 source_ref: aml schema DDL
-tags:
-- aml
-- t_cs_appeal
-subdomain: aml
-module: null
+tags: [compliance, aml]
 sensitivity: normal
-name: 客服申诉表 (t_cs_appeal)
-aliases:
-- t_cs_appeal
-- aml.t_cs_appeal
 related_services: []
 ---
 
-# 客服申诉表 (t_cs_appeal)
+# CS Appeal Table (t_cs_appeal)
 
 ## 用途
-物理表 `aml.t_cs_appeal`,主键 `id`。CS Appeal Table。属 AML/合规库 `aml`。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `aml.t_cs_appeal`,主键 `id`。CS Appeal Table。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
-- **所属服务**:待补(compliance 域 AML 服务)。
-- **谁读写它**:AML/风控链路的服务 / 接口(由对方文档 `related_tables` 声明)。
+- **所属服务**:待补。
+- **谁读写它**:相关服务 / 接口(由对方文档 `related_tables` 声明)。
 - **哪些场景校验它**:待补。
 
 ## 关键列
@@ -51,7 +45,5 @@ related_services: []
 - `idx_update_time`:update_time
 
 ## 校验点(QA 关注)
-- **时间字段**:`create_time`/`update_time`;按时间过滤走对应索引。
-- **关联交易**:`payment_order_no` 关联支付订单(风控/合规按订单聚合)。
-- **会员维度**:`member_id` 关联会员,风控/AML 按会员聚合。
-- 更细的状态枚举、跨表关联与业务规则**待补**(需结合代码或业务文档)。
+- **时间字段**:创建/更新时间;按时间过滤走对应索引。
+- 业务语义、状态枚举、跨表关联**待补**(需结合代码或业务文档)。

@@ -1,7 +1,7 @@
 ---
 id: tbl_gptrade_t_pay_order
 object_type: Table
-name: 修改时间 (t_pay_order)
+name: 付款订单 (t_pay_order)
 aliases: [t_pay_order, gptrade.t_pay_order]
 domain: marketing
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 修改时间 (t_pay_order)
+# 付款订单 (t_pay_order)
 
 ## 用途
-物理表 `gptrade.t_pay_order`,主键 `pay_voucher_no`。修改时间。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `gptrade.t_pay_order`,主键 `pay_voucher_no`。付款订单。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -40,7 +40,7 @@ related_services: []
 | `finish_time` | timestamp | 结束时间 · 可空 |
 | `extension` | varchar(255) | 扩展参数 · 可空 |
 | `create_time` | timestamp(3) | 创建时间 |
-| `update_time` | timestamp(3) | 待补 |
+| `update_time` | timestamp(3) | 修改时间 |
 
 ## 主键 / 索引
 - 主键:`pay_voucher_no`

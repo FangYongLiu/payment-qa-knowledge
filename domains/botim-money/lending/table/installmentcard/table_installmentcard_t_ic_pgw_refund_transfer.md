@@ -1,7 +1,7 @@
 ---
 id: tbl_installmentcard_t_ic_pgw_refund_transfer
 object_type: Table
-name: Last update time (t_ic_pgw_refund_transfer)
+name: PayBy SGS push-to-wallet refund transfer tracking (t_ic_pgw_refund_transfer)
 aliases: [t_ic_pgw_refund_transfer, installmentcard.t_ic_pgw_refund_transfer]
 domain: lending
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# Last update time (t_ic_pgw_refund_transfer)
+# PayBy SGS push-to-wallet refund transfer tracking (t_ic_pgw_refund_transfer)
 
 ## 用途
-物理表 `installmentcard.t_ic_pgw_refund_transfer`,主键 `id`。Last update time。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `installmentcard.t_ic_pgw_refund_transfer`,主键 `id`。PayBy SGS push-to-wallet refund transfer tracking。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -39,10 +39,11 @@ related_services: []
 | `executed_at` | datetime(3) | When PayBy confirmed the transfer (set on SUCCESS) · 可空 |
 | `version` | int | Optimistic-lock counter for status transitions |
 | `created_at` | datetime(3) | Record creation time |
-| `updated_at` | datetime(3) | 待补 |
+| `updated_at` | datetime(3) | Last update time |
 
 ## 主键 / 索引
 - 主键:`id`
+- `uk_merchant_order_no`:merchant_order_no (UNIQUE)
 - `idx_member_id`:member_id
 - `idx_payby_order_no`:payby_order_no
 - `idx_ref_id_paymt_origin`:ref_id, paymt_origin

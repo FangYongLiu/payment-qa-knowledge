@@ -1,7 +1,7 @@
 ---
 id: tbl_cards_t_card_brand
 object_type: Table
-name: 唯一 (t_card_brand)
+name: 卡品牌 (t_card_brand)
 aliases: [t_card_brand, cards.t_card_brand]
 domain: card
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 唯一 (t_card_brand)
+# 卡品牌 (t_card_brand)
 
 ## 用途
-物理表 `cards.t_card_brand`,主键 `BRAND_ID`。唯一。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `cards.t_card_brand`,主键 `BRAND_ID`。卡品牌。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -39,7 +39,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`BRAND_ID`
-- 无(仅主键)
+- `uk_brand_code`:BRAND_CODE (UNIQUE)
 
 ## 校验点(QA 关注)
 - 业务语义、状态枚举、跨表关联**待补**(需结合代码或业务文档)。

@@ -1,7 +1,7 @@
 ---
 id: tbl_protocol_t_contract_template
 object_type: Table
-name: t_contract_template (t_contract_template)
+name: 协议模版 (t_contract_template)
 aliases: [t_contract_template, protocol.t_contract_template]
 domain: wallet
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# t_contract_template (t_contract_template)
+# 协议模版 (t_contract_template)
 
 ## 用途
-物理表 `protocol.t_contract_template`,主键 `id`。(DDL 未提供表注释)。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `protocol.t_contract_template`,主键 `id`。协议模版。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -47,7 +47,11 @@ related_services: []
 | `update_time` | timestamp | 更新时间 |
 | `memo` | varchar(255) | 备注 · 可空 |
 | `resign_type` | varchar(32) | 是否重签：IGNORE（无需重签）UPGRADE（升级重签）EXPIRED（过期重签）COMPREHENSIVE(重签) · 可空 |
-| `force_sign_type` | varchar(32) | 待补 · 可空 |
+| `force_sign_type` | varchar(32) | FORCED_SMALL(强制小版本);FORCED_LARGE(强制大版本);COMMON_SMALL普通小版本);COMMON_LARGE(普通大版本) · 可空 |
+| `reminder_time` | int(12) | 过期提前提醒时长（分钟为单位 · 可空 |
+| `duplicate` | varchar(255) | 副本链接 · 可空 |
+| `sign_model` | varchar(32) | 签订方式 |
+| `control_type` | varchar(64) | 控制协议签约类型 · 可空 |
 
 ## 主键 / 索引
 - 主键:`id`

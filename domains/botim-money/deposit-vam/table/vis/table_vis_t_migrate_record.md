@@ -1,7 +1,7 @@
 ---
 id: tbl_vis_t_migrate_record
 object_type: Table
-name: Unique index for migrate (t_migrate_record)
+name: IBAN migration record table (t_migrate_record)
 aliases: [t_migrate_record, vis.t_migrate_record]
 domain: deposit-vam
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# Unique index for migrate (t_migrate_record)
+# IBAN migration record table (t_migrate_record)
 
 ## 用途
-物理表 `vis.t_migrate_record`,主键 `id`。Unique index for migrate。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `vis.t_migrate_record`,主键 `id`。IBAN migration record table。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -50,6 +50,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`id`
+- `idx_account_member_id`:account_id, member_id (UNIQUE)
 - `idx_file_id`:file_id
 - `idx_migrate_mid`:member_id
 - `idx_notify_status_next_time`:notify_status, next_notify_time

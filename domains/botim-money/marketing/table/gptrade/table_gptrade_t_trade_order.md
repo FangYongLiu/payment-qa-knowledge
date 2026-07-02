@@ -1,7 +1,7 @@
 ---
 id: tbl_gptrade_t_trade_order
 object_type: Table
-name: 修改时间 (t_trade_order)
+name: 交易订单 (t_trade_order)
 aliases: [t_trade_order, gptrade.t_trade_order]
 domain: marketing
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 修改时间 (t_trade_order)
+# 交易订单 (t_trade_order)
 
 ## 用途
-物理表 `gptrade.t_trade_order`,主键 `trade_voucher_no`。修改时间。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `gptrade.t_trade_order`,主键 `trade_voucher_no`。交易订单。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -46,7 +46,7 @@ related_services: []
 | `extension` | varchar(255) | 扩展参数 · 可空 |
 | `memo` | varchar(64) | 备注 · 可空 |
 | `create_time` | timestamp(3) | 创建时间 |
-| `update_time` | timestamp(3) | 待补 |
+| `update_time` | timestamp(3) | 修改时间 |
 
 ## 主键 / 索引
 - 主键:`trade_voucher_no`

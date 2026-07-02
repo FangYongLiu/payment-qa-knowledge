@@ -1,7 +1,7 @@
 ---
 id: tbl_npss_t_user
 object_type: Table
-name: 用户eid唯一索引 (t_user)
+name: 用户表 (t_user)
 aliases: [t_user, npss.t_user]
 domain: payment-core
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 用户eid唯一索引 (t_user)
+# 用户表 (t_user)
 
 ## 用途
-物理表 `npss.t_user`,主键 `member_id`。用户eid唯一索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `npss.t_user`,主键 `member_id`。用户表。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -43,7 +43,8 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`member_id`
-- 无(仅主键)
+- `uk_user_eid`:eid (UNIQUE)
+- `uk_user_mobile_no`:mobile_no (UNIQUE)
 
 ## 校验点(QA 关注)
 - **状态字段**:`status` 合法枚举与流转规则需结合代码/业务文档核对(**待补**)。

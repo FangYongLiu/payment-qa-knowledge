@@ -1,7 +1,7 @@
 ---
 id: tbl_mchtsettle_t_clearing_item
 object_type: Table
-name: 清算条目表 (t_clearing_item)
+name: clearing_item (t_clearing_item)
 aliases: [t_clearing_item, mchtsettle.t_clearing_item]
 domain: online-business
 status: active
@@ -10,19 +10,19 @@ reviewer: fangyong.liu
 last_reviewed_at: '2026-07-02'
 source_type: DB DDL
 source_ref: mchtsettle schema DDL
-tags: [online-business, 商户结算, mchtsettle]
+tags: [online-business, mchtsettle]
 sensitivity: normal
-related_services: [svc_merchant_settlement]
+related_services: []
 ---
 
-# 清算条目表 (t_clearing_item)
+# clearing_item (t_clearing_item)
 
 ## 用途
-物理表 `mchtsettle.t_clearing_item`,主键 `id`。clearing_item。属商户结算服务 [[svc_merchant_settlement]]。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `mchtsettle.t_clearing_item`,主键 `id`。clearing_item。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
-- **所属服务**:[[svc_merchant_settlement]](= `related_services`)。
-- **谁读写它**:结算链路的服务 / 接口(由对方文档 `related_tables` 声明)。
+- **所属服务**:待补。
+- **谁读写它**:相关服务 / 接口(由对方文档 `related_tables` 声明)。
 - **哪些场景校验它**:待补。
 
 ## 关键列
@@ -40,7 +40,7 @@ related_services: [svc_merchant_settlement]
 | `card_num` | varchar(32) | card num · 可空 |
 | `card_type` | varchar(16) | card type · 可空 |
 | `sales_currency` | char(3) | sales currency · 可空 |
-| `sales_amount` | decimal(19,4) | sales amount · 可空 |
+| `sales_amount` | decimal(19, 4) | sales amount · 可空 |
 | `status` | varchar(16) | status · 可空 |
 | `terminal_id` | varchar(200) | terminal id · 可空 |
 | `transaction_type` | varchar(20) | transaction type · 可空 |
@@ -50,7 +50,7 @@ related_services: [svc_merchant_settlement]
 | `bat` | varchar(200) | bat · 可空 |
 | `card_usage` | varchar(200) | card usage · 可空 |
 | `chain_id` | varchar(200) | chain id · 可空 |
-| `commission_amount` | decimal(19,4) | commission amount · 可空 |
+| `commission_amount` | decimal(19, 4) | commission amount · 可空 |
 | `commission_currency` | char(3) | commission currency · 可空 |
 | `disc_type` | varchar(200) | disc type · 可空 |
 | `driver_id` | varchar(200) | driver id · 可空 |
@@ -58,7 +58,7 @@ related_services: [svc_merchant_settlement]
 | `location` | varchar(200) | location · 可空 |
 | `master_chain_id` | varchar(200) | master chain id · 可空 |
 | `merchant_name` | varchar(200) | merchant name · 可空 |
-| `net_amount` | decimal(19,4) | net amount · 可空 |
+| `net_amount` | decimal(19, 4) | net amount · 可空 |
 | `net_currency` | char(3) | net currency · 可空 |
 | `order_reference` | varchar(200) | order reference · 可空 |
 | `pwcb_cash_back` | varchar(200) | pwcb cash back · 可空 |
@@ -67,7 +67,7 @@ related_services: [svc_merchant_settlement]
 | `srl_no` | varchar(200) | srl no · 可空 |
 | `tag_id` | varchar(200) | tag id · 可空 |
 | `telephone` | varchar(200) | telephone · 可空 |
-| `tip_amount` | decimal(19,4) | tip amount · 可空 |
+| `tip_amount` | decimal(19, 4) | tip amount · 可空 |
 | `tip_currency` | char(3) | tip currency · 可空 |
 | `token_tran_id` | varchar(200) | token tran_id · 可空 |
 | `trans_source` | varchar(200) | trans source · 可空 |
@@ -92,10 +92,8 @@ related_services: [svc_merchant_settlement]
 - `i_ci_ct`:created_time
 
 ## 校验点(QA 关注)
-- **时间字段**:`created_time`=入库、`last_updated_time`=最后更新;按时间过滤走对应索引。
+- **时间字段**:创建/更新时间;按时间过滤走对应索引。
 - **状态字段**:`status` 合法枚举与流转规则需结合代码/业务文档核对(**待补**)。
-- **乐观锁**:更新须带 `data_version`,并发场景校验版本递增。
-- **金额精度**:decimal 金额比较用容差(< 0.01);amount 与对应 currency 成对、需一致。
-- **批次维度**:`batch_id` 关联清算批次 t_clearing_batch。
-- **商户维度**:`merchant_mid` 为商户号,按商户聚合/对账。
-- 更细的状态枚举、跨表关联与业务规则**待补**(需结合代码或业务文档)。
+- **乐观锁**:更新须带 `data_version`,并发校验版本递增。
+- **金额精度**:decimal 比较用容差(< 0.01);amount 与 currency 需一致。
+- 业务语义、状态枚举、跨表关联**待补**(需结合代码或业务文档)。

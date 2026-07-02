@@ -1,7 +1,7 @@
 ---
 id: tbl_adtaxi_t_adtaxi_order
 object_type: Table
-name: 出租车订单表 (t_adtaxi_order)
+name: 出租车订单 (t_adtaxi_order)
 aliases: [t_adtaxi_order, adtaxi.t_adtaxi_order]
 domain: online-business
 status: active
@@ -10,19 +10,19 @@ reviewer: fangyong.liu
 last_reviewed_at: '2026-07-02'
 source_type: DB DDL
 source_ref: adtaxi schema DDL
-tags: [online-business, 出租车支付, adtaxi]
+tags: [online-business, adtaxi]
 sensitivity: normal
-related_services: [svc_adtaxi]
+related_services: []
 ---
 
-# 出租车订单表 (t_adtaxi_order)
+# 出租车订单 (t_adtaxi_order)
 
 ## 用途
-物理表 `adtaxi.t_adtaxi_order`,主键 `id`。出租车订单。属出租车支付服务 [[svc_adtaxi]]。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `adtaxi.t_adtaxi_order`,主键 `id`。出租车订单。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
-- **所属服务**:[[svc_adtaxi]](= `related_services`)。
-- **谁读写它**:出租车支付链路的服务 / 接口(由对方文档 `related_tables` 声明)。
+- **所属服务**:待补。
+- **谁读写它**:相关服务 / 接口(由对方文档 `related_tables` 声明)。
 - **哪些场景校验它**:待补。
 
 ## 关键列
@@ -32,7 +32,7 @@ related_services: [svc_adtaxi]
 | `qr_id` | varchar(50) | qrid,仅id |
 | `qr_code` | varchar(128) | qrcode完整 · 可空 |
 | `currency_code` | varchar(32) | 收单币种 |
-| `amount` | decimal(19,4) | 收单金额 |
+| `amount` | decimal(19, 4) | 收单金额 |
 | `payee_mid` | varchar(32) | 收款人mid |
 | `payer_mid` | varchar(32) | 付款人mid · 可空 |
 | `acquire_order_id` | bigint | 收单订单号 · 可空 |
@@ -56,9 +56,8 @@ related_services: [svc_adtaxi]
 - `i_at_lut`:last_updated_time
 
 ## 校验点(QA 关注)
-- **时间字段**:`created_time`=入库、`last_updated_time`=最后更新;按时间过滤走对应索引。
+- **时间字段**:创建/更新时间;按时间过滤走对应索引。
 - **状态字段**:`status` 合法枚举与流转规则需结合代码/业务文档核对(**待补**)。
-- **乐观锁**:更新须带 `data_version`,并发场景校验版本递增。
-- **金额精度**:decimal 金额比较用容差(< 0.01);amount 与 currency 需一致。
-- **关联收单**:`acquire_order_id` 关联 acquireii 收单订单(跨库,出租车支付走收单)。
-- 更细的状态枚举、跨表关联与业务规则**待补**(需结合代码或业务文档)。
+- **乐观锁**:更新须带 `data_version`,并发校验版本递增。
+- **金额精度**:decimal 比较用容差(< 0.01);amount 与 currency 需一致。
+- 业务语义、状态枚举、跨表关联**待补**(需结合代码或业务文档)。

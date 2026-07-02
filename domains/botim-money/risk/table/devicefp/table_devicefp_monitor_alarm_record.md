@@ -38,19 +38,6 @@ related_services: []
 | `is_read` | tinyint(1) | (0:,1:) |
 | `create_time` | timestamp | 待补 |
 | `modify_time` | timestamp | 待补 |
-| `id` | bigint | id · 可空 |
-| `module` | int(10) | 1:machine,2:app,3:middleware |
-| `app` | varchar(32) | , · 可空 |
-| `item` | varchar(255) | 待补 · 可空 |
-| `ip` | varchar(16) | 待补 · 可空 |
-| `port` | int(11) | 待补 · 可空 |
-| `message` | varchar(255) | 待补 |
-| `is_read` | tinyint(1) | (0:,1:) |
-| `create_time` | timestamp | 待补 |
-| `modify_time` | timestamp | 待补 |
-| `NAME` | varchar(128) | 待补 |
-| `OBJECT_INSTANCE_BEGIN` | bigint unsigned | 待补 |
-| `LOCKED_BY_THREAD_ID` | bigint unsigned | 待补 · 可空 |
 
 ## 主键 / 索引
 - 主键:`id`

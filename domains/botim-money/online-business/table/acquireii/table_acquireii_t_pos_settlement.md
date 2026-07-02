@@ -1,7 +1,7 @@
 ---
 id: tbl_acquireii_t_pos_settlement
 object_type: Table
-name: POS 结算表 (t_pos_settlement)
+name: pos结算 (t_pos_settlement)
 aliases: [t_pos_settlement, acquireii.t_pos_settlement]
 domain: online-business
 status: active
@@ -10,19 +10,19 @@ reviewer: fangyong.liu
 last_reviewed_at: '2026-07-02'
 source_type: DB DDL
 source_ref: acquireii schema DDL
-tags: [online-business, 收单, acquireii]
+tags: [online-business, acquireii]
 sensitivity: normal
-related_services: [svc_acquireii]
+related_services: []
 ---
 
-# POS 结算表 (t_pos_settlement)
+# pos结算 (t_pos_settlement)
 
 ## 用途
-物理表 `acquireii.t_pos_settlement`,主键 `settlement_id`。pos结算。属收单服务 [[svc_acquireii]]。业务语义细节**待补**(表结构来自 DDL,用途需结合代码/文档补充)。
+物理表 `acquireii.t_pos_settlement`,主键 `settlement_id`。pos结算。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
-- **所属服务**:[[svc_acquireii]](= `related_services`)。
-- **谁读写它**:收单链路的服务 / 接口(由对方文档的 `related_tables` 声明,本表侧不重复)。
+- **所属服务**:待补。
+- **谁读写它**:相关服务 / 接口(由对方文档 `related_tables` 声明)。
 - **哪些场景校验它**:待补。
 
 ## 关键列
@@ -44,7 +44,6 @@ related_services: [svc_acquireii]
 - `i_ps_lut`:last_updated_time
 
 ## 校验点(QA 关注)
-- **时间字段**:`created_time`=入库、`last_updated_time`=最后更新;按时间过滤走对应索引,勿混用。
-- **乐观锁**:更新须带 `data_version`,并发场景校验版本递增、防覆盖。
-- **device 维度**:按 `device_id` 组织的批次/结算通常唯一,注意重复校验。
-- 更细的状态枚举、跨表关联与业务规则**待补**(需结合代码或业务文档)。
+- **时间字段**:创建/更新时间;按时间过滤走对应索引。
+- **乐观锁**:更新须带 `data_version`,并发校验版本递增。
+- 业务语义、状态枚举、跨表关联**待补**(需结合代码或业务文档)。

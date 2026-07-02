@@ -1,7 +1,7 @@
 ---
 id: tbl_visii_t_iban_apply
 object_type: Table
-name: Unique request no (t_iban_apply)
+name: Iban apply (t_iban_apply)
 aliases: [t_iban_apply, visii.t_iban_apply]
 domain: deposit-vam
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# Unique request no (t_iban_apply)
+# Iban apply (t_iban_apply)
 
 ## 用途
-物理表 `visii.t_iban_apply`,主键 `apply_id`。Unique request no。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `visii.t_iban_apply`,主键 `apply_id`。Iban apply。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -41,7 +41,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`apply_id`
-- 无(仅主键)
+- `uk_iban_apply_batch_no`:request_no (UNIQUE)
 
 ## 校验点(QA 关注)
 - **状态字段**:`status` 合法枚举与流转规则需结合代码/业务文档核对(**待补**)。

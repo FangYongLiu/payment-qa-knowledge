@@ -1,7 +1,7 @@
 ---
 id: tbl_escrow_t_card_bulk_apply_record
 object_type: Table
-name: apply_reference 唯一索引 (t_card_bulk_apply_record)
+name: 虚拟卡批量申请记录 (t_card_bulk_apply_record)
 aliases: [t_card_bulk_apply_record, escrow.t_card_bulk_apply_record]
 domain: deposit-vam
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# apply_reference 唯一索引 (t_card_bulk_apply_record)
+# 虚拟卡批量申请记录 (t_card_bulk_apply_record)
 
 ## 用途
-物理表 `escrow.t_card_bulk_apply_record`,主键 `id`。apply_reference 唯一索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `escrow.t_card_bulk_apply_record`,主键 `id`。虚拟卡批量申请记录。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -42,7 +42,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`id`
-- 无(仅主键)
+- `uk_apply_reference`:apply_reference (UNIQUE)
 
 ## 校验点(QA 关注)
 - **状态字段**:`status` 合法枚举与流转规则需结合代码/业务文档核对(**待补**)。

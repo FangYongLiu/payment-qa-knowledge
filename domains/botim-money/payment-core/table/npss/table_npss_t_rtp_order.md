@@ -1,7 +1,7 @@
 ---
 id: tbl_npss_t_rtp_order
 object_type: Table
-name: Rtp reference no unique (t_rtp_order)
+name: request to pay order (t_rtp_order)
 aliases: [t_rtp_order, npss.t_rtp_order]
 domain: payment-core
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# Rtp reference no unique (t_rtp_order)
+# request to pay order (t_rtp_order)
 
 ## 用途
-物理表 `npss.t_rtp_order`,主键 `rtp_order_id`。Rtp reference no unique。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `npss.t_rtp_order`,主键 `rtp_order_id`。request to pay order。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -52,6 +52,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`rtp_order_id`
+- `uk_rtp_reference_no`:reference_no (UNIQUE)
 - `idx_rtp_id_sct`:id_sct
 
 ## 校验点(QA 关注)

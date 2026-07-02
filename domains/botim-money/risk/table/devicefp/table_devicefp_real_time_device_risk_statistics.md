@@ -1,8 +1,8 @@
 ---
-id: tbl_devicefp_real_time_device_risk_history_statistics
+id: tbl_devicefp_real_time_device_risk_statistics
 object_type: Table
-name: real_time_device_risk_history_statistics (real_time_device_risk_history_statistics)
-aliases: [real_time_device_risk_history_statistics, devicefp.real_time_device_risk_history_statistics]
+name: real_time_device_risk_statistics (real_time_device_risk_statistics)
+aliases: [real_time_device_risk_statistics, devicefp.real_time_device_risk_statistics]
 domain: risk
 status: active
 owner: xinwei.cao,dewen.li
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# real_time_device_risk_history_statistics (real_time_device_risk_history_statistics)
+# real_time_device_risk_statistics (real_time_device_risk_statistics)
 
 ## 用途
-物理表 `devicefp.real_time_device_risk_history_statistics`,主键 `id`。(DDL 未提供表注释)。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `devicefp.real_time_device_risk_statistics`,主键 `id`。(DDL 未提供表注释)。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。

@@ -30,11 +30,12 @@ related_services: []
 | --- | --- | --- |
 | `id` | bigint unsigned | Primary Key · 可空 |
 | `announcement_id` | bigint unsigned | Parent announcement id (t_service_announcement.id; no DB FK) |
-| `institution_code` | varchar(20) | 待补 |
+| `institution_code` | varchar(20) | Institution (bank/wallet) code = t_bank_info.bank_code varchar(20); bank vs wallet given by parent transfer_method |
+| `gmt_create` | timestamp | Creation timestamp |
 
 ## 主键 / 索引
 - 主键:`id`
-- 无(仅主键)
+- `uniq_announcement_inst_code`:announcement_id, institution_code (UNIQUE)
 
 ## 校验点(QA 关注)
 - 业务语义、状态枚举、跨表关联**待补**(需结合代码或业务文档)。

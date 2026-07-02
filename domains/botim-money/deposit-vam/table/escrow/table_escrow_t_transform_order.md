@@ -1,7 +1,7 @@
 ---
 id: tbl_escrow_t_transform_order
 object_type: Table
-name: 机构订单号唯一 (t_transform_order)
+name: 转换订单 (t_transform_order)
 aliases: [t_transform_order, escrow.t_transform_order]
 domain: deposit-vam
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 机构订单号唯一 (t_transform_order)
+# 转换订单 (t_transform_order)
 
 ## 用途
-物理表 `escrow.t_transform_order`,主键 `order_id`。机构订单号唯一。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `escrow.t_transform_order`,主键 `order_id`。转换订单。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -43,7 +43,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`order_id`
-- 无(仅主键)
+- `uk_transform_order_no`:order_no (UNIQUE)
 
 ## 校验点(QA 关注)
 - **金额精度**:decimal 比较用容差(< 0.01);amount 与 currency 需一致。

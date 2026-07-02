@@ -1,7 +1,7 @@
 ---
 id: tbl_sme_t_olr_finance_record
 object_type: Table
-name: Serial number index (t_olr_finance_record)
+name: Offline repayment account fund entry information form (t_olr_finance_record)
 aliases: [t_olr_finance_record, sme.t_olr_finance_record]
 domain: lending
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# Serial number index (t_olr_finance_record)
+# Offline repayment account fund entry information form (t_olr_finance_record)
 
 ## 用途
-物理表 `sme.t_olr_finance_record`,主键 `id`。Serial number index。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `sme.t_olr_finance_record`,主键 `id`。Offline repayment account fund entry information form。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -42,7 +42,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`id`
-- 无(仅主键)
+- `idx_reference`:reference_no (UNIQUE)
 
 ## 校验点(QA 关注)
 - **时间字段**:创建/更新时间;按时间过滤走对应索引。

@@ -1,7 +1,7 @@
 ---
 id: tbl_npss_t_credit_order
 object_type: Table
-name: idsct唯一索引 (t_credit_order)
+name: 贷记订单表 (t_credit_order)
 aliases: [t_credit_order, npss.t_credit_order]
 domain: payment-core
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# idsct唯一索引 (t_credit_order)
+# 贷记订单表 (t_credit_order)
 
 ## 用途
-物理表 `npss.t_credit_order`,主键 `trx_voucher_no`。idsct唯一索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `npss.t_credit_order`,主键 `trx_voucher_no`。贷记订单表。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -52,6 +52,8 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`trx_voucher_no`
+- `uk_co_idsct`:id_sct (UNIQUE)
+- `uk_co_instructed_id`:instruct_id (UNIQUE)
 - `idx_co_gmt_modified`:gmt_modified, member_id
 - `idx_co_retry_voucher_no`:retry_voucher_no
 

@@ -1,7 +1,7 @@
 ---
 id: tbl_pns_t_partner_notify
 object_type: Table
-name: 业务号 (t_partner_notify)
+name: 同交易订单数量级 (t_partner_notify)
 aliases: [t_partner_notify, pns.t_partner_notify]
 domain: infrastructure
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 业务号 (t_partner_notify)
+# 同交易订单数量级 (t_partner_notify)
 
 ## 用途
-物理表 `pns.t_partner_notify`,主键 `NOTIFY_ID`。业务号。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `pns.t_partner_notify`,主键 `NOTIFY_ID`。同交易订单数量级。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -29,10 +29,29 @@ related_services: []
 | 列 | 类型 | 说明 |
 | --- | --- | --- |
 | `NOTIFY_ID` | decimal(18) | 通知ID |
-| `VOUCHER_NO` | varchar | 待补 · 可空 |
+| `VOUCHER_NO` | varchar(64) | 业务号 |
+| `EVENT_CODE` | varchar(32) | 通知事件编码 |
+| `NOTIFY_TARGET` | varchar(400) | 通知地址 |
+| `NOTIFY_STATUS` | varchar(16) | 通知状态 |
+| `INPUT_CHARSET` | varchar(64) | 字符集编码 |
+| `SIGNATURE_TYPE` | varchar(16) | 签名类型 |
+| `PARTNER_ID` | varchar(100) | 合作方ID |
+| `CLIENT_ID` | varchar(32) | 客户端ID |
+| `SERVER_IDENTITY` | varchar(16) | 服务器标识 |
+| `RETRYING_FLAG` | char | 待补 |
+| `RETRY_COUNT` | decimal(2) | 通知次数 |
+| `GMT_RETRY` | timestamp | 重试时间 · 可空 |
+| `MEMO` | varchar(256) | 系统备注 · 可空 |
+| `group_name` | varchar(200) | 集团名称 · 可空 |
+| `branch_name` | varchar(200) | 分支名称 · 可空 |
+| `GMT_CREATE` | timestamp | 创建时间 |
+| `GMT_MODIFIED` | timestamp | 修改时间 |
+| `BATCH_FLAG` | varchar(1) | 是否批量通知 · 可空 |
+| `PARTNER_TYPE` | varchar(64) | Partner type (retry job partition key) · 可空 |
 
 ## 主键 / 索引
 - 主键:`NOTIFY_ID`
+- `UK_PARTNER_NOTIFY_BUSINESSKEY`:VOUCHER_NO, EVENT_CODE, PARTNER_ID (UNIQUE)
 - `I_PARTNER_NOTIFY_GMT_CREATE`:GMT_CREATE
 - `I_PARTNER_NOTIFY_GMT_RETRY`:GMT_RETRY
 - `I_PARTNER_NOTIFY_RETRY`:PARTNER_TYPE, NOTIFY_STATUS, RETRYING_FLAG, GMT_RETRY

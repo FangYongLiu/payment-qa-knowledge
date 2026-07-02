@@ -1,7 +1,7 @@
 ---
 id: tbl_remittance_t_control_list
 object_type: Table
-name: Unique index for identifier and type (t_control_list)
+name: control list (t_control_list)
 aliases: [t_control_list, remittance.t_control_list]
 domain: remittance
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# Unique index for identifier and type (t_control_list)
+# control list (t_control_list)
 
 ## 用途
-物理表 `remittance.t_control_list`,主键 `id`。Unique index for identifier and type。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `remittance.t_control_list`,主键 `id`。control list。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -40,6 +40,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`id`
+- `uk_identifier_type`:list_name, identifier, identifier_type (UNIQUE)
 - `idx_created_time`:created_time
 
 ## 校验点(QA 关注)

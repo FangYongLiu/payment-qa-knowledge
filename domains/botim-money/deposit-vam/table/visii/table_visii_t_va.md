@@ -1,7 +1,7 @@
 ---
 id: tbl_visii_t_va
 object_type: Table
-name: ibanNo unique index (t_va)
+name: Virtual Iban (t_va)
 aliases: [t_va, visii.t_va]
 domain: deposit-vam
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# ibanNo unique index (t_va)
+# Virtual Iban (t_va)
 
 ## 用途
-物理表 `visii.t_va`,主键 `va_id`。ibanNo unique index。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `visii.t_va`,主键 `va_id`。Virtual Iban。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -51,6 +51,9 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`va_id`
+- `uk_iBanNo`:iban (UNIQUE)
+- `uk_memberId_accountType_bk`:member_id, bank_code, account_seq (UNIQUE)
+- `uk_va_request_no`:member_id, request_no (UNIQUE)
 - `idx_va_create`:gmt_create
 - `idx_va_next_notify`:next_notify_time
 

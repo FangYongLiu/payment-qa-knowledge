@@ -1,7 +1,7 @@
 ---
 id: tbl_deduct_t_deduct_protocol_config
 object_type: Table
-name: protocol_scene_code (t_deduct_protocol_config)
+name: Deduct Protocol Config (t_deduct_protocol_config)
 aliases: [t_deduct_protocol_config, deduct.t_deduct_protocol_config]
 domain: wallet
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# protocol_scene_code (t_deduct_protocol_config)
+# Deduct Protocol Config (t_deduct_protocol_config)
 
 ## 用途
-物理表 `deduct.t_deduct_protocol_config`,主键 `id`。protocol_scene_code。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `deduct.t_deduct_protocol_config`,主键 `id`。Deduct Protocol Config。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -42,7 +42,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`id`
-- 无(仅主键)
+- `uk_protocol_scene_code`:protocol_scene_code (UNIQUE)
 
 ## 校验点(QA 关注)
 - **时间字段**:创建/更新时间;按时间过滤走对应索引。

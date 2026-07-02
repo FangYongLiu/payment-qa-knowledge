@@ -1,7 +1,7 @@
 ---
 id: tbl_visii_t_writeoff_record
 object_type: Table
-name: uk for writeoff voucher no (t_writeoff_record)
+name: Write Off Record (t_writeoff_record)
 aliases: [t_writeoff_record, visii.t_writeoff_record]
 domain: deposit-vam
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# uk for writeoff voucher no (t_writeoff_record)
+# Write Off Record (t_writeoff_record)
 
 ## 用途
-物理表 `visii.t_writeoff_record`,主键 `writeoff_id`。uk for writeoff voucher no。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `visii.t_writeoff_record`,主键 `writeoff_id`。Write Off Record。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -44,6 +44,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`writeoff_id`
+- `uk_writeoff_voucher_no`:writeoff_voucher_no (UNIQUE)
 - `idx_writeoff_create`:gmt_create
 - `idx_writeoff_order_id`:order_id
 

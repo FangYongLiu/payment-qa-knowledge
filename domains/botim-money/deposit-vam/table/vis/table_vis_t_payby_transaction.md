@@ -1,7 +1,7 @@
 ---
 id: tbl_vis_t_payby_transaction
 object_type: Table
-name: Unique Index for Bank Order No (t_payby_transaction)
+name: Transactions from Payby (t_payby_transaction)
 aliases: [t_payby_transaction, vis.t_payby_transaction]
 domain: deposit-vam
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# Unique Index for Bank Order No (t_payby_transaction)
+# Transactions from Payby (t_payby_transaction)
 
 ## 用途
-物理表 `vis.t_payby_transaction`,主键 `transaction_id`。Unique Index for Bank Order No。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `vis.t_payby_transaction`,主键 `transaction_id`。Transactions from Payby。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -59,7 +59,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`transaction_id`
-- 无(仅主键)
+- `uk_payby_bank_order_no`:bank_order_no (UNIQUE)
 
 ## 校验点(QA 关注)
 - **金额精度**:decimal 比较用容差(< 0.01);amount 与 currency 需一致。

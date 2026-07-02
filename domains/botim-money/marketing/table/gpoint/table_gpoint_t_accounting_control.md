@@ -1,7 +1,7 @@
 ---
 id: tbl_gpoint_t_accounting_control
 object_type: Table
-name: 修改时间 (t_accounting_control)
+name: 记账控制 (t_accounting_control)
 aliases: [t_accounting_control, gpoint.t_accounting_control]
 domain: marketing
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 修改时间 (t_accounting_control)
+# 记账控制 (t_accounting_control)
 
 ## 用途
-物理表 `gpoint.t_accounting_control`,主键 `account_control_id`。修改时间。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `gpoint.t_accounting_control`,主键 `account_control_id`。记账控制。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -35,10 +35,11 @@ related_services: []
 | `do_amount` | decimal(19, 2) | 操作数量 |
 | `undo_amount` | decimal(19, 2) | 反操作数量 |
 | `create_time` | timestamp(3) | 创建时间 |
-| `update_time` | timestamp(3) | 待补 |
+| `update_time` | timestamp(3) | 修改时间 |
 
 ## 主键 / 索引
 - 主键:`account_control_id`
+- `uk_ctl_id_account_ctl_type`:control_id, account_no, control_type (UNIQUE)
 - `idx_update_time_account_no`:update_time, account_no
 
 ## 校验点(QA 关注)

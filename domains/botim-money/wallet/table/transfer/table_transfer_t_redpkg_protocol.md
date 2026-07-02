@@ -1,7 +1,7 @@
 ---
 id: tbl_transfer_t_redpkg_protocol
 object_type: Table
-name: 加密Key唯一 (t_redpkg_protocol)
+name: 红包协议表 (t_redpkg_protocol)
 aliases: [t_redpkg_protocol, transfer.t_redpkg_protocol]
 domain: wallet
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 加密Key唯一 (t_redpkg_protocol)
+# 红包协议表 (t_redpkg_protocol)
 
 ## 用途
-物理表 `transfer.t_redpkg_protocol`,主键 `id`。加密Key唯一。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `transfer.t_redpkg_protocol`,主键 `id`。红包协议表。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -38,7 +38,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`id`
-- 无(仅主键)
+- `uk_rp_encrypt_key`:encrypt_key (UNIQUE)
 
 ## 校验点(QA 关注)
 - 业务语义、状态枚举、跨表关联**待补**(需结合代码或业务文档)。

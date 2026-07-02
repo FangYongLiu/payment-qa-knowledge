@@ -1,7 +1,7 @@
 ---
 id: tbl_npss_t_fundout_order
 object_type: Table
-name: Withdraw reference no unique (t_fundout_order)
+name: t_fundout_order (t_fundout_order)
 aliases: [t_fundout_order, npss.t_fundout_order]
 domain: payment-core
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# Withdraw reference no unique (t_fundout_order)
+# t_fundout_order (t_fundout_order)
 
 ## 用途
-物理表 `npss.t_fundout_order`,主键 `fundout_order_id`。Withdraw reference no unique。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `npss.t_fundout_order`,主键 `fundout_order_id`。(DDL 未提供表注释)。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -51,6 +51,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`fundout_order_id`
+- `uk_withdraw_reference_no`:reference_no (UNIQUE)
 - `idx_fundout_id_sct`:id_sct
 
 ## 校验点(QA 关注)

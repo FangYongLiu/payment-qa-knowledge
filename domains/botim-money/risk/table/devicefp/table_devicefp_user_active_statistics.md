@@ -36,27 +36,6 @@ related_services: []
 | `active_user_num` | int(8) | 待补 |
 | `create_time` | timestamp | 待补 |
 | `modify_time` | timestamp | 待补 |
-| `id` | bigint | 待补 · 可空 |
-| `user_id` | bigint | 待补 |
-| `auth_module` | varchar(190) | 待补 |
-| `auth_id` | varchar(190) | 待补 · 可空 |
-| `created` | datetime | 待补 |
-| `o_auth_access_token` | text | 待补 · 可空 |
-| `o_auth_refresh_token` | text | 待补 · 可空 |
-| `o_auth_token_type` | text | 待补 · 可空 |
-| `o_auth_expiry` | datetime | 待补 · 可空 |
-| `o_auth_id_token` | text | 待补 · 可空 |
-| `id` | bigint | 待补 · 可空 |
-| `user_id` | bigint | 待补 |
-| `auth_module` | varchar(190) | 待补 |
-| `auth_id` | varchar(190) | 待补 · 可空 |
-| `created` | datetime | 待补 |
-| `o_auth_access_token` | text | 待补 · 可空 |
-| `o_auth_refresh_token` | text | 待补 · 可空 |
-| `o_auth_token_type` | text | 待补 · 可空 |
-| `o_auth_expiry` | datetime | 待补 · 可空 |
-| `o_auth_id_token` | text | 待补 · 可空 |
-| `on` | grafana | 待补 · 可空 |
 
 ## 主键 / 索引
 - 主键:`id`

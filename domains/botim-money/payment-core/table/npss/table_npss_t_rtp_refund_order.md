@@ -1,7 +1,7 @@
 ---
 id: tbl_npss_t_rtp_refund_order
 object_type: Table
-name: Withdraw reference no unique (t_rtp_refund_order)
+name: rtp refund order (t_rtp_refund_order)
 aliases: [t_rtp_refund_order, npss.t_rtp_refund_order]
 domain: payment-core
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# Withdraw reference no unique (t_rtp_refund_order)
+# rtp refund order (t_rtp_refund_order)
 
 ## 用途
-物理表 `npss.t_rtp_refund_order`,主键 `rtp_refund_order_id`。Withdraw reference no unique。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `npss.t_rtp_refund_order`,主键 `rtp_refund_order_id`。rtp refund order。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -52,6 +52,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`rtp_refund_order_id`
+- `uk_withdraw_reference_no`:reference_no (UNIQUE)
 - `idx_rtp_refund_id_sct`:id_sct
 - `idx_rtp_refund_order_id`:rtp_order_id
 

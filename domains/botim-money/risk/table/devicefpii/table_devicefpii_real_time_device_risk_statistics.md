@@ -1,24 +1,24 @@
 ---
-id: tbl_devicefp_real_time_device_risk_history_statistics
+id: tbl_devicefpii_real_time_device_risk_statistics
 object_type: Table
-name: real_time_device_risk_history_statistics (real_time_device_risk_history_statistics)
-aliases: [real_time_device_risk_history_statistics, devicefp.real_time_device_risk_history_statistics]
+name: real_time_device_risk_statistics (real_time_device_risk_statistics)
+aliases: [real_time_device_risk_statistics, devicefpii.real_time_device_risk_statistics]
 domain: risk
 status: active
 owner: xinwei.cao,dewen.li
 reviewer: xinwei.cao,dewen.li
 last_reviewed_at: '2026-07-02'
 source_type: DB DDL
-source_ref: devicefp schema DDL
-tags: [risk, devicefp]
+source_ref: devicefpii schema DDL
+tags: [risk, devicefpii]
 sensitivity: normal
 related_services: []
 ---
 
-# real_time_device_risk_history_statistics (real_time_device_risk_history_statistics)
+# real_time_device_risk_statistics (real_time_device_risk_statistics)
 
 ## 用途
-物理表 `devicefp.real_time_device_risk_history_statistics`,主键 `id`。(DDL 未提供表注释)。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `devicefpii.real_time_device_risk_statistics`,主键 `id`。(DDL 未提供表注释)。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -30,14 +30,7 @@ related_services: []
 | --- | --- | --- |
 | `id` | bigint | 待补 · 可空 |
 | `app_id` | varchar(40) | Id |
-| `web_hlb` | int(8) | 待补 |
-| `web_ce` | int(8) | cookie |
-| `web_np_diff_ua` | int(8) | ua |
-| `web_tamper_res` | int(8) | 待补 |
-| `web_tamper_cd` | int(8) | 待补 |
-| `web_h5_is_proxy` | int(8) | [web] |
-| `web_h5_emulator` | int(8) | [web] |
-| `web_h5_debug` | int(8) | [web]debug |
+| `record_time` | varchar(255) | :"2017-09-11 09:11" |
 | `ios_hook` | int(8) | [ios]HOOK |
 | `ios_jailbreak` | int(8) | [ios] |
 | `ios_inject` | int(8) | [ios] |
@@ -57,7 +50,6 @@ related_services: []
 | `android_is_vpn` | int(8) | [android]VPN |
 | `android_is_proxy` | int(8) | [android] |
 | `android_is_frame_attack` | int(8) | [android] |
-| `web_other` | int(8) | [web] |
 | `android_other` | int(8) | [android] |
 | `ios_other` | int(8) | [ios] |
 | `req_num` | int(8) | 待补 |
@@ -68,7 +60,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`id`
-- `un_create_time_app_id`:create_time, app_id (UNIQUE)
+- `un_record_time_app_id`:record_time, app_id (UNIQUE)
 
 ## 校验点(QA 关注)
 - **时间字段**:创建/更新时间;按时间过滤走对应索引。

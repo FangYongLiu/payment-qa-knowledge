@@ -1,7 +1,7 @@
 ---
 id: tbl_collection_t_olr_finance_record
 object_type: Table
-name: 流水号索引 (t_olr_finance_record)
+name: 财务流水表 (t_olr_finance_record)
 aliases: [t_olr_finance_record, collection.t_olr_finance_record]
 domain: risk
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 流水号索引 (t_olr_finance_record)
+# 财务流水表 (t_olr_finance_record)
 
 ## 用途
-物理表 `collection.t_olr_finance_record`,主键 `id`。流水号索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `collection.t_olr_finance_record`,主键 `id`。财务流水表。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -43,6 +43,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`id`
+- `idx_reference`:reference (UNIQUE)
 - `idx_repay_date`:repay_date
 
 ## 校验点(QA 关注)

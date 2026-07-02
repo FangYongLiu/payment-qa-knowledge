@@ -1,7 +1,7 @@
 ---
 id: tbl_npss_t_qr_refund_order
 object_type: Table
-name: Qr refund ref no unique (t_qr_refund_order)
+name: qr refund order (t_qr_refund_order)
 aliases: [t_qr_refund_order, npss.t_qr_refund_order]
 domain: payment-core
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# Qr refund ref no unique (t_qr_refund_order)
+# qr refund order (t_qr_refund_order)
 
 ## 用途
-物理表 `npss.t_qr_refund_order`,主键 `qr_refund_order_id`。Qr refund ref no unique。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `npss.t_qr_refund_order`,主键 `qr_refund_order_id`。qr refund order。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -48,6 +48,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`qr_refund_order_id`
+- `uk_qr_rft_reference_no`:reference_no (UNIQUE)
 - `idx_qr_rft_id_sct`:id_sct
 
 ## 校验点(QA 关注)

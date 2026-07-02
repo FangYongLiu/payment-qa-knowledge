@@ -1,7 +1,7 @@
 ---
 id: tbl_escrow_t_account_flow
 object_type: Table
-name: 订单号唯一索引 (t_account_flow)
+name: 账户明细流水表 (t_account_flow)
 aliases: [t_account_flow, escrow.t_account_flow]
 domain: deposit-vam
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 订单号唯一索引 (t_account_flow)
+# 账户明细流水表 (t_account_flow)
 
 ## 用途
-物理表 `escrow.t_account_flow`,主键 `account_flow_id`。订单号唯一索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `escrow.t_account_flow`,主键 `account_flow_id`。账户明细流水表。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -55,6 +55,8 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`account_flow_id`
+- `uk_fund_id`:fund_id (UNIQUE)
+- `uk_instOrderNo_tradeType`:inst_order_no, trade_type (UNIQUE)
 - `idx_accountBatchId`:account_batch_id
 - `idx_accountDate`:account_date
 - `idx_paymentOrderNo`:payment_order_no

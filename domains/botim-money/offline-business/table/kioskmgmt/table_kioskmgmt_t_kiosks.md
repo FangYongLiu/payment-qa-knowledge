@@ -1,7 +1,7 @@
 ---
 id: tbl_kioskmgmt_t_kiosks
 object_type: Table
-name: Ensures kiosk_id + vendor_name combination is unique (t_kiosks)
+name: Production kiosk location data following DDD principles (t_kiosks)
 aliases: [t_kiosks, kioskmgmt.t_kiosks]
 domain: offline-business
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# Ensures kiosk_id + vendor_name combination is unique (t_kiosks)
+# Production kiosk location data following DDD principles (t_kiosks)
 
 ## 用途
-物理表 `kioskmgmt.t_kiosks`,主键 `entity_id`。Ensures kiosk_id + vendor_name combination is unique。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `kioskmgmt.t_kiosks`,主键 `entity_id`。Production kiosk location data following DDD principles。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -49,6 +49,7 @@ related_services: []
 
 ## 主键 / 索引
 - 主键:`entity_id`
+- `uk_kiosk_vendor`:kiosk_id, vendor_name (UNIQUE)
 - `idx_location_lat_lon`:latitude, longitude
 - `idx_merchant`:payby_merchant_id
 - `idx_vendor`:vendor_name

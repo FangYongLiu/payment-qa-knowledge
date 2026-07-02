@@ -1,7 +1,7 @@
 ---
 id: tbl_creditinvoice_t_tax_note
 object_type: Table
-name: 减免记录id/退票id 与 ref_invoice_id 组成唯一索引 (t_tax_note)
+name: note明细表 (t_tax_note)
 aliases: [t_tax_note, creditinvoice.t_tax_note]
 domain: lending
 status: active
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: []
 ---
 
-# 减免记录id/退票id 与 ref_invoice_id 组成唯一索引 (t_tax_note)
+# note明细表 (t_tax_note)
 
 ## 用途
-物理表 `creditinvoice.t_tax_note`,主键 `id`。减免记录id/退票id 与 ref_invoice_id 组成唯一索引。业务语义细节**待补**(表结构来自 DDL)。
+物理表 `creditinvoice.t_tax_note`,主键 `id`。note明细表。业务语义细节**待补**(表结构来自 DDL)。
 
 ## 关联关系
 - **所属服务**:待补。
@@ -44,6 +44,7 @@ related_services: []
 ## 主键 / 索引
 - 主键:`id`
 - `uk_dii`:deduct_income_id (UNIQUE)
+- `uk_ron_rii`:ref_busi_no, ref_invoice_id (UNIQUE)
 - `idx_rii`:ref_invoice_id
 
 ## 校验点(QA 关注)
