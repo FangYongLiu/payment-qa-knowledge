@@ -1,4 +1,5 @@
-# 业务域注册表。product = 产品线(payment 为首个已填充产品线;botim-app 等其它产品线的域在此登记)。
+# 业务域注册表。business_line = 业务线(botim-core: IM/VoIP/Ads/MiniProgram;botim-money: 支付/金融)。
+# 目录两级:domains/<business_line>/<domain>/。owner=知识/QA 负责人,dev_owner=研发负责人。
 # owner/reviewer = 知识/QA 负责人;dev_owner = 研发团队负责人(能力归域、团队归 dev_owner)。
 # 变更:portal-operations→merchant-management;quantix→lending;channel→payment-tool;
 # member→activation(含 KYC);新增 fundout/deposit-vam/settlement;删除 service-catalog;
@@ -8,7 +9,7 @@
 - id: domain_online_business
   object_type: Domain
   name: online-business
-  product: payment
+  business_line: botim-money
   domain: online-business
   status: active
   owner: fangyong.liu
@@ -19,7 +20,7 @@
 - id: domain_offline_business
   object_type: Domain
   name: offline-business
-  product: payment
+  business_line: botim-money
   domain: offline-business
   status: active
   owner: xiaoqian.wei,wanmei.ding
@@ -30,7 +31,7 @@
 - id: domain_merchant_management
   object_type: Domain
   name: merchant-management
-  product: payment
+  business_line: botim-money
   aliases: [portal-operations, 商户管理, merchant-portal, cs-portal]
   domain: merchant-management
   status: active
@@ -45,7 +46,7 @@
 - id: domain_payment_core
   object_type: Domain
   name: payment-core
-  product: payment
+  business_line: botim-money
   domain: payment-core
   status: active
   owner: xiaoyan.zhou
@@ -56,7 +57,7 @@
 - id: domain_fundout
   object_type: Domain
   name: fundout
-  product: payment
+  business_line: botim-money
   domain: fundout
   status: active
   owner: xiaoyan.zhou
@@ -67,7 +68,7 @@
 - id: domain_deposit_vam
   object_type: Domain
   name: deposit-vam
-  product: payment
+  business_line: botim-money
   aliases: [fund-inflow, VAM, 资金入款, 虚拟账户]
   domain: deposit-vam
   status: active
@@ -79,7 +80,7 @@
 - id: domain_settlement
   object_type: Domain
   name: settlement
-  product: payment
+  business_line: botim-money
   aliases: [清结算, reconciliation, 对账, counter]
   domain: settlement
   status: active
@@ -92,7 +93,7 @@
 - id: domain_infrastructure
   object_type: Domain
   name: infrastructure
-  product: payment
+  business_line: botim-money
   aliases: [inf-basic, 基础支撑]
   domain: infrastructure
   status: active
@@ -104,7 +105,7 @@
 - id: domain_crypto
   object_type: Domain
   name: crypto
-  product: payment
+  business_line: botim-money
   aliases: [加密货币, cc]
   domain: crypto
   status: active
@@ -117,7 +118,7 @@
 - id: domain_payment_tool
   object_type: Domain
   name: payment-tool
-  product: payment
+  business_line: botim-money
   aliases: [channel, 渠道, Payment Tool, PT, CMF, Funds Channel]
   domain: payment-tool
   status: active
@@ -131,7 +132,7 @@
 - id: domain_wallet
   object_type: Domain
   name: wallet
-  product: payment
+  business_line: botim-money
   aliases: [Botim-wallet, Botim Money]
   domain: wallet
   status: active
@@ -143,7 +144,7 @@
 - id: domain_remittance
   object_type: Domain
   name: remittance
-  product: payment
+  business_line: botim-money
   domain: remittance
   status: active
   owner: lei.pan
@@ -154,7 +155,7 @@
 - id: domain_wps
   object_type: Domain
   name: wps
-  product: payment
+  business_line: botim-money
   aliases: [Payroll, 工资保护]
   domain: wps
   status: active
@@ -168,7 +169,7 @@
 - id: domain_risk
   object_type: Domain
   name: risk
-  product: payment
+  business_line: botim-money
   aliases: [Risk Control, GRC]
   domain: risk
   status: active
@@ -180,7 +181,7 @@
 - id: domain_lending
   object_type: Domain
   name: lending
-  product: payment
+  business_line: botim-money
   aliases: [quantix, SME Lending, BNPL, Pay Later]
   domain: lending
   status: active
@@ -192,7 +193,7 @@
 - id: domain_marketing
   object_type: Domain
   name: marketing
-  product: payment
+  business_line: botim-money
   aliases: [营销, coupon, promo, Loyalty]
   domain: marketing
   status: active
@@ -204,7 +205,7 @@
 - id: domain_card
   object_type: Domain
   name: card
-  product: payment
+  business_line: botim-money
   aliases: [发卡, Prepaid Card, issuing]
   domain: card
   status: active
@@ -218,7 +219,7 @@
 - id: domain_activation
   object_type: Domain
   name: activation
-  product: payment
+  business_line: botim-money
   aliases: [member, 会员, 身份, identity, KYC, 实名认证]
   domain: activation
   status: active
@@ -232,7 +233,7 @@
 - id: domain_compliance
   object_type: Domain
   name: compliance
-  product: payment
+  business_line: botim-money
   aliases: [合规, AML, Edit42]
   domain: compliance
   status: active
@@ -245,7 +246,7 @@
 - id: domain_bimo_confirmed
   object_type: Domain
   name: bimo-confirmed
-  product: meta
+  business_line: meta
   domain: bimo-confirmed
   status: active
   owner: 待补
@@ -253,3 +254,48 @@
   # 对话确认、经发布的权威知识
 
 # service-catalog 已删除(服务全部归类)。atlas 等上线再建。
+
+# ── Botim Core 业务线(IM/VoIP/Ads/MiniProgram)—— owner 待各团队认领 ──
+- id: domain_im
+  object_type: Domain
+  name: im
+  business_line: botim-core
+  domain: im
+  status: active
+  owner: 待补
+  reviewer: 待补
+  dev_owner: 待补
+  # 即时通讯
+
+- id: domain_voip
+  object_type: Domain
+  name: voip
+  business_line: botim-core
+  domain: voip
+  status: active
+  owner: 待补
+  reviewer: 待补
+  dev_owner: 待补
+  # 语音/视频通话
+
+- id: domain_ads
+  object_type: Domain
+  name: ads
+  business_line: botim-core
+  domain: ads
+  status: active
+  owner: 待补
+  reviewer: 待补
+  dev_owner: 待补
+  # 广告
+
+- id: domain_miniprogram
+  object_type: Domain
+  name: miniprogram
+  business_line: botim-core
+  domain: miniprogram
+  status: active
+  owner: 待补
+  reviewer: 待补
+  dev_owner: 待补
+  # 小程序

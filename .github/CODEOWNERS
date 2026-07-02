@@ -1,15 +1,20 @@
-# Code owners = the admins who must approve every change (add / edit / remove) before merge.
-# Works with branch protection on `main`:
-#   Settings → Branches → protect `main` → Require a pull request →
-#   Require review from Code Owners →  disallow direct pushes.
-# Then any PR (new knowledge, edits, or deletions) needs a Code Owner's approval to merge.
+# Code owners must approve every change (add / edit / remove) before it merges.
+# Works with the branch ruleset on `main` (Require a pull request → Require review from Code Owners),
+# so any PR is gated by the owner of the path it touches.
 #
-# Add / adjust admin GitHub usernames below. Everything (*) is owned by the admins so that
-# ALL knowledge changes are gated. (Optionally route per-domain to that domain's owner too.)
+# Routing is by business line: each line's QA lead owns its subtree; framework files are owned by the
+# repo admin. Set the real GitHub usernames as teams take ownership.
 
-* @Fangyong-Liu_astg
-# @add-more-admins-here
+# Framework / repo root — repo admin
+*                          @Fangyong-Liu_astg
 
-# Example per-domain review routing (uncomment + set GitHub usernames when ready):
-# /domains/activation/   @Fangyong-Liu_astg @activation-owner
-# /domains/payment-core/ @Fangyong-Liu_astg @payment-core-owner
+# botim-money (payment / fintech) — owned by the payment QA lead
+/domains/botim-money/      @Fangyong-Liu_astg
+
+# botim-core (Botim app: IM / VoIP / Ads / MiniProgram) — owned by the Botim QA lead
+# TODO: replace with the botim-core QA lead's GitHub username
+/domains/botim-core/       @Fangyong-Liu_astg
+
+# Optional finer routing to a specific domain's owner (uncomment + set usernames):
+# /domains/botim-money/activation/    @Fangyong-Liu_astg @activation-owner
+# /domains/botim-core/voip/           @voip-owner

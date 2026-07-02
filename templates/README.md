@@ -30,14 +30,17 @@ gets filled later by the owner. This is the single most important rule.
 | Reference | `reference_` | `reference_<name>.md` | A lookup table / dictionary page |
 
 - `id` is unique and **stable** — renaming a file never changes its `id`.
-- Files live under `domains/<domain>/<type>/`; `table/` nests one more level by database:
-  `domains/<domain>/table/<db>/`. `domain_<domain>.md` stays at the domain root as the entry point.
+- Files live under `domains/<business-line>/<domain>/<type>/`; `table/` nests one more level by
+  database: `domains/<business-line>/<domain>/table/<db>/`. `domain_<domain>.md` stays at the domain
+  root as the entry point.
 - **The folder is organisational only.** What binds an object to a domain is its `domain:`
-  frontmatter field, which **must equal its top-level folder name**.
-- **Product line.** Each domain belongs to a product line, declared once as `product` on the domain
-  in `index/domains.yaml` (e.g. `payment`, `botim-app`); `MAP.md` groups domains by it. Objects
-  inherit the product line from their domain — do not repeat `product` on every object. A new domain
-  is registered in `index/domains.yaml` (with its `product`) before its folder is created.
+  frontmatter field, which **must equal its own (leaf) folder name**; the folder above it is the
+  business line.
+- **Business line.** Each domain belongs to a business line, declared once as `business_line` on the
+  domain in `index/domains.yaml` (`botim-core` or `botim-money`); `MAP.md` groups domains by it.
+  Objects inherit the business line from their domain — do not repeat `business_line` on every
+  object. A new domain is registered in `index/domains.yaml` (with its `business_line`) before its
+  folder is created.
 
 ---
 
@@ -106,10 +109,10 @@ After adding an object, update the related files (both the `related_*` field and
 
 ## 5. Enriching a domain (repeatable playbook)
 Work by **data source**, one pass at a time; fill what each source gives and mark the rest `待补`.
-Every pass follows §2–§4 (template + relations + back-links). Sample domain: `domains/activation/`.
+Every pass follows §2–§4 (template + relations + back-links). Sample domain: `domains/botim-money/activation/`.
 
 1. **Skeleton and domain assignment** — create/assign the service objects; `dev_owner` = `Given.Surname`,
-   `owner` = domain lead (`index/domains.yaml`); file under `domains/<domain>/`, `domain` field = folder.
+   `owner` = domain lead (`index/domains.yaml`); file under `domains/<business-line>/<domain>/`, `domain` field = leaf folder.
 2. **Call graph (upstream/downstream)** — from real call traces, add `related_services` edges with
    frequency. Downstream = what this service calls; upstream = who calls it.
 3. **Tables** — from the database **schema DDL**, build `table_<db>_<table>` (columns / types / PK /
