@@ -5,3 +5,6 @@ removals alike. Never push to `main`.
 
 The full process, conventions, and governance are in **`docs/KB_ARCHITECTURE.md`**
 (§ How to update, § Governance).
+
+Per-business-line onboarding:
+- Botim app (`botim-core`) — `docs/CONTRIBUTING_BOTIM.md`

@@ -71,7 +71,7 @@ Authoritative service names and DB checkpoints per step live in each domain's `f
 The Botim app: instant messaging, voice/video calls, ads, and mini programs. Added by its teams
 under the same framework: register the domain in `index/domains.yaml` with `business_line: botim-core`,
 create `domains/botim-core/<domain>/` with a `domain_<domain>.md` entry, then fill it per
-`templates/README.md`.
+`templates/README.md`. Team onboarding: `docs/CONTRIBUTING_BOTIM.md`.
 
 ## botim-core domains (`domains/botim-core/`)
 | Domain | Scope | Owner (QA) | Status |
