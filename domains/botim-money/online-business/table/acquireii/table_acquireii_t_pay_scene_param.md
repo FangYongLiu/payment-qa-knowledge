@@ -1,83 +1,41 @@
 ---
 id: tbl_acquireii_t_pay_scene_param
 object_type: Table
+name: 支付场景参数表 (t_pay_scene_param)
+aliases: [t_pay_scene_param, acquireii.t_pay_scene_param]
 domain: online-business
 status: active
 owner: fangyong.liu
 reviewer: fangyong.liu
-last_reviewed_at: '2026-06-18'
-source_type: upload
-source_ref: tables/t_pay_scene_param.md
-tags:
-- KV表
-- 支付场景
-- 扩展参数
-subdomain: null
-module: null
+last_reviewed_at: '2026-07-02'
+source_type: DB DDL
+source_ref: acquireii schema DDL
+tags: [online-business, 收单, acquireii]
 sensitivity: normal
-name: 支付场景参数表
-aliases:
-- t_pay_scene_param
-related_services:
-- svc_acquireii
+related_services: [svc_acquireii]
 ---
 
-## 表用途
+# 支付场景参数表 (t_pay_scene_param)
 
-`acquireii.t_pay_scene_param`（支付场景参数表）以 KV（pkey/value）结构存储一笔订单的**支付场景相关扩展参数**。由于不同的 `pay_scene_code`（支付场景码）所需扩展参数差异较大，固定列无法穷举，故使用 KV 表灵活承载。
-
-典型场景与所需 pkey：
-- **PAYPAGE**（收银台跳转）：`token_url`、`redirect_url`、`result_url`
-- **DEEPLINK**（APP 唤起）：`app_scheme`
-- **ONETIME**（一次性卡令牌支付）：`card_token`
-- 通用可选：`notify_url`（异步通知）
-
-## 在交易链路中的位置
-
-下单（创建 `t_acquire_order`）阶段，根据请求中的 `pay_scene_code` 把对应场景需要的扩展参数拆解后写入本表；后续支付路由、跳转 URL 拼装、回跳/通知处理等环节会按 `global_id + pkey` 读取。
-
-```
-下单请求 → t_acquire_order(主单) ──┬─ t_pay_scene_param (本表, 场景KV参数)
-                                  ├─ t_payment_info  (支付信息)
-                                  ├─ t_card_info     (卡信息, ONETIME 等场景)
-                                  └─ t_channel_param (渠道侧参数)
-```
+## 用途
+物理表 `acquireii.t_pay_scene_param`,主键 `global_id, pkey`。支付场景参数。属收单服务 [[svc_acquireii]]。业务语义细节**待补**(表结构来自 DDL,用途需结合代码/文档补充)。
 
 ## 关联关系
-
-| 关联表 | 关系 | 关联键 | 说明 |
-|---|---|---|---|
-| `t_acquire_order` | N:1 | `global_id` | 一笔订单可对应多行 KV 参数；`pay_scene_code` 在主表上 |
-| `t_payment_info` | 同单关联 | `global_id` | 支付方式/状态信息，与场景参数共同决定支付走向 |
-| `t_card_info` | 同单关联 | `global_id` | ONETIME 场景的 `card_token` 通常对应卡信息记录 |
-| `t_channel_param` | 同单关联 | `global_id` | 渠道维度的扩展参数；与本表分别承载“场景维度 vs 渠道维度” |
-| `t_command_param` / `t_event_param` | 同体系 KV 表 | - | 指令/事件维度的 KV 参数，设计风格相同 |
+- **所属服务**:[[svc_acquireii]](= `related_services`)。
+- **谁读写它**:收单链路的服务 / 接口(由对方文档的 `related_tables` 声明,本表侧不重复)。
+- **哪些场景校验它**:待补。
 
 ## 关键列
+| 列 | 类型 | 说明 |
+| --- | --- | --- |
+| `global_id` | bigint | 通用指令id |
+| `pkey` | varchar(200) | 键 |
+| `value` | varchar(255) | 值 · 可空 |
 
-| 字段 | 类型 | 是否必填 | 说明 |
-|------|------|---------|------|
-| `global_id` | bigint | ✅ | 联合主键，对应 `t_acquire_order.global_id` |
-| `pkey` | varchar(200) | ✅ | 联合主键，参数键 |
-| `value` | varchar(255) |  | 参数值 |
+## 主键 / 索引
+- 主键:`global_id, pkey`
+- 无(仅主键)
 
-**常见 pkey**：`token_url`、`redirect_url`、`result_url`、`notify_url`、`card_token`、`app_scheme`。
-
-## 主键/索引
-
-| 索引名 | 字段 | 用途 |
-|--------|------|------|
-| PRIMARY | (`global_id`, `pkey`) | 联合主键，保证同单同 key 唯一 |
-
-## QA 落库检查要点
-
-1. **场景与 pkey 匹配性**：根据主表 `pay_scene_code` 校验本表是否写入了该场景应有的 pkey 集合：
-   - PAYPAGE → `token_url` / `redirect_url` / `result_url` 齐全
-   - DEEPLINK → `app_scheme` 必须存在
-   - ONETIME → `card_token` 必须存在，且与 `t_card_info` 一致
-   - 缺失关键 key 会直接导致支付页/跳转/扣款流程失败。
-2. **pkey 无 schema 约束**：表层不限制 key 名称，命名拼写错误（如 `redirectUrl` vs `redirect_url`）排查时需对照代码或业务文档逐一核对。
-3. **value 长度上限 255**：URL、token 等较长值需关注是否被截断；超长场景应评估改用其他存储或分段。
-4. **联合主键唯一性**：同一 `global_id + pkey` 不可重复写入；幂等下单/重试时需校验是否走 upsert 而非重复 insert。
-5. **与关联表一致性**：例如 ONETIME 的 `card_token` 应能在 `t_card_info` 中找到对应卡；`notify_url` 与 `t_acquire_order` 主表上的通知配置一致。
-6. **空值/脏数据**：`value` 允许为空，但业务关键 pkey 不应为空字符串。
+## 校验点(QA 关注)
+- **KV 结构**:本表为键值参数表(主键含 `pkey`),具体键集合随业务扩展、**待补**;不要假设固定列。
+- 更细的状态枚举、跨表关联与业务规则**待补**(需结合代码或业务文档)。

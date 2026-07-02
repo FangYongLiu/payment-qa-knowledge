@@ -1,8 +1,8 @@
 ---
-id: tbl_acquireii_t_inst_code_config
+id: tbl_acquireii_t_merchant_webhook_config
 object_type: Table
-name: 机构代码配置表 (t_inst_code_config)
-aliases: [t_inst_code_config, acquireii.t_inst_code_config]
+name: 商户 Webhook 配置表 (t_merchant_webhook_config)
+aliases: [t_merchant_webhook_config, acquireii.t_merchant_webhook_config]
 domain: online-business
 status: active
 owner: fangyong.liu
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: [svc_acquireii]
 ---
 
-# 机构代码配置表 (t_inst_code_config)
+# 商户 Webhook 配置表 (t_merchant_webhook_config)
 
 ## 用途
-物理表 `acquireii.t_inst_code_config`,主键 `id`。机构代码配置表。属收单服务 [[svc_acquireii]]。业务语义细节**待补**(表结构来自 DDL,用途需结合代码/文档补充)。
+物理表 `acquireii.t_merchant_webhook_config`,主键 `partner_id`。（DDL 未提供表注释）。属收单服务 [[svc_acquireii]]。业务语义细节**待补**(表结构来自 DDL,用途需结合代码/文档补充)。
 
 ## 关联关系
 - **所属服务**:[[svc_acquireii]](= `related_services`)。
@@ -28,16 +28,17 @@ related_services: [svc_acquireii]
 ## 关键列
 | 列 | 类型 | 说明 |
 | --- | --- | --- |
-| `id` | bigint | id · 可空 |
-| `inst_code` | varchar(32) | 机构代码 |
-| `partner_id` | varchar(32) | 发起方memberId |
-| `product_code` | varchar(32) | 产品码 |
-| `created_time` | timestamp(3) | 创建时间 |
+| `partner_id` | varchar(20) | merchant memberId |
+| `webhook_url` | varchar(255) | merchant default webhhokUrl |
+| `created_time` | timestamp(3) | create time |
+| `last_updated_time` | timestamp(3) | last update time |
+| `data_version` | bigint | data version |
 
 ## 主键 / 索引
-- 主键:`id`
-- `uk_icc_ic`:partner_id, product_code (UNIQUE)
+- 主键:`partner_id`
+- 无(仅主键)
 
 ## 校验点(QA 关注)
 - **时间字段**:`created_time`=入库、`last_updated_time`=最后更新;按时间过滤走对应索引,勿混用。
+- **乐观锁**:更新须带 `data_version`,并发场景校验版本递增、防覆盖。
 - 更细的状态枚举、跨表关联与业务规则**待补**(需结合代码或业务文档)。

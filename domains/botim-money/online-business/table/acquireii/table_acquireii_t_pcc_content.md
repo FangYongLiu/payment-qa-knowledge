@@ -1,8 +1,8 @@
 ---
-id: tbl_acquireii_t_unretryable_command
+id: tbl_acquireii_t_pcc_content
 object_type: Table
-name: 不可重试指令表 (t_unretryable_command)
-aliases: [t_unretryable_command, acquireii.t_unretryable_command]
+name: 支付授权凭证表 (t_pcc_content)
+aliases: [t_pcc_content, acquireii.t_pcc_content]
 domain: online-business
 status: active
 owner: fangyong.liu
@@ -15,10 +15,10 @@ sensitivity: normal
 related_services: [svc_acquireii]
 ---
 
-# 不可重试指令表 (t_unretryable_command)
+# 支付授权凭证表 (t_pcc_content)
 
 ## 用途
-物理表 `acquireii.t_unretryable_command`,主键 `id`。不可重试指令(分区)。属收单服务 [[svc_acquireii]]。业务语义细节**待补**(表结构来自 DDL,用途需结合代码/文档补充)。
+物理表 `acquireii.t_pcc_content`,主键 `global_id`。支付授权凭证。属收单服务 [[svc_acquireii]]。业务语义细节**待补**(表结构来自 DDL,用途需结合代码/文档补充)。
 
 ## 关联关系
 - **所属服务**:[[svc_acquireii]](= `related_services`)。
@@ -28,14 +28,14 @@ related_services: [svc_acquireii]
 ## 关键列
 | 列 | 类型 | 说明 |
 | --- | --- | --- |
-| `id` | bigint | id |
-| `parent_type` | varchar(50) | 订单类型 |
-| `parent_id` | bigint | 订单id |
-| `command` | varchar(50) | 指令 |
+| `global_id` | bigint | 全局id |
+| `pcc_final` | varchar(200) | 授权码字符串 |
+| `pay_method` | varchar(200) | 选择的支付渠道 · 可空 |
+| `risk_level` | varchar(200) | 风险级别 · 可空 |
 
 ## 主键 / 索引
-- 主键:`id`
-- `uk_urcmd_prt`:parent_id, parent_type, command (UNIQUE)
+- 主键:`global_id`
+- 无(仅主键)
 
 ## 校验点(QA 关注)
 - 更细的状态枚举、跨表关联与业务规则**待补**(需结合代码或业务文档)。
