@@ -3,13 +3,13 @@
 Guidance for AI agents reading and contributing to this repository.
 
 ## Navigation
-Read `MAP.md` to select a domain, open `domains/<domain>/domain_<domain>.md` for its index, then
+Read `MAP.md` to select a domain, open `domains/<business-line>/<domain>/domain_<domain>.md` for its index, then
 open only the relevant files. Follow `related_*` and `[[links]]`. Resolve terms via
 `docs/GLOSSARY.md`. Grep by the stable prefixes (`svc_ api_ tbl_ flow_ scn_ ts_`) and `aliases`.
 Do not load the entire repository.
 
 ## Authoring
-- One taxonomy: product line → business domain, under `domains/<domain>/` (current set in `MAP.md`; each domain declares a `product`). New content lands in an existing domain; a new domain is registered in `index/domains.yaml` with its `product` first.
+- Two levels: business line → business domain, under `domains/<business-line>/<domain>/` (current set in `MAP.md`; `botim-core` and `botim-money`). New content lands in an existing domain; a new domain is registered in `index/domains.yaml` with its `business_line` first.
 - Each typed object is one markdown file with frontmatter, per `templates/README.md`.
 - `name` is human-readable; code names and acronyms go in `aliases`.
 - `related_*` reference existing ids only; back-fill the other side when adding an object.
