@@ -1,0 +1,49 @@
+---
+id: tbl_bps_t_corp_invoice_config
+object_type: Table
+name: corporate invoice configuration (t_corp_invoice_config)
+aliases: [t_corp_invoice_config, bps.t_corp_invoice_config]
+domain: wps
+status: active
+owner: xinwei.cao
+reviewer: xinwei.cao
+last_reviewed_at: '2026-07-02'
+source_type: DB DDL
+source_ref: bps schema DDL
+tags: [wps, bps]
+sensitivity: normal
+related_services: []
+---
+
+# corporate invoice configuration (t_corp_invoice_config)
+
+## 用途
+物理表 `bps.t_corp_invoice_config`,主键 `id`。corporate invoice configuration。业务语义细节**待补**(表结构来自 DDL)。
+
+## 关联关系
+- **所属服务**:待补。
+- **谁读写它**:相关服务 / 接口(由对方文档 `related_tables` 声明)。
+- **哪些场景校验它**:待补。
+
+## 关键列
+| 列 | 类型 | 说明 |
+| --- | --- | --- |
+| `id` | varchar(32) | ulid |
+| `merchant_id` | varchar(32) | merchant id |
+| `short_code` | varchar(16) | short code |
+| `invoice_account_no` | varchar(32) | invoice account no |
+| `fee_code_id` | varchar(32) | fee code id |
+| `invoice_generation_date` | datetime | invoice generation date |
+| `invoice_payment_due_date` | datetime | invoice payment due date |
+| `fun_restriction_exemption_days` | int | fun restriction exemption days |
+| `status` | varchar(10) | status |
+| `create_at` | timestamp | create time · 可空 |
+| `update_at` | timestamp | update time · 可空 |
+
+## 主键 / 索引
+- 主键:`id`
+- 无(仅主键)
+
+## 校验点(QA 关注)
+- **状态字段**:`status` 合法枚举与流转规则需结合代码/业务文档核对(**待补**)。
+- 业务语义、状态枚举、跨表关联**待补**(需结合代码或业务文档)。
