@@ -1,0 +1,46 @@
+---
+id: tbl_bill_t_bill_id_config
+object_type: Table
+name: billId组成配置 (t_bill_id_config)
+aliases: [t_bill_id_config, bill.t_bill_id_config]
+domain: payment-core
+status: active
+owner: xiaoyan.zhou
+reviewer: xiaoyan.zhou
+last_reviewed_at: '2026-07-02'
+source_type: DB DDL
+source_ref: bill schema DDL
+tags: [payment-core, bill]
+sensitivity: normal
+related_services: []
+---
+
+# billId组成配置 (t_bill_id_config)
+
+## 用途
+物理表 `bill.t_bill_id_config`,主键 `id`。billId组成配置。业务语义细节**待补**(表结构来自 DDL)。
+
+## 关联关系
+- **所属服务**:待补。
+- **谁读写它**:相关服务 / 接口(由对方文档 `related_tables` 声明)。
+- **哪些场景校验它**:待补。
+
+## 关键列
+| 列 | 类型 | 说明 |
+| --- | --- | --- |
+| `id` | int | 主键Id · 可空 |
+| `biz_product_code` | varchar(32) | 业务产品码 · 可空 |
+| `generic_role` | varchar(32) | 统一角色：payer,payee · 可空 |
+| `generic_payment_type` | varchar(32) | 统一支付方式：pay,refund · 可空 |
+| `actual_role` | varchar(32) | 实际角色 · 可空 |
+| `actual_payment_type` | varchar(32) | 实际支付方式 · 可空 |
+| `create_time` | timestamp | 创建时间 |
+| `update_time` | timestamp | 修改时间 |
+
+## 主键 / 索引
+- 主键:`id`
+- `uk_bizProductCode_role_payemntType`:biz_product_code, generic_role, generic_payment_type (UNIQUE)
+
+## 校验点(QA 关注)
+- **时间字段**:创建/更新时间;按时间过滤走对应索引。
+- 业务语义、状态枚举、跨表关联**待补**(需结合代码或业务文档)。
