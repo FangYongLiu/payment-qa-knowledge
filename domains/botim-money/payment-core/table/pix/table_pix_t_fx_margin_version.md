@@ -1,10 +1,10 @@
 ---
 id: tbl_pix_t_fx_margin_version
 object_type: Table
-domain: card
+domain: payment-core
 status: active
-owner: unassigned
-reviewer: unassigned
+owner: xiaoyan.zhou
+reviewer: xiaoyan.zhou
 last_reviewed_at: '2026-06-20'
 source_type: wiki_image
 source_ref: wiki_image:3ba2b4cb-ed33-4ef7-b5cb-0b2b6210e1e9

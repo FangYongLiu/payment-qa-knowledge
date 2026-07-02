@@ -1,10 +1,10 @@
 ---
 id: api_pix_mpc_parse
 object_type: API
-domain: card
+domain: payment-core
 status: active
-owner: unassigned
-reviewer: unassigned
+owner: xiaoyan.zhou
+reviewer: xiaoyan.zhou
 last_reviewed_at: '2026-06-20'
 source_type: wiki
 source_ref: confluence:PMDPayment/517832723
