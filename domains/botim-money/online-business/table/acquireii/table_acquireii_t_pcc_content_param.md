@@ -5,10 +5,10 @@ name: 授权代码参数表 (acquireii.t_pcc_content_param)
 aliases:
 - t_pcc_content_param
 - acquireii.t_pcc_content_param
-domain: payment-core
+domain: online-business
 status: active
-owner: xiaoyan.zhou
-reviewer: UNREVIEWED
+owner: fangyong.liu
+reviewer: fangyong.liu
 last_reviewed_at: '2026-06-25'
 source_type: upload
 source_ref: tables/t_pcc_content_param.md
@@ -30,7 +30,7 @@ related_scenarios: []
 ## 关联关系
 
 - **所属服务**：[[svc_acquireii]]（= frontmatter `related_services`）
-- **关联表**：`t_pcc_content`（主表，N:1，通过 `global_id` 关联；该主表尚无 typed 对象，待补）
+- **关联表**：[[tbl_acquireii_t_pcc_content]]（授权凭证主表，N:1，通过 `global_id` 关联）
 
 ## 关键列
 
