@@ -16,7 +16,6 @@ aliases: [gp008_acs]
 related_services: []
 related_scenarios: [scn_online_business_direct_pay, scn_online_business_pre_auth]
 related_tables:
-- tbl_acs_db
 - tbl_acs_leaf_alloc
 - tbl_acs_t_api_config
 - tbl_acs_t_api_mgr
@@ -70,7 +69,7 @@ related_tables:
 wechat-channel, pbs, iso8583-gateway, fundout, tradeii, marketing-event
 
 ## 涉及的 API / 数据库表
-**读写的表:** [[tbl_acs_db]] 网关库(acs)核心表
+**读写的表:** 网关库 `acs` 各表(见 `risk/table/acs/`)
 
 ## 参与的业务场景(cgs 回归)
 - §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）

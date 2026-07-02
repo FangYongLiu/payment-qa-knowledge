@@ -37,8 +37,7 @@ related_tables: []
 acquireii
 
 ## 涉及的 API / 数据库表
-**读写的表:** [[tbl_device_apply_order]] 设备申请订单表、[[tbl_device_db]] 设备库(device)核心表
-
+**读写的表:** [[tbl_device_apply_order]] 设备申请订单表
 ## 关键方法 / 入口
 - 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。
 

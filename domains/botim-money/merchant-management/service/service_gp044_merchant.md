@@ -120,8 +120,7 @@ merchant-frontend, merchant-fundout, cashierii, mssii, fundout, device
 
 ## 涉及的 API / 数据库表
 **暴露 / 相关 API:** [[api_merchant_bizopen_wps]] 商户开通WPS接口、[[api_merchant_apply_add]] 商户申请新增接口
-**读写的表:** [[tbl_merchant_device]] 商户设备关系表、[[tbl_merchant_webhook_config]] 商户Webhook配置表、[[tbl_merchant_db]] 商户库(merchant)核心表
-
+**读写的表:** [[tbl_merchant_device]] 商户设备关系表、[[tbl_merchant_webhook_config]] 商户Webhook配置表
 ## 参与的业务场景(cgs 回归)
 - §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）
 - §2. 收银台 / 收银（`test_bpg_paypage` 收银侧、cashier 用例）
