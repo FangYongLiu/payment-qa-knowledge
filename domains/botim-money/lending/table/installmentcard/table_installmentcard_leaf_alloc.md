@@ -1,0 +1,43 @@
+---
+id: tbl_installmentcard_leaf_alloc
+object_type: Table
+name: leaf_alloc (leaf_alloc)
+aliases: [leaf_alloc, installmentcard.leaf_alloc]
+domain: lending
+status: active
+owner: Xiaopei.Yan
+reviewer: Xiaopei.Yan
+last_reviewed_at: '2026-07-02'
+source_type: DB DDL
+source_ref: installmentcard schema DDL
+tags: [lending, installmentcard]
+sensitivity: normal
+related_services: []
+---
+
+# leaf_alloc (leaf_alloc)
+
+## 用途
+物理表 `installmentcard.leaf_alloc`,主键 `biz_tag`。(DDL 未提供表注释)。业务语义细节**待补**(表结构来自 DDL)。
+
+## 关联关系
+- **所属服务**:待补。
+- **谁读写它**:相关服务 / 接口(由对方文档 `related_tables` 声明)。
+- **哪些场景校验它**:待补。
+
+## 关键列
+| 列 | 类型 | 说明 |
+| --- | --- | --- |
+| `biz_tag` | varchar(128) | sequence name |
+| `max_id` | bigint | current sequence maximum value |
+| `step` | int | cache count, generally configured as 10 for tables, 200+ for order tables, depends on order volume |
+| `description` | varchar(256) | description · 可空 |
+| `update_time` | timestamp | update time |
+
+## 主键 / 索引
+- 主键:`biz_tag`
+- 无(仅主键)
+
+## 校验点(QA 关注)
+- **时间字段**:创建/更新时间;按时间过滤走对应索引。
+- 业务语义、状态枚举、跨表关联**待补**(需结合代码或业务文档)。
