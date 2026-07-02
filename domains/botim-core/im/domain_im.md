@@ -5,8 +5,8 @@ name: im
 business_line: botim-core
 domain: im
 status: active
-owner: 待补
-reviewer: 待补
+owner: kejun.liu
+reviewer: kejun.liu
 dev_owner: 待补
 tags: [botim-core, im]
 related_services: []
@@ -14,7 +14,7 @@ related_services: []
 
 # im(即时通讯 (Instant Messaging))
 
-> 域入口。Botim Core 业务线 · 即时通讯 (Instant Messaging)。owner 待补(由 Botim Core im QA 团队认领)。
+> 域入口。Botim Core 业务线 · 即时通讯 (Instant Messaging)。owner kejun.liu(Botim QA lead;可再分派给 im QA 团队认领)。
 
 ## 概述
 待补 —— 本域范围、核心能力、边界由 Botim Core im 团队按 `templates/README.md` 填充。
