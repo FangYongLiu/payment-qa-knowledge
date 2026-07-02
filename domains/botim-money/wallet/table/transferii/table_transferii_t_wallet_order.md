@@ -3,7 +3,7 @@ id: tbl_transferii_t_wallet_order
 object_type: Table
 name: 钱包订单主表 (t_wallet_order)
 aliases: [t_wallet_order, Wallet Order]
-domain: online-business
+domain: wallet
 status: active
 owner: fangyong.liu
 reviewer: fangyong.liu
@@ -11,7 +11,7 @@ last_reviewed_at: '2026-06-25'
 source_type: wiki
 source_ref: wiki_image:654d5bef-1e1a-485d-a44b-c83918b7165b
 tags: [transferii, send-money, wallet-order]
-related_services: []
+related_services: [svc_transfer]
 related_scenarios: []
 ---
 
@@ -20,7 +20,7 @@ related_scenarios: []
 ## 用途
 位于 `transferii` schema,是 Send Money(Wallet Redesign)数据模型的核心订单主表。一笔 wallet_order 对应多个参与方订单([[tbl_transferii_t_party_order]])、收款凭证([[tbl_transferii_t_order_permit]])与取消记录([[tbl_transferii_t_cancel_order]])。流程见 [[flow_wallet_send_money]]。
 
-> 注:本表所属服务为 transfer 转账服务(对象待补),故 `related_services` 暂空。
+> 所属服务:[[svc_transfer]](wallet 域个人转账)。
 
 ## 关联关系
 - **所属服务**:transfer(待补,未建 Service 对象)
