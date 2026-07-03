@@ -46,14 +46,19 @@ payment
 - §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
-- **读写的表**:待补
+- **暴露/相关 API**:被 [[svc_payment]] 调(入账记账);清算后台操作(渠道订单管理/置结果/审核/退票)。查渠道账户 `Counter=>Payment ChannelAccount`。
+- **读写的表**:清算/审核/渠道账户表(具体对象待补)。
 
-## 关键方法 / 入口
-- 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。
+## 关键方法 / 入口(UAT 实测)
+- **入账记账**:被 payment 调,记账入账。
+- **清算后台(人工运营)**:`收到请求 auditId=<...>`;渠道 → 订单管理 → **置结果**(成功/失败)→ 审核列表确认;**退票**:申请退票 → 审核 → payment 执行 `出款退票-退票[551]`。
+- 查渠道账户:`Counter=>Payment ChannelAccount response`。
 
-## 测试要点 / 排障 / 常见问题
-- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
+## 测试要点 / 排障 / 常见问题(UAT 实测)
+- **处理中出款人工处理**:渠道返回失败/无结果时订单保持 process,经 Counter **置结果 + 审核**推终态(置失败则退款给商户);完整 playbook 见 [[ts_fundout_stuck_in_process]]。
+- **退票**:Counter 申请退票 → 审核 → payment `[551]`;核对账户余额入账与订单状态一致。
+- **怎么测/定位**:模拟渠道失败(金额区间/有效期 Mock,见 [[reference_fundout_channel_mock_rules]])→ 造 process 单 → Counter 置结果 → 验证 tradeii/Acquire 状态联动 + 资金回退。
+- 与 [[svc_reconciliation]] 对账勾稽:清算文件有交易但系统流水 process → 对账差异 → 人工确认。
 
 ## 相关流程 / 场景 / 排障(反向)
 本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):

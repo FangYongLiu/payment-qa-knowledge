@@ -58,8 +58,11 @@ remittance, pfs-payment, reconciliation, credit-business, merchant-frontend, tra
 ## 关键方法 / 入口
 queryAccountById, queryMemberIntegratedInfo, openAccount, queryAccountByMemberId, checkPassword, queryBeneficiaryConfig
 
-## 测试要点 / 排障 / 常见问题
-- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
+## 测试要点 / 排障 / 常见问题(UAT 实测)
+- **账户门面 + 路由**:`MemberIntegratedIdRequest`(查会员)、`AccountRequest`/`AccountIdRequest`(查账户,accountId 如 784…)→ **路由到 dpmAccountClient**([[svc_dpm_manager]]);记账下沉 [[svc_dpm_accounting]](调用量 340 万+,账务主干)。
+- **支付密码**:`checkPassword`——余额支付/AutoDebit 需支付密码校验(收银台 `passwordRequired=Y`)。
+- **绑卡落库**:直连/绑卡成功后落 [[tbl_member_tr_bank_account]](`OUT_ACCOUNT_TOKEN`=cardToken,`STATUS=1`);解密 `DecipherInfoRequest`。
+- **怎么测/定位**:按 `MEMBER_ID`+`OUT_ACCOUNT_TOKEN` 查绑卡有效性;余额问题分清 member(账户门面)→ dpm-manager(账户主数据)→ dpm-accounting(入账)三层。
 
 ## 相关流程 / 场景 / 排障(反向)
 本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):

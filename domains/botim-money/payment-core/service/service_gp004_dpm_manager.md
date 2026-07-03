@@ -37,14 +37,17 @@ pfs-payment, reconciliation, payment
 - §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
-- **读写的表**:待补
+- **暴露/相关 API**:Dubbo `[APP-->DPMV2]` 账户查询/管理:`GetMemberAccountListReq`、`GetMemberAccountReq`(按 accountNo)。被 [[svc_pfs_payment]]/[[svc_payment]]/[[svc_reconciliation]]/[[svc_member]] 调。
+- **读写的表**:`T_DPM_ACCOUNT_CRL_DEF`(账户控制/余额定义)等 DPM 账户表(具体对象待补)。
 
-## 关键方法 / 入口
-- 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。
+## 关键方法 / 入口(UAT 实测)
+- `[APP-->DPMV2]获取账户信息请求:accountNo=<784…>` → `开始查询 T_DPM_ACCOUNT_CRL_DEF 表` → 返回账户信息;[[svc_member]] 查账户时 `路由到 dpmAccountClient` 命中本服务。
+- 账户号格式:`784200100…`(DPM V2 账户号)。
 
-## 测试要点 / 排障 / 常见问题
-- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
+## 测试要点 / 排障 / 常见问题(UAT 实测)
+- **职责边界**:dpm-manager = 账户**主数据/查询**(账户存在性、余额定义);[[svc_dpm_accounting]] = **入账**(改余额)。定位余额问题先分清"查不到账户(manager)"vs"入账未更新(accounting)"。
+- **怎么测/定位**:按 `accountNo`(784…)查 `T_DPM_ACCOUNT_CRL_DEF`;member→dpm 路由(`dpmAccountClient`)是否命中。
+- 账务链:[[svc_member]](账户门面)→ dpm-manager(账户主数据)→ [[svc_dpm_accounting]](入账)。
 
 ## 相关流程 / 场景 / 排障(反向)
 本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):
