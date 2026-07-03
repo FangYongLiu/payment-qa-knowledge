@@ -1,0 +1,57 @@
+---
+id: reference_risk_control_admin_ui_overview
+object_type: Reference
+name: 风控管理后台界面总览
+aliases: [risk-control-admin-ui-overview]
+domain: risk
+status: active
+owner: xinwei.cao,dewen.li
+reviewer: xinwei.cao,dewen.li
+source_type: wiki
+source_ref: wiki_image:336bb933-ff22-47e5-856b-45c17bd9f541
+tags: [risk, wiki-overview]
+related_services: []
+related_tables: []
+---
+
+
+# 风控管理后台界面总览
+
+风控管理后台是用于配置与监控风控数据接入、决策、策略与查询的 Web 管理界面，本页梳理顶部导航结构以及"数据接入"模块的菜单组成。
+
+## 顶部导航
+
+从左至右依次为以下入口：
+
+- Dashboard
+- 数据接入
+- 决策数据
+- 流量数据
+- 策略配置
+- 数据查询
+- 审核记录
+- 日…（截图未完整显示）
+
+## 数据接入 子菜单
+
+"数据接入"展开后包含 6 个子项：
+
+1. 接入点管理
+2. 接入点统计
+3. 数据模型
+4. 外部接口管理
+5. 外部数据库管理
+6. 定时任务
+
+## 接入点管理 页面要素
+
+进入"接入点管理"后，页面提供以下筛选与列表能力：
+
+- **业务类型** 过滤器：以蓝色胶囊按钮形式呈现，可见项包含 `…欺诈`、`运营开关`、`登录`、`支付`。
+- **标签** 过滤器：可见标签 `IP异常`。
+- 分页控件：`每页显示 25`。
+- 结果表格表头（部分可见）：
+  - 接入点编号
+  - …点名称（接入点名称）
+  - 数据来源
+  - 数据批量类（截断）
