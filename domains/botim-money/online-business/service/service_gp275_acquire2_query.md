@@ -23,23 +23,21 @@ related_tables: []
 > 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp275` · domain=`online-business`。
 
 ## 作用
-(本窗口未观测到该服务的运行时活动,作用待业务补充。)
+**收单查询(读侧)**服务(gp275):承接 acquire2 的**查询类**请求(订单/退款查询),与写侧 [[svc_acquireii]] 读写分离。对应 `/sgs/api/acquire2/getOrder`、`/refund/getOrder` 等查单接口后端。
 
 ## 系统中的位置
+- 功能层:收单业务线(查询读侧)
 - 业务域:`online-business`
 
 ## 关联关系
-(本窗口未观测到与其它服务的调用关系)
+读侧查询,与写侧 [[svc_acquireii]] 共库/读写分离;查单入口经 [[svc_sgs]] 网关。相关 API:[[api_sgs_acquire_get_order]] / [[api_sgs_acquire_refund_get_order]]。
 
-## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
-- **读写的表**:待补
-
-## 关键方法 / 入口
-- 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。
+## 关键方法 / 入口(UAT 实测)
+- 近7d ~6.6k docs;`ExceptionInterceptor`(统一异常)+ Zookeeper/Dubbo(`ClientCnxn`)注册。方法级(具体 query facade)**待补**(本窗口未抽到)。
 
 ## 测试要点 / 排障 / 常见问题
-- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
+- 查单一致性:getOrder / refund/getOrder 返回与写侧订单状态一致;merchantOrderNo / orderNo 二选一。
+- 读写分离下的**查询延迟**边界(刚下单立即查)。
 
 ## 相关流程 / 场景 / 排障(反向)
 本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):

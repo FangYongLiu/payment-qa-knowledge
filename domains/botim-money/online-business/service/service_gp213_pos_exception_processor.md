@@ -23,23 +23,22 @@ related_tables: []
 > 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp213` · domain=`online-business`。
 
 ## 作用
-(本窗口未观测到该服务的运行时活动,作用待业务补充。)
+**POS 异常订单处理**服务(gp213):处理线下 POS 收单产生的异常订单(`t_exception_order`),以定时 job 自动推进异常单的处理/冲正。
 
 ## 系统中的位置
+- 功能层:收单业务线(线下 POS 异常处理)
 - 业务域:`online-business`
+- 驱动方式:定时 job 推进异常订单。
 
 ## 关联关系
-(本窗口未观测到与其它服务的调用关系)
+异常订单以本地状态机 + `ExceptionOrderAutoAdvanceJob` 推进;与线下 POS 被扫收单流程相关(见 [[flow_pos_scan_payment_code]] / [[scn_online_business_payment_code_scan]])。
 
-## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
-- **读写的表**:待补
-
-## 关键方法 / 入口
-- 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。
+## 关键方法 / 入口(UAT 实测 mClass)
+- `ExceptionOrderAutoAdvanceJob` —— 异常订单自动推进/处理。
 
 ## 测试要点 / 排障 / 常见问题
-- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
+- 造 POS 异常单(超时/中断/重复)后,job 是否正确推进到终态(冲正/成功/失败)。
+- job 幂等与重复执行;落库 `posexception` 库 `t_exception_order` 状态。
 
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp213` · domain=`online-business`。
