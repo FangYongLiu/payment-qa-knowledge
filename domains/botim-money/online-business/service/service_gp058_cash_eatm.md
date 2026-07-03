@@ -42,3 +42,6 @@ related_tables: []
 
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp058` · domain=`online-business`。
+
+## 涉及的表(DB)
+本服务读写 `casheatm` 库(22 张,见 `online-business/table/casheatm/`)。主要表:[[tbl_casheatm_t_cash_delivery_order]] · [[tbl_casheatm_t_cash_in_order]] · [[tbl_casheatm_t_cash_out_order]] · [[tbl_casheatm_t_cash_top_up_order]] · [[tbl_casheatm_t_trade_order_lock]] · [[tbl_casheatm_t_trade_order_ref]]。

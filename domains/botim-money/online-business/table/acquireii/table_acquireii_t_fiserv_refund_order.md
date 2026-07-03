@@ -12,7 +12,7 @@ source_type: DB DDL
 source_ref: acquireii schema DDL
 tags: [online-business, acquireii]
 sensitivity: normal
-related_services: []
+related_services: [svc_acquireii]
 ---
 
 # 退款订单 (t_fiserv_refund_order)

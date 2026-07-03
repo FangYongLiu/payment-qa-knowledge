@@ -12,7 +12,7 @@ source_type: DB DDL
 source_ref: socialpay schema DDL
 tags: [online-business, socialpay]
 sensitivity: normal
-related_services: []
+related_services: [svc_socialpay]
 ---
 
 # 自增序列表 (leaf_alloc)

@@ -43,3 +43,6 @@ related_tables: []
 
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp197` · domain=`online-business`。
+
+## 涉及的表(DB)
+本服务读写 `preauth` 库(16 张,见 `online-business/table/preauth/`)。主要表:[[tbl_preauth_t_completion_order]] · [[tbl_preauth_t_preauth_order]] · [[tbl_preauth_t_reversal_order]] · [[tbl_preauth_t_terminal_detail]] · [[tbl_preauth_t_update_preauth_order]] · [[tbl_preauth_t_void_ops_order]]。

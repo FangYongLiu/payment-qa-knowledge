@@ -12,7 +12,7 @@ source_type: DB DDL
 source_ref: posexception schema DDL
 tags: [online-business, posexception]
 sensitivity: normal
-related_services: []
+related_services: [svc_pos_exception_processor]
 ---
 
 # 消息日志表 (t_message_log)

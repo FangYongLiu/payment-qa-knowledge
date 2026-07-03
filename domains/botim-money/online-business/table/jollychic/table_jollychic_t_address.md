@@ -12,7 +12,7 @@ source_type: DB DDL
 source_ref: jollychic schema DDL
 tags: [online-business, jollychic]
 sensitivity: normal
-related_services: []
+related_services: [svc_jollychic_service]
 ---
 
 # 地址 (t_address)

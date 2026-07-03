@@ -12,7 +12,7 @@ source_type: DB DDL
 source_ref: mchtsettle schema DDL
 tags: [online-business, mchtsettle]
 sensitivity: normal
-related_services: []
+related_services: [svc_merchant_settlement]
 ---
 
 # command (t_command)

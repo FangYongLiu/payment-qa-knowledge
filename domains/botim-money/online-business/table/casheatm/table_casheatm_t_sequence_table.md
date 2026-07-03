@@ -12,7 +12,7 @@ source_type: DB DDL
 source_ref: casheatm schema DDL
 tags: [online-business, casheatm]
 sensitivity: normal
-related_services: []
+related_services: [svc_cash_eatm]
 ---
 
 # 序号生成表 (t_sequence_table)

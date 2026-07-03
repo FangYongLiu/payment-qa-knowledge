@@ -12,7 +12,7 @@ source_type: DB DDL
 source_ref: adtaxi schema DDL
 tags: [online-business, adtaxi]
 sensitivity: normal
-related_services: []
+related_services: [svc_adtaxi]
 ---
 
 # 请求标识 (t_request_identity)

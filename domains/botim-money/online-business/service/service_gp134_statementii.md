@@ -68,3 +68,6 @@ merchant-frontend
 
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp134` · domain=`online-business`。
+
+## 涉及的表(DB)
+本服务读写 `statementii` 库(16 张,见 `online-business/table/statementii/`)。主要表:[[tbl_statementii_t_settlement_config]] · [[tbl_statementii_t_settlement_config_bak]] · [[tbl_statementii_t_settlement_order]] · [[tbl_statementii_t_statement_settlement]] · [[tbl_statementii_t_statement_transaction]]。
