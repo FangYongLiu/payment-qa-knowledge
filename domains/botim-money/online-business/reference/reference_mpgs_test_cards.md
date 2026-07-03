@@ -89,6 +89,25 @@ related_scenarios: [scn_online_business_mpgs_channel, scn_mpgs_onboarding]
 ## DCC(动态货币转换)测试卡 —— 待用时查源
 MPGS 提供按 **base 币种 × 目标币种** 的大量 DCC 测试卡(含 AED/QAR 等中东币种)。数据量大、随汇率更新,不在此全量落库;需要时查 `source_ref` 的 "Payment options inquiry test cards – DCC" 小节。要点:测试档案下网关会把汇率改成"保留前 2 位有效值 + 补 9"(如 MYR≈3.29999)以示测试。
 
+## 用于测试场景 / 用例 / 自动化(配方)
+MPGS 的规律:**卡号选卡组织/区域,到期日选交易结果,CSC 选 CVV 结果,街道名选 AVS 结果**。每行可直接写成数据驱动用例。
+
+| 测试场景 | 卡号 | 到期日 / CSC / 街道 | 预期 (Gateway Code) | 自动化断言 |
+| --- | --- | --- | --- | --- |
+| 支付成功 | 标准卡如 `5123450000000008` | 到期 `01/39` | APPROVED | `result=SUCCESS`;落库 `t_payment_info` |
+| 支付拒付 | 同上 | 到期 `05/39` | DECLINED | gatewayCode=DECLINED |
+| 卡过期 | 同上 | 到期 `04/27` | EXPIRED_CARD | gatewayCode=EXPIRED_CARD |
+| 超时 | 同上 | 到期 `08/28` | TIMED_OUT | gatewayCode=TIMED_OUT |
+| CVV 匹配/不匹配 | 同上 | CSC `100` / `102`(Amex `1000`/`1020`) | MATCH / NO_MATCH | `cscResponse` |
+| AVS 匹配/不匹配 | 同上 | 街道 `Alpha St` / `November St` | ADDRESS_MATCH / NO_MATCH | `avsResponse` |
+| **3DS 认证(UAE)** | 3DS-enrolled:Visa `4508750015741019`、Jaywan `6690109900000010`、Mada | `INITIATE_AUTHENTICATION` + `authentication.channel=PAYER_BROWSER`,授权到期 `01/39` | 3DS 走模拟器 → 授权 APPROVED | 断言 3DS 结果字段 + 授权成功;落库 `t_channel_param.eci_value` |
+| **非 3DS 卡** | `5111111111111118` / `4005550000000001` | — | 无 3DS | 断言未触发认证 |
+| 本地卡(Mada/Jaywan) | 见「UAE 本地卡」 | 到期 `01/39` | APPROVED | 覆盖本地卡组织收单 |
+| DCC | 见 DCC 小节(按币种卡) | PAYMENT_OPTIONS_INQUIRY | 返回测试汇率(前2位+补9) | 断言 `currencyConversion` |
+
+**区域注意**:上表到期日→响应是**标准段**;First Data/Cielo/UK/MX 段映射不同(如 First Data US DECLINED=`05/28`),跨段用例改用对应小节的到期日。
+**自动化要点**:`(card, expiryDate, csc, billingStreet)` 作数据驱动输入,`(gatewayCode/cscResponse/avsResponse)` 作断言基线;3DS 用例需驱动 3DS 模拟器。
+
 ## QA 关注点
 - **卡号固定、结果靠字段**:同一张卡改到期日/CSC/街道名即可覆盖 approve/decline/expired/timeout/CVV/AVS 全矩阵;写用例时明确这三者的取值与预期 Gateway Code。
 - **区域差异**:AstraTech 主要用 UAE(Mada/Jaywan)+ 标准段;跨区域(First Data/Cielo/UK/MX)到期日映射不同,勿套用标准段。

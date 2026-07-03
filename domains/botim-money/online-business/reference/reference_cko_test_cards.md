@@ -99,6 +99,26 @@ Visa Debit `4532446037926437` / prepaid `4000141680788456` / Mastercard Debit `5
 | 20005 | `4818192525595285`(GB) / `4558473893020179`(FR) / `4811553373235190`(SG) / `4610179846730147`(US) |
 | 20057 | `4818192160565981`(GB) / `4975992266555193`(FR) / `4815649658513826`(SG) / `4610174464118832`(US) |
 
+## 用于测试场景 / 用例 / 自动化(配方)
+每行 = 一条可直接写成用例/数据驱动自动化的记录:**场景 → 卡号 + 关键字段 → 预期 → 断言点**。
+
+| 测试场景 | 卡号 | 关键请求字段 | 预期结果 | 自动化断言 |
+| --- | --- | --- | --- | --- |
+| 支付成功 | `4242424242424242` | amount 正常, CVV 任意3位, 未来到期 | approved=true, `response_code=10000` | `status=Authorized/Captured`;落库 `t_payment_info` |
+| 余额不足 | `4242424242424242` | **amount=101** | approved=false, `20051` | `status=Declined`, `response_code=20051` |
+| 通用拒付(按码) | 见「响应码测试卡」 | 选目标响应码对应卡 | 对应 `2xxxx/3xxxx` | 断言 `response_code` == 期望码 |
+| CVV 失败 | `4734868958733862` | 3位 CVV | `200N7` (Decline for CVV2) | `response_code=200N7` |
+| **3DS frictionless 通过** | `4485040371536584` | `3ds.enabled:true` | 3DS 免挑战通过 → 授权成功 | `3ds.authentication_response`/`eci`;`status=Authorized` |
+| **3DS challenge 通过** | `4010061700000021` | `3ds.enabled:true` | 跳挑战页 → 输 `Checkout1!` → 认证成功 → 授权成功 | 自动化需驱动挑战页(输密码)后回调断言成功 |
+| **3DS 认证被拒** | `4150561000000019` | `3ds.enabled:true` | 认证 rejected → 授权拒 | 断言认证失败、授权未通过 |
+| **3DS 未认证** | `4539628347117863` | `3ds.enabled:true` | not authenticated | 断言认证态 = not authenticated |
+| **卡未启用 3DS** | `4532432452900131` | `3ds.enabled:true` | `20150` Card not 3D-Secure enabled | `response_code=20150` |
+| 卡校验(0 元) | `4644968546281686` | amount=0 | 校验成功 | verification 成功 |
+| 退款/撤销 | 先用成功卡支付,再 refund/void | — | refund 成功 | 落库 `t_refund_order` |
+| 代付(payout) | 见「代付测试卡」 | payout 请求 | 对应响应码 | 断言 payout `response_code` |
+
+**自动化要点**:把 `(card_number, expiry, cvv, amount, 3ds.enabled)` 作为**数据驱动输入**,`(response_code/status)` 作为**断言基线**;3DS challenge 用例需能自动化驱动挑战页(输 `Checkout1!`)。
+
 ## QA 关注点
 - **成功码 10000、失败码 2xxxx/3xxxx**:响应码测试卡是覆盖拒付/欺诈/风控分支的主力;卡校验类用 amount 控制成功/拒。
 - **3DS**:frictionless 结果由卡号决定;challenge 流会跳模拟器,密码 `Checkout1!`;非 3DS 卡在 `3ds.enabled:true` 下返回 20150。本页所有卡也可当有效 network token 用。
