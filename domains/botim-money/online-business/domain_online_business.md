@@ -68,3 +68,13 @@ related_services: [svc_sgs, svc_fundout, svc_xbh_gateway, svc_merchant_console_f
 - [[scn_online_business_zand_fundout]](场景:ZAND渠道出款测试场景(TC-001~010))
 - [[ts_acquire_order_slow_sql]](排障:收单订单查询慢SQL(t_acquire_order 大商户时间范围查询))
 - [[ts_zand_fundout]](排障:ZAND渠道出款常见故障排查)
+- [[ts_fundout_stuck_in_process]](排障:出款订单卡在处理中的成因与 Counter 人工处理/退票)
+
+## 参考 / 字典 索引
+- [[reference_open_api_developer_portal]](对外开放 API 门户 developers.botim.money —— 合作方集成的权威契约)
+- [[reference_acquire_protocol_and_codes]](收单接入协议 / PaySceneCode / PayChannelNo 速查 + Agent 代理商规则)
+- [[reference_acquire_payscene_request_examples]](各 paySceneCode 下单请求样例 + 测试商户/测试卡)
+- [[reference_fundout_channel_mock_rules]](出款/转账渠道 Mock 触发规则 + 请求样例)
+- [[reference_acquire_data_models]](收单订单 / 退款 / 数据结构模型)
+- [[reference_mpgs_test_cards]](MPGS 渠道官方测试卡)
+- [[reference_cko_test_cards]](CKO 渠道官方测试卡)

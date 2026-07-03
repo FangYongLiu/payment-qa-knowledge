@@ -9,7 +9,7 @@ owner: fangyong.liu
 reviewer: fangyong.liu
 last_reviewed_at: '2026-06-25'
 source_type: wiki
-source_ref: confluence:AQ/997851554 + PayBy API v2.25 + wiki:725ad723
+source_ref: confluence:AQ/997851554 + PayBy API v2.25 + wiki:725ad723 + developers.botim.money (2026-07-03)
 tags: [online-business, acquiring, SGS, paySceneCode, payChannelNo]
 related_services: [svc_sgs, svc_acquireii]
 ---
@@ -72,6 +72,11 @@ related_services: [svc_sgs, svc_acquireii]
 | DIRECTPAY | 直联支付(商户收集卡信息经 API 提交) |
 | EWALLET | 电子钱包支付(返回拉起目标钱包的 DeepLink) |
 | PAYANDSIGN | 支付并签约 |
+| PREAUTH | 预授权(冻结额度,后续 CAPTURE 请款) |
+| PREAUTHVOID | 预授权撤销(释放冻结) |
+| CAPTURE | 预授权请款(对已 PREAUTH 的订单扣款) |
+
+> `PREAUTH` / `PREAUTHVOID` / `CAPTURE` 见对外开放门户 [[reference_open_api_developer_portal]];预授权流程见 [[scn_online_business_pre_auth]]。
 
 ## 支付渠道号 PayChannelNo
 
@@ -121,6 +126,15 @@ related_services: [svc_sgs, svc_acquireii]
 - JSAPI:监听 `ToPayJSBridgeReady` → `ToPayJSBridge.init` → `invoke('ToPayRequest', {appId, token}, cb)`,回调 `res.status==='success'` 即成功。
 - QRPAY:商户扫码枪/POS 扫用户付款码,付款码数据作为 `authCode` 提交扣款。
 - AUTODEBIT:凭用户绑定的授权协议号 `authProtocolNo` 发起。
+
+## Agent 代理商收单规则(代下单 payeeMid)
+代理商(Agent)可为其名下子商户代收款(下单时 `payeeMid` 传子商户号)。**收单核心有白名单校验:只有配置进 [[svc_acquireii]] 的 `gp069_acquireii.yml` 的 agent mid,下单时 `payeeMid` 才允许传别的(子)商户号**;否则拒绝。
+
+- 商户档案字段:`business_type`(`Agent` / `Merchant`)、`agent_mid`、`agent_merchant_mid`。
+  - 代理商:`business_type=Agent`,`agent_mid`/`agent_merchant_mid` 为空。
+  - 子商户:`business_type=Merchant`,`agent_mid`=代理商会员号、`agent_merchant_mid`=代理商商户号。
+- **记录归属**:Transaction Records 记在**代理商**;Balance Records 记在**子商户**;Statements Records 在**代理商或子商户**皆可。
+- 下单示例:`partnerId=<代理商>`、`payeeMid=<子商户>`、`paySceneCode=PAYPAGE`(需代理商 mid 已在 acquireii 配置白名单)。
 
 ## 关联关系
 - **接入网关**:[[svc_sgs]](= `related_services`),收单核心 [[svc_acquireii]]。

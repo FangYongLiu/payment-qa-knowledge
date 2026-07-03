@@ -9,7 +9,7 @@ owner: fangyong.liu
 reviewer: fangyong.liu
 last_reviewed_at: '2026-06-25'
 source_type: 接口文档
-source_ref: PayBy API v2.25 p12
+source_ref: PayBy API v2.25 p12 + developers.botim.money/docs/refund (2026-07-03)
 tags: [online-business, acquiring, SGS, 退款, 分账退款]
 related_services: [svc_sgs, svc_acquireii]
 related_tables: [tbl_acquireii_t_refund_order, tbl_acquireii_t_sharing_info]
@@ -19,7 +19,7 @@ related_scenarios: [scn_online_business_direct_pay, scn_online_business_merchant
 # 收单退款下单接口(acquire2/refund/placeOrder)
 
 ## 用途
-对已支付收单订单发起退款,PayBy 验证成功后按原路退回买家账号。**只能对 100 天内的订单退款**。支持分账退款(`refundSharingAmount=true` 从分账方退费)。
+对已支付收单订单发起退款,PayBy 验证成功后按原路退回买家账号。**只能对订单创建后 180 天内的订单退款**(对外开放门户 2026-07 契约;内部 v2.25 曾记为 100 天,以对外门户 [[reference_open_api_developer_portal]] 为准)。支持分账退款(`refundSharingAmount=true` 从分账方退费)。
 
 ## 关联关系
 - **所属服务**:[[svc_sgs]] → [[svc_acquireii]](= `related_services`)。
@@ -47,7 +47,7 @@ bizContent = PlaceRefundOrderRequest:
 | sharingParamList | List<SharingParam> | N | refundSharingAmount=true 时生效(结构见数据模型) |
 
 ## 出参
-bizBody:`refundOrder`(RefundOrder)+ `refundSummary`(acquireAmount/remainRefundAmount/sharingRemainRefundInfoList)。
+bizBody:`refundOrder`(RefundOrder,含 `feeRefunded` 已退还手续费 / `failCode` / `failDes`)+ `refundSummary`(acquireAmount/remainRefundAmount/sharingRemainRefundInfoList)。
 
 ### RefundOrderStatus 状态机
 | Status | 说明 |
@@ -58,7 +58,7 @@ bizBody:`refundOrder`(RefundOrder)+ `refundSummary`(acquireAmount/remainRefundAm
 | FAILURE | 退款失败 |
 
 ## 错误码
-通用码见 [[reference_acquire_protocol_and_codes]]。特有:`62002 ORDER_FAILURE`、`62004 MERCHANT_ORDER_NO_NOT_EXIST`、`62006 REFUND_AMOUNT_EXCEEDED`(退款额>可退额)、`62015 ORDER_NOT_PAID`(未支付订单退款)、`62017 REFUND_MERCHANT_ORDER_NO_EXIST`(同退款单号不同参数)、`62035 ORDER_NO_NOT_EXIST`。
+通用码见 [[reference_acquire_protocol_and_codes]]。特有:`62002 ORDER_FAILURE`、`62004 MERCHANT_ORDER_NO_NOT_EXIST`、`62006 REFUND_AMOUNT_EXCEEDED`(退款额>可退额)、`62015 ORDER_NOT_PAID`(未支付订单退款)、`62017 REFUND_MERCHANT_ORDER_NO_EXIST`(同退款单号不同参数)、`62035 ORDER_NO_NOT_EXIST`、`62040 ACQUIRE_ORDER_REVOKED`(原订单已撤销,不可退)。
 
 ## 测试校验点(QA)
 - origin 二选一互斥;退款额 > 可退额 → 62006;未支付订单退款 → 62015。
