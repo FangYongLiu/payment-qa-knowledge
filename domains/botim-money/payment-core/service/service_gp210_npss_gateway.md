@@ -39,14 +39,18 @@ npss, qpay-npss
 - §8. 账单 / 即时支付（`test_ppcTransaction`，NPSS）
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
-- **读写的表**:待补
+- **暴露/相关 API**:NPSS 报文收发网关;`NpssClientImpl`(调 [[svc_npss]])、`MqClientImpl`/`MqFacadeImpl`(MQ 收发)、`OidcController`/`OidcServiceImpl`(OIDC 认证)、`OverlayBackEndController`。
+- **读写的表**:报文 / 会话(具体对象待补)。
 
-## 关键方法 / 入口
-- 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。
+## 关键方法 / 入口(UAT 实测 mClass)
+- `NpssClientImpl` —— 与 [[svc_npss]] 核心交互。
+- `MqClientImpl` / `MqFacadeImpl` —— NPSS 报文经 MQ 收发。
+- `OidcController` / `OidcServiceImpl` —— OIDC 认证(NPSS 网络接入鉴权)。
+- `OverlayBackEndController` —— Overlay 后端接口。
 
-## 测试要点 / 排障 / 常见问题
-- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
+## 测试要点 / 排障 / 常见问题(UAT 实测)
+- **报文网关职责**:NPSS 对外报文的收发 + OIDC 认证入口;业务在 [[svc_npss]]。
+- **怎么测/定位**:即时支付报文异常先分清"卡在网关(OIDC 认证/MQ 收发)"还是"到了 npss 核心";OIDC 鉴权失败即报文被拦。
 
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp210` · domain=`payment-core`。
