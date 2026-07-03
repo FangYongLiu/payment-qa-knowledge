@@ -46,11 +46,17 @@ offline-payment, vis, payment, tradeii, fundout, reconciliation
 enterMulti
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
-- **读写的表**:待补
+- **暴露/相关 API**:Dubbo `enterMulti`(多方清分入口)、`QuickPayPaymentRequest`、`RefundPaymentRequest`(退款);被 [[svc_tradeii]]/[[svc_payment]]/fundout/reconciliation 调。
+- **读写的表**:清分 / 业务状态流水(待补具体表)。
 
-## 测试要点 / 排障 / 常见问题
-- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
+## 关键方法 / 入口(UAT 实测)
+- `enterMulti`(清分);`QuickPayPaymentRequest`(快捷支付履约);退款 `RefundPaymentRequest`。
+- **业务状态机 BSS/PSS**:`PSS:PaySubmit->Paying`(支付中)→ `BSS:PaySubmit->Paid`(已支付);退款 `BSS:Init->RefundSubmit->Refunded`。
+
+## 测试要点 / 排障 / 常见问题(UAT 实测)
+- **状态推进**:支付成功后 pfs 监听 `PaymentResponse` 把业务状态推 `Paid`;卡在 `Paying` 说明履约/记账未回。
+- **清分**:tradeii `enterMulti` 发起 → 下沉 [[svc_payment]] + [[svc_dpm_manager]] 记账;退款走反向清分。
+- **怎么测/定位**:按支付凭证号(`pay_voucher_no` 311…)跟 BSS 状态流转;成功链应见 `PaySubmit->Paying->Paid`。
 
 ## 相关流程 / 场景 / 排障(反向)
 本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):

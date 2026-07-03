@@ -48,11 +48,16 @@ pfs-payment
 - §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）
 - §5. 银行/卡转账、出款（`test_transfer_to_bank` / `test_transfer_to_card`）
 
-## 关键方法 / 入口
-- 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。
+## 关键方法 / 入口(UAT 实测 —— 支付服务码 payment service code)
+支付中台以**支付服务码**驱动执行,实测收单相关:
+- `[201]` 收单-付款申请、`[205]` 收单-付款完成、`[305]` 收单-结算完成、`[351]` 收单退款-退结算、`[551]` 出款退票-退票、`[202]` 出款-付款驳回。
+- 编排:`[OM-->CMF]`(发渠道,[[svc_cmf]])、`[OM-->DPM]`(结算记账,[[svc_dpm_accounting]]/[[svc_dpm_manager]])、`[IM][JMS-->PE]`(接收机构结果 `CmfResult` NPO 消息)。
 
-## 测试要点 / 排障 / 常见问题
-- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
+## 测试要点 / 排障 / 常见问题(UAT 实测)
+- **履约阶段推进**:一笔收单支付经 `[201]申请 → [205]完成 → [305]结算完成`;卡在某阶段即在该步排查(如 [205] 未到 = 机构结果 CmfResult 未回)。
+- **机构结果回填**:cmf 通过 `[IM][JMS-->PE]机构支付结果 NPO CmfResult(returnCode=0000)` 驱动 [205];returnCode 非 0 → 付款驳回 [202]。
+- **怎么测/定位**:按 `paymentSeqNo`(如 20260703FI…)跟踪支付服务码序列;结算号 `settlementId` 关联 dpm 入账与 reconciliation 对账。
+- 出款退票走 [551](见 [[ts_fundout_stuck_in_process]])。
 
 ## 相关流程 / 场景 / 排障(反向)
 本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):

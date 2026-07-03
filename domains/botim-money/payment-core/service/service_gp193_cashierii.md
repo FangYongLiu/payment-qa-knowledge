@@ -20,14 +20,14 @@ related_scenarios: [scn_online_business_cashier_pay, scn_remittance_cross_border
 
 # cashierii
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp193` · domain=`payment-tools`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp193` · domain=`payment-core`。
 
 ## 作用
 收银核心（Cashier II）—— 下单 / 确认支付 / 查支付结果（queryPosPayResult），编排 tradeii/member/grc/authpay/cards
 
 ## 系统中的位置
 - 功能层:收单 / 收银 (Acquiring / Cashier)
-- 业务域:`payment-tools`
+- 业务域:`payment-core`
 
 ## 关联关系
 **调用(下游)—— 本服务依赖:**
@@ -55,12 +55,18 @@ tradeii, acquireii
 ## 参与的业务场景(cgs 回归)
 - §2. 收银台 / 收银（`test_bpg_paypage` 收银侧、cashier 用例）
 
-## 关键方法 / 入口
-queryPosPayResult
+## 关键方法 / 入口(UAT 实测)
+- `queryPosPayResult`(查 POS 支付结果);收银下单/确认;免登(unauth)链:`cache-card-info`(缓存卡→返回 `CCT:` 卡 token)→ `card-token-pay`(卡 token 支付→返回 bankForm 3ds)。
+- 实测入口(cgs)前缀 `/cashierii/*`:`/cashierii/common/v1/unauth/cache-card-info`、`/cashierii/pay/v1/unauth/card-token-pay`。
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
-- **读写的表**:待补
+- **暴露/相关 API**:`/cashierii/*`(unauth 缓存卡 / 卡 token 支付 / 查结果);Dubbo facade 供 [[svc_tradeii]]/[[svc_acquireii]] 调。
+- **读写的表**:收银交易 token / 支付结果(待补具体表)。
+
+## 测试要点 / 排障 / 常见问题(UAT 实测)
+- **免登收银链**:cache-card-info 返回 `CCT:<token>` → card-token-pay 提交 → 返回 `bankForm`(3ds mock TEST101)→ 轮询至 SETTLED;卡数据经 SDK 加密。
+- 收银台支付方式来自 [[svc_cashdesk_api]] `unityInitPayPage`(余额/快捷卡/GPay);cashierii 执行选定方式的扣款。
+- 成功后交易落 [[svc_tradeii]] `t_trade_order.trade_status='SS'`(见 [[scn_online_business_cashier_pay]])。
 
 ## 测试要点 / 排障 / 常见问题
 - 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
@@ -95,4 +101,4 @@ queryPosPayResult
 - [[scn_wallet_p2p]](场景:钱包 P2P 转账 / 红包 (Transfer & Red Packet))
 
 ## 来源与置信
-- UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp193` · domain=`payment-tools`。
+- UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp193` · domain=`payment-core`。
