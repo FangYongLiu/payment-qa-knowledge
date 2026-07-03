@@ -31,6 +31,7 @@ related_tables: []
 ## 关联关系
 **调用(下游)—— 本服务依赖:**
 - [[svc_asset_info]] asset-info（资产信息） · 60921 次 · high
+- **外部依赖**:Binance 行情 WebSocket（`BinanceApiWebSocketClientImpl`,UAT 2026-07-03 近 7d 约 4885 次）——加密货币实时行情来源,非公司内部服务。测试报价链路时需 mock / 打桩该行情源。
 
 **被调用(上游)—— 这些服务调用本服务:**
 holding
