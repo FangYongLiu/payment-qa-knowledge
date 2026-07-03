@@ -69,3 +69,5 @@ related_logs: []
 
 ## 来源与置信
 - cgs-apitest payment MPGS 用例集整理;cmf 库表与 acs.t_key_config 对象待补。TC016 受 BUG-8393 阻塞为 skip。
+
+> 测试卡:[[reference_mpgs_test_cards]] · [[reference_cko_test_cards]](卡支付/3DS/退款测试用官方测试卡)。

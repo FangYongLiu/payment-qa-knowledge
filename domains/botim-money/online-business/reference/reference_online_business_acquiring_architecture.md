@@ -64,3 +64,7 @@ related_services: [svc_sgs, svc_customer_frontend, svc_merchant_console_frontend
 - **跨域**:商户核心 / 运营后台 / 合同属 [[domain_merchant_management]](Chahid 团队);通知服务 pns 属 [[domain_infrastructure]]。本页仅做架构汇总,不改变其归域。
 - 收单库表见 `online-business/table/acquireii/`(acquire-service 2.0 数据);对账 / 结算见 `statementii` 相关表。
 - 端到端交易时序(含 DB 校验点)见本域 `flow/` 与 `scenario/`。
+
+## 卡支付测试卡
+- MPGS 渠道:[[reference_mpgs_test_cards]]
+- CKO 渠道:[[reference_cko_test_cards]]
