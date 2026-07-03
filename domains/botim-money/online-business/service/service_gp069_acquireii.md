@@ -14,7 +14,7 @@ name: acquireii
 subdomain: acquiring
 dev_owner: Sijia.Zhang
 aliases: [gp069_acquireii]
-related_services: [svc_tradeii, svc_voucher, svc_cmf, svc_ppcenter, svc_ues_ws, svc_member, svc_marketing, svc_device, svc_merchant, svc_offline_payment, svc_deposit]
+related_services: [svc_tradeii, svc_voucher, svc_cmf, svc_ppcenter, svc_ues_ws, svc_member, svc_marketing, svc_device, svc_merchant, svc_offline_payment, svc_deposit, svc_wechat_channel]
 related_tables: []
 related_scenarios: [scn_online_business_cashier_pay, scn_online_business_direct_pay, scn_online_business_pre_auth]
 ---
@@ -43,6 +43,7 @@ related_scenarios: [scn_online_business_cashier_pay, scn_online_business_direct_
 - [[svc_merchant]] merchant（商户主数据 / 商户管理） · 2031 次 · high
 - [[svc_offline_payment]] offline-payment（线下支付） · 654 次 · high
 - [[svc_deposit]] deposit（充值 / 存款服务） · 123 次 · high
+- [[svc_wechat_channel]] wechat-channel（微信渠道） · 360 次 · high（UAT 2026-07-03 实测,`WechatClientImpl`）
 
 **被调用(上游)—— 这些服务调用本服务:**
 merchant-frontend
