@@ -127,6 +127,15 @@ related_services: [svc_sgs, svc_acquireii]
 - QRPAY:商户扫码枪/POS 扫用户付款码,付款码数据作为 `authCode` 提交扣款。
 - AUTODEBIT:凭用户绑定的授权协议号 `authProtocolNo` 发起。
 
+## Agent 代理商收单规则(代下单 payeeMid)
+代理商(Agent)可为其名下子商户代收款(下单时 `payeeMid` 传子商户号)。**收单核心有白名单校验:只有配置进 [[svc_acquireii]] 的 `gp069_acquireii.yml` 的 agent mid,下单时 `payeeMid` 才允许传别的(子)商户号**;否则拒绝。
+
+- 商户档案字段:`business_type`(`Agent` / `Merchant`)、`agent_mid`、`agent_merchant_mid`。
+  - 代理商:`business_type=Agent`,`agent_mid`/`agent_merchant_mid` 为空。
+  - 子商户:`business_type=Merchant`,`agent_mid`=代理商会员号、`agent_merchant_mid`=代理商商户号。
+- **记录归属**:Transaction Records 记在**代理商**;Balance Records 记在**子商户**;Statements Records 在**代理商或子商户**皆可。
+- 下单示例:`partnerId=<代理商>`、`payeeMid=<子商户>`、`paySceneCode=PAYPAGE`(需代理商 mid 已在 acquireii 配置白名单)。
+
 ## 关联关系
 - **接入网关**:[[svc_sgs]](= `related_services`),收单核心 [[svc_acquireii]]。
 - **配套接口**:见 [[api_sgs_acquire_place_order]] 等收单 API 对象。
