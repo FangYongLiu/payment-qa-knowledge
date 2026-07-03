@@ -36,7 +36,7 @@ build on them by reading the files directly.
 | `domains/<business-line>/<domain>/flow/` | Flows as followable steps (who calls whom + DB checkpoints). |
 | `domains/<business-line>/<domain>/scenario/` | Test scenarios (trigger → steps → DB checks → expected). |
 | `domains/<business-line>/<domain>/troubleshooting/` | Playbooks (symptom → root cause → steps → fix). |
-| `domains/<business-line>/<domain>/reference/` | Reference tables / dictionaries. |
+| `domains/<business-line>/<domain>/reference/` | Reference tables / dictionaries / feature overviews / access & how-to guides. |
 | `index/domains.yaml` | Domain registry (business_line / owner / reviewer / dev_owner). |
 | `templates/` | Object templates + authoring rules. |
 
@@ -51,6 +51,19 @@ A file that fits none of these purposes is not added.
   code names / acronyms (e.g. `MPGS`) in `aliases`.
 - `related_*` point to **existing** ids only; back-fill the other side when you add an object.
 - Full rules: `templates/README.md`. Sample: `domains/botim-money/activation/`.
+
+## Where each kind of document goes
+Everything lives **under a domain** as one of the typed objects — never as a separate top-level tree.
+Map the document you have to the right object; the nine object types are not extended for new kinds.
+
+| You have | Put it as |
+|---|---|
+| Feature / concept / business overview | `reference_` (domain `reference/`); if it's an end-to-end flow, `flow_` |
+| Test procedure — how to test X (steps → DB checks → expected) | `scn_` Scenario (domain `scenario/`) |
+| Frontend / portal access or environment guide (URLs, login, how to reach a page) | `reference_` (domain `reference/`) |
+| Automation suite | `auto_` |
+| Known issue / environment-setup problem | `ts_` Troubleshooting |
+| API path / params / errors | `api_` · DB table → `tbl_` · service → `svc_` |
 
 ## PM requirement docs
 Don't import raw — they go stale and conflict. **Distill** durable knowledge (new rules / flows /
