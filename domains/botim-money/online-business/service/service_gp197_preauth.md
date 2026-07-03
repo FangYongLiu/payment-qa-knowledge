@@ -23,23 +23,24 @@ related_tables: []
 > 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp197` · domain=`online-business`。
 
 ## 作用
-(本窗口未观测到该服务的运行时活动,作用待业务补充。)
+**预授权(PreAuth)业务**服务(gp197):管理预授权订单全生命周期——预授权(preauth)、请款完成(completion)、撤销(reversal / void)、金额更新(update)。是收单 `PREAUTH` / `CAPTURE` / `PREAUTHVOID` 支付场景的后端订单服务。
 
 ## 系统中的位置
+- 功能层:收单业务线(预授权 / 请款 / 撤销)
 - 业务域:`online-business`
+- 驱动方式:订单状态机 + 定时 job 推进。
 
 ## 关联关系
-(本窗口未观测到与其它服务的调用关系)
+预授权订单生命周期以本地状态机 + `CompletionOrderAutoAdvanceJob` 推进;收单入口经 [[svc_acquireii]] 的 PREAUTH/CAPTURE/PREAUTHVOID 场景。场景见 [[scn_online_business_pre_auth]],请求样例见 [[reference_acquire_payscene_request_examples]]。
 
-## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
-- **读写的表**:待补
-
-## 关键方法 / 入口
-- 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。
+## 关键方法 / 入口(UAT 实测 mClass)
+- `CompletionOrderAutoAdvanceJob` —— 请款完成单自动推进。
+- 订单类型(库表):`t_preauth_order`(预授权)/ `t_completion_order`(请款)/ `t_reversal_order`(撤销)/ `t_void_ops_order`(Void)/ `t_update_preauth_order`(改额)。
 
 ## 测试要点 / 排障 / 常见问题
-- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
+- **预授权全流程**:PREAUTH 冻结 → CAPTURE 请款 → 或 PREAUTHVOID 撤销;各订单状态机推进。
+- 部分请款 / 多次请款、超时自动撤销(job);改额边界。
+- 落库 `preauth` 库(见下)各订单表状态一致。
 
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp197` · domain=`online-business`。
