@@ -27,7 +27,14 @@ gets filled later by the owner. This is the single most important rule.
 | Flow | `flow_` | `flow_<name>.md` | One end-to-end flow |
 | Troubleshooting | `ts_` | `ts_<symptom>.md` | One failure / playbook |
 | AutomationAsset | `auto_` | `auto_<domain>_<name>.md` | One automation suite |
-| Reference | `reference_` | `reference_<name>.md` | A lookup table / dictionary page |
+| Reference | `reference_` | `reference_<name>.md` | A lookup / dictionary / feature overview / access or how-to guide |
+
+**Which type for which document** (business overviews, frontend/access guides, test-step guides all
+have a home — do not invent new types or a separate tree):
+- Test procedure (how to test X: steps → DB checks → expected) → **Scenario** (`scn_`).
+- Feature/business overview, or a frontend/portal access & environment guide → **Reference** (`reference_`).
+- End-to-end flow (who calls whom, state machine, checkpoints) → **Flow** (`flow_`).
+- Known issue / env-setup problem → **Troubleshooting** (`ts_`). Full table: `docs/KB_ARCHITECTURE.md`.
 
 - `id` is unique and **stable** — renaming a file never changes its `id`.
 - Files live under `domains/<business-line>/<domain>/<type>/`; `table/` nests one more level by
