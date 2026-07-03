@@ -13,7 +13,7 @@ app_group: gp288
 name: merchant-settlement
 dev_owner: Shuo.Wang
 aliases: [gp288_merchant-settlement]
-related_services: []
+related_services: [svc_merchant, svc_member, svc_kyc]
 related_tables: []
 ---
 
@@ -30,6 +30,11 @@ related_tables: []
 
 ## 关联关系
 
+**调用(下游)—— 本服务依赖(UAT 2026-07-03 实测,`app_id=mssii` → `*ClientImpl`):**
+- [[svc_merchant]] merchant（商户主数据 / 商户管理） · 259 次 · high
+- [[svc_member]] member（会员 / 账户核心） · 152 次 · high
+- [[svc_kyc]] kyc（实名认证） · 54 次 · high
+
 **被调用(上游)—— 这些服务调用本服务:**
 statementii
 
@@ -45,6 +50,7 @@ statementii
 
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp288` · domain=`online-business`。
+- 下游边:UAT Kibana `java-kafka-logstash-*` 近 24h `*ClientImpl` 聚合(2026-07-03),`app_id=mssii` 调 merchant/member/kyc。
 
 ## 涉及的表(DB)
 本服务读写 `mchtsettle` 库(21 张,见 `online-business/table/mchtsettle/`)。主要表:[[tbl_mchtsettle_t_black_list]] · [[tbl_mchtsettle_t_channel_summary]] · [[tbl_mchtsettle_t_clearing_batch]] · [[tbl_mchtsettle_t_clearing_detail]] · [[tbl_mchtsettle_t_clearing_file]] · [[tbl_mchtsettle_t_clearing_fileline]]。
