@@ -13,7 +13,7 @@ app_group: gp064
 name: customer-frontend
 dev_owner: Sijia.Zhang
 aliases: [gp064_customer-frontend]
-related_services: [svc_merchant, svc_acquireii, svc_voucher, svc_invoice, svc_protocol, svc_member, svc_cc_deposit, svc_kyc, svc_cc_transfer]
+related_services: [svc_merchant, svc_acquireii, svc_voucher, svc_invoice, svc_protocol, svc_member, svc_cc_deposit, svc_kyc, svc_cc_transfer, svc_holding, svc_quotation]
 related_tables: []
 ---
 
@@ -39,6 +39,10 @@ C 端用户前端 BFF
 - [[svc_cc_deposit]] cc-deposit（加密货币充值） · 12 次 · high
 - [[svc_kyc]] kyc（实名认证） · 12 次 · high
 - [[svc_cc_transfer]] cc-transfer · 9 次 · high
+- [[svc_holding]] holding（数字货币持仓） · 117 次 · high（UAT 2026-07-03,`DigiccyHoldingClientImpl`）
+- [[svc_quotation]] quotation（数字货币行情报价） · 24 次 · high（UAT 2026-07-03,`DigiccyMarketQuotationClientImpl`）
+
+> 另:`DigiccyTransactionClientImpl`（6 次）无对应独立 app_id(无 transaction 服务),暂不落边,待核实归属。
 
 ## 涉及的 API / 数据库表
 - **暴露/相关 API**:待补
