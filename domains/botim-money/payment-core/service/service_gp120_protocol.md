@@ -41,11 +41,20 @@ cashdesk-api, cashierii, deduct
 - §2. 收银台 / 收银（`test_bpg_paypage` 收银侧、cashier 用例）
 - §3. 自动代扣 / 签约（`test_auto_debit`）
 
-## 关键方法 / 入口
-- 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。
+## 关键方法 / 入口(UAT 实测)
+- `querySimpleApply`(查签约模板,返回 `templateNo=02001`、`applyVoucherNo`、`signerId`、`merchantId`、`partnerId`)、`apply`(申请签约)、`notify`(签约结果通知)。经 [[svc_cashdesk_api]]/[[svc_cashierii]] 收银台发起,或 PAYANDSIGN。
+
+## 签约数据链(UAT 实测)
+1. **申请**:querySimpleApply/apply → 生成签约申请([[tbl_deduct_t_deduct_protocol_apply]] `status=S`)。
+2. **用户确认**:用户登录 App 确认签约。
+3. **生效**:成功后 [[tbl_protocol_t_contract_sign_info]] `status=EFFECTIVE`(`sign_contract_no`,如 2520250424…)+ [[tbl_deduct_t_deduct_protocol]] `status=A`(`deduct_protocol_no`)。
+4. **代扣**:`deduct_protocol_no` 即 AUTODEBIT 下单的 `authProtocolNo`,由 [[svc_deduct]] 执行。
+- 服务 ID:`protocol_scene_code`(PAYANDSIGN 的 `protocolSceneCode`)配置于 [[tbl_deduct_t_deduct_protocol_config]](常量 120 / SIM 111)。
 
 ## 测试要点 / 排障 / 常见问题
-- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
+- **签约状态流转**:apply(S)→ 用户确认 → contract_sign_info(EFFECTIVE)+ deduct_protocol(A);任一未推进则代扣不可用。
+- **怎么测/定位**:按 `sign_contract_no`/`deduct_protocol_no` 核对三表状态;代扣失败先查协议是否 EFFECTIVE/A。
+- 完整签约→代扣场景见 [[scn_online_business_auto_debit]]。
 
 ## 相关流程 / 场景 / 排障(反向)
 本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):

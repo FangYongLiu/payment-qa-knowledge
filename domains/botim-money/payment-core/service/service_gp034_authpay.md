@@ -20,14 +20,14 @@ related_scenarios: [scn_online_business_auto_debit]
 
 # authpay
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp034` · domain=`payment-tools`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp034` · domain=`payment-core`。
 
 ## 作用
 授权支付 / 免密代扣执行（被 cashier/cashdesk/trade 调用）
 
 ## 系统中的位置
 - 功能层:收单 / 收银 (Acquiring / Cashier)
-- 业务域:`payment-tools`
+- 业务域:`payment-core`
 
 ## 关联关系
 
@@ -39,14 +39,17 @@ cashierii, cashdesk-api, tradeii
 - §2. 收银台 / 收银（`test_bpg_paypage` 收银侧、cashier 用例）
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
-- **读写的表**:待补
+- **暴露/相关 API**:Dubbo `queryPayAuthority`(`QueryPayAuthorityRequest`)、`payAuthority`(`PayAuthorityRequest`);被 [[svc_cashierii]]/[[svc_cashdesk_api]]/[[svc_tradeii]]/[[svc_deduct]] 调。
+- **读写的表**:支付鉴权 商户组/方案/策略配置(具体对象待补)。
 
-## 关键方法 / 入口
-- 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。
+## 关键方法 / 入口(UAT 实测)
+- **支付鉴权**:`queryPayAuthority` / `payAuthority` —— 按**商户组 → 方案 → 策略**匹配,输出可用支付模式。实测:`商户组为ID [87, 2, 1]` → `匹配方案列表 [137, 15]` → `支付鉴权通过,支付模式[QPAY]`。
+- 免密代扣执行:AUTODEBIT/收银免密支付前的鉴权关口。
 
-## 测试要点 / 排障 / 常见问题
-- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
+## 测试要点 / 排障 / 常见问题(UAT 实测)
+- **鉴权关口**:支付前 authpay 判定商户组/方案/策略是否允许该支付模式(QPAY 等);鉴权失败即支付被拦。`PayAuthorityRequest` 含 payMethodCode/payChannelCode/productCode/paySceneCode。
+- **怎么测/定位**:不同商户组/产品/场景组合下鉴权结果与支付模式;支付失败先看 `支付鉴权成功` 是否出现 + 匹配的方案/策略 ID。
+- 是收银([[svc_cashierii]]/[[svc_cashdesk_api]])、交易([[svc_tradeii]])、代扣([[svc_deduct]])共用的鉴权服务。
 
 ## 相关流程 / 场景 / 排障(反向)
 本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):
@@ -55,4 +58,4 @@ cashierii, cashdesk-api, tradeii
 - [[scn_online_business_auto_debit]](场景:自动代扣 / 签约 (Auto Debit))
 
 ## 来源与置信
-- UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp034` · domain=`payment-tools`。
+- UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp034` · domain=`payment-core`。

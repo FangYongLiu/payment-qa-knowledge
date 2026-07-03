@@ -20,14 +20,14 @@ related_scenarios: [scn_online_business_auto_debit]
 
 # deduct
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp205` · domain=`payment-tools`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp205` · domain=`wallet`。
 
 ## 作用
 自动代扣执行（queryProtocol，调 protocol/trade）
 
 ## 系统中的位置
 - 功能层:会员 / 账户 / 卡 / 协议 (Member / Account / Card)
-- 业务域:`payment-tools`
+- 业务域:`wallet`
 
 ## 关联关系
 **调用(下游)—— 本服务依赖:**
@@ -49,15 +49,18 @@ tradeii
 ## 参与的业务场景(cgs 回归)
 - §3. 自动代扣 / 签约（`test_auto_debit`）
 
-## 关键方法 / 入口
-queryProtocol
+## 关键方法 / 入口(UAT 实测)
+- `queryProtocol`(查代扣协议);执行 AUTODEBIT:凭 `authProtocolNo`(= `t_deduct_protocol.deduct_protocol_no`)→ [[svc_authpay]] 鉴权 → [[svc_tradeii]] 扣款 → [[svc_pns]] 通知。
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
-- **读写的表**:待补
+- **暴露/相关 API**:Dubbo `queryProtocol`;协议管理下沉 [[svc_protocol]]。
+- **读写的表**:[[tbl_deduct_t_deduct_protocol]](可用代扣协议 `status=A`)、[[tbl_deduct_t_deduct_protocol_apply]](签约申请 `status=S`)、[[tbl_deduct_t_deduct_protocol_config]](扣款服务配置 `protocol_scene_code` 120/111)。
 
-## 测试要点 / 排障 / 常见问题
-- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
+## 测试要点 / 排障 / 常见问题(UAT 实测)
+- **代扣执行前提**:`authProtocolNo` 对应的 `t_deduct_protocol` 必须 `status=A`(已签约可用);否则代扣拒绝。
+- **链路**:AUTODEBIT 下单 → deduct 查协议 → authpay 鉴权(商户组/方案/策略)→ tradeii 扣款 → 落交易 `trade_status=SS`。
+- **怎么测/定位**:先跑签约(见 [[svc_protocol]] 签约数据链)拿 `deduct_protocol_no`,再用它作 `authProtocolNo` 下单;失败先查协议状态 A。
+- 完整场景见 [[scn_online_business_auto_debit]]。
 
 ## 相关流程 / 场景 / 排障(反向)
 本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):
@@ -66,4 +69,4 @@ queryProtocol
 - [[scn_online_business_auto_debit]](场景:自动代扣 / 签约 (Auto Debit))
 
 ## 来源与置信
-- UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp205` · domain=`payment-tools`。
+- UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp205` · domain=`wallet`。
