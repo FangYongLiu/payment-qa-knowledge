@@ -48,14 +48,21 @@ rtp, npss-gateway
 - §8. 账单 / 即时支付（`test_ppcTransaction`，NPSS）
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
-- **读写的表**:待补
+- **暴露/相关 API**:对接 NPSS 网络经 [[svc_npss_gateway]] 报文网关;`NpssHttpClientImpl`(HTTP 调 NPSS)、`SignServiceImpl`(报文验签)。上游 rtp / npss-gateway 调入,交易下沉 [[svc_tradeii]]。
+- **读写的表**:RTP / 挂起交易 / 账单(具体对象待补)。
 
-## 关键方法 / 入口
-- 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。
+## 关键方法 / 入口(UAT 实测 mClass,近7d ~1806 万条,支付核心高频服务)
+- `RtpQueryJob` —— RTP(实时支付)状态查询定时任务。
+- `PendingTransJob` —— 挂起交易处理(未终态交易推进)。
+- `RtpDeleteProcessor` —— RTP 处理。
+- `NpssHttpClientImpl` —— 对接 NPSS 网络的 HTTP 客户端。
+- `SignServiceImpl` —— NPSS 报文验签。
+- `CHANNEL-QUERY-BALANCE-LOGGER` —— 渠道余额查询。
 
-## 测试要点 / 排障 / 常见问题
-- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
+## 测试要点 / 排障 / 常见问题(UAT 实测)
+- **RTP / 即时支付(NPSS = UAE 即时支付网络)**:场景 §8 账单/即时支付(`test_ppcTransaction`);经 [[svc_npss_gateway]] 收发 NPSS 报文,`NpssHttpClient` 调网络,`SignService` 验签。
+- **挂起交易**:`PendingTransJob` 推进未终态 RTP 交易;`RtpQueryJob` 主动查状态——测"发起后未即时返回"的最终一致。
+- **怎么测/定位**:即时支付按交易凭证跟 npss 与 tradeii 状态;报文问题查 SignService 验签、npss-gateway 收发。
 
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp222` · domain=`payment-core`。

@@ -22,13 +22,14 @@ related_tables: []
 > 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp238` · domain=`payment-core`。
 
 ## 作用
-(本窗口未观测到该服务的运行时活动,作用待业务补充。)
+**IFB 汇款渠道**接入服务(gp238,UAT 近7d ~35 万条)。对接 IFB 渠道做汇款出款/查询/余额,属**汇款(remittance)渠道**而非即时支付。
 
 ## 系统中的位置
-- 业务域:`payment-core`
+- 功能层:渠道接入(Remittance Channel)
+- 业务域:`payment-core`(渠道接入;业务归属 remittance)
 
 ## 关联关系
-(本窗口未观测到与其它服务的调用关系)
+实测 mClass:`DefaultRemChannelFacadeImpl`(汇款渠道门面)、`RemittanceClient`(调汇款核心)、`SingleDetailQueryRequester`/`QueryBalanceRequester`(明细/余额查询)、`DefaultChannelCallbackFacadeImpl`(渠道回调)。服务于跨境汇款渠道链路(remittance 域)。
 
 ## 涉及的 API / 数据库表
 - **暴露/相关 API**:待补
