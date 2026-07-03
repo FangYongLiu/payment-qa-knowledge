@@ -7,12 +7,12 @@ domain: online-business
 status: active
 owner: fangyong.liu
 reviewer: fangyong.liu
-last_reviewed_at: '2026-06-25'
+last_reviewed_at: '2026-07-03'
 source_type: cgs-apitest
-source_ref: cgs-apitest/testcases/payment (MPGS 渠道用例集)
-tags: [online-business, acquiring, MPGS, 3DS2, MOTO, DevicePay, 卡组织路由]
-related_services: [svc_acquireii, svc_sgs, svc_qpay_mpgs, svc_tradeii, svc_cmf]
-related_tables: [tbl_acquireii_t_acquire_order, tbl_acquireii_t_payment_info, tbl_acquireii_t_card_info, tbl_acquireii_t_refund_order, tbl_acquireii_t_void_order]
+source_ref: cgs-apitest/testcases/payment/fundChannel/test_mpgs_fundIn_fangyong.py (UAT 实跑 2026-07-03)
+tags: [online-business, acquiring, MPGS, 3DS2, MOTO, DevicePay, 卡组织路由, 实测]
+related_services: [svc_acquireii, svc_sgs, svc_qpay_mpgs, svc_tradeii, svc_cmf, svc_router]
+related_tables: [tbl_acquireii_t_acquire_order, tbl_acquireii_t_payment_info, tbl_acquireii_t_card_info, tbl_acquireii_t_refund_order, tbl_acquireii_t_void_order, tbl_cmf_tt_inst_order, tbl_cmf_tt_inst_order_result]
 related_logs: []
 ---
 
@@ -39,7 +39,13 @@ related_logs: []
 
 ## 关联关系
 - **涉及服务**:[[svc_sgs]]→[[svc_acquireii]]→[[svc_tradeii]]→[[svc_cmf]]→[[svc_qpay_mpgs]](MPGS 渠道)(= `related_services`)。
-- **校验的表**:[[tbl_acquireii_t_acquire_order]]、[[tbl_acquireii_t_payment_info]]、[[tbl_acquireii_t_card_info]]、[[tbl_acquireii_t_refund_order]]、[[tbl_acquireii_t_void_order]]。cmf 侧 `tt_cmf_order`/`tt_inst_order`/`tt_inst_order_result`、`acs.t_key_config` 待补对象。
+- **校验的表**:[[tbl_acquireii_t_acquire_order]]、[[tbl_acquireii_t_payment_info]]、[[tbl_acquireii_t_card_info]]、[[tbl_acquireii_t_refund_order]]、[[tbl_acquireii_t_void_order]];cmf 侧机构订单 [[tbl_cmf_tt_inst_order]](`FUND_CHANNEL_CODE`)与机构订单结果 [[tbl_cmf_tt_inst_order_result]](`API_RESULT_CODE`/3ds/cvv 扩展);`acs.t_key_config`(商户密钥)。
+
+## 实测(UAT 2026-07-03,test_mpgs_fundIn)
+**MPGS101 3DS2(MASTERCARD DC,商户 200000087655)**:DIRECTPAY product `200104` → `PAID_SUCCESS`;`channelParam.eciValue=02`、AuthCode/Stan/RRN、AcquireCode=00 Approved。落 [[tbl_cmf_tt_inst_order]] `FUND_CHANNEL_CODE=MPGS101`/`STATUS=S`;[[tbl_cmf_tt_inst_order_result]] `API_RESULT_CODE=CAPTURED`、`API_TYPE=VS`、EXTENSION `{3dsStatus:Y, eci:02, cvv_check:MATCH, 3dsVer:2.2.0, auth_code, authenticationStatus:CAPTURED}`。
+**卡组织拆分 → MPGS202(NI VISA,商户 200000088683 "MPGS Card Org Split")**:同 DIRECTPAY,VISA CC(401200…0026)→ 路由到 **MPGS202**(NI 收单),`eciValue=05`(VISA);settlement 97.4 / payeeFee 2.73。
+
+**★ 实测确认卡组织拆分路由**:同一下单接口,**按卡品牌路由到不同 MPGS 子渠道**——MASTERCARD→MPGS101/102(PAYBY),VISA→MPGS202/204(NI);ECI 也随品牌不同(MC=02 / VISA=05)。判定成功的机构侧口径:`tt_inst_order.STATUS=S` + `tt_inst_order_result.API_RESULT_CODE=CAPTURED`(API_TYPE=VS)。
 - **测它的接口**:[[api_sgs_acquire_place_order]]、[[api_sgs_acquire_get_order]]、[[api_sgs_acquire_refund_place_order]](由各 API 的 `related_scenarios` 声明)。
 
 ## 前置条件
