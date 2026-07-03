@@ -9,7 +9,7 @@ owner: fangyong.liu
 reviewer: fangyong.liu
 last_reviewed_at: '2026-06-25'
 source_type: 接口文档
-source_ref: PayBy API v2.25 p9
+source_ref: PayBy API v2.25 p9 + developers.botim.money/docs/createorder (2026-07-03)
 tags: [online-business, acquiring, SGS, 下单, 幂等]
 related_services: [svc_sgs, svc_acquireii]
 related_tables: [tbl_acquireii_t_acquire_order, tbl_acquireii_t_pay_scene_param, tbl_acquireii_t_sharing_info, tbl_acquireii_t_promotion_info]
@@ -27,6 +27,7 @@ related_scenarios: [scn_online_business_direct_pay, scn_online_business_cashier_
 - **读写的表**:[[tbl_acquireii_t_acquire_order]] 订单主表、[[tbl_acquireii_t_pay_scene_param]]、[[tbl_acquireii_t_sharing_info]]、[[tbl_acquireii_t_promotion_info]]。
 - **被哪些场景测**:[[scn_online_business_direct_pay]]、[[scn_online_business_cashier_pay]]、[[scn_online_business_pre_auth]]、[[scn_online_business_mpgs_channel]]。
 - **场景参数/枚举**:见 [[reference_acquire_protocol_and_codes]];订单结构见 [[reference_acquire_data_models]]。
+- **对外契约**:公开开放门户 [[reference_open_api_developer_portal]](合作方实际集成的权威版本)。
 
 ## 路径 / 方法
 - 联调:`https://uat.test2pay.com/sgs/api/acquire2/placeOrder`
@@ -52,6 +53,18 @@ related_scenarios: [scn_online_business_direct_pay, scn_online_business_cashier_
 | sharingParamList | List<SharingParam> | N | 分账参数;退款时从 payeeMid 账户扣减 |
 | promotionInfoList | List<PromotionInfo> | N | 优惠券(appliedRewardId / settleFlag) |
 | subjectAr | String(200) | N | 商品标题阿语 |
+| riskInfo | String(255) | N | 风控参数(JSON 字符串) |
+| agreementInfo | AgreementInfo | N | 支付协议信息(**仅 DIRECTPAY**);周期扣款/分期,见下 |
+
+### agreementInfo(DIRECTPAY 周期扣款 / 分期协议,来源:对外开放门户)
+| 参数 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| agreementType | String(20) | N | `INSTALLMENT` / `RECURRING` / `UNSCHEDULED` / `OTHER` |
+| amountVariability | String(10) | N | `FIXED` / `VARIABLE` |
+| numberOfPayments | Integer | N | RECURRING 期数(1–999) |
+| paymentFrequency | String(10) | N | `DAILY` / `WEEKLY` / `MONTHLY` / `QUARTERLY` 等 |
+| minimumDaysBetweenPayments | Integer | N | 两次扣款最小间隔天数(1–999) |
+| expiryDate | String(10) | N | 协议到期日 `yyyy-mm-dd` |
 
 ## 出参
 bizBody = PlaceAcquireOrderResponse:`acquireOrder`(AcquireOrder,见 [[reference_acquire_data_models]])+ `interactionParams`(支付参数)。
@@ -74,8 +87,9 @@ bizBody = PlaceAcquireOrderResponse:`acquireOrder`(AcquireOrder,见 [[reference_
 | 62026 | PRODUCT_IS_NOT_APPLIED | 产品未申请 |
 | 62031/62032/62033 | MISSING_IAP_DEVICE_ID / MISSING_APP_ID / MISSING_AUTHCODE | 对应场景必填缺失 |
 | 62034 | INVALID_APP_ID | 无效 appId |
+| 62072 | MISSING_REDIRECT_URL | PAYPAGE 缺 redirectUrl(对外门户) |
 
-> 原文 62036 起错误码截断,标「待补:原文未提供完整错误码」。
+> 62036–62071 区间错误码内部文档未提供,**待补**;402 RATE_LIMIT_REJECT / 403 UNAUTHORIZED 等通用码见 [[reference_acquire_protocol_and_codes]]。完整对外错误码以 [[reference_open_api_developer_portal]] 门户为准。
 
 ## 测试校验点(QA)
 - 幂等:相同 merchantOrderNo + 相同业务参数重复下单返回同一订单;参数不同 → 62016。

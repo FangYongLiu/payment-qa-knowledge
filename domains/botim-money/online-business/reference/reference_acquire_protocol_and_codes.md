@@ -9,7 +9,7 @@ owner: fangyong.liu
 reviewer: fangyong.liu
 last_reviewed_at: '2026-06-25'
 source_type: wiki
-source_ref: confluence:AQ/997851554 + PayBy API v2.25 + wiki:725ad723
+source_ref: confluence:AQ/997851554 + PayBy API v2.25 + wiki:725ad723 + developers.botim.money (2026-07-03)
 tags: [online-business, acquiring, SGS, paySceneCode, payChannelNo]
 related_services: [svc_sgs, svc_acquireii]
 ---
@@ -72,6 +72,11 @@ related_services: [svc_sgs, svc_acquireii]
 | DIRECTPAY | 直联支付(商户收集卡信息经 API 提交) |
 | EWALLET | 电子钱包支付(返回拉起目标钱包的 DeepLink) |
 | PAYANDSIGN | 支付并签约 |
+| PREAUTH | 预授权(冻结额度,后续 CAPTURE 请款) |
+| PREAUTHVOID | 预授权撤销(释放冻结) |
+| CAPTURE | 预授权请款(对已 PREAUTH 的订单扣款) |
+
+> `PREAUTH` / `PREAUTHVOID` / `CAPTURE` 见对外开放门户 [[reference_open_api_developer_portal]];预授权流程见 [[scn_online_business_pre_auth]]。
 
 ## 支付渠道号 PayChannelNo
 

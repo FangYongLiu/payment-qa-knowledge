@@ -9,7 +9,7 @@ owner: fangyong.liu
 reviewer: fangyong.liu
 last_reviewed_at: '2026-06-25'
 source_type: 接口文档
-source_ref: PayBy API v2.25 p11
+source_ref: PayBy API v2.25 p11 + developers.botim.money/docs/retrieveorderdetail (2026-07-03)
 tags: [online-business, acquiring, SGS, 查询, 冲正]
 related_services: [svc_sgs, svc_acquireii]
 related_tables: [tbl_acquireii_t_acquire_order, tbl_acquireii_t_payment_info]
