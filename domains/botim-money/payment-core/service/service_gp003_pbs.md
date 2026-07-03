@@ -66,15 +66,17 @@ fundout, offline-payment, tradeii, cashierii, cashdesk-api
 - §2. 收银台 / 收银（`test_bpg_paypage` 收银侧、cashier 用例）
 - §5. 银行/卡转账、出款（`test_transfer_to_bank` / `test_transfer_to_card`）
 
-## 关键方法 / 入口
-pricingPayFee
+## 关键方法 / 入口(UAT 实测)
+- `pricingPayFee`(`PayFeeRequest` → `FeeResponse`);交易/收银/出款下单时由 [[svc_tradeii]]/[[svc_cashierii]]/[[svc_cashdesk_api]]/fundout 调用算费。
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
-- **读写的表**:待补
+- **暴露/相关 API**:Dubbo `pricingPayFee`(算费);调 [[svc_acs]](商户费率/方案配置)。
+- **读写的表**:费率/定价配置(具体对象待补)。
 
-## 测试要点 / 排障 / 常见问题
-- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
+## 测试要点 / 排障 / 常见问题(UAT 实测)
+- **算费口径**:pbs 计算 `payeeFeeAmount`(商户手续费),下游落 `t_payment_info`,并按 **VAT 公式** `pf_vat=round(payee_fee×5/105,2)`、`pfbt_amt=fee−pf_vat`、`settlement=paid−fee`(见 [[scn_online_business_cashier_pay]])。
+- **怎么测/定位**:不同商户费率方案下 payeeFeeAmount 是否符合配置;费用与 [[svc_reconciliation]] calcFee、结算金额勾稽一致。
+- 费率来源:acs 商户费率/方案配置。
 
 ## 相关流程 / 场景 / 排障(反向)
 本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):
