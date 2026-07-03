@@ -26,7 +26,14 @@ related_services: [svc_ues_ws, svc_pbs, svc_dpm_accounting, svc_dpm_manager, svc
 共 63 个服务:ues-ws、pbs、dpm-accounting、dpm-manager、dpm-task、member、payment、deposit、pfs-payment、outman、software-management、cgs、sgs、query、query-datasync、counter、mns-listener、mns-main、mns-scheduler、pbs-bos、pcs、reconciliation、pcm、ppcenter、csc、fido-mgmt、fidoservice、authorization-service、porter、otpmock、otps、cbs、css、ons、authorization-token、escrow、ufs2、protocol、tradeii、mcs、vcs、member-front、mssii、member-feature、vis、host、upic、comp-service、basis-customer、das、npss-gateway、ppc、rdgs、npss、escrowii、wechat-channel、ifb-channel、feebill、pix、commission、cns、tts、visii。
 
 ## QA 关注点
-- 待补。
+支付核心是所有收单/钱包链路穿过的交易+账务底座。跨服务的成功判定与排障口径(UAT 实测,2026-07-03):
+- **成功态多级口径**:交易 [[svc_tradeii]] `t_trade_order.trade_status='SS'` → 收单 [[svc_acquireii]] `t_acquire_order.status='SETTLED'`(预授权为 `AUTHORIZATION`)→ 机构 [[svc_cmf]] `tt_inst_order_result.API_RESULT_CODE='CAPTURED'`。三层任一不一致即需排查。
+- **凭证链(跨库串联)**:`orderNo/global_id`(收单)↔ `trade_request_no/trade_voucher_no`(交易)↔ `pay_voucher_no→settle_voucher_no`(311… 支付/结算)↔ cmf `CMF_SEQ_NO`/`INST_ORDER_NO`(U51…)。排障导航见 [[ts_payment_db_navigation]]。
+- **业务产品码**:`200101`=PAYPAGE·`200104`=DirectPay·`200111`=PreAuth(payment 内部 `productCode=60040040`)。
+- **账务**:[[svc_dpm_accounting]] 入账(余额更新)、[[svc_pfs_payment]] 清分、[[svc_payment]] 履约([201]付款申请/[205]付款完成/[305]结算完成)。
+- **收银**:[[svc_cashdesk_api]]/[[svc_cashierii]] `unityInitPayPage` 返回支付方式列表(channelCode 14 余额/15 快捷卡/36 GPay)。
+- **费用/VAT**:`pf_vat=round(payee_fee×5/105,2)`、`settlement=paid−fee`(见 [[scn_online_business_cashier_pay]])。
+- 事件驱动扇出(确认支付后 MQ):aml/deduct/host/coupon/query-datasync 并行消费 + 异步结算长尾(见 [[flow_cashier_payment]])。
 
 ## 流程 / 场景 / 排障 索引
 本域 流程 / 场景 / 排障 / 自动化 对象索引:

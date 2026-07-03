@@ -91,11 +91,18 @@ acquireii, cashierii, cashdesk-api, remittance, merchant-fundout, deduct
 queryTradeOrder, queryRefundOrder, createCashierTrade, refund
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
-- **读写的表**:待补
+- **暴露/相关 API**:Dubbo Facade(无对外 REST),核心 `createCashierTrade` / `queryTradeOrder` / `queryRefundOrder` / `refund` / `confirmPay`;收单经 [[svc_acquireii]] 调入。
+- **核心表**:[[tbl_tradeii_t_trade_order]](交易主单)、[[tbl_tradeii_t_pay_order]]、[[tbl_tradeii_t_refund_order]] 等(见 `related_tables`)。
 
-## 测试要点 / 排障 / 常见问题
-- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
+## 测试要点 / 排障 / 常见问题(UAT 实测语义,2026-07-03)
+`t_trade_order` 是收单/支付成功判定的中枢表,实测字段口径:
+- **`trade_status='SS'` = 交易成功**(收单各场景成功态的统一判定;失败/处理中为其它值)。
+- **`client_id='acquire2'`** = 来源为收单(区别于钱包等其它 client)。
+- **`biz_product_code`** 标识业务:`200101`(PAYPAGE/BPG)、`200104`(DirectPay)、`200111`(PreAuth/Capture);与 acquireii `product_code` 对应。
+- **凭证链**:`trade_request_no`=收单 orderNo;`trade_voucher_no`(交易凭证);`pay_voucher_no`(支付凭证 311…)→ `settle_voucher_no`(结算凭证 311…);排障按凭证号跨库串联(见 [[ts_payment_db_navigation]])。
+- **`control_extension`** 关键标志:`transferRule=payee:ACQUIRE_SETTLE`(收单结算给收款方)、`multiPayer=Y`(收银台多支付方)、`preauthCapture=Y` + `authorizeRequestNo`(请款关联原授权,见 [[scn_online_business_pre_auth]])。
+- 退款:定时任务 `退付款` → `refund` → [[svc_pfs_payment]] 反向清分;退款单落 `t_refund_order`。
+- **怎么测**:下单后按 `trade_request_no=orderNo` 查 `t_trade_order`,断言 `trade_status='SS'` + `biz_product_code` + 凭证链齐全;预授权断言 `preauthCapture` 标志。
 
 ## 相关流程 / 场景 / 排障(反向)
 本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):
