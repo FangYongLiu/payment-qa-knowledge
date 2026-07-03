@@ -19,14 +19,14 @@ related_tables: []
 
 # cashdesk-api
 
-> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp007` · domain=`payment-tools`。
+> 来源:UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp007` · domain=`payment-core`。
 
 ## 作用
 统一收银台（Cashdesk）—— 收银台初始化 / 确认支付 / 协议签约 / 匿名卡支付（cardPayForAnonymous）
 
 ## 系统中的位置
 - 功能层:收单 / 收银 (Acquiring / Cashier)
-- 业务域:`payment-tools`
+- 业务域:`payment-core`
 
 ## 关联关系
 **调用(下游)—— 本服务依赖:**
@@ -57,15 +57,19 @@ merchant-frontend, cmf, acquireii, cmf-task
 - §2. 收银台 / 收银（`test_bpg_paypage` 收银侧、cashier 用例）
 - §3. 自动代扣 / 签约（`test_auto_debit`）
 
-## 关键方法 / 入口
-cardPayForAnonymous
+## 关键方法 / 入口(UAT 实测)
+- `cardPayForAnonymous`(匿名卡支付);`unityInitPayPage`(收银台初始化,返回支付方式列表);实测类 `InitPayInfoServiceImpl` / `PayOrderFacadeImpl`。
+- 实测入口(cgs)前缀 `/cashdesk/*`:`/cashdesk/unityInitPayPage`、`/cashdesk/verify`、`/cashdesk/protocol/querySimpleApply`(签约申请)。
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
-- **读写的表**:待补
+- **暴露/相关 API**:`/cashdesk/unityInitPayPage`(支付方式列表)、`/cashdesk/verify`(确认→返回 bankForm 3ds)、`/cashdesk/protocol/querySimpleApply`(AutoDebit 签约模板);上游 [[svc_acquireii]]/[[svc_merchant_frontend]] 调入。
+- **读写的表**:收银会话 / 支付信息(待补具体表)。
 
-## 测试要点 / 排障 / 常见问题
-- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
+## 测试要点 / 排障 / 常见问题(UAT 实测)
+- **`unityInitPayPage`** 返回支付方式:BALANCE(`channelCode=14`,需支付密码)、快捷卡 QUICKPAY(`channelCode=15`,含 deductChannel/cardId)、GooglePay(`channelCode=36`)、session_pay(加卡);`choosed` 为默认项。
+- **`verify`** 返回 `bankFormUrl`(3ds mock TEST101)+ `paymentStatus=PAYING` → 轮询至 SETTLED。
+- **签约**:`protocol/querySimpleApply` 返回 `templateNo=02001`、`applyVoucherNo`、`signerId`(PAYANDSIGN→AutoDebit 前置,见 [[scn_online_business_auto_debit]])。
+- cashdesk 是统一收银台入口,执行链下沉 [[svc_cashierii]] + [[svc_tradeii]]。
 
 ## 相关流程 / 场景 / 排障(反向)
 本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):
@@ -76,4 +80,4 @@ cardPayForAnonymous
 - [[scn_wallet_withdraw_to_bank]](场景:提现到银行卡场景 (Transfer to Bank Account 字段/状态/限额/测试))
 
 ## 来源与置信
-- UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp007` · domain=`payment-tools`。
+- UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp007` · domain=`payment-core`。

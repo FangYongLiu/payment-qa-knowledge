@@ -65,14 +65,16 @@ related_tables:
 member
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
-- **读写的表**:待补
+- **暴露/相关 API**:Dubbo `[APP->DPM_V2]` 入账处理(`AccountingRequest`);被 [[svc_member]] / [[svc_payment]] 结算调入。
+- **读写的表**:账户余额 / 入账流水(DPM 账户表,待补具体表名)。
 
-## 关键方法 / 入口
-- 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。
+## 关键方法 / 入口(UAT 实测)
+- `[APP->DPM_V2]入账处理请求:AccountingRequest` → `准备开始更新余额,实时入账[N]条,缓冲入账[M]条` → `开始更新帐户余额[<accountNo>]` → `余额更新完成` → `[APPM<-DPM_V2]入账处理完成:AccountingResponse`。
 
-## 测试要点 / 排障 / 常见问题
-- 待补(QA 视角:怎么测、已知坑、典型故障与定位)。
+## 测试要点 / 排障 / 常见问题(UAT 实测)
+- **记账触发**:支付完成后 [[svc_payment]] `[OM-->DPM]结算请求` → dpm-accounting 实时入账更新余额;是资金最终落账环节。
+- **怎么测/定位**:按 `paymentSeqNo`/结算号核对入账条数与余额变动;余额不一致时查"实时入账[N]条"是否与预期分录数吻合。
+- 与 [[svc_reconciliation]] 对账勾稽:入账流水 vs 渠道清算流水。
 
 ## 相关流程 / 场景 / 排障(反向)
 本服务涉及的流程/场景/排障(由对方 `related_services` 指向,反向汇总):
