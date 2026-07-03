@@ -12,7 +12,7 @@ source_type: DB DDL
 source_ref: preauth schema DDL
 tags: [online-business, preauth]
 sensitivity: normal
-related_services: []
+related_services: [svc_preauth]
 ---
 
 # 指令参数(分区) (t_command_param)

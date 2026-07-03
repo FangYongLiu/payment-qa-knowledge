@@ -12,7 +12,7 @@ source_type: DB DDL
 source_ref: socialpay schema DDL
 tags: [online-business, socialpay]
 sensitivity: normal
-related_services: []
+related_services: [svc_socialpay]
 ---
 
 # 转账订单 (t_transfer_order)

@@ -12,7 +12,7 @@ source_type: DB DDL
 source_ref: acquireii schema DDL
 tags: [online-business, acquireii]
 sensitivity: normal
-related_services: []
+related_services: [svc_acquireii]
 ---
 
 # 对账事件 (t_stmt_event)

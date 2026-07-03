@@ -47,3 +47,6 @@ related_tables: []
 
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp275` · domain=`online-business`。
+
+## 涉及的表(DB)
+本服务为收单查询,读 `acquireii` 库(不拥有),主要查 [[tbl_acquireii_t_acquire_order]] · [[tbl_acquireii_t_payment_info]] · [[tbl_acquireii_t_refund_order]]。

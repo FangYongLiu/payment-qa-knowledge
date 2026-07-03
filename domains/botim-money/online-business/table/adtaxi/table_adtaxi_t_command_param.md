@@ -12,7 +12,7 @@ source_type: DB DDL
 source_ref: adtaxi schema DDL
 tags: [online-business, adtaxi]
 sensitivity: normal
-related_services: []
+related_services: [svc_adtaxi]
 ---
 
 # 指令参数(分区) (t_command_param)

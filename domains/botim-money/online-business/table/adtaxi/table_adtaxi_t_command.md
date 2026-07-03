@@ -12,7 +12,7 @@ source_type: DB DDL
 source_ref: adtaxi schema DDL
 tags: [online-business, adtaxi]
 sensitivity: normal
-related_services: []
+related_services: [svc_adtaxi]
 ---
 
 # 所有的发出id都从这里读 (t_command)

@@ -45,3 +45,6 @@ related_tables: []
 
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp035` · domain=`payment-tools`。
+
+## 涉及的表(DB)
+本服务读写 `socialpay` 库(7 张,见 `online-business/table/socialpay/`)。主要表:[[tbl_socialpay_t_redpkg_order]] · [[tbl_socialpay_t_transfer_order]]。

@@ -84,3 +84,6 @@ merchant-frontend
 
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp069` · domain=`online-business`。
+
+## 涉及的表(DB)
+本服务读写 `acquireii` 库(48 张,见 `online-business/table/acquireii/`)。主要表:[[tbl_acquireii_t_acquire_order]] · [[tbl_acquireii_t_amount_detail]] · [[tbl_acquireii_t_deposit_order]] · [[tbl_acquireii_t_fiserv_batch]] · [[tbl_acquireii_t_fiserv_refund_order]] · [[tbl_acquireii_t_fiserv_reversal_order]]。

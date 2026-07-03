@@ -12,7 +12,7 @@ source_type: DB DDL
 source_ref: casheatm schema DDL
 tags: [online-business, casheatm]
 sensitivity: normal
-related_services: []
+related_services: [svc_cash_eatm]
 ---
 
 # 请求标识 (t_request_identity)

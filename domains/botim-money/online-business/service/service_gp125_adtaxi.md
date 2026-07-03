@@ -42,3 +42,6 @@ related_tables: []
 
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp125` · domain=`online-business`。
+
+## 涉及的表(DB)
+本服务读写 `adtaxi` 库(9 张,见 `online-business/table/adtaxi/`)。主要表:[[tbl_adtaxi_t_adtaxi_order]]。

@@ -12,7 +12,7 @@ source_type: DB DDL
 source_ref: casheatm schema DDL
 tags: [online-business, casheatm]
 sensitivity: normal
-related_services: []
+related_services: [svc_cash_eatm]
 ---
 
 # 通用指令(分区) (t_retryable_command)

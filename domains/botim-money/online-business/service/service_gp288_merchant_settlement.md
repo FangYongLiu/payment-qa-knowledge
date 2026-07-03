@@ -45,3 +45,6 @@ statementii
 
 ## 来源与置信
 - UAT Kibana trace, last 120d 宽窗口采样(2026-06-24) + 作用说明。候选待人审。app_group=`gp288` · domain=`online-business`。
+
+## 涉及的表(DB)
+本服务读写 `mchtsettle` 库(21 张,见 `online-business/table/mchtsettle/`)。主要表:[[tbl_mchtsettle_t_black_list]] · [[tbl_mchtsettle_t_channel_summary]] · [[tbl_mchtsettle_t_clearing_batch]] · [[tbl_mchtsettle_t_clearing_detail]] · [[tbl_mchtsettle_t_clearing_file]] · [[tbl_mchtsettle_t_clearing_fileline]]。

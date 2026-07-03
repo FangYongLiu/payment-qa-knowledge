@@ -12,7 +12,7 @@ source_type: DB DDL
 source_ref: acquireii schema DDL
 tags: [online-business, acquireii]
 sensitivity: normal
-related_services: []
+related_services: [svc_acquireii]
 ---
 
 # 支付授权凭证 (t_pcc_content)

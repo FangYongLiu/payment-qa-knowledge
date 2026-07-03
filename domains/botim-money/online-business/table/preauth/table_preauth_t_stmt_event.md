@@ -12,7 +12,7 @@ source_type: DB DDL
 source_ref: preauth schema DDL
 tags: [online-business, preauth]
 sensitivity: normal
-related_services: []
+related_services: [svc_preauth]
 ---
 
 # 对账事件 (t_stmt_event)

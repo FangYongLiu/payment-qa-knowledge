@@ -12,7 +12,7 @@ source_type: DB DDL
 source_ref: preauth schema DDL
 tags: [online-business, preauth]
 sensitivity: normal
-related_services: []
+related_services: [svc_preauth]
 ---
 
 # 请求标识 (t_request_identity)
