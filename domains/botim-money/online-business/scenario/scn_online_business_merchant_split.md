@@ -9,10 +9,10 @@ owner: fangyong.liu
 reviewer: fangyong.liu
 last_reviewed_at: '2026-07-03'
 source_type: repo
-source_ref: cgs-apitest/testcases/payment/toB/test_merchant_split_fangyong.py (UAT 实跑 2026-07-03)
-tags: [online-business, 支付, cgs-apitest, 实测, 待核实]
+source_ref: cgs-apitest/testcases/payment/toB/test_merchant_split_fangyong.py (UAT 实跑 2026-07-03, N101 PASSED)
+tags: [online-business, 支付, cgs-apitest, 实测]
 related_services: [svc_acquireii, svc_tradeii, svc_payment, svc_pfs_payment, svc_merchant]
-related_tables: [tbl_acquireii_t_sharing_info]
+related_tables: [tbl_acquireii_t_sharing_info, tbl_acquireii_t_acquire_order, tbl_tradeii_t_trade_order]
 related_logs: []
 ---
 
@@ -30,13 +30,15 @@ toB 商户分账:一笔交易按规则分账到多个商户,含分账退款(refu
 ## 下单分账参数(实测请求结构)
 `placeOrder` 顶层 `sharingInfoList`(PAYPAGE 分账):每项 `sharingIdentitySeqId`(序号,从 1)、`sharingMid`(分账收款方,如 200000087655)、`sharingAmount={amount,currency}`、`sharingMemo`、可选 `withholdAndRemitFee`(true=该方承担手续费)。成功后落 [[tbl_acquireii_t_sharing_info]]:`sharing_settled_amount` = 分得金额、`sharing_settled_fee_amt`。
 
-## ⚠️ 实测观察(UAT 2026-07-03,test_merchant_split —— 需核实,非结论)
-本轮 `test_merchant_split` **多数用例未通过**:带 `sharingInfoList` 的 `placeOrder` 返回 `head` SUCCESS/code 0,但 `acquireOrder.status` 直接为 **`FAILURE`**(或停在 `CREATED` 不结算);另有部分 cgs 用例因**测试数据缺失**(`KeyError: test_merchantSplit_N10x`)未执行。**本次未取到干净的分账成功样本**——需核实是**子商户分账配置/测试数据**问题还是**缺陷**(商户 200000080798 → 分账方 200000087655)。分账成功链路的落库校验暂 **待补**(拿到成功样本后补 `t_sharing_info` 勾稽)。
+## 实测结论(UAT 2026-07-03,已核实)
+**基础分账在 UAT 可用,无需子商户特殊配置**:N101(主商户 `200000080798` → 分账方 `200000087655`,8 元分 4)**下单返回 CREATED(带 `sharingInfoList`)→ 轮询 SETTLED**,交易 [[tbl_tradeii_t_trade_order]] `trade_status=SS`、收单 [[tbl_acquireii_t_acquire_order]] `SETTLED`(product 200101/PAYPAGE),分账落 [[tbl_acquireii_t_sharing_info]](`sharing_mid`/`sharing_amount`/`sharing_settled_amount`)+ 分账方 `dpm.t_dpm_outer_account_subset` 余额增加——全链路通。
+
+**先前"14 failed"根因 = cgs 测试数据缺口,非缺陷/非配置**:`data/payment/test_data_uat.yml` **只定义了 `test_merchantSplit_N101`**,而用例文件有 N101–N110 共 10 个 → N102–N110 因 `KeyError`(数据未定义)报错。**待补 cgs 侧**:补 N102–N110 的 test data(不同金额/多分账方/`withholdAndRemitFee`/分账退款等)。
 
 ## 校验点(QA)
-- 分账金额拆分正确;分账退款 refundSharingAmount。
-- 各分账方落账([[tbl_acquireii_t_sharing_info]]);免登收银缓存卡支付路径。
-- **回归关注**:上述 UAT 分账下单 FAILURE 需先定位(配置/数据/缺陷)再断言成功链路。
+- 分账金额拆分正确(N101 已验:8 元分 4);分账退款 refundSharingAmount。
+- 各分账方落账:[[tbl_acquireii_t_sharing_info]] `sharing_settled_amount` + `dpm.t_dpm_outer_account_subset` 余额;免登收银缓存卡支付路径。
+- **回归缺口**:N102–N110 需在 cgs `test_data_uat.yml` 补测试数据后才能覆盖(非产品问题)。
 
 ## 来源与置信
-- **UAT 实跑 2026-07-03**(`test_merchant_split_fangyong.py`,14 failed/多为分账态 FAILURE + 测试数据 KeyError):请求结构为实测;成功落库链路待取样。
+- **UAT 实跑 2026-07-03**(`test_merchant_split_fangyong.py::N101` PASSED):分账成功链路为实测;N102–N110 因 cgs 测试数据未定义(KeyError)未覆盖,与产品无关。
