@@ -91,8 +91,24 @@ acquireii, cashierii, cashdesk-api, remittance, merchant-fundout, deduct
 queryTradeOrder, queryRefundOrder, createCashierTrade, refund
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:Dubbo Facade(无对外 REST),核心 `createCashierTrade` / `queryTradeOrder` / `queryRefundOrder` / `refund` / `confirmPay`;收单经 [[svc_acquireii]] 调入。
+- **暴露 API**:**Dubbo Facade**(无对外 REST),收单/钱包经 [[svc_acquireii]]/[[svc_cashierii]]/[[svc_cashdesk_api]] 调入。完整目录见 SIM 文档 `sim-admin.corp.test2pay.com/api-doc/dubbo-api/tradeii-dubbo-api/`。
 - **核心表**:[[tbl_tradeii_t_trade_order]](交易主单)、[[tbl_tradeii_t_pay_order]]、[[tbl_tradeii_t_refund_order]] 等(见 `related_tables`)。
+
+### Dubbo Facade 目录(来源:tradeii-dubbo-api 文档)
+| Facade | 职责 | 主要方法 |
+| --- | --- | --- |
+| `CashierTradeFacade` | 收银台交易 | `createCashierTrade` / `confirmTrade` / `createCashierUrl` / `queryCashierUrlInfo` |
+| `CashierTradePayFacade` | 支付处理 | `confirmPayer` / `confirmPay` / `queryPayOrder` / `queryPayOrderList` / `queryLatestFailPayOrder` / `recordPayFailInfo` |
+| `TradeOptionalFacade` | 交易生命周期 | `settle` / `cancel` / `refund` / `reverse` / `expireTrade` / `updateExpireTime` |
+| `TradeQueryFacade` / `TradeQueryV2Facade` | 交易/退款查询 | `queryTradeOrder` / `queryRefundOrder` / `queryBatchTradeOrder` / `queryBatchRefundOrder` |
+| `AuthTradeFacade` | 授权支付 | `createAuthTrade` |
+| `PreauthCaptureFacade` | 预授权请款 | `capture` |
+| `InnerTradeFacade` | 内部转账 | `createInnerTrade` |
+| `PspFacade` | 渠道 PSP 操作 | `channelReverse` / `channelVoid` |
+| `TradeDccFacade` | DCC 动态货币转换 | `checkDccAvailability` |
+| `FundValidateFacade` | 资金校验 | `fundInValidate` |
+
+> 收单场景对应:下单=`createCashierTrade`;确认支付=`confirmPay`;请款=`PreauthCaptureFacade.capture`;退款=`TradeOptionalFacade.refund`;撤销=`reverse`/`PspFacade.channelVoid`;查单=`TradeQueryFacade.queryTradeOrder`。
 
 ## 测试要点 / 排障 / 常见问题(UAT 实测语义,2026-07-03)
 `t_trade_order` 是收单/支付成功判定的中枢表,实测字段口径:
