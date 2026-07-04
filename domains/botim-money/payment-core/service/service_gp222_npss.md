@@ -48,7 +48,7 @@ rtp, npss-gateway
 - §8. 账单 / 即时支付（`test_ppcTransaction`，NPSS）
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:对接 NPSS 网络经 [[svc_npss_gateway]] 报文网关;`NpssHttpClientImpl`(HTTP 调 NPSS)、`SignServiceImpl`(报文验签)。上游 rtp / npss-gateway 调入,交易下沉 [[svc_tradeii]]。
+- **暴露 API**:NPSS CGS **REST**(来源 `npss-dubbo-api` 文档,实为 REST,前缀 `/npss/*`)8 组:`Account`(账户状态)、`Config`(额度配置)、`Customer`(注册/联系人)、`Order`(交易下单/算费)、`R2p`(request-to-pay / 拆单)、`Sca`(认证校验)、`Ckwd`(AANI 卡账户)、`QrCode`(二维码解析)。对接 NPSS 网络经 [[svc_npss_gateway]] 报文网关;`NpssHttpClientImpl` / `SignServiceImpl`。上游 rtp / npss-gateway,交易下沉 [[svc_tradeii]]。
 - **读写的表**:RTP / 挂起交易 / 账单(具体对象待补)。
 
 ## 关键方法 / 入口(UAT 实测 mClass,近7d ~1806 万条,支付核心高频服务)

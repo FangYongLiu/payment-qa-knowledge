@@ -60,8 +60,23 @@ tradeii, acquireii
 - 实测入口(cgs)前缀 `/cashierii/*`:`/cashierii/common/v1/unauth/cache-card-info`、`/cashierii/pay/v1/unauth/card-token-pay`。
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:`/cashierii/*`(unauth 缓存卡 / 卡 token 支付 / 查结果);Dubbo facade 供 [[svc_tradeii]]/[[svc_acquireii]] 调。
+- **暴露 API**:`/cashierii/*` REST(unauth 缓存卡 / 卡 token 支付 / 查结果)+ **Dubbo Facade**(完整目录见 SIM `api-doc/dubbo-api/cashierii-dubbo-api/`)。
 - **读写的表**:收银交易 token / 支付结果(待补具体表)。
+
+### Dubbo Facade 目录(来源:cashierii-dubbo-api 文档)
+| Facade | 职责 | 主要方法 |
+| --- | --- | --- |
+| `OrderTokenFacade` | 收银 token | `getTradeOrderToken` / `queryTradeTokenInfo` / `queryPosTradeTokenInfo` / `generateCashierTokenUrl` |
+| `OrderTokenOptionalFacade` | token 生命周期 | `closeTrade` |
+| `OrderPayFacade` / `OrderPayOptionalFacade` | 支付 / 查结果 | `continueSinglePay` / `queryPosPayResult` / `queryPosPaySuccessOrder` |
+| `PspPayFacade` | 扫码支付 | `qrCodePay` |
+| `PosPayFacade` / `PosPayMethodFacade` | 线下 POS | `physicalCardPay` / `secondAuthorization` / `queryAuthorise` |
+| `DeviceCardPayFacade` | 设备支付 | `pay`(ApplePay/GooglePay/SamsungPay) |
+| `WalletPayFacade` | 钱包支付 | `getWalletLink`(EWALLET DeepLink) |
+| `MpcPayFacade` / `CpcPayFacade` | 商户呈现码 / 消费者呈现码 | `applyOuterPay` / `applyCpcPay` / `cpcPay` / `queryCpcPayResult` |
+| `IapPayFacade` | App 内购(INAPP) | `getIapInfo` / `validateIapToken` |
+| `PreauthFacade` | 预授权 | `authorize` |
+| `CardTokenFacade` | 卡 token | (文档未列方法) |
 
 ## 测试要点 / 排障 / 常见问题(UAT 实测)
 - **免登收银链**:cache-card-info 返回 `CCT:<token>` → card-token-pay 提交 → 返回 `bankForm`(3ds mock TEST101)→ 轮询至 SETTLED;卡数据经 SDK 加密。
