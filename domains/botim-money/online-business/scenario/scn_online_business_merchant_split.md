@@ -33,12 +33,15 @@ toB 商户分账:一笔交易按规则分账到多个商户,含分账退款(refu
 ## 实测结论(UAT 2026-07-03,已核实)
 **基础分账在 UAT 可用,无需子商户特殊配置**:N101(主商户 `200000080798` → 分账方 `200000087655`,8 元分 4)**下单返回 CREATED(带 `sharingInfoList`)→ 轮询 SETTLED**,交易 [[tbl_tradeii_t_trade_order]] `trade_status=SS`、收单 [[tbl_acquireii_t_acquire_order]] `SETTLED`(product 200101/PAYPAGE),分账落 [[tbl_acquireii_t_sharing_info]](`sharing_mid`/`sharing_amount`/`sharing_settled_amount`)+ 分账方 `dpm.t_dpm_outer_account_subset` 余额增加——全链路通。
 
-**先前"14 failed"根因 = cgs 测试数据缺口,非缺陷/非配置**:`data/payment/test_data_uat.yml` **只定义了 `test_merchantSplit_N101`**,而用例文件有 N101–N110 共 10 个 → N102–N110 因 `KeyError`(数据未定义)报错。**待补 cgs 侧**:补 N102–N110 的 test data(不同金额/多分账方/`withholdAndRemitFee`/分账退款等)。
+**先前"14 failed"根因(已细化,2026-07-04):两类,均非无分账能力**:
+1. **测试数据缺口**(仅 N103/N109):`test_data_uat.yml` 只定义 `test_merchantSplit_N101`,而 N103/N109 读 `test_merchantSplit_N103`(多分账方,需 `sharingMid2`)→ `KeyError`。已补该 key(sharingMid2=`200000091441`,UAT 核验有效 AED 账户)。N102/N104–N110 本就复用 N101 数据,无缺口。
+2. **⚠️ 产品行为 —— `withholdAndRemitFee=True` 分账单在 UAT 直接 FAILURE**(需 dev 确认):**决定性对照**——N101(单分账方,**无** withhold)→ SETTLED;N102(**完全相同数据**,body 仅加 `withholdAndRemitFee=True`)→ 下单即 `status=FAILURE`(`head` SUCCESS/code 0,`t_acquire_order.fail_code` 为空)。凡带 withhold=true 的用例(N102/N103/N106–N110)均因此失败。→ **"分账方代收手续费"功能在 UAT 未生效/未开通 或 缺陷**,待 dev/配置确认;非测试数据、非无分账能力(无 withhold 的 N101 完好)。
 
 ## 校验点(QA)
 - 分账金额拆分正确(N101 已验:8 元分 4);分账退款 refundSharingAmount。
 - 各分账方落账:[[tbl_acquireii_t_sharing_info]] `sharing_settled_amount` + `dpm.t_dpm_outer_account_subset` 余额;免登收银缓存卡支付路径。
-- **回归缺口**:N102–N110 需在 cgs `test_data_uat.yml` 补测试数据后才能覆盖(非产品问题)。
+- **withhold 分支**:`withholdAndRemitFee=True` 目前 UAT 下单即 FAILURE;回归前需 dev 确认该功能是否应生效(是→缺陷;否→用例应改为负例期望)。
+- **回归缺口**:N103/N109 已补数据(cgs 本地 `test_data_uat.yml`,待推);带 withhold 的用例待 withhold 行为澄清后再判成功/负例。
 
 ## 来源与置信
-- **UAT 实跑 2026-07-03**(`test_merchant_split_fangyong.py::N101` PASSED):分账成功链路为实测;N102–N110 因 cgs 测试数据未定义(KeyError)未覆盖,与产品无关。
+- **UAT 实跑 2026-07-03/04**:N101(无 withhold)PASSED = 分账成功链路实测;N102(同数据 + withhold=True)= FAILURE(决定性对照);N103 补数据后仍 FAILURE(因 party1 withhold=True)。结论:分账能力正常,`withholdAndRemitFee=True` 行为待 dev 确认。
