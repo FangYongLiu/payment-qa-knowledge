@@ -46,7 +46,7 @@ payment
 - §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:被 [[svc_payment]] 调(入账记账);清算后台操作(渠道订单管理/置结果/审核/退票)。查渠道账户 `Counter=>Payment ChannelAccount`。
+- **暴露 API**(Dubbo,来源 `counter-dubbo-api` 文档):`ChargeBackFacade`(拒付:`apply` / `query` / `update`)、`RefundTicketFacade`(退票:`applyRefundTicket` / `getRefundReason`)。另被 [[svc_payment]] 调做入账记账;清算后台操作(渠道订单管理/置结果/审核)。
 - **读写的表**:清算/审核/渠道账户表(具体对象待补)。
 
 ## 关键方法 / 入口(UAT 实测)

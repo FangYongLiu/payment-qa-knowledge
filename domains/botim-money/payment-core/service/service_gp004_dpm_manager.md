@@ -37,7 +37,7 @@ pfs-payment, reconciliation, payment
 - §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:Dubbo `[APP-->DPMV2]` 账户查询/管理:`GetMemberAccountListReq`、`GetMemberAccountReq`(按 accountNo)。被 [[svc_pfs_payment]]/[[svc_payment]]/[[svc_reconciliation]]/[[svc_member]] 调。
+- **暴露 API**(Dubbo,来源 `dpm-manager-dubbo-api` 文档):`AccountService`(账户主数据:`getAccountByAccountNo` / `getAccountDetailList` / `insertOuterAccount` / `insertInnerAccount` / `createAccountTitle` / `queryInnerAccounts` / `changeActivatedAccountStatus` / `queryStatusChangeHis` 等)、`BufferRuleService.insertBufferRule`、`TitleDailyQueryFacade.queryTitleDaily`。被 [[svc_pfs_payment]]/[[svc_payment]]/[[svc_reconciliation]]/[[svc_member]] 调。
 - **读写的表**:`T_DPM_ACCOUNT_CRL_DEF`(账户控制/余额定义)等 DPM 账户表(具体对象待补)。
 
 ## 关键方法 / 入口(UAT 实测)

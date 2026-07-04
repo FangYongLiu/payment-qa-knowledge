@@ -53,7 +53,7 @@ tradeii
 - `queryProtocol`(查代扣协议);执行 AUTODEBIT:凭 `authProtocolNo`(= `t_deduct_protocol.deduct_protocol_no`)→ [[svc_authpay]] 鉴权 → [[svc_tradeii]] 扣款 → [[svc_pns]] 通知。
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:Dubbo `queryProtocol`;协议管理下沉 [[svc_protocol]]。
+- **暴露 API**(Dubbo,来源 `deduct-dubbo-api` 文档):`PayOrderFacade.protocolPay`(凭协议号代扣)、`DeductProtocolFacade.protocolApply`(发起签约申请,支持交易完成后延迟签约)、`DeductProtocolQueryFacade.queryProtocol`(查协议状态/签约人)。协议管理下沉 [[svc_protocol]]。
 - **读写的表**:[[tbl_deduct_t_deduct_protocol]](可用代扣协议 `status=A`)、[[tbl_deduct_t_deduct_protocol_apply]](签约申请 `status=S`)、[[tbl_deduct_t_deduct_protocol_config]](扣款服务配置 `protocol_scene_code` 120/111)。
 
 ## 测试要点 / 排障 / 常见问题(UAT 实测)

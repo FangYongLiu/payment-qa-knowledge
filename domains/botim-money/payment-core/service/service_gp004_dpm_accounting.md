@@ -65,7 +65,7 @@ related_tables:
 member
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:Dubbo `[APP->DPM_V2]` 入账处理(`AccountingRequest`);被 [[svc_member]] / [[svc_payment]] 结算调入。
+- **暴露 API**(Dubbo `AccountingFacade`,来源 `dpm-accounting-dubbo-api` 文档):`apply(AccountingRequest)→AccountingResponse`(入账)、`query(transactionNo, environment)→AccountingQueryResponse`(查记账结果)。被 [[svc_member]] / [[svc_payment]] 结算调入。
 - **读写的表**:账户余额 / 入账流水(DPM 账户表,待补具体表名)。
 
 ## 关键方法 / 入口(UAT 实测)
