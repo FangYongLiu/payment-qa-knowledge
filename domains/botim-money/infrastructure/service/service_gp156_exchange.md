@@ -35,7 +35,7 @@ related_tables: []
 cmf, fundout, cmf-task
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
+- **暴露 API**(Dubbo,来源 `exchange-dubbo-api` 文档):`ExchangeFacade`(`exchange`/`enter`/`refund` 换汇)、`QuotationFacade`(`rateQuery`/`quote`/`quoteQuery`/`rateConvert`/策略维护)、`FxQuoteFacade`(`lockQuote`/`verifyQuote` 锁汇)、`ZandTransFacade.notifyTrans`。支撑 DCC / 跨境换汇报价。
 - **读写的表**:待补
 
 ## 关键方法 / 入口

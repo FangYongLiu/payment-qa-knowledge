@@ -42,7 +42,7 @@ merchant-frontend, tradeii, cashierii, cashdesk-api, qpay-mpgs, fundout
 - §9. 登录 / KYC / 绑卡（basic_cases：`test_login` / `test_*eid*` / `test_bankcards`）
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
+- **暴露 API**(Dubbo,来源 `cards-dubbo-api` 文档):卡管理 + 地理/银行字典。核心 `CardBinFacade`(`validate`(卡 BIN 校验,收单/风控高频)/`validateCountry`/`create`/`importFile`/`queryByBinId`)、`IbanFacade`(`validateIban`/`buildIban`/`validateSwiftCode`);字典类 `BankFacade`/`BranchFacade`/`CountryFacade`/`CityFacade`/`StateFacade`/`AreaFacade`(queryByCondition/queryByCode/update)、`ImportFileFacade`。
 - **读写的表**:待补
 
 ## 关键方法 / 入口

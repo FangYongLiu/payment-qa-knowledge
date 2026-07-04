@@ -31,7 +31,7 @@ related_tables: []
 (本窗口未观测到与其它服务的调用关系)
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
+- **暴露 API**(Dubbo,来源 `query-datasync-dubbo-api` 文档):`BillDataSyncFacade.doService`(按时间范围分页拉账单)、`BillDataPushFacade.pushBillData`(应用推账单入库)、`FundDataSyncFacade.doService`(资金流水分页同步)。是收单确认支付后 MQ 扇出的资金/账单同步订阅方(见 [[flow_cashier_payment]])。
 - **读写的表**:待补
 
 ## 关键方法 / 入口
