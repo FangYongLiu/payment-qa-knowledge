@@ -52,3 +52,24 @@ related_services: [svc_ues_ws, svc_pbs, svc_dpm_accounting, svc_dpm_manager, svc
 - [[ts_directpay_3ds_downgrade_token_invalid]](排障:DirectPay 3DS 降级导致 CardToken 代扣失败)
 - [[ts_payby_auth_protocol_return_codes]](排障:PayBy 授权协议签约 / 转账接口返回码排错)
 - [[ts_payment_db_navigation]](排障:支付链路数据库库表速查与排查导航)
+
+## 参考索引
+**核心系统 / 网关 / 环境**
+- [[reference_payby_core_systems_overview]](PayBy 核心系统简介)· [[reference_payby_system_components_overview]](系统组件架构总览)
+- [[reference_cgs_client_gateway_service_overview]](CGS 客户端网关服务)· [[reference_client_grpc_gateway_integration]](客户端 gRPC 网关集成规范)
+- [[reference_prod_env_access]](PROD 生产环境访问指南)
+
+**收单 / 支付 / 签约**(收单主域见 [[domain_online_business]])
+- [[reference_payby_acquire_transaction_overview]] / [[reference_acquire_transaction_overview]](收单交易业务总览)
+- [[reference_payment_code_offline_acquiring_overview]](付款码线下收单)· [[reference_cko_subscription_payment_overview]](CKO 订阅支付)
+- [[reference_payby_auth_protocol_overview]](授权协议签约总览)· [[reference_snpl_payment_overview]](SNPL 先享后付)
+
+**渠道 / PIX / EID-KYC**
+- [[reference_mg_channel_overview]](MoneyGram 渠道)
+- [[reference_pix_mpc_overview]] / [[reference_pix_wechat_mpc_overview]] / [[reference_pix_wechat_mpc_integration_overview]] / [[reference_pix_sd_transaction_er_overview]](PIX 微信 MPC 呈现码支付)
+- [[reference_eid_kyc_cgs_api_v2_overview]](EID KYC CGS API v2)· [[reference_life_center_sgs_api_overview]](Life Center SGS API)
+- [[reference_ppc_api_inventory_overview]](PPC 核心 API 清单)
+
+**转账 / 提现 / 钱包 / 账户**(主域分别在 wallet / remittance / fundout / deposit-vam)
+- [[reference_payby_transfer_to_account_overview]] · [[reference_payby_transfer_to_bank_overview]] · [[reference_botim_transfer_overview]](转账)
+- [[reference_payby_withdraw_overview]](提现)· [[reference_add_funds_overview]](充值)· [[reference_wallet_overview]](钱包)· [[reference_vam_iban_overview]](VAM IBAN 虚拟账户)
