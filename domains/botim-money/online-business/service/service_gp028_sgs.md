@@ -36,7 +36,8 @@ related_scenarios: [scn_online_business_direct_pay]
 
 ## 涉及的 API / 数据库表
 **暴露 / 相关 API:**
-- 收单核心:[[api_sgs_acquire_place_order]] / [[api_sgs_acquire_get_order]] / [[api_sgs_acquire_refund_place_order]] / [[api_sgs_acquire_revoke_order]] / [[api_sgs_acquire_cancel_order]] 等 `/sgs/api/acquire2/*`。
+- 收单核心:[[api_sgs_acquire_place_order]] / [[api_sgs_acquire_get_order]] / [[api_sgs_acquire_refund_place_order]] / [[api_sgs_acquire_revoke_order]] / [[api_sgs_acquire_cancel_order]] / [[api_sgs_acquire_get_cashier_url_info]](查收银台 URL)/ [[api_sgs_acquire_update_expired_time]](改订单超时)等 `/sgs/api/acquire2/*`。
+- 转账:[[api_sgs_transfer_place_order]](`/sgs/api/transfer/placeTransferOrder` 单笔付款到账户)。
 - 话费充值:[[api_sgs_place_mobile_order_prepaid]] 预付话费下单接口。
 - 协议/枚举字典见 [[reference_acquire_protocol_and_codes]]。
 
