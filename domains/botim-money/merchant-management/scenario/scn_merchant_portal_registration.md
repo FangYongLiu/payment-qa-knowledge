@@ -22,7 +22,7 @@ related_scenarios: [scn_onboarding_manual_register]
 
 ## 触发 / 入口
 - 地址(UAT):`https://uat-web-unified.test2pay.com/verify/login`(各环境见 [[reference_portal_env_access]])。
-- **登录**:输入手机号(区号 +971)→ `Sign in/Sign Up` → OTP 校验。**UAT 实测 OTP 为 mock `123456`**;首次注册/新设备登录后**强制设置密码**,可能触发 2FA。管理员手机号即后续登录账号(administrator role)。
+- **登录**:输入手机号(区号 +971)→ `Sign in/Sign Up` → OTP 校验。**UAT 登录需真实 OTP**;但**已在 BMOC 配置白名单的手机号 OTP 默认 `123456`**(测试用,如 `556579167`)。首次注册/新设备登录后**强制设置密码**,可能触发 2FA。管理员手机号即后续登录账号(administrator role)。
 - 登录后进入 **Choose Merchant**(已有商户列表)→ 点 **`+ Add New Merchant`** 开始新入驻。
 
 ## 前置选择(4 连问,决定后续表单形态)
