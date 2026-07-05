@@ -26,7 +26,7 @@ related_services: [svc_merchant, svc_basis_merchant, svc_contract, svc_onboardin
 ## 本域内容
 - **service/** — 商户核心 merchant、运营后台 basis/basis-merchant/basis-portal、门户 unified-merchant-portal/merchant-frontend/hive-*、合同 contract、发票 invoice、入驻 onboarding/cregister、商户出款 merchant-fundout、协议 agreements-static。
 - **table/** — merchant、mhtfundout(商户出款)、onboarding。
-- **api/**(4)· **flow/**(3)· **scenario/**(3)。
+- **api/**(4)· **flow/**(3)· **scenario/**(4,含 [[scn_merchant_portal_registration]] 门户自助注册向导)。
 
 ## 相邻域
 收单交易 → [[domain_online_business]] / [[domain_offline_business]];出款(平台侧)→ [[domain_fundout]];工资代发 → [[domain_wps]](同为 Chahid 团队)。
