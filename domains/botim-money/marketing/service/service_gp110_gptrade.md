@@ -31,8 +31,8 @@ related_tables: []
 (本窗口未观测到与其它服务的调用关系)
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
-- **读写的表**:待补
+- **暴露 API**(Dubbo,来源 `gptrade-dubbo-api` 文档):**GPoint 交易**(GP 版 tradeii)——`GpCashierTradeFacade`(`createCashierTrade`/`close`)、`GpCashierPayFacade`(`confirmPayer`/`confirmPay`/`queryPayOrder`)、`GpOptionalTradeFacade`(`queryTradeOrder`/`settle`/`cancel`/`refund`/查结算/取消/退款单)、`GpAuthTradeFacade.createAuthTrade`(免收银台直付)。
+- **读写的表**:GP 交易/结算/退款单(具体对象待补)。
 
 ## 关键方法 / 入口
 - 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。

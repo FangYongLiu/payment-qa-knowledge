@@ -39,7 +39,7 @@ cashierii
 - §2. 收银台 / 收银（`test_bpg_paypage` 收银侧、cashier 用例）
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
+- **暴露 API**(Dubbo,来源 `lean-dubbo-api` 文档):`LeanPaymentFacade.failPayment(FailPaymentRequest{paymentIntentId})`——将 Lean 渠道支付置失败。Lean 渠道接入(open banking)。
 - **读写的表**:待补
 
 ## 关键方法 / 入口

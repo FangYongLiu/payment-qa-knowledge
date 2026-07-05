@@ -33,8 +33,8 @@ gpoint  **(据名推断 · 待核实:无作用文字证据,但下方有观测到
 cashdesk-api, member-front
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
-- **读写的表**:待补
+- **暴露 API**(Dubbo,来源 `gpoint-accounting-dubbo-api` 文档):**GPoint 积分账务**——`AccountingFacade.apply`(记账,幂等)、`BalanceQueryFacade.queryBalance`(可用/冻结额)、`AccountFacade.changeAccountStatus`(Normal/Frozen/Forbid In-Out)、`ExchangeRateQueryFacade.queryExchangeRate`(GP↔法币汇率)。
+- **读写的表**:GP 账户 / 记账流水(具体对象待补)。
 
 ## 关键方法 / 入口
 - 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。

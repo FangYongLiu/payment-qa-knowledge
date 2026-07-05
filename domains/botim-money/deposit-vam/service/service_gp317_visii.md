@@ -48,7 +48,7 @@ counter, fcw, npss
 - §10. 红包 / 社交支付、生活缴费、VAM（toC：`test_red_pkg` / `test_friend_transfer` / `test_vam` / 充值）
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
+- **暴露 API**(Dubbo,来源 `visii-dubbo-api` 文档):**VAM 虚拟账户(II)**——`VamAccountFacade`(`applyVam`(个人/企业/VVIP/多IBAN 四重载)/`applyVamXtran`(x-transfer 同步申 IBAN,幂等)/`queryVamXtran`/`closeVam`/`reopenVam`/`queryVamAcct`(s))、`CounterOperateFacade`(运营:`queryVamOrder`/`putOrderStatus`/`retryCompensation`/`retryOpenAccount`/`bulkApplyIban`)、`VamApiFacade`(`queryAccounts`/`queryBalance`/`queryStatement`(MT940/MT942)/`queryFxRate`)、`VamTransFacade.notifyTrans`(银行交易通知)。cgs `applyVamXtran` 即此。
 - **读写的表**:待补
 
 ## 关键方法 / 入口

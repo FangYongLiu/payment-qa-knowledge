@@ -35,7 +35,7 @@ Zand 银行渠道接入
 reconciliation
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
+- **暴露 API**(Dubbo,来源 `qpay-zand-dubbo-api` 文档):**Zand 银行渠道接入**——`ChannelFundFacade`/`ChannelCommonFacade`/`ChannelFundBatchFacade`(`apply`/`buildFailInstOrderResult`,单笔/批量/快捷渠道请求适配)、`QueryFacade`(`queryAreaByIp`/`check` 出款资格)、`ZandUnionTokenFacade`(`queryToken`/`expireToken`)、`ZandFxRateFacade`(`fetchFxRate`/`generateFxQuote` 锁汇)、`ZandTransactionFacade.queryTransactions`。
 - **读写的表**:待补
 
 ## 关键方法 / 入口
