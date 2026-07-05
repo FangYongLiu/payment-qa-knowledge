@@ -41,3 +41,7 @@ related_services: [svc_acs, svc_voucher, svc_pfs_basis, svc_pfs_manager, svc_big
 - [[scn_grc_identity_3ds_rule]](场景:风控核身规则配置控制3DS触发)
 - [[scn_grc_ip_path_engagement_signature]](场景:通过remoteIpInfo._id判定IP解析路径)
 - [[ts_risk_rule_not_firing]](排障:Visual Rule配置完成却不触发)
+
+## 服务 / 参考索引(补)
+- **服务**:[[svc_afis]](反欺诈信息系统)· [[svc_pws]]
+- **参考**:[[reference_risk_control_overview]](风控业务总览)· [[reference_risk_system_architecture_overview]](GRC 风控系统架构)· [[reference_risk_control_admin_ui_overview]](风控管理后台界面)· [[reference_dataeden_risk_control_overview]](DataEden 风控平台使用指南)

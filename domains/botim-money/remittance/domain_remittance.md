@@ -37,3 +37,6 @@ related_services: [svc_remittance, svc_remittance_swiftx, svc_remittance_bdo, sv
 - [[scn_remittance_cross_border]](场景:跨境汇款 (Remittance))
 - [[scn_remittance_rate_alert]](场景:汇率提醒(Rate Alert))
 - [[scn_remittance_send_money]](场景:Send Money 转账(KYC 分支 / 退款 / 通知))
+
+## 参考索引(补)
+- [[reference_payby_bank_transfer_overview]](转账到银行账户接口总览)· [[reference_rate_alert_feature_overview]](Rate Alert 汇率提醒)

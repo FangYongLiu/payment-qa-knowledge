@@ -31,3 +31,6 @@ related_services: [svc_deposit, svc_vis, svc_visii, svc_vcs, svc_escrow, svc_esc
 
 ## 相邻域
 出款 → [[domain_fundout]];渠道 → [[domain_payment_tool]];清结算 → [[domain_settlement]];钱包 → [[domain_wallet]]。
+
+## 参考索引(补)
+- [[reference_cash_in_overview]](Cash In 现金充值业务总览)
