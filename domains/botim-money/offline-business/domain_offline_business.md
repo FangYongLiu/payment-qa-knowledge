@@ -34,3 +34,6 @@ related_services: [svc_pos_gateway, svc_device, svc_iso8583_gateway, svc_offline
 - [[scn_offline_merchant_scan_payment_code]](场景:商户扫用户付款码线下收单(POS / 扫码枪))
 - [[scn_offline_pos_device_types]](场景:POS设备机型能力差异校验)
 - [[scn_pos_transaction_db_check]](场景:POS刷卡交易落库检查)
+
+## 服务 / 参考索引(补)
+- [[svc_kiosk_mgmt]](KIOSK 管理)· [[reference_offline_business_overview]](线下业务总览)

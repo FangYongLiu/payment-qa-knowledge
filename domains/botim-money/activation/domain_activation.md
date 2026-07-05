@@ -32,3 +32,8 @@ related_services: [svc_member, svc_member_front, svc_member_feature, svc_kyc, sv
 
 ## 相邻域
 监管合规(AML/Edit42/报送)→ [[domain_compliance]];风控 → [[domain_risk]];钱包账户 → [[domain_wallet]]。
+
+## 参考 / 流程索引(补)
+- [[reference_kyc_channel_overview]](KYC 渠道总览)· [[reference_passport_kyc_s_model_api_overview]](Passport KYC S-Model API)
+- [[reference_eid_renew_cgs_api_v2_overview]](EID Renew CGS API v2)· [[flow_eid_renew_flow_overview]](EID 续期端到端流程)
+- [[reference_botim_payby_server_integration_overview]](Botim-PayBy 服务端集成方案)

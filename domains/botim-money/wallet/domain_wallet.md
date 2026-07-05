@@ -48,3 +48,6 @@ related_services: [svc_push_to_pay, svc_pus, svc_household, svc_member_task, svc
 - [[scn_wallet_vam_iban_apply_activate]](场景:VAM IBAN 虚拟账户申请激活与交易通知 (VAM IBAN Apply / Activate / Notify))
 - [[scn_wallet_withdraw]](场景:钱包提现 (Withdraw))
 - [[scn_wallet_withdraw_to_bank]](场景:提现到银行卡场景 (Transfer to Bank Account 字段/状态/限额/测试))
+
+## 自动化索引(补)
+- [[auto_wallet_AA_splitting]](AA 收款)· [[auto_wallet_phoneTransfer]](手机号转账)· [[auto_wallet_ppcTransaction]](PPC 交易)

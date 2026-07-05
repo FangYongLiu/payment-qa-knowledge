@@ -29,3 +29,6 @@ related_services: [svc_reconciliation, svc_counter, svc_commission, svc_pcbs]
 
 ## 相邻域
 渠道对账 → [[domain_payment_tool]];交易核心 → [[domain_payment_core]];出款 → [[domain_fundout]];入款 → [[domain_deposit_vam]]。
+
+## 参考索引(补)
+- [[reference_manual_fund_settlement_overview]](人工资金调拨总览)

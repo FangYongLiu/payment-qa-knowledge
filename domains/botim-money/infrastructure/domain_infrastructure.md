@@ -33,3 +33,6 @@ related_services: [svc_auth_server, svc_uae_data_server, svc_data_server, svc_my
 
 ## QA 关注点
 - 待补。
+
+## 服务索引(补)
+- [[svc_adg]] · [[svc_asite]] · [[svc_exchange_rate_crawler]](汇率爬虫)· [[svc_tld_service]] · [[svc_tpay_nyu]]
