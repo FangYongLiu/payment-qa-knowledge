@@ -38,8 +38,8 @@ related_tables: []
 ppc
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
-- **读写的表**:待补
+- **暴露 API**(Dubbo,来源 `crs-dubbo-api` 文档):**资金追回(Capital Recovery)**——`CapitalRecoveryFacade`(`createRecoveryOrder` 发起追回单(金额/会员/账户,异步通知)/ `cancelRecoveryOrder` 停止 PROCESSING 单继续扣款、不退已扣)。支持追回前可选结算划转;订单五态:Initial / InitialFail / Processing / Success / Cancelled。
+- **读写的表**:追回订单(具体对象待补)。
 
 ## 关键方法 / 入口
 - 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。

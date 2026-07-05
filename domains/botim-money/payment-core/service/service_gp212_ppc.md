@@ -47,6 +47,8 @@ ppc  **(据名推断 · 待核实:无作用文字证据,但下方有观测到的
 ## 涉及的 API / 数据库表
 **暴露 / 相关 API:** [[api_ppc_jeebly_delivery_status]] Jeebly配送状态回调接口、[[api_ppc_card_apply_virtual]] 申请虚拟卡接口、[[api_ppc_card_set_pin]] 设置卡PIN接口、[[api_ppc_card_lock]] 锁卡接口、[[api_ppc_card_reset_pin]] 重置卡PIN接口、[[api_ppc_card_apply_physical]] 申请实体卡接口、[[api_ppc_card_replace]] 替换卡接口、[[api_ppc_yse_clearing_notify]] YSE清算回调接口、[[api_ppc_card_close]] 关闭卡接口、[[api_ppc_card_unlock]] 解锁卡接口、[[api_ppc_card_activate]] 激活实体卡接口、[[api_ppc_yse_auth_notify]] YSE授权回调接口、[[api_ppc_card_track_physical]] 跟踪实体卡配送接口
 
+**Dubbo Facade**(来源 `ppc-dubbo-api` 文档,预付卡管理):`VirtualCardOptionalFacade`(`claimCard`/`activateCard`/`validateCvv`/`calculateAccount`/`changeCorporation`)、`VirtualCardQueryFacade`(`queryCardBasicInfo`(V2)/`queryCardsByIds`)、`VirtualCardManageFacade`(`closeCardValidate`/`closeCard`)、`PhysicalCardQueryFacade.queryPhysicalCard`、`PayrollCardFacade`(`createPayrollCard`(多企业))、`OfferOrderFacade`/`OfferOptionalFacade`、`FeeConfigQueryFacade`/`RateConfigFacade`。
+
 ## 参与的业务场景(cgs 回归)
 - §1. 直连支付 / 预授权 / DCC（toB，`test_direct_pay` / `test_pre_auth_capture` / `test_bpg_paypage`）
 

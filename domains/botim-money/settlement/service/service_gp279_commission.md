@@ -31,8 +31,8 @@ related_tables: []
 (本窗口未观测到与其它服务的调用关系)
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
-- **读写的表**:待补
+- **暴露 API**(Dubbo,来源 `commission-dubbo-api` 文档):**佣金/返佣配置管理**——`RebateConfigFacade`(`addRebateConfig` 幂等新增 / `updateRebateConfig` 改费率或生效期)。返佣配置绑定 付款方-收款方关系 + 产品包 + 支付渠道,DB 唯一键保证一致。
+- **读写的表**:返佣配置(具体对象待补)。
 
 ## 关键方法 / 入口
 - 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。

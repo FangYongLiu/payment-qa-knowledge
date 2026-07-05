@@ -31,8 +31,8 @@ related_tables: []
 (本窗口未观测到与其它服务的调用关系)
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
-- **读写的表**:待补
+- **暴露 API**(Dubbo,来源 `tts-dubbo-api` 文档):**分期(Installment)**——`InstallmentFacade`(`queryPlanList` 按卡+金额查可用分期方案 / `confirmInstallment` 确认分期(授权码+支付)/ `cancelInstallment` / `refundInstallment` / `queryInstallmentOrder`)。
+- **读写的表**:分期订单/方案(具体对象待补)。
 
 ## 关键方法 / 入口
 - 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。

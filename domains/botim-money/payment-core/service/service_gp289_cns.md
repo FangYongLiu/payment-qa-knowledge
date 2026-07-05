@@ -35,8 +35,8 @@ related_tables: []
 - [[svc_cms]] cms（内容 / 配置管理） · 123 次 · high
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
-- **读写的表**:待补
+- **暴露 API**(Dubbo,来源 `cns-dubbo-api` 文档):**统一通知平台**——`NotificationFacade.notify`(同步发通知)、`NotificationManageFacade`(后台配置:事件路由 `saveEventConfig`/`pageEventConfig`、TodoCard `saveCardConfig`、公众号 `saveOfficialAccountNotifyConfig`、派发审计 `pageCardNotifyDispatch`)。另支持 RabbitMQ 异步入口(exchange `exchange.cns.notification`)。
+- **读写的表**:通知事件/卡片/派发记录配置(具体对象待补)。
 
 ## 关键方法 / 入口
 - 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。

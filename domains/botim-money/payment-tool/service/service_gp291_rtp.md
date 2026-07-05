@@ -38,7 +38,7 @@ related_tables: []
 - §8. 账单 / 即时支付（`test_ppcTransaction`，NPSS）
 
 ## 涉及的 API / 数据库表
-- **暴露/相关 API**:待补
+- **暴露 API**(Dubbo,来源 `rtp-dubbo-api` 文档):`RtpFacade.queryPayerRtps`——分页查付款方 RTP(Request-to-Pay)请求;首次(无 lastVoucherNo)先与 NPSS 对账再返回本地持久化 RTP(类 CGS 网关)。按状态过滤 PENDING/COMPLETED/REJECTED/CANCELLED/EXPIRED。RTP 属即时支付(NPSS),与 [[svc_npss]] 协作。
 - **读写的表**:待补
 
 ## 关键方法 / 入口
