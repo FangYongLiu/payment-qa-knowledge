@@ -30,3 +30,16 @@ related_services: [svc_cmf, svc_cmf_task, svc_fcw, svc_router, svc_qpay_cko, svc
 
 ## 相邻域
 交易核心 → [[domain_payment_core]];清结算/对账 → [[domain_settlement]];汇款(同 Kingo 团队)→ [[domain_remittance]]。
+
+## 渠道适配器索引(补)
+核心渠道见 `related_services`;其余渠道适配器:[[svc_qpay_ni_channel]] / [[svc_qpay_niboarding]](NI 收单/入网)、[[svc_qpay_pl_channel]](PayLater)、[[svc_qpay_aplus]](Alipay+)、[[svc_qpay_klip]]、[[svc_qpay_mcii]]、[[svc_qpay_fs]]、[[svc_qpay_installment]](分期)、[[svc_bafl_channel]]、[[svc_kiosk_channel]](KIOSK)、[[svc_rtp]](NPSS Request-to-Pay)。
+
+## 参考索引
+- [[reference_cgs_apitest_payment_overview]](cgs-apitest payment 自动化模块总览)
+- [[reference_merchant_fund_out_overview]](商户出款业务总览)· [[reference_zand_fundout_overview]](ZAND 渠道出款)
+- [[reference_enbd_channel_overview]](ENBD 渠道)· [[reference_mit_cit_recurring_payment_overview]](MIT/CIT 循环支付 MPGS)
+- [[reference_payby_payment_scenarios_overview]](支付场景现状梳理)
+
+## 流程 / 场景索引
+- [[flow_chargeback_process_overview]](Chargeback 端到端处理流程)· [[flow_wechat_overseas_static_qr_payment]](微信海外主扫静态码 EPCC)
+- [[scn_channel_prerelease_collaboration]](渠道发布前 Dev-Test-Product 协作)· [[scn_gppc_dgpay_key_exchange]](GPPC-DGPAY 密钥交换与配置)
