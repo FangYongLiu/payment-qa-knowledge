@@ -22,7 +22,7 @@ related_services: [svc_unified_merchant_portal, svc_basis_merchant]
 | 环境 | 地址 | 测试账号 / OTP |
 | --- | --- | --- |
 | Sim | https://sim-web-unified.test2pay.com/verify/login | Mobile `+971-556579167` / Password `132580` 或 `Yong0324####` / OTP 默认 `161616` / Choose Merchant `SimBasisMerchant0628` |
-| UAT | https://uat-web-unified.test2pay.com/verify/login | 同上账号，OTP 需 real OTP |
+| UAT | https://uat-web-unified.test2pay.com/verify/login | 同上账号；**UAT 登录需真实 OTP**，但**已在 BMOC 配置白名单的手机号默认 OTP `123456`**(如测试号 `556579167`) |
 | Prod(merchant-console) | https://b.payby.com/ ；https://unified.payby.com/ | Merchant 账号 |
 | Bank 控台(Sim) | https://sim-cooperation.test2pay.com/ | `can.wang@payby.com` / `1qaz!QAZ`(定制化控台，账号体系独立) |
 
