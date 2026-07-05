@@ -60,6 +60,8 @@ merchant-fundout, merchant-frontend, personal, cashdesk-api
 ## 涉及的 API / 数据库表
 **读写的表:** [[tbl_mhtfundout_t_fundout_order]] Fundout订单主表 t_fundout_order、[[tbl_mhtfundout_t_fundout_bankcard_order]] Fundout银行卡订单表 t_fundout_bankcard_order
 
+**暴露 API**(Dubbo,来源 `fundout-dubbo-api` 文档):`CashierFundoutFacade.createCashierFundout`、`FundoutSimpleFacade`(`pay` 出款 / `tryCalculateFee` 试算费)、`FundoutAuthFacade.queryFundoutBeneficiary`(收款方核验)、`InnerFundoutFacade`(`createInnerFundout`(V2)/`createInnerAccountFundout` 内部出款)、`FundoutHostPayFacade.hostPay`、`FundoutFacade`(`getFundoutInfo`/`queryV2`/`queryFundoutInfo` 查单)、`CheckCardFacade.checkCardNumber`。
+
 ## 参与的业务场景(cgs 回归)
 - §5. 银行/卡转账、出款（`test_transfer_to_bank` / `test_transfer_to_card`）
 - §6. 提现（toC，`test_withdraw`）

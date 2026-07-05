@@ -46,6 +46,8 @@ fundout
 ## 涉及的 API / 数据库表
 **读写的表:** [[tbl_vis_t_virtual_account]] vis.t_virtual_account 虚拟账户表、[[tbl_vis_t_notify_transaction_flow]] vis.t_notify_transaction_flow 交易通知流水表
 
+**暴露 API**(Dubbo `VisAccountFacade`,来源 `vis-dubbo-api` 文档,"Vis Virtual Account Facade"):`queryAccount`/`queryAccounts`(会员虚拟账户查询)、`queryTransaction`(交易历史)、`iBanApply`/`multiAccountApply`/`bulkIbanApply`(IBAN 申请,含商户批量)、`reAllot`(重新分配)、`closeIban`/`reopenIban`(关闭/重开)。
+
 ## 参与的业务场景(cgs 回归)
 - §5. 银行/卡转账、出款（`test_transfer_to_bank` / `test_transfer_to_card`）
 - §10. 红包 / 社交支付、生活缴费、VAM（toC：`test_red_pkg` / `test_friend_transfer` / `test_vam` / 充值）

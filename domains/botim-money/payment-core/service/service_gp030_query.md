@@ -36,6 +36,8 @@ rdgs
 ## 涉及的 API / 数据库表
 **暴露 / 相关 API:** [[api_sgs_query_prepaid_mobile_topup]] 查询本地预付话费充值接口、[[api_pix_mpc_query_trade]] MPC查询交易接口 (/pix/mpc/v1/query-trade)、[[api_sgs_query_prepaid_international]] 查询国际预付话费接口、[[api_sgs_query_postpaid_mobile_bill]] 查询后付费话费账单接口
 
+**Dubbo Facade**(来源 `query-dubbo-api` 文档):`QueryBillFacade`(账单查询:`queryBill`(V2)/`queryBillDetail`/`queryBillAgg`/`queryPersonMerchantBill`/`generateBillFile`/`queryBillId`)、`QueryBasisFacade`(`queryBasisOrderList`/`queryBasisRefundList`/`queryBasisOrderDetail`)、`QueryMerBillFacade`(商户账单:`queryBill`/`queryBillDetail`/`queryMerOrderInfo`)、`GenStatementFileFacade.generateFileAsync`(对账单文件)。
+
 ## 关键方法 / 入口
 - 待补(本窗口未单独抽取 Dubbo/RPC 方法级)。
 
