@@ -53,6 +53,26 @@ related_scenarios: [scn_merchant_portal_registration]
 - **入驻涉及接口**:[[api_merchant_apply_add]]、[[api_merchant_bizopen_wps]]
 - **环境与后台入口**:见 [[reference_portal_env_access]]、[[reference_bmoc_basis_merchant]]
 
+## 实测服务调用链(UAT Kibana,2026-07)
+> 来源:UAT `java-kafka-logstash-*` 日志,按 `*ClientImpl` 聚合 + 按商户号/税号/ApplyId(如税号 `100123456700003`、ApplyId `2466`)时间线还原。`*ClientImpl` 的类名词根即被调服务。
+
+**① 门户提交(前端 → 落申请单)**
+- `merchant-console-frontend`(BFF/控台后端)接收 Portal 提交:`UnifyReceiveAccessServiceImpl` / `DefaultUnifyClient` / `LogCallTemplateAspect` / `OperateLogAspect`;下游 `Ues2ClientImpl`(会员/权限)、`DefaultResourceClientImpl`、`MqSenderClientImpl`(发 MQ)。
+- 写入商户申请单(`t_merchant_creation_order`),WPS 侧 `payroll-core-service.PortalServiceFacadeImpl` 参与;此阶段会员未激活。
+
+**② 注册核身(新手机号,见步骤 1)**
+- `grc-check-identity-provider`:`CommonRiskEventIdentityProcessor` / `RiskIdentityServiceImpl` / `RiskIdentityFacadeImpl` / `CheckRiskCisTicketValidProcessor`(CAPTCHA/OTP 风控),经 [[svc_cgs]] 暴露 `/api/cgs/risk-identify/*`。
+
+**③ BMOC 审批(basis-merchant 编排 → merchant 建户 + 下游)**
+- `basis-merchant` → `merchant`:`MerchantCreationClientImpl`(建户)、`PartnerClientImpl`(合作方)、`MerchantAddressClientImpl`(地址)、`MerchantMccClientImpl`(MCC)、`UfsOperationClientImpl`(文件)。
+- `merchant` → 下游:**`AmlClientImpl` → [[svc_aml]]**(AML 风险,对应 AML Risk Calc)、`ProductAuditClientImpl` → [[svc_ppcenter]](产品审核/激活)、`StatementClientImpl` → [[svc_statementii]](对账单配置)、`MnsClientImpl`(通知/短信)。
+- 审批通过发事件 → `payroll-core-service.CorporateListener`(WPS 企业同步)等订阅方消费(激活联动 [[svc_ppcenter]] / [[svc_statementii]] / [[svc_contract]] / [[svc_vis]])。
+
+**④ 渠道报备(激活后,可收款前提)**
+- `router` → `OnboardingClientImpl` / `RouteOnboardingProcessor`,`onboarding.OnboardingOrderAutoAdvanceJob` 自动推进报备单(见「渠道报备」节 + [[svc_cregister]])。
+
+> Kibana 溯源方法与 mTID 陷阱见 skill `PayBy-service-callgraph`;UAT 后台会话较短,长表单期间可能超时,结果多已服务端持久化。
+
 ## 入驻库表影响范围(QA 校验)
 跨库流程，按入驻链路顺序校验:Merchant → Member → Ppcenter → Dpm → Statementii → Contract → Vis。QA 库账号默认开通 SELECT/INSERT/UPDATE/DELETE，连接需指定库名(如 `merchantuser`)。
 
