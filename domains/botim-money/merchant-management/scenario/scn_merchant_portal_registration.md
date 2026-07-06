@@ -88,7 +88,7 @@ related_scenarios: [scn_onboarding_manual_register]
 - **草稿持久化**:会话超时(实测约几十分钟)会踢回登录页;重新登录 → `+ Add New Merchant` 会**保留已上传文件与部分选择**,但**并非全部字段**回填,需复核补齐。
 - **前端字段校验**:license issue date 不可选未来;IBAN/邮箱/URL 格式校验;子问卷选 Yes 后其 URL/描述必填;产品行必须 `+ Add new product` 提交才计数。
 - **提交后落库**(后端,详见 [[flow_merchant_onboarding]]):Merchant 库 `t_merchant_creation_order`(入驻申请单)、`t_merchant`(商户主信息,审核前非 ENABLED);Member 库 `tm_member`/`tm_member_identity` 处于未激活(状态 0)。
-- **审核激活**:BMOC(LDAP 登录)`Basis Merchant => BUSINESS => Merchant => Merchant Approval`,Portal 自助申请 Source=`PORTAL`、Status `Awaiting Approval`;点 `Approval` 填 KYB 表(Result=PASS + MCC Category + 国家/酋长国/地址 + 制裁筛查结果 + 受益人 EID 正反面 + Reason)→ `Confirm` → Status→`Approved`,商户激活(实测 Apply ID 2468 已 Approved)。表单字段与状态流转详见 [[flow_merchant_onboarding]] 步骤 3;通过后 `t_merchant.Status=MERCHANT_ENABLED`、`tm_member` 状态=1(见 [[reference_bmoc_basis_merchant]])。
+- **审核激活(两步)**:BMOC(LDAP 登录)`Basis Merchant => BUSINESS => Merchant => Merchant Onboarding`(注意不是 `Merchant Onboarding Management`=渠道报备)。待审行须 **先 `AML Risk Calc` 再 `KYB Approval`**:① AML 填 Risk Calculate 风险因子(Industry Type / Sanctions·PEP Screening / UBO Nationality / Business Profile / Product Services)→ `Save & Calculate` 得 Onboarding Risk Assessment+Score(实测 Medium/6.51),状态→`Awaiting KYB`;② KYB Approval 填 Result=PASS + Reason → `Confirm` → Status→`Approved`,商户激活(实测 Apply ID 2466)。表单字段与状态流转详见 [[flow_merchant_onboarding]] 步骤 3;通过后 `t_merchant.Status=MERCHANT_ENABLED`、`tm_member` 状态=1(见 [[reference_bmoc_basis_merchant]])。
 
 ## 关联
 - 后端跨系统入驻流程(Acquire+WPS / BMOC 审核 / 库表影响):[[flow_merchant_onboarding]]。
