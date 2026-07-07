@@ -66,4 +66,4 @@ related_tables: [tbl_acquireii_t_card_info, tbl_deduct_t_deduct_protocol, tbl_me
 
 ## 相关链接
 
-- 测试场景与执行步骤详见 scn_mit_cit_test_guide。
+- 测试场景与执行步骤详见 [[scn_payment_core_mit_cit_mpgs]]。
