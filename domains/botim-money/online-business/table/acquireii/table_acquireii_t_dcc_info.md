@@ -124,3 +124,5 @@ DCC 业务是 Bug 高发区，重点关注：
 8. **金额一致性**：`dcc_amount` 应约等于 `order_amount * exchange_rate`（在 `t_acquire_order` / `t_amount_detail` 中取原币金额），允许精度误差。
 
 9. **partner_id 与订单一致**：`t_dcc_info.partner_id` 必须与对应 `t_acquire_order.partner_id` 一致。
+
+> 相关场景：结果页 DCC 免责声明须显示用户实际选中的币种(非硬编码 `[USD]`)、币种选择卡显示对应国旗 —— 见 [[scn_online_business_dcc_currency_display]]。
